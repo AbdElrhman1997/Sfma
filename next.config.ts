@@ -1,7 +1,17 @@
-import {NextConfig} from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
- 
-const nextConfig: NextConfig = {};
- 
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
 const withNextIntl = createNextIntlPlugin();
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "just.isamstore.com",
+        pathname: "/**",
+      },
+    ],
+  },
+};
+
 export default withNextIntl(nextConfig);

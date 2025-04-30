@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#CF142B;}
+	.st3{fill:#00247D;}
+	.st4{fill:url(#SVGID_3_);}
+	.st5{opacity:0.1;}
+	.st6{fill:#231F20;}
+</style>
+<g id="Countryflags.com">
+</g>
+<g id="Light">
+</g>
+<g id="Edge">
+	<g>
+		<g>
+			<defs>
+				<circle id="SVGID_1_" cx="128" cy="128" r="128"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st0">
+				<rect id="_x31_4" x="-128" y="0" class="st1" width="511.73" height="255.97"/>
+				<polygon id="_x31_3" class="st2" points="102.28,153.51 102.28,255.97 153.46,255.97 153.46,153.51 383.73,153.51 
+					383.73,102.33 153.46,102.33 153.46,0 102.28,0 102.28,102.33 -128,102.33 -128,153.51 				"/>
+				<polygon id="_x31_2" class="st3" points="170.52,82.86 170.52,0 336.2,0 				"/>
+				<polygon id="_x31_1" class="st3" points="170.52,173.11 170.52,255.97 336.2,255.97 				"/>
+				<polygon id="_x31_0" class="st3" points="85.21,173.11 85.21,255.97 -80.47,255.97 				"/>
+				<polygon id="_x39_" class="st3" points="85.21,82.86 85.21,0 -80.47,0 				"/>
+				<polyline id="_x34_" class="st2" points="383.73,0 355.31,0 185,85.32 213.43,85.32 384,0 				"/>
+				<polyline id="_x33__1_" class="st2" points="70.73,170.65 42.31,170.65 -128,255.97 -99.58,255.97 71,170.65 				"/>
+				<polygon id="_x32__1_" class="st2" points="14.11,85.39 42.53,85.39 -128,0 -128,14.31 				"/>
+				<polygon id="_x31_" class="st2" points="241.53,170.61 213.11,170.61 383.64,256 383.64,241.69 				"/>
+			</g>
+		</g>
+		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="48.4505" y1="207.5495" x2="207.5495" y2="48.4505">
+			<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.1"/>
+			<stop  offset="0.8361" style="stop-color:#FFFFFF;stop-opacity:0.2725"/>
+			<stop  offset="0.9694" style="stop-color:#FFFFFF;stop-opacity:0.3"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.2"/>
+		</linearGradient>
+		<circle class="st4" cx="128" cy="128" r="112.5"/>
+		<g id="XMLID_1_" class="st5">
+			<g>
+				<path class="st6" d="M128,0c70.69,0,128,57.31,128,128s-57.31,128-128,128S0,198.69,0,128S57.31,0,128,0z M240.5,128
+					c0-62.13-50.37-112.5-112.5-112.5S15.5,65.87,15.5,128S65.87,240.5,128,240.5S240.5,190.13,240.5,128z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

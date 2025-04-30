@@ -1,6 +1,214 @@
 {
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+    "AboutSection": {
+      "title": "About SFMA",
+      "description": "The Saudi Facilities Management Association (SFMA) is a non-profit organization established on 1441/11/9 AH, corresponding to 2020/6/30 AD, under the supervision of the Ministry of Human Resources and Social Development. It aims to promote the concept of facilities management as a key partner in achieving the Kingdom’s Vision 2030, through a comprehensive strategic plan that seeks to achieve inclusive and sustainable development, through effective partnerships between the public and private sectors and the third sector, to support national development in all aspects of facilities management and its diverse services.",
+      "read_more": "Read More",
+      "QouteSection": "\"Success stories always begin with a vision, and the most successful visions are those built on the strength of a vibrant society, a thriving economy, and an ambitious nation.\""
+    },
+    "ServicesSection": {
+      "title": "Our Services",
+      "description": "We provide you with integrated solutions to support you in achieving the highest levels of efficiency and professionalism.",
+      "services_1": "Training & Development",
+      "services_2": "Memberships",
+      "services_3": "Reports & Studies",
+      "services_4": "Events"
+    },
+    "CoursesSection": {
+      "title": "Training Courses",
+      "description": "Enhance your skills with specialized training programs in facilities management according to the latest global standards",
+      "read_more": "Read More",
+      "development_section": "Develop your professional life at an unprecedented pace and achieve your goals more efficiently!"
+    },
+    "ActivitiesSection": {
+      "title": "SFMA Events",
+      "description": "Be part of the most important events in the field of facilities management",
+      "p_1": "International Conference and Expo for Facilities Management - SFMA EXPO 2025",
+      "p_2": "Towards smart and sustainable facilities that meet future aspirations",
+      "location": "Riyadh International Convention & Exhibition Center",
+      "date": "From August 24 to 26, 2025",
+      "visit_site": "Visit the official event site",
+      "read_more": "Read More"
+    },
+    "AdsSection": {
+      "title": "Advertisement Space",
+      "button_text": "Book your ad space now!"
+    },
+    "PartenersSection": {
+      "title": "SFMA Partners",
+      "description": "We are proud of our partnership with a distinguished group contributing to the development of the facilities management sector"
+    },
+    "NewsSection": {
+      "title": "SFMA News and Facility Management Updates",
+      "description": "Discover the latest news from the association and key developments in facilities management, and always stay at the heart of the event",
+      "title_placeholder": "Launching new initiatives and developing innovative strategies to enhance efficiency...",
+      "description_placeholder": "Lorem Ipsum is a dummy text used in designs to show the client how it will look...",
+      "read_more": "Read More"
+    }
+  },
+  "AboutPage": {
+    "AboutSection": {
+      "title": "About SFMA",
+      "description": "The Saudi Facilities Management Association was established as part of the advancement towards a prosperous future for Saudi Arabia, in line with its ambitious vision to enhance its national presence and align with Vision 2030. SFMA initiated a comprehensive strategic plan for the coming years to achieve integrated and direct development in all aspects of facilities management and services. Our aim is to be a professional association that seeks to develop and enhance the profession and those working in it. Its roles include setting standards and practice guidelines, licensing requirements, establishing rules and exams for obtaining professional certificates, conducting studies and research, organizing training courses, holding professional seminars and conferences, and offering consultancy services in its field, according to the council and member-set regulations. Ultimately, we aim to be the hub for all facility management professionals."
+    },
+    "MotivatorsSection": {
+      "title": "Motivators",
+      "description": "Towards a prosperous future, driven by innovation, sustainability, and security",
+      "p_1": "Technological Advancement",
+      "p_2": "Environmental Enhancement",
+      "p_3": "Security Support",
+      "p_4": "Economic Support",
+      "p_5": "Political Standing",
+      "p_6": "Social Support"
+    },
+    "OurVisionSection": {
+      "title": "Our Vision",
+      "description": "The destination for facilities management experts and success partners in Saudi Arabia",
+      "content": "To be the primary reference in the Kingdom of Saudi Arabia for enhancing the efficiency and effectiveness of facilities management, contributing to the realization of Vision 2030 by advancing the facilities management sector and offering best global practices. This includes building a comprehensive professional community that supports innovation and sustainability, facilitates knowledge sharing and expertise exchange, and improves the quality of facilities, boosts performance, and strengthens the sector's competitiveness locally and globally."
+    },
+    "OurGoalsSection": {
+      "title": "Our Goals",
+      "description": "We work to develop facilities management and enhance its efficiency to achieve sustainable development that meets future aspirations",
+      "p_1": "Knowledge and experience exchange among facilities management professionals",
+      "p_2": "Participation in national development goals in alignment with Saudi Arabia’s Vision",
+      "p_3": "Development of FM standards based on our built environment and culture",
+      "p_4": "Provision of research and studies in FM",
+      "p_5": "Professional development in FM both scientifically and technically"
+    },
+    "PillarsSection": {
+      "title": "SFMA Pillar System",
+      "description": "An integrated system that enhances the efficiency and sustainability of the association, based on best practices to achieve institutional excellence",
+      "p_1": "Governance & Policy",
+      "p_2": "Human Capital",
+      "p_3": "Resources & Management",
+      "p_4": "Institutional Communication",
+      "p_5": "Financing",
+      "p_6": "Risk & Business Continuity",
+      "p_7": "Transformation Plan",
+      "p_8": "Key Objectives of the Association",
+      "p_9": "Foresight & Innovation Management"
+    },
+    "ValuesSection": {
+      "title": "Our Values",
+      "sub_title": "We are grounded in solid principles that promote excellence and commitment, aiming to elevate the facilities management sector toward a sustainable future.",
+      "partners": "Partnerships",
+      "education": "Education",
+      "reliability": "Reliability",
+      "justice": "Justice",
+      "confidence": "Confidence"
+    }
+  },
+  "PoliciesSearch": {
+    "head": "What information are you looking for?",
+    "search_placeholder_1": "Main Search",
+    "search_placeholder_2": "Sub Search",
+    "title": "Policies and Procedures",
+    "view_profile": "View Profile"
+  },
+  "Structure": {
+    "content": "Awaiting members' photos"
+  },
+  "Video_Library": {
+    "title": "Video Library"
+  },
+  "Data_Library": {
+    "title": "Data Library",
+    "digital_books": "Digital Books",
+    "articles": "Articles",
+    "research": "Studies and Research",
+    "read_book": "Browse Book",
+    "show_book": "Read Book"
+  },
+  "Institutions": {
+    "title": "Institution Memberships",
+    "sub_title": "Join the Saudi Facility Management Association to enhance your market presence, benefit from collaboration opportunities and partnerships, and participate in events that contribute to sector development and sustainability.",
+    "no_data_available": "Content needs improvement",
+    "currency": "SAR / year",
+    "memberships_advantages": "View membership benefits"
+  },
+  "Individuals": {
+    "title": "Individual Memberships",
+    "sub_title": "Be part of a professional community that enables you to develop your skills, connect with experts, and benefit from advanced knowledge resources that support your career in facility management.",
+    "no_data_available": "Content needs improvement",
+    "currency": "SAR / year",
+    "memberships_advantages": "View membership benefits"
+  },
+  "Volunteers": {
+    "title": "Volunteer Memberships",
+    "sub_title": "Make a real impact in the facility management sector by volunteering in the association's initiatives, gain valuable experience, expand your professional network, and contribute to building a sustainable and prosperous future for the field.",
+    "no_data_available": "Content needs improvement",
+    "currency": "SAR / year",
+    "memberships_advantages": "View membership benefits"
+  },
+  "Register": {
+    "create_account": "Create your account now",
+    "full_name_ar": "Full Name in Arabic",
+    "full_name_en": "Full Name in English",
+    "dob": "Date of Birth",
+    "nationality": "Nationality",
+    "country": "Country",
+    "choose_country": "Choose Country of Residence",
+    "city": "City",
+    "choose_city": "Choose City",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "phone": "Phone Number",
+    "saved_num": "(Registered on WhatsApp)",
+    "email": "Email",
+    "contact_us_2": "Alternative Contact Method",
+    "optional": "(Optional)",
+    "job_title": "Job Title",
+    "company_name": "Company Name",
+    "company_type": "Field of Work",
+    "company_sector": "Type of Company",
+    "choose_company_sector": "Choose Type of Company",
+    "linkedin_url": "LinkedIn URL",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "profile_picture": "Your Profile Picture",
+    "image_placeholder_1": "Please upload a square image with a 1:1 width-to-height ratio (e.g., 300x300 pixels).",
+    "image_placeholder_2": "Non-square images may be automatically cropped.",
+    "next": "Next",
+    "previous": "Previous",
+    "welcome": "Welcome",
+    "persnola_info": "Personal Information",
+    "contact_us": "Contact Methods",
+    "employee_info": "Employment Information",
+    "logout": "Log Out"
+  },
+  "Login": {
+    "login_to_account": "Login to your account",
+    "dont_have": "Don’t have an account?",
+    "create_now": "Create your account now",
+    "or": "or",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login"
+  },
+  "Profile": {},
+  "NavBar": {
+    "home": "Home",
+    "about": "About",
+    "library": "Library",
+    "memberships": "Memberships",
+    "training": "Training",
+    "jobs": "Jobs",
+    "actions": "Events",
+    "ads": "Ads",
+    "about_us": "Know Us",
+    "lists": "Lists",
+    "structure": "Organizational Structure",
+    "data_library": "Information Library",
+    "video_library": "Video Library",
+    "institutions": "Institutions",
+    "individuals": "Individuals",
+    "volunteers": "Volunteers",
+    "data_center": "Knowledge Center",
+    "copyright": "All rights reserved SFMA.SA",
+    "footer_p_1": "Saudi Facilities Management Association,",
+    "footer_p_2": "a professional entity contributing to the development of the facilities management sector in the Kingdom",
+    "contact_info": "Contact Info",
+    "address": "Riyadh - Kingdom of Saudi Arabia"
   }
 }

@@ -1,0 +1,35 @@
+import Image from "next/image";
+import Link from "next/link";
+
+const Card = ({ subscription, lang, translation }) => {
+  return (
+    <div className="max-w-[330px] mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative">
+      <div className="flex justify-center">
+        <Image
+          src={`https://just.isamstore.com/storage/${subscription?.icon}`}
+          alt="Diamond Badge"
+          className="absolute top-0 left-1/2 -translate-1/2"
+          width={100}
+          height={100}
+        />
+      </div>
+      <h3 className="text-[#61B8A0] font-bold text-2xl mt-16 mb-4">
+        {subscription?.name}
+      </h3>
+      <p className="text-gray-600 font-medium mb-9">
+        <span className="text-black font-bold text-2xl">
+          {subscription?.price}
+        </span>{" "}
+        {translation.currency}
+      </p>
+      <Link
+        href={`/${lang}/institutions/${subscription?.id}`}
+        className="bg-[#61B8A0] hover:bg-[#6aa393] text-white font-bold py-2 px-4 rounded cursor-pointer text-base"
+      >
+        {translation.memberships_advantages}
+      </Link>
+    </div>
+  );
+};
+
+export default Card;
