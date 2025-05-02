@@ -8,7 +8,7 @@ import ValuesSection from "./Components/ValuesSection";
 import Our_Goals from "./Components/Our_Goals";
 import PillarsSection from "./Components/PillarsSection";
 
-const Page = async ({ params }: { params: { locale: string } }) => {
+const Page = async ({ params }) => {
   const { locale } = params;
   const messages = (await import(`../../../messages/${locale}.json`)).default;
   const t = createTranslator({
