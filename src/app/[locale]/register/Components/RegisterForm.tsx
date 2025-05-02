@@ -44,7 +44,6 @@ export default function RegisterForm({ locale, messages }) {
       country: "",
       city: "",
       phone: "",
-      name: "name",
     },
   });
 

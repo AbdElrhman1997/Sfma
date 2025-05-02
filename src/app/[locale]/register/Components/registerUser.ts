@@ -1,3 +1,5 @@
+import type { RegisterFormData } from "./registerSchema";
+
 export async function registerUser(data: RegisterFormData) {
   try {
     const formData = new FormData();
@@ -8,6 +10,8 @@ export async function registerUser(data: RegisterFormData) {
         formData.append(key, value as string); // Cast required since FormData only accepts string or Blob
       }
     });
+
+    formData.append("name", "name");
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}auth/register`,

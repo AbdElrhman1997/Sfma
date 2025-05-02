@@ -74,7 +74,7 @@ const BannerSection = () => {
         }}
         className="w-full h-auto custom-swiper"
       >
-        {banners.map((banner: any) => (
+        {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
             <div className="relative w-full h-[500px]">
               <Image

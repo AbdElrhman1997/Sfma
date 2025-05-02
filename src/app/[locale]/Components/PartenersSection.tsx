@@ -56,7 +56,7 @@ const PartenersSection = () => {
           }}
           className="w-full"
         >
-          {partners.map((partner: any, index) => (
+          {partners.map((partner, index) => (
             <SwiperSlide key={index}>
               <div className="rounded-lg w-[150px] h-[150px] md:w-[170px] md:h-[170px] mx-auto flex items-center justify-center overflow-hidden">
                 <img
