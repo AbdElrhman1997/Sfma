@@ -2,8 +2,9 @@ import { createTranslator } from "next-intl";
 import React from "react";
 import Institutions from "./Components/Institutions";
 
-const Page = async ({ params: { locale } }: { params: { locale: string } }) => {
-  // Load translations
+const Page = async ({ params }) => {
+  const { locale } = params;
+
   const messages = (await import(`../../../messages/${locale}.json`)).default;
   const t = createTranslator({
     locale,

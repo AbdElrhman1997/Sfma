@@ -4,7 +4,9 @@ import RegisterForm from "./Components/RegisterForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Page = async ({ params: { locale } }: { params: { locale: string } }) => {
+const Page = async ({ params }) => {
+  const { locale } = params;
+
   const messages = (await import(`../../../messages/${locale}.json`)).default;
   const t = createTranslator({
     locale,

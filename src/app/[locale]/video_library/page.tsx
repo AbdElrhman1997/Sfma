@@ -2,7 +2,9 @@ import { createTranslator } from "next-intl";
 import React from "react";
 import Video_Library from "./Components/Video_Library";
 
-const Page = async ({ params: { locale } }: { params: { locale: string } }) => {
+const Page = async ({ params }) => {
+  const { locale } = params;
+
   // Load translations
   const messages = (await import(`../../../messages/${locale}.json`)).default;
   const t = createTranslator({
