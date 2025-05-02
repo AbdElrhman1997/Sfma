@@ -3,14 +3,7 @@ import Image from "next/image";
 import ContentCard from "./Components/ContentCard";
 import React from "react";
 
-type PageProps = {
-  params: {
-    locale: string;
-    id: string;
-  };
-};
-
-export default async function Page({ params: { locale, id } }: PageProps) {
+export default async function Page({ params: { locale, id } }) {
   const messages = (await import(`../../../../messages/${locale}.json`))
     .default;
 

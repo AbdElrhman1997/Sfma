@@ -4,14 +4,7 @@ import { createTranslator } from "next-intl";
 import React from "react";
 import Single from "./Components/Single";
 
-type PageProps = {
-  params: {
-    locale: string;
-    id: string;
-  };
-};
-
-export default async function Page({ params: { locale, id } }: PageProps) {
+export default async function Page({ params: { locale, id } }) {
   const messages = (await import(`../../../../messages/${locale}.json`))
     .default;
 
