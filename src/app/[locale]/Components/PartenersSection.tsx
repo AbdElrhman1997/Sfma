@@ -47,7 +47,7 @@ const PartenersSection = () => {
           modules={[Autoplay, Pagination]}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           loop={true}
-          pagination={{ clickable: true }}
+          // pagination={{ clickable: true }}
           speed={800}
           breakpoints={{
             320: { slidesPerView: 1 },

@@ -57,7 +57,7 @@ const ActivitiesSection = () => {
           ></iframe>
         </div>
       </div>
-      <button className="cursor-pointer flex items-center mx-auto bg-[#61B8A0] text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-[#5d9887] transition w-fit my-4 mt-7">
+      {/* <button className="cursor-pointer flex items-center mx-auto bg-[#61B8A0] text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-[#5d9887] transition w-fit my-4 mt-7">
         <div className="w-12 h-12 bg-[#1DAEE5] text-white flex items-center justify-center rounded-full border-2 border-white">
           {lang == "en" ? (
             <BsArrowLeft className="font-bold" />
@@ -66,7 +66,7 @@ const ActivitiesSection = () => {
           )}
         </div>
         <span className="text-lg font-bold text-center">{t("read_more")}</span>
-      </button>
+      </button> */}
     </section>
   );
 };

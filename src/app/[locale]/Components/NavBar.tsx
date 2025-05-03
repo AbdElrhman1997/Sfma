@@ -44,7 +44,7 @@ const NavBar = () => {
                     href={`/${lang}/about`}
                     className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
                   >
-                    {t("about")}
+                    {t("about_orgnization")}
                   </Link>
                 </li>
                 <li>
@@ -208,7 +208,7 @@ const NavBar = () => {
                     className="block py-2 text-gray-600"
                     onClick={() => setIsOpen(false)}
                   >
-                    {t("about")}
+                    {t("about_orgnization")}
                   </Link>
                 </li>
                 <li>

@@ -3,6 +3,12 @@ const Video_Library = ({ translation, lang, videos = [], loading = false }) => {
 
   const skeletons = Array.from({ length: 3 });
 
+  const getEmbedUrl = (url) => {
+    const videoId = url?.split("v=")[1]?.split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+  
+
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"}>
       <div className="p-0">
@@ -32,7 +38,7 @@ const Video_Library = ({ translation, lang, videos = [], loading = false }) => {
                   <div className="w-full h-56 bg-gray-200">
                     <iframe
                       className="w-full h-full"
-                      src={video?.vedio_url}
+                      src={getEmbedUrl(video?.vedio_url)}
                       title={video?.name || `video-${index}`}
                       allowFullScreen
                     ></iframe>

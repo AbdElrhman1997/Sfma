@@ -3,7 +3,10 @@ import Image from "next/image";
 const Single = ({ translation, lang, subscription }) => {
   return (
     <div className="relative flex flex-col items-center">
-      <div className="absolute -top-8 flex items-center justify-center w-16 h-16 bg-[#1DAEE5] text-white rounded-full border-4 border-white shadow-lg z-10">
+      <div
+        className="absolute -top-8 flex items-center justify-center w-16 h-16 bg-[#1DAEE5] text-white rounded-full border-4 border-white shadow-lg"
+        style={{ zIndex: 1 }}
+      >
         <Image
           src={`/images/about_page/goals_2.png`}
           alt="About Us"

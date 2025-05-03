@@ -37,7 +37,10 @@ export default async function Page({ params: { locale, id } }: any) {
           </div>
 
           {/* Image in the Center */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-[100px] h-full flex items-center justify-center bg-white rounded-full z-10">
+          <div
+            className="absolute left-1/2 -translate-x-1/2 w-[100px] h-full flex items-center justify-center bg-white rounded-full"
+            style={{ zIndex: 1 }}
+          >
             <Image
               src={`https://just.isamstore.com/storage/${subscription?.icon}`}
               alt="Consultant Badge"
