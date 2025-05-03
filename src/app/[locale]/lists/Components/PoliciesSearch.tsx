@@ -113,7 +113,7 @@ const PoliciesSearch = ({ translation, lang }) => {
               setSelectedCategory(option);
               setSelectedSubCategory(null);
             }}
-            className="md:w-[40%] w-full md:mt-0 mt-4"
+            className="md:w-[40%] w-full md:mt-0 mt-4 md:mb-0 mb-4"
             isClearable
           />
 
