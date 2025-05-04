@@ -7,6 +7,7 @@ import NavBar from "./Components/NavBar";
 import "./globals.css";
 import { Cairo } from "next/font/google";
 import Footer from "./Components/Footer";
+import Image from "next/image";
 
 const cairo = Cairo({
   subsets: ["latin", "arabic"], // Supports Arabic & Latin characters

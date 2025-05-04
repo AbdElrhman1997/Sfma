@@ -21,12 +21,12 @@ const AboutSection = () => {
           {t("description")}
         </p>
         <Link href={`/${lang}/about`} className="block">
-          <button className="cursor-pointer flex items-center md:mx-0 mx-auto bg-teal-500 text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-teal-600 transition w-fit">
+          <button className=" group cursor-pointer flex items-center md:mx-0 mx-auto bg-teal-500 text-white py-[3px] px-[6px] pe-5 rounded-full gap-3 hover:bg-teal-600 transition-all duration-300 transform hover:scale-[107%] w-fit">
             <div className="w-12 h-12 bg-[#1DAEE5] text-white flex items-center justify-center rounded-full border-2 border-white">
-              {lang == "en" ? (
-                <BsArrowLeft className="font-bold" />
+              {lang === "en" ? (
+                <BsArrowLeft className="font-extrabold text-lg group-hover:-translate-x-1 transition-transform duration-300" />
               ) : (
-                <BsArrowRight className="font-bold" />
+                <BsArrowRight className="font-extrabold text-lg group-hover:translate-x-1 transition-transform duration-300" />
               )}
             </div>
             <span className="text-base font-bold text-center">

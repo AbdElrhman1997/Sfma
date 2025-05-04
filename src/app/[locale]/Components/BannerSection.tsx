@@ -66,8 +66,8 @@ const BannerSection = () => {
     <div className="w-full">
       <Swiper
         modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        speed={1000}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        speed={800}
         loop={true}
         pagination={{
           clickable: true,

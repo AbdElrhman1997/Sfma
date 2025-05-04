@@ -40,7 +40,7 @@ const ActivitiesSection = () => {
 
           <a
             href="https://fmexcon.com/"
-            className="block bg-[#013047] text-white py-[11px] px-3 font-semibold transition text-center"
+            className="block bg-[#013047] hover:bg-[#014b6d] text-white py-[11px] px-3 font-semibold text-center transition-all duration-300 transform hover:scale-[104%]"
             target="_blank"
           >
             {t("visit_site")}
