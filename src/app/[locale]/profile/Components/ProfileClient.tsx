@@ -32,14 +32,28 @@ const ProfileClient = ({ locale }: { locale: string }) => {
     <div className="">
       <div className="bg-[#F6F6F6] py-14">
         <div className="md:w-1/5 w-full mx-auto">
-          <Image
-            src={`https://just.isamstore.com/storage/${profileData?.logo}`}
-            alt="Book Cover"
-            width={200}
-            height={200}
-            className="object-cover w-full h-full rounded-lg"
-          />
+          {profileData.logo ? (
+            <Image
+              src={`https://just.isamstore.com/storage/${profileData.logo}`}
+              alt="Profile Logo"
+              width={200}
+              height={200}
+              className="object-cover w-full h-full rounded-lg"
+            />
+          ) : (
+            <div className="w-full h-[200px] flex items-center justify-center bg-white rounded-lg border border-gray-300">
+              {/* Default SVG or Icon */}
+              <Image
+                src={`/images/logos/profile.jpg`}
+                alt="Profile Logo"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full rounded-lg"
+              />
+            </div>
+          )}
         </div>
+
         <p className="text-3xl font-bold text-center mt-6">
           {t("welcome")} ,{" "}
           {locale == "en"
@@ -47,6 +61,7 @@ const ProfileClient = ({ locale }: { locale: string }) => {
             : profileData?.full_name_ar}
         </p>
       </div>
+
       <div
         className="container mx-auto my-12"
         dir={locale == "en" ? "ltr" : "rtl"}

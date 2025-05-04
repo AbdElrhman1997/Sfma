@@ -8,7 +8,7 @@ const ValuesSection = () => {
 
   return (
     <section
-      className="container mx-auto text-center pt-8 mt-8 mb-12"
+      className="container mx-auto text-center md:pt-6 pt-2 mt-8 mb-12"
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       {/* العنوان الرئيسي */}
@@ -18,7 +18,7 @@ const ValuesSection = () => {
       <p className="text-gray-600 mb-8">{t("sub_title")}</p>
 
       {/* المخطط الدائري */}
-      <div className="flex items-center justify-center gap-8 pt-4 flex-wrap">
+      <div className="flex items-center justify-center md:gap-y-8 md:gap-x-8 gap-x-10 gap-y-14 pt-4 flex-wrap">
         <div className="flex flex-col items-center mx-4">
           <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
             <Image

@@ -7,7 +7,7 @@ const DevelopmentSection = () => {
 
   return (
     <section
-      className="w-full mt-12 mb-8 relative"
+      className="w-full mt-12 mb-8 relative mx-auto"
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <Image

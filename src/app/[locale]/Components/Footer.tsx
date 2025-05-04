@@ -35,7 +35,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/sfmaorg/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -48,7 +48,11 @@ const Footer = () => {
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.027-3.063-1.854-3.063-1.854 0-2.136 1.445-2.136 2.939v5.728h-3v-11h2.893v1.504h.041c.402-.762 1.385-1.564 2.854-1.564 3.052 0 3.612 2.008 3.612 4.616v6.444z" />
                 </svg>
               </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://x.com/sfmaorg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg
                   className="w-6 h-6"
                   fill="currentColor"
@@ -152,7 +156,7 @@ const Footer = () => {
               {t("contact_info") || "معلومات الاتصال"}
             </h3>
             <ul className="space-y-2">
-              <li className="flex items-center space-x-2 w-fit md:mx-0 mx-auto">
+              <li className="flex items-center space-x-2 w-fit md:mx-0 mx-auto cursor-pointer">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -169,7 +173,7 @@ const Footer = () => {
                 </svg>
                 <span>info@sfma.sa</span>
               </li>
-              <li className="flex items-center space-x-2 w-fit md:mx-0 mx-auto">
+              <li className="flex items-center space-x-2 w-fit md:mx-0 mx-auto cursor-pointer">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -187,12 +191,12 @@ const Footer = () => {
                 <span>0507030368</span>
               </li>
               <li
-                className={`flex items-center space-x-2  w-fit md:mx-0 mx-auto ${
+                className={`flex items-center space-x-2  w-fit md:mx-0 mx-auto cursor-pointer ${
                   lang == "en" ? "-translate-x-[6px]" : "translate-x-[6px]"
                 }`}
               >
                 <svg
-                  className="md:w-12 md:h-12 h-7 w-7"
+                  className="xl:w-9 xl:h-9 md:w-12 md:h-12 h-7 w-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

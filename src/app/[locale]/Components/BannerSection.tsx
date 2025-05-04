@@ -66,7 +66,7 @@ const BannerSection = () => {
     <div className="w-full">
       <Swiper
         modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         speed={1000}
         loop={true}
         pagination={{
@@ -76,7 +76,7 @@ const BannerSection = () => {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[70vh]">
+            <div className="relative w-full h-[40vh] md:h-[60vh] lg:h-[76vh]">
               <Image
                 src={`https://just.isamstore.com/storage/${banner.image}`}
                 alt={`Banner ${banner.id}`}

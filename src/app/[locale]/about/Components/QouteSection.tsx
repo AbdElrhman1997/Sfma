@@ -7,15 +7,15 @@ const QouteSection = () => {
   const lang = useLocale();
 
   return (
-    <div className="relative" dir={lang == "en" ? "ltr" : "rtl"}>
+    <div className="relative md:mt-16 mt-0" dir={lang == "en" ? "ltr" : "rtl"}>
       <Image
-        src="/images/about_page/qoute.png"
+        src="/images/logos/quate_section.svg"
         alt="About Us"
         width={500}
         height={500}
-        className="w-full h-auto rounded-lg mt-10"
+        className="w-full h-auto mt-10 md:max-h-[13rem]"
       />
-      <p className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[15px] leading-relaxed text-white text-center w-full">
+      <p className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full">
         {t("QouteSection")}
       </p>
     </div>

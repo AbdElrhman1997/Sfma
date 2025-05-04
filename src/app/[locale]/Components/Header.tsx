@@ -47,7 +47,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="relative w-28 h-14">
+        <div className="relative w-28 h-14 xl:w-36 xl:h-20">
           <Link href={`/${lang}`}>
             <Image
               src="/images/logos/header_logo.png"

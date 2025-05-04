@@ -10,10 +10,10 @@ const ActivitiesSection = () => {
 
   return (
     <section dir={lang == "en" ? "ltr" : "rtl"}>
-      <h2 className="text-4xl font-bold text-[#1DAEE5] mb-4 text-center md:pt-4">
+      <h2 className="text-3xl font-bold text-[#1DAEE5] mb-2 text-center md:pt-4">
         {t("title")}
       </h2>
-      <p className="text-black text-center md:mb-6">{t("description")}</p>
+      <p className="text-black text-center md:mb-8">{t("description")}</p>
       <div
         className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto ${
           lang == "en" ? "md:text-left" : "md:text-right"
@@ -21,7 +21,7 @@ const ActivitiesSection = () => {
         dir={lang == "en" ? "ltr" : "rtl"}
       >
         <div className={` bg-white`}>
-          <h2 className="text-xl md:text-2xl font-bold mb-2 leading-relaxed">
+          <h2 className="text-xl md:text-xl font-bold mb-2 leading-relaxed">
             {t("p_1")}
           </h2>
 
@@ -46,7 +46,7 @@ const ActivitiesSection = () => {
             {t("visit_site")}
           </a>
         </div>
-        <div className="w-full md:w-1/2 h-[250px]">
+        <div className="w-full md:w-1/2 h-[350px]">
           <iframe
             src="https://www.youtube.com/embed/j6fitq7Vvfs"
             title="YouTube video player"

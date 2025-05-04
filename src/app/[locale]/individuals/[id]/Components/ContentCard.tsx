@@ -4,7 +4,7 @@ import React from "react";
 const ContentCard = ({ translation, lang, subscription }) => {
   return (
     <>
-      <div className="relative flex flex-col items-center">
+      <div className="relative flex flex-col items-center mx-auto">
         <div className="absolute -top-8 flex items-center justify-center w-16 h-16 bg-[#1DAEE5] text-white rounded-full border-4 border-white shadow-lg z-10">
           <Image
             src={`https://just.isamstore.com/storage/${subscription?.icon}`}
@@ -14,8 +14,8 @@ const ContentCard = ({ translation, lang, subscription }) => {
             className="w-9 h-9"
           />
         </div>
-        <div className="bg-[#5DB6A6] rounded-lg p-6 w-80 text-center shadow-md relative z-0 pt-[2.8rem]">
-          <p className="text-white text-base font-bold leading-relaxed flex justify-center items-center">
+        <div className="bg-[#5DB6A6] rounded-lg p-6 w-80 text-center shadow-md relative z-0 pt-[2.8rem] min-h-[130px] flex items-center justify-center">
+          <p className="text-white text-[14px] font-bold leading-relaxed">
             {subscription?.content}
           </p>
         </div>

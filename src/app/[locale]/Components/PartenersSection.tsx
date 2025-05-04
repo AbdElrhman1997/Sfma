@@ -36,11 +36,11 @@ const PartenersSection = () => {
 
   return (
     <section
-      className={`container mx-auto pt-10 my-10 text-center `}
+      className={`container mx-auto md:pt-10 pt-0 my-10 text-center `}
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col items-center">
-        <h2 className="text-4xl font-bold text-[#1DAEE5] mb-3">{t("title")}</h2>
+        <h2 className="text-3xl font-bold text-[#1DAEE5] mb-3">{t("title")}</h2>
         <p className="text-black mb-3">{t("description")}</p>
 
         <Swiper

@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="bg-white shadow-md md:py-6"
+      className="bg-white shadow-md md:py-6 sticky top-0 z-50"
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <div className="container mx-auto md:px-20 relative">

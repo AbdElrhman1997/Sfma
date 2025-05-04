@@ -31,7 +31,7 @@ const Our_Goals = ({ title, description, p, lang }) => {
   };
 
   return (
-    <section className="container mx-auto text-center pt-12">
+    <section className="container mx-auto text-center md:pt-6">
       <h2 className="text-3xl md:text-4xl font-bold text-[#1DAEE5] mb-2">
         {title}
       </h2>

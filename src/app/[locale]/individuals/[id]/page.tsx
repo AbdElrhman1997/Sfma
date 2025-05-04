@@ -29,7 +29,7 @@ export default async function Page({ params: { locale, id } }: any) {
 
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <div className="bg-white my-12 -z-10">
+      <div className="bg-white mt-12 -z-10 mb-20">
         <div className="flex items-center justify-between text-white relative overflow-hidden">
           {/* Left Side */}
           <div className="text-2xl font-bold bg-[#21B6E4] w-full p-4 py-6 text-center">
@@ -57,20 +57,22 @@ export default async function Page({ params: { locale, id } }: any) {
           </div>
         </div>
       </div>
-      {subscription?.details?.map((subscription, index) => {
-        return (
-          <React.Fragment key={index}>
-            <ContentCard
-              translation={{
-                title: t("title"),
-                sub_title: t("sub_title"),
-              }}
-              lang={locale}
-              subscription={subscription}
-            />
-          </React.Fragment>
-        );
-      })}
+      <div className="container mx-auto flex flex-wrap md:gap-x-2 gap-x-0 gap-y-12 justify-between">
+        {subscription?.details?.map((subscription, index) => {
+          return (
+            <React.Fragment key={index}>
+              <ContentCard
+                translation={{
+                  title: t("title"),
+                  sub_title: t("sub_title"),
+                }}
+                lang={locale}
+                subscription={subscription}
+              />
+            </React.Fragment>
+          );
+        })}
+      </div>
     </div>
   );
 }

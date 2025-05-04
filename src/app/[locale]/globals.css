@@ -20,5 +20,16 @@ body {
 }
 
 .container {
-  padding: 0 1rem;
+  width: 100%;
+  max-width: 134rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.4rem;
+  padding-left: 1.4rem;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px; /* Wider container for 2xl screens and above */
+  }
 }

@@ -23,7 +23,7 @@ const Card = ({ subscription, lang, translation }) => {
         {translation.currency}
       </p>
       <Link
-        href={`/${lang}/institutions/${subscription?.id}`}
+        href={`/${lang}/volunteers/${subscription?.id}`}
         className="bg-[#61B8A0] hover:bg-[#6aa393] text-white font-bold py-2 px-4 rounded cursor-pointer text-base"
       >
         {translation.memberships_advantages}
