@@ -23,7 +23,7 @@ const StepOne = ({ register, errors, watch }) => {
         );
 
         if (!res.ok) {
-          throw new Error("فشل في تحميل الفيديوهات");
+          throw new Error("فشل في تحميل البلد");
         }
         const data = await res.json();
         setCountries(data?.data);

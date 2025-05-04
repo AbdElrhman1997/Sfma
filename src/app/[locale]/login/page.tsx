@@ -3,6 +3,7 @@ import React from "react";
 import LoginForm from "./Components/LoginForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RegisterFormWrapper from "../Components/RegisterFormWrapper";
 
 const Page = async ({ params }) => {
   const { locale } = params;
@@ -19,7 +20,12 @@ const Page = async ({ params }) => {
       dir={`${locale === "en" ? "ltr" : "rtl"}`}
       className="flex justify-center container mx-auto"
     >
-      <LoginForm locale={locale} messages={messages} />
+      <RegisterFormWrapper
+        locale={locale}
+        messages={messages}
+        from_login={true}
+      />
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

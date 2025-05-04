@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, RegisterFormData } from "./registerSchema";
@@ -27,6 +27,13 @@ export default function RegisterForm({ locale, messages }) {
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter();
   const t = useTranslations("Register");
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      router.replace(`/${locale}`); // Redirect to home
+    }
+  }, []);
 
   const {
     register,

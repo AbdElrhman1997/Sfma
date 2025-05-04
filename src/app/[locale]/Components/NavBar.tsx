@@ -71,9 +71,9 @@ const NavBar = () => {
             onMouseLeave={() => setIsLibraryOpen(false)}
             className="relative text-center"
           >
-            <Link href={`/${lang}/library`} className="hover:text-primary">
+            <div className="hover:text-primary cursor-pointer">
               {t("library")}
-            </Link>
+            </div>
             {isLibraryOpen && (
               <ul className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-[#F6F6F6] py-2 mt-0 z-10 shadow-md font-normal">
                 <li>
@@ -100,9 +100,9 @@ const NavBar = () => {
             onMouseLeave={() => setIsMembershipsOpen(false)}
             className="relative text-center"
           >
-            <Link href={`/${lang}/memberships`} className="hover:text-primary">
+            <div className="hover:text-primary cursor-pointer">
               {t("memberships")}
-            </Link>
+            </div>
             {isMembershipsOpen && (
               <ul className="absolute top-full left-1/2 -translate-x-1/2 w-48 bg-[#F6F6F6] py-2 mt-0 z-10 shadow-md font-normal">
                 <li>
