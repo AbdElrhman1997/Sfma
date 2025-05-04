@@ -32,9 +32,9 @@ const ProfileClient = ({ locale }: { locale: string }) => {
     <div className="">
       <div className="bg-[#F6F6F6] py-14">
         <div className="md:w-1/5 w-full mx-auto">
-          {profileData.logo ? (
+          {profileData?.logo ? (
             <Image
-              src={`https://just.isamstore.com/storage/${profileData.logo}`}
+              src={`https://just.isamstore.com/storage/${profileData?.logo}`}
               alt="Profile Logo"
               width={200}
               height={200}
