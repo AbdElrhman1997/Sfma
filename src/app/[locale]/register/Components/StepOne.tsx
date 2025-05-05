@@ -130,7 +130,7 @@ const StepOne = ({ register, errors, watch }) => {
           {...register("nationality")}
           className="mt-1 block w-full px-3 py-2 h-[45px] border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#61B8A0] focus:border-[#61B8A0]"
         >
-          <option value="0">إختر الجنسية</option>
+          <option value="0">{t("choose_nationality")}</option>
           {countries?.map((country) => (
             <option key={country?.id} value={country?.name}>
               {country?.name}
@@ -185,16 +185,16 @@ const StepOne = ({ register, errors, watch }) => {
       </div>
       <div className="md:col-span-6 col-span-12 text-sm">
         <label htmlFor="gender" className="block text-sm font-medium ">
-          الجنس
+          {t("gender")}
         </label>
         <select
           id="gender"
           {...register("gender")}
           className="mt-1 block w-full px-3 py-2 h-[45px] border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#61B8A0] focus:border-[#61B8A0]"
         >
-          <option value="">اختر الجنس</option>
-          <option value="male">ذكر</option>
-          <option value="female">أنثى</option>
+          <option value="">{t("choose_gender")}</option>
+          <option value="male">{t("male")}</option>
+          <option value="female">{t("female")}</option>
         </select>
         {errors.gender && (
           <p className="mt-1 text-sm text-red-600">{errors.gender.message}</p>

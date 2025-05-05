@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema, RegisterFormData } from "./registerSchema";
+import { createRegisterSchema, RegisterFormData } from "./registerSchema";
 import { registerUser } from "./registerUser";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -15,18 +15,18 @@ import StepFive from "./StepFive";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-const steps = [
-  "البيانات الشخصية",
-  "معلومات التواصل",
-  "البيانات المهنية",
-  "إعدادات الحساب",
-  "مراجعة وتأكيد",
-];
-
 export default function RegisterForm({ locale, messages }) {
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter();
   const t = useTranslations("Register");
+
+  const steps = [
+    t("persnola_info"),
+    t("contact_info"),
+    t("account_setting"),
+    t("review_data"),
+    t("contact_us"),
+  ];
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
@@ -44,7 +44,7 @@ export default function RegisterForm({ locale, messages }) {
     watch,
     setValue,
   } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(createRegisterSchema(t)),
     defaultValues: {
       gender: undefined,
       nationality: "",
@@ -178,7 +178,7 @@ export default function RegisterForm({ locale, messages }) {
               onClick={onBack}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-md cursor-pointer"
             >
-              السابق
+              {t("previous")}
             </button>
           )}
           <button
@@ -187,15 +187,22 @@ export default function RegisterForm({ locale, messages }) {
             disabled={isSubmitting}
             className="px-4 py-2 text-sm font-medium text-white bg-teal-500 rounded-md hover:bg-teal-600 disabled:bg-teal-300 cursor-pointer"
           >
-            {currentStep === steps.length - 1 ? "إرسال" : "التالي"} ←
+            {currentStep === steps.length - 1 ? t("send") : t("next")}{" "}
+            <span
+              className={`${
+                locale === "en" ? "rotate-180 translate-y-0.5" : ""
+              } inline-block transition-transform duration-300`}
+            >
+              ←
+            </span>
           </button>
         </div>
       </div>
       <p className="text-lg text-center text-[#737373] mb-8">
-        هل لديك حساب بالفعل ؟{" "}
+        {t("has_account")}{" "}
         <span className="text-[#1DAEE5] hover:underline cursor-pointer">
           <Link href={`/${locale}/login`} className="hover:text-primary">
-            سجل دخولك الآن
+            {t("login_to_account")}
           </Link>
         </span>
       </p>

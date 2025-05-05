@@ -1,49 +1,50 @@
 import { z } from "zod";
 
-// Schema for all steps combined
-export const registerSchema = z
-  .object({
-    // Step 1: Personal Information
-    full_name_ar: z.string().min(2, "الاسم يجب أن يكون ٢ أحرف على الأقل"),
-    full_name_en: z.string().min(2, "الاسم يجب أن يكون ٢ أحرف على الأقل"),
-    gender: z.enum(["male", "female"], { message: "يرجى اختيار الجنس" }),
-    date_of_birth: z
-      .string()
-      .regex(/^\d{4}-\d{2}-\d{2}$/, "يرجى اختيار تاريخ الميلاد"),
-    nationality: z.string().min(1, "يرجى اختيار الجنسية"),
-    country: z.string().min(1, "يرجى اختيار الدولة"),
-    city: z.string().min(1, "يرجى اختيار المدينة"),
+// Function to create schema using the t function from next-intl
+export const createRegisterSchema = (t: (key: string) => string) =>
+  z
+    .object({
+      // Step 1: Personal Information
+      full_name_ar: z.string().min(2, t("full_name_ar_min")),
+      full_name_en: z.string().min(2, t("full_name_en_min")),
+      gender: z.enum(["male", "female"], { message: t("gender_required") }),
+      date_of_birth: z
+        .string()
+        .regex(/^\d{4}-\d{2}-\d{2}$/, t("date_of_birth_invalid")),
+      nationality: z.string().min(1, t("nationality_required")),
+      country: z.string().min(1, t("country_required")),
+      city: z.string().min(1, t("city_required")),
 
-    // Step 2: Region Selection (Placeholder)
-    phone: z.string().min(10, "رقم الهاتف يجب أن يكون ١٠ أرقام على الأقل"),
-    email: z.string().email({ message: " الإيميل غير صالح " }),
+      // Step 2: Region Selection
+      phone: z.string().min(10, t("phone_min")),
+      email: z.string().email({ message: t("email_invalid") }),
 
-    // Step 3: Personal Data (Placeholder)
-    job_title: z.string().min(2, "يرجى كتابة المسمى الوظيفي"),
-    company_name: z.string().min(2, "يرجى كتابة إسم الشركة"),
-    company_type: z.string().min(2, "يرجى كتابة مجال العمل"),
-    company_sector: z.enum(["حكومي", "خاص"], {
-      message: "يرجى اختيار جهة العمل",
-    }),
+      // Step 3: Personal Data
+      job_title: z.string().min(2, t("job_title_required")),
+      company_name: z.string().min(2, t("company_name_required")),
+      company_type: z.string().min(2, t("company_type_required")),
+      company_sector: z.enum(["حكومي", "خاص"], {
+        message: t("company_sector_required"),
+      }),
 
-    // Step 4: User Specialization (Placeholder)
-    password: z
-      .string()
-      .min(8, { message: "كلمة المرور يجب أن تحتوي على الأقل على 8 حروف" })
-      .max(32, { message: "كلمة المرور يجب أن تحتوي على الأكثر على 32 حرف" }),
-    password_confirmation: z
-      .string()
-      .min(8, { message: "كلمة المرور يجب أن تحتوي على الأقل على 8 حروف" })
-      .max(32, { message: "كلمة المرور يجب أن تحتوي على الأكثر على 32 حرف" }),
-  })
-  .superRefine((data, ctx) => {
-    if (data.password !== data.password_confirmation) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["password_confirmation"],
-        message: "تأكيد كلمة المرور غير متطابق مع كلمة المرور",
-      });
-    }
-  });
+      // Step 4: Password
+      password: z
+        .string()
+        .min(8, { message: t("password_min") })
+        .max(32, { message: t("password_max") }),
+      password_confirmation: z
+        .string()
+        .min(8, { message: t("password_min") })
+        .max(32, { message: t("password_max") }),
+    })
+    .superRefine((data, ctx) => {
+      if (data.password !== data.password_confirmation) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["password_confirmation"],
+          message: t("password_confirmation_mismatch"),
+        });
+      }
+    });
 
-export type RegisterFormData = z.infer<typeof registerSchema>;
+export type RegisterFormData = z.infer<ReturnType<typeof createRegisterSchema>>;

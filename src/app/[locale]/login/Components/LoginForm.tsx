@@ -9,21 +9,18 @@ import { useLocale, useTranslations } from "next-intl";
 import { z } from "zod";
 import Link from "next/link";
 
-// Zod Schema for Login Form
-const loginSchema = z.object({
-  email: z
-    .string()
-    .email("البريد الإلكتروني غير صالح")
-    .min(1, "البريد الإلكتروني مطلوب"),
-  password: z.string().min(8, "كلمة المرور يجب أن تكون 8 أحرف على الأقل"),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
-
 export default function LoginForm({ locale, messages }) {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const t = useTranslations("Login");
+
+  // Zod Schema for Login Form
+  const loginSchema = z.object({
+    email: z.string().email(t("email_invalid")).min(1, t("email_required")),
+    password: z.string().min(8, t("password_min")),
+  });
+
+  type LoginFormData = z.infer<typeof loginSchema>;
 
   const {
     register,
