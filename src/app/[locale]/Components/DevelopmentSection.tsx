@@ -15,9 +15,9 @@ const DevelopmentSection = () => {
         alt="About Us"
         width={500}
         height={300}
-        className="w-full h-auto"
+        className="w-full h-auto 2xl:max-h-[70vh] object-cover"
       />
-      <p className="absolute top-1/2 -translate-y-1/2 start-0 bg-white lg:px-12 px-3 lg:py-5 py-3 lg:text-[28px] text-[15px] lg:max-w-1/2 max-w-3/4 leading-relaxed text-start">
+      <p className="absolute top-1/2 -translate-y-1/2 start-0 bg-white lg:px-12 px-3 lg:py-5 py-3 2xl:text-3xl lg:text-[28px] text-[13px] lg:max-w-1/2 max-w-3/5 leading-relaxed text-start">
         {t("development_section")}
       </p>
     </section>

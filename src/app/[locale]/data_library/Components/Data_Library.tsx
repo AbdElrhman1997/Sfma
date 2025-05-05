@@ -82,16 +82,18 @@ export default function Data_Library({ translation, lang }) {
           {content?.map((book) => (
             <div
               key={book?.id}
-              className="bg-[#F6F6F6] p-4 rounded-lg shadow-md w-72 text-center h-fit"
+              className="group bg-[#F6F6F6] p-4 rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300"
             >
               <Link href={`/${lang}/data_library/${book?.id}`} passHref>
-                <div className="cursor-pointer transition-shadow duration-300">
+                <div className="cursor-pointer transition-shadow duration-300 overflow-hidden rounded-lg">
                   <img
                     src={`https://just.isamstore.com/storage/${book?.image}`}
                     alt={book?.name}
-                    className="object-cover rounded-lg h-full"
+                    className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                   />
-                  <p className="relative font-bold mt-2 mb-5">{book?.name}</p>
+                  <p className="relative font-bold mt-[26px] mb-5 min-h-[55px]">
+                    {book?.name}
+                  </p>
                 </div>
               </Link>
 

@@ -7,7 +7,6 @@ const Video_Library = ({ translation, lang, videos = [], loading = false }) => {
     const videoId = url?.split("v=")[1]?.split("&")[0];
     return `https://www.youtube.com/embed/${videoId}`;
   };
-  
 
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"}>
@@ -21,7 +20,7 @@ const Video_Library = ({ translation, lang, videos = [], loading = false }) => {
             ? skeletons.map((_, index) => (
                 <div
                   key={index}
-                  className="md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg animate-pulse"
+                  className="md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg animate-pulse "
                 >
                   <div className="w-full h-56 bg-gray-300"></div>
                   <div className="p-4">
@@ -33,7 +32,7 @@ const Video_Library = ({ translation, lang, videos = [], loading = false }) => {
             : videos.map((video, index) => (
                 <div
                   key={index}
-                  className="md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg"
+                  className="md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg max-w-[330px] hover:scale-105 hover:opacity-85 hover:border-[#1DAEE5] cursor-pointer transition duration-300"
                 >
                   <div className="w-full h-56 bg-gray-200">
                     <iframe

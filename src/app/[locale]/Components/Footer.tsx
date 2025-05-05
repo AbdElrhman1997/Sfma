@@ -216,7 +216,7 @@ const Footer = () => {
         </div>
 
         {/* Social Media Icons and Copyright */}
-        <div className="mt-8 flex flex-col md:flex-row justify-between items-center border-t border-white/30 py-4">
+        <div className="mt-8 flex flex-col md:flex-row justify-between items-center border-t border-white py-4 bg-[#1892C0]">
           <p className="text-sm w-fit mx-auto">{t("copyright")}</p>
         </div>
       </div>

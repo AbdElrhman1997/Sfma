@@ -52,7 +52,7 @@ const ProfileClient = ({ locale }: { locale: string }) => {
                 alt="Profile Logo"
                 width={200}
                 height={200}
-                className="object-cover w-full h-full rounded-lg"
+                className="object-cover w-full h-full rounded-lg overflow-hidden"
               />
             ) : (
               <div className="w-full h-[200px] flex items-center justify-center bg-white rounded-lg border border-gray-300">

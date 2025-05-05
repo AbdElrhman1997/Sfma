@@ -33,27 +33,27 @@ const StepFive = ({ register, errors, locale, setValue }) => {
       const img = new window.Image();
       img.src = tempUrl;
       img.onload = () => {
-        if (img.width > 300 || img.height > 300) {
-          setValue("logo", null);
-          fileInputRef.current.value = null;
-          URL.revokeObjectURL(tempUrl);
-          toast.error(
-            "This image is very large. Please upload a 300x300 image.",
-            {
-              position: "top-right",
-            }
-          );
-          if (preview) {
-            URL.revokeObjectURL(preview);
-            setPreview(null);
-          }
-        } else {
-          setValue("logo", file);
-          if (preview) {
-            URL.revokeObjectURL(preview);
-          }
-          setPreview(tempUrl);
+        // if (img.width > 700 || img.height > 700) {
+        //   setValue("logo", null);
+        //   fileInputRef.current.value = null;
+        //   URL.revokeObjectURL(tempUrl);
+        //   toast.error(
+        //     "This image is very large. Please upload a 300x300 image.",
+        //     {
+        //       position: "top-right",
+        //     }
+        //   );
+        //   if (preview) {
+        //     URL.revokeObjectURL(preview);
+        //     setPreview(null);
+        //   }
+        // } else {
+        setValue("logo", file);
+        if (preview) {
+          URL.revokeObjectURL(preview);
         }
+        setPreview(tempUrl);
+        // }
       };
     }
   };

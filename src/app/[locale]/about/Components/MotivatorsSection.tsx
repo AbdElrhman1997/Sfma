@@ -17,9 +17,9 @@ const MotivatorsSection = ({ title, description, p, lang }) => {
           {courses.map((course, index) => (
             <div
               key={index}
-              className="bg-[#1DAEE5] text-white rounded-lg w-full md:w-[30%] shadow-lg overflow-hidden"
+              className="bg-[#61B8A0] text-white rounded-lg w-full md:w-[30%] shadow-lg overflow-hidden hover:scale-105 hover:bg-[#1DAEE5] cursor-pointer transition duration-300"
             >
-              <div className="bg-[#61B8A0] text-center py-3">
+              <div className=" text-center py-3 ">
                 <p className="text-sm font-semibold text-white">{p[index]}</p>
               </div>
             </div>

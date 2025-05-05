@@ -171,7 +171,7 @@ const PoliciesGrid = ({ policies, translation, loadingPolicies }) => {
               key={policy?.id}
               className="bg-gray-100 p-4 rounded-lg shadow-md w-72 text-center"
             >
-              <div className="bg-[#61B8A0] text-white font-bold text-lg rounded-lg p-20 relative flex items-center justify-center">
+              <div className="bg-[#61B8A0] text-white font-bold text-lg rounded-lg py-20 relative flex items-center justify-center min-h-[15rem]">
                 <div className="absolute inset-0 opacity-20">
                   <img
                     src="/images/about_page/goals_watermark.png"

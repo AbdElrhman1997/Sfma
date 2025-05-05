@@ -20,7 +20,7 @@ const Individuals = ({
           {translation.sub_title}
         </h3>
 
-        <div className="grid grid-cols-12 md:gap-x-12 gap-y-8 justify-center mt-7 mb-3 text-start">
+        <div className="flex justify-center flex-wrap md:gap-x-8 gap-y-8 mt-7 mb-3 text-start">
           {loading
             ? skeletons.map((_, index) => (
                 <div
@@ -35,10 +35,7 @@ const Individuals = ({
                 </div>
               ))
             : subscriptions.map((subscription, index) => (
-                <div
-                  className="col-span-12 sm:col-span-6 col-start-auto mt-12"
-                  key={index}
-                >
+                <div className="mt-12" key={index}>
                   <Card
                     subscription={subscription}
                     lang={lang}

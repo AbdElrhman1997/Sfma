@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Card = ({ subscription, lang, translation }) => {
+  const formatter = new Intl.NumberFormat("en-US");
+
   return (
-    <div className="max-w-[330px] mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative">
+    <div className="min-w-[330px] mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative hover:scale-105 transition duration-300 cursor-pointer hover:shadow-xl">
       <div className="flex justify-center">
         <Image
           src={`https://just.isamstore.com/storage/${subscription?.icon}`}
@@ -18,7 +20,7 @@ const Card = ({ subscription, lang, translation }) => {
       </h3>
       <p className="text-gray-600 font-medium mb-9">
         <span className="text-black font-bold text-2xl">
-          {subscription?.price}
+          {formatter.format(subscription?.price)}
         </span>{" "}
         {translation.currency}
       </p>
