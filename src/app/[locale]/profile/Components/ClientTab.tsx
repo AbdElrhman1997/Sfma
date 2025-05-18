@@ -1,87 +1,23 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const ProfileClient = ({ locale }: { locale: string }) => {
-  const [profileData, setProfileData] = useState(null);
+const ClientTab = ({ profileData }) => {
+  const lang = useLocale();
   const t = useTranslations("Register");
-  // const router = useRouter();
-
-  // const [isAllowed, setIsAllowed] = useState(true);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("auth_token");
-  //   if (!token) {
-  //     router.replace(`/${locale}`);
-  //   } else {
-  //     setIsAllowed(true);
-  //   }
-  // }, [router]);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem("auth_token");
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}user-profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Accept-Language": locale || "ar",
-          },
-        }
-      );
-
-      const data = await res.json();
-      setProfileData(data?.data || {});
-    };
-
-    fetchProfile();
-  }, [locale]);
 
   return (
     <>
       <div className="">
-        <div className="bg-[#F6F6F6] py-14">
-          <div className="md:w-1/5 w-full mx-auto">
-            {profileData?.logo ? (
-              <Image
-                src={`https://just.isamstore.com/storage/${profileData?.logo}`}
-                alt="Profile Logo"
-                width={200}
-                height={200}
-                className="object-cover w-full h-full rounded-lg overflow-hidden"
-              />
-            ) : (
-              <div className="w-full h-[200px] flex items-center justify-center bg-white rounded-lg border border-gray-300">
-                {/* Default SVG or Icon */}
-                <Image
-                  src={`/images/logos/profile.jpg`}
-                  alt="Profile Logo"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-            )}
-          </div>
-
-          <p className="text-3xl font-bold text-center mt-6">
-            {t("welcome")} ,{" "}
-            {locale == "en"
-              ? profileData?.full_name_en
-              : profileData?.full_name_ar}
-          </p>
-        </div>
-
         <div
           className="container mx-auto my-12"
-          dir={locale == "en" ? "ltr" : "rtl"}
+          dir={lang == "en" ? "ltr" : "rtl"}
         >
           <div className="border-[2.4px] border-[#61B8A0] py-6 px-3 rounded-lg relative">
-            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-[40px] font-bold text-[15px]">
+            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-[40px] font-bold text-[13px] md:text-[15px]">
               {t("persnola_info")}
             </div>
             <div className="grid grid-cols-12 gap-x-5 gap-y-5 p-5 pb-2">
@@ -184,7 +120,7 @@ const ProfileClient = ({ locale }: { locale: string }) => {
             </div>
           </div>
           <div className="border-[2.4px] border-[#61B8A0] py-6 px-3 rounded-lg relative my-12">
-            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-[40px] font-bold text-[15px]">
+            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-[40px] font-bold text-[13px] md:text-[15px]">
               {t("contact_us")}
             </div>
             <div className="grid grid-cols-12 gap-x-5 gap-y-5 p-5 pb-2">
@@ -230,7 +166,7 @@ const ProfileClient = ({ locale }: { locale: string }) => {
             </div>
           </div>
           <div className="border-[2.4px] border-[#61B8A0] py-6 px-3 rounded-lg relative my-12">
-            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-[40px] font-bold text-[15px]">
+            <div className="bg-[#61B8A0] p-3 rounded-lg text-white w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-[40px] font-bold text-[13px] md:text-[15px]">
               {t("employee_info")}
             </div>
             <div className="grid grid-cols-12 gap-x-5 gap-y-5 p-5 pb-2">
@@ -331,4 +267,4 @@ const ProfileClient = ({ locale }: { locale: string }) => {
   );
 };
 
-export default ProfileClient;
+export default ClientTab;

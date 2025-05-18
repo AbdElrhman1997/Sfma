@@ -36,7 +36,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={cairo.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Header />
+          {/* <Header /> */}
           <NavBar />
           <div className="min-h-[500px]">{children}</div>
           <Footer />
