@@ -7,6 +7,35 @@ const MembershipTab = ({ profileData }) => {
   const lang = useLocale();
   const t = useTranslations("Register");
 
+  const courseDetails = [
+    {
+      icon: "/images/logos/true_icon.png",
+      label: "سرد تفاصيل الاتصال الخاصة بالعضو على صفحة الويب الخاصة بـ SFMA",
+    },
+    {
+      icon: "/images/logos/true_icon.png",
+      label: "امتياز استخدام شعار SFMA",
+    },
+    {
+      icon: "/images/logos/true_icon.png",
+      label:
+        "تسهيل - للأعضاء فقط - دليل المشترين التي من شأنها أن تمكن الوصول إلى أحدث الخدمات",
+    },
+    {
+      icon: "/images/logos/true_icon.png",
+      label:
+        "مجموعة مناقشة لحل المشاكل المتعلقة بالعمل ومساعدة الزملاء الأعضاء في المشاريع والأهداف المهنية",
+    },
+    {
+      icon: "/images/logos/true_icon.png",
+      label: "حضور الأحداث من الداخل",
+    },
+    {
+      icon: "/images/logos/true_icon.png",
+      label: "له أحقية التصويت",
+    },
+  ];
+
   return (
     <>
       <div className="">
@@ -146,6 +175,27 @@ const MembershipTab = ({ profileData }) => {
             </div>
             <p>تحميل بطاقة العضوية الخاص بك</p>
           </button>
+        </div>
+        <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6">
+          {courseDetails.map((item, index) => (
+            <div
+              key={index}
+              className="bg-[#DFDFDF] gap-3 p-3 rounded-lg flex items-center"
+            >
+              <div className="min-w-7 max-w-7">
+                <Image
+                  src={item.icon}
+                  alt="icon"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="text-[12px] md:text-[14px] lg:text-base">
+                <span>{item.label}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

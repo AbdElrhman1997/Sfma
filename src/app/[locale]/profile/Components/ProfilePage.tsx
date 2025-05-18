@@ -10,6 +10,7 @@ import CoursesTab from "./CoursesTab";
 import ExamsTab from "./ExamsTab";
 import CertificatesTab from "./CertificatesTab";
 import MembershipTab from "./MembershipTab";
+import PaymentsTab from "./PaymentsTab";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -176,7 +177,7 @@ const ProfilePage = () => {
   return (
     <section dir={lang === "en" ? "ltr" : "rtl"} className="p-0">
       <div className="bg-[#F6F6F6] py-14">
-        <div className="md:w-1/5 w-full mx-auto">
+        <div className="md:w-1/5 w-4/5 mx-auto">
           {profileData?.logo ? (
             <Image
               src={`https://just.isamstore.com/storage/${profileData?.logo}`}
@@ -199,29 +200,31 @@ const ProfilePage = () => {
           )}
         </div>
 
-        <p className="text-3xl font-bold text-center mt-6">
+        <p className="text-2xl md:text-3xl font-bold text-center mt-3 md:mt-6">
           {t("welcome")} ,{" "}
           {lang == "en" ? profileData?.full_name_en : profileData?.full_name_ar}
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="  shadow-lg pt-2 mb-10">
-        <div className="container mx-auto flex flex-wrap justify-between gap-2 ">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`py-2 px-4 font-bold focus:outline-none min-w-[10rem] cursor-pointer transition ease-in-out duration-300 flex items-center gap-3 ${
-                activeTab === tab.id
-                  ? "text-black border-b-4 border-[var(--main)]"
-                  : "text-[#898989]  hover:text-gray-700"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <div>{tab.icon}</div>
-              <div>{tab.label}</div>
-            </button>
-          ))}
+      <div className="shadow-lg pt-2 mb-10 ">
+        <div className="container mx-auto overflow-x-auto scrollbar-hide">
+          <div className="flex w-max sm:w-auto flex-nowrap sm:flex-wrap justify-start sm:justify-between gap-2 px-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`py-2 px-4 font-bold focus:outline-none min-w-[14rem] md:min-w-[10rem] cursor-pointer transition ease-in-out duration-300 flex items-center gap-3 whitespace-nowrap ${
+                  activeTab === tab.id
+                    ? "text-black border-b-4 border-[var(--main)]"
+                    : "text-[#898989] hover:text-gray-700"
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <div>{tab.icon}</div>
+                <div>{tab.label}</div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -240,7 +243,7 @@ const ProfilePage = () => {
           ) : activeTab == 5 ? (
             <MembershipTab profileData={profileData} />
           ) : (
-            <ClientTab profileData={profileData} />
+            <PaymentsTab profileData={profileData} />
           )}
         </div>
       )}

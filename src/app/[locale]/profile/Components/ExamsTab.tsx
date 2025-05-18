@@ -330,7 +330,7 @@ const ExamsTab = ({ profileData }) => {
               </div>
               <div className="w-6">
                 <Image
-                  src={"/images/logos/true_icont.png"}
+                  src={"/images/logos/true_icon.png"}
                   alt="session icon"
                   width={500}
                   height={500}
