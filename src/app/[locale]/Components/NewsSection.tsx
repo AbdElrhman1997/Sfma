@@ -1,58 +1,88 @@
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const NewsSection = () => {
   const t = useTranslations("HomePage.NewsSection");
   const lang = useLocale();
-  const courses = [{}, {}, {}];
+  const courses = [
+    {
+      id: 1,
+    },
+    {
+      id: 2,
+    },
+    {
+      id: 3,
+    },
+    {
+      id: 4,
+    },
+    {
+      id: 5,
+    },
+    {
+      id: 6,
+    },
+  ];
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto pt-10 ${
-        lang == "en" ? "md:text-left" : "md:text-right"
-      } text-center`}
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto pt-10 text-start`}
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col justify-center">
-        <h2 className="text-4xl font-bold text-[#1DAEE5] mb-4 text-center">{t("title")}</h2>
-        <p className="text-black mb-6 text-center">{t("description")}</p>
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center py-4">
-          {courses.map((course, index) => (
+        {/* <h2 className="text-4xl font-bold text-[#1DAEE5] mb-4 text-center">
+          {t("title")}
+        </h2>
+        <p className="text-black mb-6 text-center">{t("description")}</p> */}
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center py-4">
+          {courses.map((item, index) => (
             <div
               key={index}
               className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md"
             >
-              <div className="w-full h-48 bg-[#D9D9D9]"></div>
+              <div className="w-full">
+                <Image
+                  src="/images/common/placeholder_news.png"
+                  alt="About Us"
+                  width={500}
+                  height={400}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
               <div className="p-4">
-                <h3 className="text-lg font-bold leading-tight">
-                  {t("title_placeholder")}
+                <h3 className="text-lg font-bold leading-tight text-[#555555]">
+                  الجمعية السعودية لإدارة المرافق تنظم ورشة عمل حول استدامة
+                  المباني ... قراءة المزيد
                 </h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  {t("description_placeholder")}
+                <p className="text-sm text-[#636363] mt-2">
+                  لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على
+                  العميل ليتصور طريقه و …
                 </p>
-                <div className="mt-4 flex items-center justify-start text-primary font-semibold cursor-pointer">
-                  <span className="text-lg font-semibold">
-                    {" "}
-                    {t("read_more")}
-                  </span>
+                <Link
+                  href={`/${lang}/news/${item?.id}`}
+                  className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
+                >
+                  <span className="text-lg font-bold">{t("read_more")}</span>
                   <div className={`${lang == "en" ? "rotate-y-180" : ""}`}>
                     <Image
-                      src="/images/home_page/Vector.svg"
+                      src="/images/logos/arrow-left.svg"
                       alt="About Us"
-                      width={24}
-                      height={24}
+                      width={18}
+                      height={18}
                       className=" rounded-lg mx-2"
                     />
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           ))}
         </div>
-        <button className="flex items-center mx-auto bg-teal-500 text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-teal-600 transition w-fit">
-          <div className="w-12 h-12 bg-[#1DAEE5] text-white flex items-center justify-center rounded-full border-2 border-white">
+        {/* <button className="flex items-center mx-auto bg-[var(--second_main)] text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-teal-600 transition w-fit">
+          <div className="w-12 h-12 bg-[var(--main)] text-white flex items-center justify-center rounded-full border-2 border-white">
             {lang == "en" ? (
               <BsArrowLeft className="font-bold" />
             ) : (
@@ -62,7 +92,7 @@ const NewsSection = () => {
           <span className="text-lg font-bold text-center">
             {t("read_more")}
           </span>
-        </button>
+        </button> */}
       </div>
     </section>
   );
