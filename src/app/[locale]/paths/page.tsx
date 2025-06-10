@@ -13,7 +13,7 @@ const Page = async ({ params }) => {
 
   return (
     <div className="">
-      <Paths />
+      <Paths from_home={false} />
     </div>
   );
 };
