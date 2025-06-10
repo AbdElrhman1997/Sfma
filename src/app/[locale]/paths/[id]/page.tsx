@@ -1,5 +1,3 @@
-// app/[locale]/institutions/[id]/page.tsx
-
 import { createTranslator } from "next-intl";
 import React from "react";
 import SinglePath from "./Components/SinglePath";
@@ -14,23 +12,9 @@ export default async function Page({ params: { locale, id } }: any) {
     namespace: "Paths",
   });
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}library/get-book/${id}`,
-    {
-      headers: {
-        "Accept-Language": locale || "ar",
-      },
-      cache: "no-store",
-    }
-  );
-
-  const data = await res.json();
-  const single_book = data?.data || {};
-  console.log(single_book);
-
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <SinglePath translation={{}} single_book={single_book} />
+      <SinglePath translation={{}} id={id} />
     </div>
   );
 }

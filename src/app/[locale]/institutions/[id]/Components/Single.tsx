@@ -7,7 +7,7 @@ const Single = ({ translation, lang, subscription }) => {
         className="absolute -top-8 flex items-center justify-center w-16 h-16 bg-[#1DAEE5] text-white rounded-full border-4 border-white shadow-lg"
         style={{ zIndex: 1 }}
       >
-        <Image
+        <img
           src={`/images/about_page/goals_2.png`}
           alt="About Us"
           width={100}

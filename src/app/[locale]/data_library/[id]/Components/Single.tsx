@@ -1,14 +1,45 @@
+"use client";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const Single = ({ translation, single_book }) => {
-  return (
+const Single = ({ translation, id }) => {
+  const [content, setContent]: any = useState({});
+  const [loadingContent, setLoadingContent] = useState(false);
+  const lang = useLocale();
+
+  useEffect(() => {
+    const fetchSinglePath = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-book/${id}`;
+      try {
+        setLoadingContent(true);
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": lang || "ar",
+          },
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setContent(data?.data || {});
+        setLoadingContent(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoadingContent(false);
+      }
+    };
+
+    fetchSinglePath();
+  }, [lang, id]);
+
+  return !loadingContent ? (
     <div className="min-h-screen container mx-auto">
       <div className="flex flex-col md:flex-row w-full rounded-lg overflow-hidden pt-16 pb-12">
         {/* Left Section: Book Cover */}
         <div className="md:w-1/3 w-full">
-          <Image
-            src={`https://just.isamstore.com/storage/${single_book?.image}`}
+          <img
+            src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.image}`}
             alt="Book Cover"
             width={300}
             height={450}
@@ -21,23 +52,21 @@ const Single = ({ translation, single_book }) => {
           <div>
             {/* Arabic Title */}
             <h1 className="text-3xl font-bold text-start mb-2">
-              {single_book?.name}
+              {content?.name}
             </h1>
 
             {/* English Title */}
-            <h2 className="text-base text-[#616060] mb-3">
-              {single_book?.author}
-            </h2>
+            <h2 className="text-base text-[#616060] mb-3">{content?.author}</h2>
 
             {/* Description */}
             <p className="mb-4 text-justify leading-6">
-              {single_book?.description}
+              {content?.description}
             </p>
           </div>
 
           {/* Button */}
           <Link
-            href={`https://just.isamstore.com/storage/${single_book?.file}`}
+            href={`https://sfma.srv814693.hstgr.cloud/storage/${content?.file}`}
             className="text-start cursor-pointer"
             target="_blank"
           >
@@ -48,15 +77,15 @@ const Single = ({ translation, single_book }) => {
         </div>
       </div>
       <Link
-        href={`https://just.isamstore.com/storage/${single_book?.file}`}
+        href={`https://sfma.srv814693.hstgr.cloud/storage/${content?.file}`}
         target="_blank"
       >
         <div
           className="relative w-[300px] h-[450px] bg-cover bg-center mx-auto mb-16"
           style={{
-            backgroundImage: single_book?.image
-              ? `url(https://just.isamstore.com/storage/${single_book?.image})`
-              : "url(https://just.isamstore.com/storage/fallback-image.jpg)",
+            backgroundImage: content?.image
+              ? `url(https://sfma.srv814693.hstgr.cloud/storage/${content?.image})`
+              : "url(https://sfma.srv814693.hstgr.cloud/storage/fallback-image.jpg)",
           }}
         >
           <div className="absolute inset-0 bg-[#00000092] flex items-center justify-center cursor-pointer">
@@ -67,6 +96,8 @@ const Single = ({ translation, single_book }) => {
         </div>
       </Link>
     </div>
+  ) : (
+    <div className="h-[70vh]"></div>
   );
 };
 

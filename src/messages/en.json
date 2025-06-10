@@ -224,6 +224,7 @@
     "jobs": "Jobs",
     "actions": "Events",
     "ads": "Ads",
+    "news": "News",
     "about_us": "Know Us",
     "lists": "Lists",
     "structure": "Organizational Structure",
@@ -242,5 +243,6 @@
   "Training": {
     "title": "مسارات التدريب التي تقدمها SFMA",
     "sub_title": "ارتقِ بمهاراتك مع برامج تدريبية متخصصة في إدارة المرافق وفق أحدث المعايير العالمية"
-  }
+  },
+  "Paths": {}
 }

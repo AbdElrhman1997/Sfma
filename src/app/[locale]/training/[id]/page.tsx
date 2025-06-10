@@ -14,23 +14,23 @@ export default async function Page({ params: { locale, id } }: any) {
     namespace: "Trainings",
   });
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}library/get-book/${id}`,
-    {
-      headers: {
-        "Accept-Language": locale || "ar",
-      },
-      cache: "no-store",
-    }
-  );
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_URL}library/get-book/${id}`,
+  //   {
+  //     headers: {
+  //       "Accept-Language": locale || "ar",
+  //     },
+  //     cache: "no-store",
+  //   }
+  // );
 
-  const data = await res.json();
-  const single_book = data?.data || {};
-  console.log(single_book);
+  // const data = await res.json();
+  // const single_book = data?.data || {};
+  // console.log(single_book);
 
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <Single_Course translation={{}} single_book={single_book} />
+      <Single_Course translation={{}} id={id} />
     </div>
   );
 }

@@ -6,9 +6,11 @@ const PillarsSection = ({ title, description, p, lang }) => {
     return (
       <div className="relative flex flex-col items-center">
         <div
-          className={`bg-[${
-            index % 2 == 0 ? "#5DB6A6" : "#1DAEE5"
-          }] min-w-80 text-center shadow-md relative z-0 py-6 px-2`}
+          className={`${
+            index % 2 == 0
+              ? "bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)]"
+              : "bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)]"
+          } min-w-80 text-center shadow-md relative z-0 py-6 px-2`}
         >
           <p className="text-white text-xl font-bold leading-relaxed flex justify-center items-center">
             {content}

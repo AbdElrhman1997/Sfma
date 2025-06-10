@@ -5,9 +5,7 @@ const MotivatorsSection = ({ title, description, p, lang }) => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto md:pt-6 pt-0 mt-8 ${
-        lang == "en" ? "md:text-left" : "md:text-right"
-      } text-center`}
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto md:pt-6 pt-0 mt-8 text-start`}
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col justify-center text-center">
@@ -17,7 +15,7 @@ const MotivatorsSection = ({ title, description, p, lang }) => {
           {courses.map((course, index) => (
             <div
               key={index}
-              className="bg-[#61B8A0] text-white rounded-lg w-full md:w-[30%] shadow-lg overflow-hidden hover:scale-105 hover:bg-[#1DAEE5] cursor-pointer transition duration-300"
+              className="bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] hover:from-[var(--main_gradiant)] hover:to-[var(--main)] text-white rounded-md p-1 lg:text-xl font-semibold w-full md:w-[30%] shadow-lg overflow-hidden hover:scale-105 cursor-pointer transition duration-300"
             >
               <div className=" text-center py-3 ">
                 <p className="text-sm font-semibold text-white">{p[index]}</p>

@@ -5,7 +5,6 @@ import Volunteers from "./Components/Volunteers";
 const Page = async ({ params }) => {
   const { locale } = params;
 
-  // Load translations
   const messages = (await import(`../../../messages/${locale}.json`)).default;
   const t = createTranslator({
     locale,
@@ -14,18 +13,18 @@ const Page = async ({ params }) => {
   });
 
   // Fetch videos from API (server-side)
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}memberships/get-memberships?type=3`,
-    {
-      headers: {
-        "Accept-Language": locale || "ar", // optional
-      },
-      cache: "no-store", // you can use "force-cache" if you want caching
-    }
-  );
+  // const res = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_URL}memberships/get-memberships?type=1`,
+  //   {
+  //     headers: {
+  //       "Accept-Language": locale || "ar", // optional
+  //     },
+  //     cache: "no-store", // you can use "force-cache" if you want caching
+  //   }
+  // );
 
-  const data = await res.json();
-  const subscriptions = data?.data || [];
+  // const data = await res.json();
+  // const subscriptions = data?.data || [];
 
   return (
     <div className="container mx-auto p-6 mt-6">
@@ -38,7 +37,7 @@ const Page = async ({ params }) => {
           memberships_advantages: t("memberships_advantages"),
         }}
         lang={locale}
-        subscriptions={subscriptions}
+        // subscriptions={subscriptions}
       />
     </div>
   );

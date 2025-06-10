@@ -6,31 +6,44 @@ import { useEffect, useRef, useState } from "react";
 
 const Course_Register = ({ translation }) => {
   const lang = useLocale();
+  const choosed_course: any = JSON.parse(
+    localStorage.getItem("choosed_course")
+  );
+  const [selectedValue, setSelectedValue] = useState("offline");
+
+  const payment_data = {
+    type: "course",
+    relative_id: choosed_course?.id,
+    payment_method: "bank_transfer",
+    attendance_type: selectedValue,
+  };
 
   const courseContent = [
     {
       title: "موعد بداية الدورة :",
-      desc: "تاريخ الدورة القادمة",
+      desc: choosed_course?.date_from,
     },
     {
       title: "رسوم الدورة :",
-      desc: "3,000 ر.س",
+      desc: `${choosed_course?.online_price} ر.س`,
     },
     {
       title: "الخصم :",
-      desc: "500 ر.س",
+      desc: choosed_course?.discounted_price
+        ? choosed_course?.discounted_price
+        : 0.0,
     },
     {
       title: "المبلغ المستحق :",
-      desc: "2,500 ر.س",
+      desc: `${choosed_course?.online_price} ر.س`,
     },
   ];
 
-  const [selectedValue, setSelectedValue] = useState("option1");
   const [selectedCity, setSelectedCity] = useState("الرياض");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
+    console.log(selectedValue);
   };
 
   const handleCityChange = (event) => {
@@ -88,14 +101,14 @@ const Course_Register = ({ translation }) => {
           </div>
         </div>
 
-        <div className="absolute bottom-6 right-0 text-white container mx-auto flex flex-col gap-3 md:gap-5">
+        <div className="absolute bottom-13 right-0 text-white container mx-auto flex flex-col gap-3 md:gap-5">
           <p className="text-lg md:text-2xl lg:text-4xl font-bold">
-            إدارة المرافق المتقدمة والصيانة الوقائية
+            {choosed_course?.title}
           </p>
           <p className="text-base md:text-lg lg:text-xl font-semibold">
             مقدمة من جمعية إدارة المرافق السعودية
           </p>
-          <Link
+          {/* <Link
             // href={`/${lang}/data_library/${course?.id}`}
             href={`/${lang}/data_library/`}
             target="_blank"
@@ -104,7 +117,7 @@ const Course_Register = ({ translation }) => {
             <div className="bg-transparent w-fit text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[12px] md:text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[var(--main)]">
               سجل في الدورة الآن!
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -115,7 +128,7 @@ const Course_Register = ({ translation }) => {
             التسجيل في دورة
           </h1>
           <h1 className="text-xl lg:text-3xl font-bold mb-4">
-            إدارة المرافق المتقدمة والصيانة الوقائية
+            {choosed_course?.title}
           </h1>
           <h3 className="text-[#737373] font-semibold text-sm lg:text-base">
             يرجى ملء النموذج أدناه لحجز مكانك في الدورة القادمة
@@ -136,8 +149,8 @@ const Course_Register = ({ translation }) => {
               <label className="flex items-start gap-x-3 lg:gap-x-5">
                 <input
                   type="radio"
-                  value="option1"
-                  checked={selectedValue === "option1"}
+                  value="offline"
+                  checked={selectedValue === "offline"}
                   onChange={handleChange}
                   className="accent-black w-5 lg:w-6 h-5 lg:h-6"
                 />
@@ -180,8 +193,8 @@ const Course_Register = ({ translation }) => {
               <label className="flex items-start gap-x-3 lg:gap-x-5">
                 <input
                   type="radio"
-                  value="option2"
-                  checked={selectedValue === "option2"}
+                  value="online"
+                  checked={selectedValue === "online"}
                   onChange={handleChange}
                   className="accent-black w-5 lg:w-6 h-5 lg:h-6"
                 />
@@ -205,7 +218,7 @@ const Course_Register = ({ translation }) => {
           <div className=" gap-3 rounded-lg flex justify-between">
             <input
               type="text"
-              className="text-[12px] md:text-lg lg:text-xl font-bold bg-[#F4F4F4] rounded-lg w-full"
+              className="text-[12px] md:text-lg lg:text-xl px-4 font-bold bg-[#F4F4F4] rounded-lg w-full"
             />
             <div className="text-[14px] lg:text-2xl font-bold bg-[var(--second_main)] px-4 lg:px-8 py-[6px] lg:py-3 text-white rounded-lg">
               تطبيق
@@ -230,9 +243,18 @@ const Course_Register = ({ translation }) => {
               </div>
             ))}
             <div className="flex flex-col items-center  text-center">
-              <button className="bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl">
-                سجل الآن
-              </button>
+              <Link
+                href={`/${lang}/payment`}
+                className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+                onClick={() => {
+                  localStorage.setItem(
+                    "payment_data",
+                    JSON.stringify(payment_data)
+                  );
+                }}
+              >
+                تأكيد البيانات والمتابعة للدفع
+              </Link>
               <p className="text-[14px] lg:text-xl mt-3 text-[#555555]">
                 سيتم إضافة هذخ الدورة إلى ملفك الشخصي ضمن قسم
                 &rdquo;دوراتي&rdquo; بعد إتمام الدفع بنجاح.

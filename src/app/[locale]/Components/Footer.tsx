@@ -14,7 +14,7 @@ const Footer = () => {
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 container mx-auto  px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-6 md:grid-cols-3 gap-8 container mx-auto  px-4">
           {/* Column 5: Logo */}
           <div className="flex flex-col items-center md:items-start">
             {/* Placeholder for the logo */}
@@ -91,6 +91,37 @@ const Footer = () => {
                   className="block text-white hover:text-[#ffffffdc]"
                 >
                   {t("lists")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Services */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">التدريب والدورات</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href={`/${lang}/training`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  الدورات التدريبية
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${lang}/certified_trainers`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  المدربين المعتمدين
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${lang}/certificate_verification`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  التحقق من الشهادات
                 </Link>
               </li>
             </ul>

@@ -87,7 +87,7 @@ export default function Data_Library({ translation, lang }) {
               <Link href={`/${lang}/data_library/${book?.id}`} passHref>
                 <div className="cursor-pointer transition-shadow duration-300 overflow-hidden rounded-lg">
                   <img
-                    src={`https://just.isamstore.com/storage/${book?.image}`}
+                    src={`https://sfma.srv814693.hstgr.cloud/storage/${book?.image}`}
                     alt={book?.name}
                     className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                   />
@@ -98,7 +98,7 @@ export default function Data_Library({ translation, lang }) {
               </Link>
 
               <Link
-                href={`https://just.isamstore.com/storage/${book?.file}`}
+                href={`https://sfma.srv814693.hstgr.cloud/storage/${book?.file}`}
                 target="_blank"
                 className="inline-block mt-2"
               >

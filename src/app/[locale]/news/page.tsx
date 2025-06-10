@@ -36,7 +36,7 @@ const Page = async ({ params }) => {
           </p>
         </div>
       </div>
-      <NewsSection />
+      <NewsSection from_home={false} />
     </div>
   );
 };

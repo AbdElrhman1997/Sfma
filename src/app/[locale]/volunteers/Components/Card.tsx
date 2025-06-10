@@ -7,8 +7,8 @@ const Card = ({ subscription, lang, translation }) => {
   return (
     <div className="min-w-[330px] mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative hover:scale-105 transition duration-300 cursor-pointer hover:shadow-xl">
       <div className="flex justify-center">
-        <Image
-          src={`https://just.isamstore.com/storage/${subscription?.icon}`}
+        <img
+          src={`https://sfma.srv814693.hstgr.cloud/storage/${subscription?.icon}`}
           alt="Diamond Badge"
           className="absolute top-0 left-1/2 -translate-1/2"
           width={100}
@@ -25,7 +25,7 @@ const Card = ({ subscription, lang, translation }) => {
         {translation.currency}
       </p>
       <Link
-        href={`/${lang}/volunteers/${subscription?.id}`}
+        href={`/${lang}/institutions/${subscription?.id}`}
         className="bg-[#61B8A0] hover:bg-[#6aa393] text-white font-bold py-2 px-4 rounded cursor-pointer text-base"
       >
         {translation.memberships_advantages}

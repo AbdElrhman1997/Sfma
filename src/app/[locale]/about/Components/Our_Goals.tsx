@@ -14,7 +14,7 @@ const Our_Goals = ({ title, description, p, lang }) => {
             className="w-9 h-9"
           />
         </div>
-        <div className="bg-[#5DB6A6] rounded-lg p-6 w-80 text-center shadow-md relative z-0 py-[3.8rem]">
+        <div className="bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] rounded-lg p-6 w-80 text-center shadow-md relative z-0 py-[3.8rem]">
           <Image
             src="/images/about_page/goals_watermark.png"
             alt="About Us"

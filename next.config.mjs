@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "just.isamstore.com",
+        hostname: "sfma.srv814693.hstgr.cloud",
         pathname: "/**",
       },
     ],

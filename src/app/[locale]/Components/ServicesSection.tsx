@@ -1,74 +1,63 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
+import { useState } from "react";
 import Image from "next/image";
-import React, { useState } from "react";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { useLocale } from "next-intl";
 
-const ServicesSection = () => {
-  const t = useTranslations("HomePage.ServicesSection");
+const services = [
+  { id: 1, text: "التدريب والتطوير" },
+  { id: 2, text: "العضويات" },
+  { id: 3, text: "التقارير والدراسات" },
+  { id: 4, text: "إدارة الفعاليات" },
+  { id: 5, text: "الاستشارات" },
+];
+
+export default function ServicesGrid() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const lang = useLocale();
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const services = [
-    { id: 1, text: t("services_1"), image: "/images/home_page/services_1.png" },
-    { id: 2, text: t("services_2"), image: "/images/home_page/services_2.png" },
-    { id: 3, text: t("services_3"), image: "/images/home_page/services_3.png" },
-    { id: 4, text: t("services_4"), image: "/images/home_page/services_4.png" },
-  ];
-
   return (
-    <div
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto md:py-12 py-0 ${
-        lang == "en" ? "md:text-left" : "md:text-right"
-      } text-center`}
+    <section
+      className="bg-gradient-to-b from-[#f6f6f6ad] to-white py-10 px-4  "
       dir={lang == "en" ? "ltr" : "rtl"}
     >
-      <div className="w-full md:w-1/2 flex flex-col justify-center">
-        <h2 className="text-3xl font-bold text-[#1DAEE5] mb-4">{t("title")}</h2>
-        <p className="text-black text-justify mb-6">{t("description")}</p>
-        <div className="grid grid-cols-12 gap-4">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className={`col-span-6 rounded-xl flex flex-col items-center py-7 transform hover:scale-105 transition duration-300 shadow-lg cursor-pointer
-              ${
-                hoveredIndex === null
-                  ? service.id === 2 || service.id === 3
-                    ? "bg-[#61B8A0]"
-                    : "bg-[#1DAEE5]"
-                  : hoveredIndex === index
-                  ? "bg-[#61B8A0]"
-                  : "bg-[#1DAEE5]"
-              }`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <Image
-                src={`/images/home_page/services_${service?.id}.png`}
-                alt="About Us"
-                width={60}
-                height={60}
-                className="rounded-lg mb-3"
-              />
-              <p className="font-bold md:text-xl text-lg text-white text-center">
-                {service?.text}
-              </p>
-            </div>
-          ))}
+      <div className="container mx-auto">
+        <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] mb-2 text-center md:pt-4">
+          خدماتنا
+        </h2>
+        <p className="text-[#555555] text-center mb-8 lg:text-base text-sm">
+          نقدّم لك حلولاً متكاملة لدعمك في تحقيق أعلى مستويات الكفاءة
+          والاحترافية.
+        </p>
+        <div className="max-w-6xl mx-auto grid grid-cols-10 gap-4">
+          {services.map((service, index) => {
+            const isGreen =
+              hoveredIndex === null
+                ? service.id % 2 == 0
+                : hoveredIndex === index;
+
+            return (
+              <div
+                key={service.id}
+                className={`col-span-10 md:col-span-5 lg:col-span-2 rounded-xl flex flex-col items-center justify-center py-7 cursor-pointer shadow-lg transform transition duration-300 hover:scale-105
+              ${isGreen ? "bg-[#61B8A0]" : "bg-[#1DAEE5]"}`}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <Image
+                  src={`/images/home_page/services_${service.id}.png`}
+                  alt={service.text}
+                  width={60}
+                  height={60}
+                  className="mb-4"
+                />
+                <p className="font-bold text-white text-center text-base md:text-lg lg:text-xl">
+                  {service.text}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div className="w-full md:w-1/2 md:max-w-[500px] max-w-[400px]">
-        <Image
-          src="/images/home_page/services_section.png"
-          alt="About Us"
-          width={500}
-          height={300}
-          className="w-full h-auto rounded-lg"
-        />
-      </div>
-    </div>
+    </section>
   );
-};
-
-export default ServicesSection;
+}

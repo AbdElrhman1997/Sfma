@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Sfma_Courses() {
+export default function Next_Courses() {
   const t = useTranslations("Training");
   const lang = useLocale();
 
@@ -40,7 +40,7 @@ export default function Sfma_Courses() {
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
       <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
-        {t("title")}
+        الدورات القادمة
       </h2>
       <h4 className="text-[18px] text-[#898989] mb-8 text-center">
         {t("sub_title")}
@@ -63,23 +63,26 @@ export default function Sfma_Courses() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
+        <div className="flex flex-wrap justify-center gap-6 mt-9">
+          <div className="group bg-white relative rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
             <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
               <img
                 src={`/images/training/training_1.png`}
                 // alt={course?.name}
                 className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
               />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
+              <p className="relative font-bold mt-[26px] mb-5 text-black">
                 {/* {book?.name} */}
                 دورات في الأمن والسلامة
               </p>
             </div>
+            <div className="absolute top-0 start-0 -translate-5 bg-[var(--main)] text-white py-2 px-4 rounded-lg">
+              متاحة الآن
+            </div>
 
             <Link
               // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/data_library/1`}
+              href={`/${lang}/data_library/`}
               target="_blank"
               className="inline-block"
             >
@@ -89,22 +92,25 @@ export default function Sfma_Courses() {
               </div>
             </Link>
           </div>
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
+          <div className="group bg-white relative rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
             <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
               <img
                 src={`/images/training/training_1.png`}
                 // alt={course?.name}
                 className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
               />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
+              <p className="relative font-bold mt-[26px] mb-5 text-black">
                 {/* {book?.name} */}
                 دورات في الأمن والسلامة
               </p>
             </div>
+            <div className="absolute top-0 start-0 -translate-5 bg-[var(--main)] text-white py-2 px-4 rounded-lg">
+              25 - 28 مايو
+            </div>
 
             <Link
               // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/data_library/1`}
+              href={`/${lang}/data_library/`}
               target="_blank"
               className="inline-block"
             >
@@ -114,22 +120,25 @@ export default function Sfma_Courses() {
               </div>
             </Link>
           </div>
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
+          <div className="group bg-white relative rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
             <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
               <img
                 src={`/images/training/training_1.png`}
                 // alt={course?.name}
                 className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
               />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
+              <p className="relative font-bold mt-[26px] mb-5 text-black">
                 {/* {book?.name} */}
                 دورات في الأمن والسلامة
               </p>
             </div>
+            <div className="absolute top-0 start-0 -translate-5 bg-[var(--main)] text-white py-2 px-4 rounded-lg">
+              متاحة الآن
+            </div>
 
             <Link
               // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/data_library/1`}
+              href={`/${lang}/data_library/`}
               target="_blank"
               className="inline-block"
             >
@@ -141,6 +150,18 @@ export default function Sfma_Courses() {
           </div>
         </div>
       )}
+
+      <Link
+        // href={`/${lang}/data_library/${course?.id}`}
+        href={`/${lang}/data_library/`}
+        target="_blank"
+        className="block w-fit mx-auto mt-8"
+      >
+        <div className="bg-[#61B8A0] text-white font-bold p-3 px-5 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[16px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
+          {/* {t("translation?.read_book")} */}
+          اطلع على جدول دورات SFMA
+        </div>
+      </Link>
     </div>
   );
 }

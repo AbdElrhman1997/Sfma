@@ -4,18 +4,16 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Paths() {
+export default function Paths({ from_home }) {
   const t = useTranslations("Training");
   const lang = useLocale();
-
-  const [activeTab, setActiveTab] = useState(1);
-  const [loadingBooks, setLoadingBooks] = useState(false);
+  const [loadingPaths, setLoadingPaths] = useState(false);
   const [content, setContent] = useState([]);
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      setLoadingBooks(true);
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-books?type=${activeTab}`;
+    const fetchCourses = async () => {
+      setLoadingPaths(true);
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}courses/get-courses-category`;
 
       try {
         const res = await fetch(apiUrl, {
@@ -25,20 +23,61 @@ export default function Paths() {
           },
           cache: "no-store",
         });
+
         const data = await res.json();
         setContent(data?.data || []);
-        setLoadingBooks(false);
+        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
-        setLoadingBooks(false);
+      } finally {
+        setLoadingPaths(false);
       }
     };
 
-    fetchBooks();
-  }, [lang, activeTab]);
+    fetchCourses();
+  }, [lang]);
+
+  const renderLoadingCards = () =>
+    [1, 2, 3].map((index) => (
+      <div
+        key={index}
+        className="bg-[#F6F6F6] p-4 rounded-lg shadow-md w-64 text-center animate-pulse"
+      >
+        <div className="bg-[#EDEDED] text-white font-bold text-lg rounded-lg p-20 relative flex items-center justify-center">
+          <div className="absolute inset-0 opacity-20">
+            <div className="w-full h-full bg-white/30" />
+          </div>
+        </div>
+        <div className="mt-4 h-4 bg-gray-300 rounded w-1/2 mx-auto" />
+      </div>
+    ));
+
+  const renderCourseCard = (path) => (
+    <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
+      <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
+        <img
+          src={`${process.env.NEXT_PUBLIC_URL}${path?.image}`}
+          className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
+          alt="patn image"
+        />
+        <p className="relative font-bold mt-[26px] mb-5 text-white">
+          {path?.title}
+        </p>
+      </div>
+
+      <Link href={`/${lang}/paths/${path?.id}`} className="inline-block">
+        <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
+          تصفح الدورات
+        </div>
+      </Link>
+    </div>
+  );
 
   return (
-    <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
+    <div
+      dir={lang === "en" ? "ltr" : "rtl"}
+      className={`p-0 mt-8 bg-${from_home ? "[#F6F6F6] py-10" : "white"}`}
+    >
       <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
         {t("title")}
       </h2>
@@ -46,98 +85,17 @@ export default function Paths() {
         {t("sub_title")}
       </h4>
 
-      {loadingBooks ? (
-        <div className="flex flex-wrap justify-center gap-6">
-          {[1, 2, 3].map((index) => (
-            <div
-              key={index}
-              className="bg-[#F6F6F6] p-4 rounded-lg shadow-md w-64 text-center animate-pulse"
-            >
-              <div className="bg-[#EDEDED] text-white font-bold text-lg rounded-lg p-20 relative flex items-center justify-center">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="w-full h-full bg-white/30" />
-                </div>
-              </div>
-              <div className="mt-4 h-4 bg-gray-300 rounded w-1/2 mx-auto" />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
-            <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
-              <img
-                src={`/images/training/training_1.png`}
-                // alt={course?.name}
-                className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-              />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
-                {/* {book?.name} */}
-                دورات في الأمن والسلامة
-              </p>
-            </div>
-
-            <Link
-              // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/paths/1`}
-              className="inline-block"
-            >
-              <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-                {/* {t("translation?.read_book")} */}
-                تصفح الدورات
-              </div>
-            </Link>
-          </div>
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
-            <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
-              <img
-                src={`/images/training/training_1.png`}
-                // alt={course?.name}
-                className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-              />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
-                {/* {book?.name} */}
-                دورات في الأمن والسلامة
-              </p>
-            </div>
-
-            <Link
-              // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/paths/1`}
-              className="inline-block"
-            >
-              <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-                {/* {t("translation?.read_book")} */}
-                تصفح الدورات
-              </div>
-            </Link>
-          </div>
-          <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
-            <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
-              <img
-                src={`/images/training/training_1.png`}
-                // alt={course?.name}
-                className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-              />
-              <p className="relative font-bold mt-[26px] mb-5 text-white">
-                {/* {book?.name} */}
-                دورات في الأمن والسلامة
-              </p>
-            </div>
-
-            <Link
-              // href={`/${lang}/data_library/${course?.id}`}
-              href={`/${lang}/paths/1`}
-              className="inline-block"
-            >
-              <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-                {/* {t("translation?.read_book")} */}
-                تصفح الدورات
-              </div>
-            </Link>
-          </div>
-        </div>
-      )}
+      <div className="flex flex-wrap justify-center gap-6">
+        {loadingPaths ? (
+          renderLoadingCards()
+        ) : (
+          <>
+            {content?.map((path) => {
+              return renderCourseCard(path);
+            })}
+          </>
+        )}
+      </div>
     </div>
   );
 }

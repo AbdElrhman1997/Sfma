@@ -1,22 +1,25 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
-const ContentCard = ({ translation, lang, subscription }) => {
+const ContentCard = ({ subscription, lang, id }) => {
   return (
-    <div className="relative flex flex-col items-center mx-auto hover:scale-105 transition duration-300">
-      <div className="absolute -top-8 flex items-center justify-center w-16 h-16 bg-[#1DAEE5] text-white rounded-full border-4 border-white shadow-lg z-10">
-        <Image
-          src={`https://just.isamstore.com/storage/${subscription?.icon}`}
-          alt="About Us"
-          width={100}
-          height={100}
-          className="w-9 h-9"
+    <div
+      className="flex items-center justify-between bg-[#F6F6F6] rounded-xl shadow-md overflow-hidden w-full max-w-xl mx-auto"
+      dir={lang === "en" ? "ltr" : "rtl"}
+    >
+      <div className="w-20 h-full bg-[var(--second_main)] flex items-center justify-center">
+        <img
+          src={`https://sfma.srv814693.hstgr.cloud/storage/${subscription?.icon}`}
+          alt="icon"
+          width={32}
+          height={32}
+          className="object-contain"
         />
       </div>
-      <div className="bg-[#5DB6A6] rounded-lg p-6 w-80 text-center shadow-md relative z-0 pt-[2.8rem] min-h-[200px] flex items-center justify-center">
-        <p className="text-white text-base font-bold leading-relaxed">
-          {subscription?.content}
-        </p>
+      <div className="flex-1 px-4 py-4 text-sm text-gray-800 font-medium leading-6">
+        سرد تفاصيل الاتصال الخاصة بالعضو على
+        <br />
+        صفحة الويب الخاصة بـ SFMA
       </div>
     </div>
   );

@@ -182,7 +182,7 @@ const PoliciesGrid = ({ policies, translation, loadingPolicies }) => {
                 <span className="relative">{policy?.name}</span>
               </div>
               <Link
-                href={`https://just.isamstore.com/storage/${policy?.file}`}
+                href={`https://sfma.srv814693.hstgr.cloud/storage/${policy?.file}`}
                 target="_blank"
                 className="mt-4 block text-black font-bold text-md hover:underline cursor-pointer"
               >

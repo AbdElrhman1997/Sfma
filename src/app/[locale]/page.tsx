@@ -2,12 +2,14 @@ import { useTranslations } from "next-intl";
 import BannerSection from "./Components/BannerSection";
 import AboutSection from "./Components/AboutSection";
 import ServicesSection from "./Components/ServicesSection";
-import DevelopmentSection from "./Components/DevelopmentSection";
-import CoursesSection from "./Components/CoursesSection";
 import ActivitiesSection from "./Components/ActivitiesSection";
 import AdsSection from "./Components/AdsSection";
 import PartenersSection from "./Components/PartenersSection";
 import NewsSection from "./Components/NewsSection";
+import AchiveGoals from "./Components/AchiveGoals";
+import Paths from "./paths/Components/Paths";
+import Memberships from "./Components/Memberships";
+import ServiceProviders from "./Components/ServiceProviders";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -16,12 +18,15 @@ export default function HomePage() {
       <BannerSection />
       <AboutSection />
       <ServicesSection />
-      <DevelopmentSection />
+      <AchiveGoals />
+      <Paths from_home={true} />
+      <Memberships />
       {/* <CoursesSection /> */}
       <ActivitiesSection />
-      {/* <AdsSection /> */}
+      <AdsSection />
+      <ServiceProviders />
       <PartenersSection />
-      {/* <NewsSection /> */}
+      <NewsSection from_home={true} />
     </div>
   );
 }

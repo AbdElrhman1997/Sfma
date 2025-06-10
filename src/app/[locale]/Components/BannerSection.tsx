@@ -76,11 +76,10 @@ const BannerSection = () => {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[40vh] md:h-[60vh] lg:h-[90vh] 2xl:h-[90vh]">
-              <Image
-                src={`https://just.isamstore.com/storage/${banner.image}`}
+            <div className="relative w-full lg:max-h-[90vh] 2xl:max-h-[90vh]">
+              <img
+                src={`https://sfma.srv814693.hstgr.cloud/storage/${banner.image}`}
                 alt={`Banner ${banner.id}`}
-                fill
                 className="object-cover"
               />
             </div>

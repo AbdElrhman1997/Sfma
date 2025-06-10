@@ -36,7 +36,7 @@ const PartenersSection = () => {
 
   return (
     <section
-      className={`container mx-auto md:pt-10 pt-0 my-10 text-center `}
+      className={`container mx-auto py-6 mt-10 text-center bg-[#F6F6F6]`}
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col items-center">
@@ -60,7 +60,7 @@ const PartenersSection = () => {
             <SwiperSlide key={index}>
               <div className="rounded-lg w-[150px] h-[150px] md:w-[170px] md:h-[170px] mx-auto flex items-center justify-center overflow-hidden">
                 <img
-                  src={`https://just.isamstore.com/storage/${partner?.logo}`}
+                  src={`https://sfma.srv814693.hstgr.cloud/storage/${partner?.logo}`}
                   alt={`Partner ${index}`}
                   className="object-contain max-w-full max-h-full"
                 />
