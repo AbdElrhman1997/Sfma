@@ -23,9 +23,9 @@ export default function RegisterForm({ locale, messages }) {
   const steps = [
     t("persnola_info"),
     t("contact_info"),
+    t("job_data"),
     t("account_setting"),
     t("review_data"),
-    t("contact_us"),
   ];
 
   useEffect(() => {
