@@ -231,7 +231,7 @@ const NavBar = () => {
             {isAuthenticated ? (
               <>
                 <div className="relative w-8 h-8 bg-[var(--main)] p-1.5 grid place-items-center rounded-full">
-                  <Link href={`/${lang}/profile`}>
+                  <Link href={`/${lang}/notifications`}>
                     <Image
                       src="/images/common/notification.png"
                       alt="notification"
