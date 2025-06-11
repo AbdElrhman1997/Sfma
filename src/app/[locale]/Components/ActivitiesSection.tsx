@@ -9,11 +9,16 @@ const ActivitiesSection = () => {
   const lang = useLocale();
 
   return (
-    <section dir={lang == "en" ? "ltr" : "rtl"} className="bg-[#F6F6F6] py-10">
-      <h2 className="text-3xl font-bold text-[#1DAEE5] mb-2 text-center md:pt-4">
+    <section
+      dir={lang == "en" ? "ltr" : "rtl"}
+      className="bg-[#F6F6F6] pb-10 pt-8"
+    >
+      <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}
       </h2>
-      <p className="text-black text-center md:mb-8">{t("description")}</p>
+      <p className="text-[#555555] text-center lg:text-base text-sm md:mb-12 mb-4">
+        {t("description")}
+      </p>
       <div
         className={`flex flex-col md:flex-row items-center justify-between container mx-auto text-start`}
         dir={lang == "en" ? "ltr" : "rtl"}
@@ -38,7 +43,7 @@ const ActivitiesSection = () => {
 
           <a
             href="https://fmexcon.com/"
-            className="block bg-[#013047] hover:bg-[#014b6d] text-white py-[11px] px-3 font-semibold text-center transition-all duration-300 transform hover:scale-[104%]"
+            className="block bg-[#013047] hover:bg-[#014b6d] text-white py-[11px] px-3 font-semibold text-center transition-all duration-300 transform hover:scale-[104%] lg:mb-0 mb-6"
             target="_blank"
           >
             {t("visit_site")}

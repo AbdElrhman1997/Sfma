@@ -31,7 +31,7 @@ export default function Memberships() {
 
   const renderCourseCard = (item) => (
     <div
-      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full max-w-xs mx-auto mb-12 border-b-4 border-[var(--main)]"
+      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full max-w-xs mb-12 border-b-4 border-[var(--main)] md:mx-0 mx-auto"
       dir="rtl"
     >
       {/* Top icon */}
@@ -58,15 +58,19 @@ export default function Memberships() {
   );
 
   return (
-    <div dir={lang === "en" ? "ltr" : "rtl"} className={`p-0 mt-8`}>
-      <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
-        {t("title")}
+    <div
+      className={`p-0 mt-8 container mx-auto`}
+      dir={lang === "en" ? "ltr" : "rtl"}
+    >
+      <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
+        عضويات SFMA
       </h2>
-      <h4 className="text-[18px] text-[#898989] mb-16 text-center">
-        {t("sub_title")}
-      </h4>
+      <p className="text-[#555555] text-center mb-16 lg:text-base text-sm">
+        استكشف عضوياتنا المتنوعة للأفراد، الشركات، والمتطوعين، وكن جزءًا من
+        مجتمعنا المهني
+      </p>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap justify-between gap-6">
         {content?.map((item) => {
           return renderCourseCard(item);
         })}

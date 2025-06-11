@@ -84,22 +84,19 @@ export default function Data_Library({ translation, lang }) {
               key={book?.id}
               className="group bg-[#F6F6F6] p-4 rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300"
             >
-              <Link href={`/${lang}/data_library/${book?.id}`} passHref>
-                <div className="cursor-pointer transition-shadow duration-300 overflow-hidden rounded-lg">
-                  <img
-                    src={`https://sfma.srv814693.hstgr.cloud/storage/${book?.image}`}
-                    alt={book?.name}
-                    className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-                  />
-                  <p className="relative font-bold mt-[26px] mb-5 min-h-[55px]">
-                    {book?.name}
-                  </p>
-                </div>
-              </Link>
+              <div className=" transition-shadow duration-300 overflow-hidden rounded-lg">
+                <img
+                  src={`https://sfma.srv814693.hstgr.cloud/storage/${book?.image}`}
+                  alt={book?.name}
+                  className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
+                />
+                <p className="relative font-bold mt-[26px] mb-5 min-h-[55px]">
+                  {book?.name}
+                </p>
+              </div>
 
               <Link
-                href={`https://sfma.srv814693.hstgr.cloud/storage/${book?.file}`}
-                target="_blank"
+                href={`/${lang}/data_library/${book?.id}`}
                 className="inline-block mt-2"
               >
                 <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">

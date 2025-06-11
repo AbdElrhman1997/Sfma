@@ -19,55 +19,38 @@ export default async function Page({ params: { locale } }: any) {
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
       <div className="relative w-full" dir={locale === "en" ? "ltr" : "rtl"}>
-        <div className="w-full" dir={locale === "en" ? "ltr" : "rtl"}>
-          <div className="hidden lg:block">
-            <Image
-              src="/images/training/Single_Course_Bg.png"
-              alt="About Us"
-              width={1920}
-              height={1080}
-              className="w-full h-auto object-contain"
-            />
+        <div className=" text-white flex flex-col relative bg-[#1DAEE5D9]">
+          <div className="w-full" dir={locale === "en" ? "ltr" : "rtl"}>
+            <div className="absolute top-0 left-0 w-full -z-10">
+              <Image
+                src="/images/common/events_bg_2.jpg"
+                alt="About Us"
+                width={1920}
+                height={1080}
+                className="w-full h-52 md:h-60 lg:h-72 xl:h-80 xl:max-h-96 object-cover"
+              />
+            </div>
           </div>
-
-          <div className="block md:hidden">
-            <Image
-              src="/images/training/Single_Course_Bg_Mobile.png"
-              alt="About Us"
-              width={768}
-              height={432}
-              className="w-full h-[13.6rem]"
-            />
-          </div>
-        </div>
-
-        <div className="absolute bottom-6 right-0 text-white container mx-auto flex flex-col gap-3 md:gap-5">
-          <p className="text-lg md:text-2xl lg:text-4xl font-bold">
-            الفعاليات في SFMA
-          </p>
-          <p className="lg:text-xl md:text-lg text-[14px] font-semibold">
-            تنظم الجمعية فعاليات قيادية في مجال إدارة المرافق، وتوفر خدمات
-            متكاملة لإدارة فعاليات الجهات الأخرى.
-          </p>
-          <div className="flex gap-4">
-            <Link
-              href={`/${locale}/data_library/`}
-              target="_blank"
-              className="inline-block"
-            >
-              <div className="bg-white w-fit text-[var(--main)] font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[12px] md:text-[14px] transition-all duration-300 hover:border-[var(--main)] hover:bg-transparent hover:text-white hover:scale-105">
-                استكشف فعالياتنا
-              </div>
-            </Link>
-            <Link
-              href={`/${locale}/data_library/`}
-              target="_blank"
-              className="inline-block"
-            >
-              <div className="bg-transparent w-fit text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[12px] md:text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[var(--main)] hover:scale-105">
-                اطلب إدارة فعالية
-              </div>
-            </Link>
+          <div className="container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-end">
+            <p className="text-lg md:text-2xl lg:text-4xl font-bold ">
+              الفعاليات في SFMA
+            </p>
+            <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
+              تنظم الجمعية فعاليات قيادية في مجال إدارة المرافق، وتوفر خدمات
+              متكاملة لإدارة فعاليات الجهات الأخرى.
+            </p>
+            <div className="flex gap-4 mb-10">
+              <Link href={`/${locale}/events/all`} className="inline-block">
+                <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
+                  استكشف فعالياتنا
+                </div>
+              </Link>
+              <Link href="mailto:example@sfma.org" className="inline-block">
+                <div className="bg-transparent w-fit text-white font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300 hover:border-[var(--main)] hover:bg-white hover:text-[var(--main)] hover:scale-105">
+                  اطلب إدارة فعالية
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

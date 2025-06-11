@@ -12,10 +12,12 @@ const ValuesSection = () => {
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       {/* العنوان الرئيسي */}
-      <h2 className="text-3xl md:text-4xl font-bold text-[#1DAEE5] mb-2">
+      <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}
       </h2>
-      <p className="text-gray-600 mb-8">{t("sub_title")}</p>
+      <p className="text-[#555555] text-center lg:text-base text-sm md:mb-12 mb-4">
+        {t("sub_title")}
+      </p>
 
       {/* المخطط الدائري */}
       <div className="flex items-center justify-center md:gap-y-8 md:gap-x-8 gap-x-10 gap-y-14 pt-4 flex-wrap">

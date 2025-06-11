@@ -78,12 +78,12 @@ export default function Paths({ from_home }) {
       dir={lang === "en" ? "ltr" : "rtl"}
       className={`p-0 mt-8 bg-${from_home ? "[#F6F6F6] py-10" : "white"}`}
     >
-      <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
+      <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}
       </h2>
-      <h4 className="text-[18px] text-[#898989] mb-8 text-center">
+      <p className="text-[#555555] text-center mb-8 lg:text-base text-sm">
         {t("sub_title")}
-      </h4>
+      </p>
 
       <div className="flex flex-wrap justify-center gap-6">
         {loadingPaths ? (
@@ -96,6 +96,14 @@ export default function Paths({ from_home }) {
           </>
         )}
       </div>
+      {from_home ? (
+        <Link
+          href={`/${lang}/paths`}
+          className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
+        >
+          قراءة المزيد
+        </Link>
+      ) : null}
     </div>
   );
 }

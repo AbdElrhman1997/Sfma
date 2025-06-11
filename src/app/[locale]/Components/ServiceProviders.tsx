@@ -37,7 +37,7 @@ export default function ServiceProviders() {
 
   const renderCourseCard = (item) => (
     <div
-      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-16 pb-6 w-full max-w-xs mx-auto mb-12 border-b-4 border-[var(--main)]"
+      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-16 pb-6 w-full max-w-xs md:mx-0 mx-auto border-b-4 border-[var(--main)]"
       dir="rtl"
     >
       {/* Top icon */}
@@ -65,19 +65,28 @@ export default function ServiceProviders() {
   );
 
   return (
-    <div dir={lang === "en" ? "ltr" : "rtl"} className={`p-0 mt-8`}>
-      <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
+    <div
+      dir={lang === "en" ? "ltr" : "rtl"}
+      className={`p-0 mt-8 container mx-auto`}
+    >
+      <h2 className="lg:text-3xl text-xl font-bold text-[var(--main)] text-center lg:mb-3 mb-2">
         مقدّمو الخدمات المعتمدون
       </h2>
-      <h4 className="text-[18px] text-[#898989] mb-16 text-center">
+      <h4 className="text-[#555555] text-center mb-16 lg:text-base text-sm">
         تعرف على مقدّمي خدمات يساهمون في دعم المجتمع المهني عبر مجالات متخصصة
       </h4>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex flex-wrap justify-between lg:gap-6 gap-16">
         {content?.map((item) => {
           return renderCourseCard(item);
         })}
       </div>
+      <Link
+        href={`/${lang}/service_providers`}
+        className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
+      >
+        عرض المزيد من مقدمي الخدمات
+      </Link>
     </div>
   );
 }

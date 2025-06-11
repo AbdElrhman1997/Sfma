@@ -7,6 +7,8 @@ import Our_Vision from "./Components/Our_Vision";
 import ValuesSection from "./Components/ValuesSection";
 import Our_Goals from "./Components/Our_Goals";
 import PillarsSection from "./Components/PillarsSection";
+import Our_Tasks from "./Components/Our_Tasks";
+import Our_Message from "./Components/Our_Message";
 
 const Page = async ({ params }) => {
   const { locale } = params;
@@ -38,12 +40,14 @@ const Page = async ({ params }) => {
         ]}
         lang={locale}
       />
+      <Our_Tasks />
       <Our_Vision
         title={t("OurVisionSection.title")}
         description={t("OurVisionSection.description")}
         content={t("OurVisionSection.content")}
         lang={locale}
       />
+      <Our_Message />
       <ValuesSection />
       <Our_Goals
         title={t("OurGoalsSection.title")}

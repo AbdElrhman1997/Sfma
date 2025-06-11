@@ -36,12 +36,16 @@ const PartenersSection = () => {
 
   return (
     <section
-      className={`container mx-auto py-6 mt-10 text-center bg-[#F6F6F6]`}
+      className={`xl:py-10 py-6 mt-10 text-center bg-[#F6F6F6]`}
       dir={lang === "en" ? "ltr" : "rtl"}
     >
-      <div className="w-full flex flex-col items-center">
-        <h2 className="text-3xl font-bold text-[#1DAEE5] mb-3">{t("title")}</h2>
-        <p className="text-black mb-3">{t("description")}</p>
+      <div className="w-full flex flex-col items-center container mx-auto">
+        <h2 className="lg:text-3xl text-xl font-bold text-[var(--main)] text-center lg:mb-3 mb-2">
+          {t("title")}
+        </h2>
+        <h4 className="text-[#555555] text-center mb-4 lg:text-base text-sm">
+          {t("description")}
+        </h4>
 
         <Swiper
           modules={[Autoplay, Pagination]}

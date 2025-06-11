@@ -38,7 +38,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {/* <Header /> */}
           <NavBar />
-          <div className="lg:min-h-[300px]">{children}</div>
+          <div className="lg:min-h-[450px] min-h-[300px]">{children}</div>
           <Footer />
         </NextIntlClientProvider>
       </body>

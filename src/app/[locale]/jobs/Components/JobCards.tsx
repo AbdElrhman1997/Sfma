@@ -1,5 +1,7 @@
 "use client";
+import { useLocale } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const JobCards = () => {
@@ -26,6 +28,7 @@ const JobCards = () => {
       job_date: "تاريخ نشر الإعلان عن الوظيفة",
     },
   ]);
+  const lang = useLocale();
 
   return (
     <section className="grid grid-cols-6 lg:gap-16 gap-8">
@@ -43,10 +46,10 @@ const JobCards = () => {
                   alt="About Us"
                   width={50}
                   height={50}
-                  className="w-full h-auto rounded-lg translate-y-1"
+                  className="w-full h-auto translate-y-1"
                 />
               </div>
-              <p className=" lg:text-lg text-base mt-2">{item.job_name}</p>
+              <p className=" lg:text-lg text-base mt-2">{item.company_name}</p>
             </div>
             <div className="flex items-center justify-start gap-3 my-1">
               <div className="w-4">
@@ -55,10 +58,10 @@ const JobCards = () => {
                   alt="About Us"
                   width={50}
                   height={50}
-                  className="w-full h-auto rounded-lg translate-y-1"
+                  className="w-full h-auto translate-y-1"
                 />
               </div>
-              <p className=" lg:text-lg text-base mt-2">{item.company_name}</p>
+              <p className=" lg:text-lg text-base mt-2">{item.job_name}</p>
             </div>
             <div className="flex items-center justify-start gap-3">
               <div className="w-5">
@@ -67,17 +70,18 @@ const JobCards = () => {
                   alt="About Us"
                   width={50}
                   height={50}
-                  className="w-full h-auto rounded-lg translate-y-1.5"
+                  className="w-full h-auto translate-y-1.5"
                 />
               </div>
-              <p className=" lg:text-lg text-base mt-2">
-                {item.company_location}
-              </p>
+              <p className=" lg:text-lg text-base mt-2">{item.job_date}</p>
             </div>
 
-            <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-[6px] rounded-lg font-semibold md:min-w-[250px] min-w-full mx-auto">
+            <Link
+              href={`/${lang}/jobs/${item.id}`}
+              className="block cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] text-white px-3 py-[6px] rounded-lg font-semibold w-full mx-auto"
+            >
               عرض التفاصيل
-            </div>
+            </Link>
           </div>
         );
       })}

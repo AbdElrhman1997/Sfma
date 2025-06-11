@@ -155,6 +155,14 @@ const Footer = () => {
                   {t("volunteers")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`/${lang}/membership_verification`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  التحقق من العضويات
+                </Link>
+              </li>
             </ul>
           </div>
 

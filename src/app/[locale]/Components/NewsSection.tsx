@@ -30,20 +30,24 @@ const NewsSection = ({ from_home }) => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto text-start mt-10`}
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto text-start mt-6`}
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col justify-center">
         {from_home ? (
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-[#1DAEE5] mb-3">
+            <h2 className="text-3xl font-bold text-[#1DAEE5] mb-3"></h2>
+            <p className="text-black mb-3"></p>
+            <h2 className="lg:text-3xl text-xl font-bold text-[var(--main)] text-center lg:mb-3 mb-2">
               {t("title")}
             </h2>
-            <p className="text-black mb-3">{t("description")}</p>
+            <h4 className="text-[#555555] text-center lg:mb-8 mb-4 lg:text-base text-sm">
+              {t("description")}
+            </h4>
           </div>
         ) : null}
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center py-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center pt-4">
           {courses.map((item, index) => {
             return from_home ? (
               index > 2 ? (
@@ -142,6 +146,14 @@ const NewsSection = ({ from_home }) => {
             );
           })}
         </div>
+        {from_home ? (
+          <Link
+            href={`/${lang}/news`}
+            className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
+          >
+            قراءة المزيد
+          </Link>
+        ) : null}
         {/* <button className="flex items-center mx-auto bg-[var(--second_main)] text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-teal-600 transition w-fit">
           <div className="w-12 h-12 bg-[var(--main)] text-white flex items-center justify-center rounded-full border-2 border-white">
             {lang == "en" ? (

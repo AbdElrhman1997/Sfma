@@ -14,7 +14,7 @@ const QouteSection = () => {
         height={500}
         className="w-full h-auto mt-10 max-h-[270px]"
       />
-      <p className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full">
+      <p className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full lg:max-w-5xl">
         {t("QouteSection")}
       </p>
     </div>

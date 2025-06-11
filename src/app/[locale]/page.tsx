@@ -10,6 +10,8 @@ import AchiveGoals from "./Components/AchiveGoals";
 import Paths from "./paths/Components/Paths";
 import Memberships from "./Components/Memberships";
 import ServiceProviders from "./Components/ServiceProviders";
+import BlogsSection from "./Components/BlogsSection";
+import NewsletterSection from "./Components/NewsletterSection";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -27,6 +29,8 @@ export default function HomePage() {
       <ServiceProviders />
       <PartenersSection />
       <NewsSection from_home={true} />
+      <BlogsSection />
+      <NewsletterSection />
     </div>
   );
 }

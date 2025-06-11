@@ -67,12 +67,13 @@ const BannerSection = () => {
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2500, disableOnInteraction: false }}
-        speed={800}
+        speed={1300}
         loop={true}
         pagination={{
           clickable: true,
         }}
         className="w-full h-auto custom-swiper"
+        grabCursor={true}
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>

@@ -22,6 +22,7 @@ const mainLinks = [
       { href: "institutions", label: "عضويات المؤسسات" },
       { href: "individuals", label: "عضويات الأفراد" },
       { href: "volunteers", label: "عضويات المتطوعين" },
+      { href: "membership_verification", label: "التحقق من العضويات" },
     ],
   },
   {
@@ -30,6 +31,7 @@ const mainLinks = [
       { href: "training", label: "الدورات التدريبية" },
       { href: "workshops", label: "ورش العمل" },
       { href: "certified_trainers", label: "مدربونا المعتمدون" },
+      { href: "certificate_verification", label: "التحقق من الشهادات" },
     ],
   },
   { href: "events", label: "actions" },
@@ -136,7 +138,7 @@ const NavBar = () => {
             <>
               <div className="relative w-7 h-7 bg-[var(--main)] p-2 grid place-items-center rounded-full">
                 <Link
-                  href={`/${lang}/profile`}
+                  href={`/${lang}/notifications`}
                   className="hover:text-primary text-[15px]"
                 >
                   <Image

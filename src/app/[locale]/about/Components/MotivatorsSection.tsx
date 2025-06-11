@@ -9,8 +9,12 @@ const MotivatorsSection = ({ title, description, p, lang }) => {
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col justify-center text-center">
-        <h2 className="text-3xl font-bold text-[#1DAEE5] mb-4">{title}</h2>
-        <p className="text-[#898989] text-center mb-6">{description}</p>
+        <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
+          {title}
+        </h2>
+        <p className="text-[#555555] text-center lg:text-base text-sm md:mb-12 mb-4">
+          {description}
+        </p>
         <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-center items-center">
           {courses.map((course, index) => (
             <div

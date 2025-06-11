@@ -1,5 +1,7 @@
 "use client";
+import { useLocale } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const ProvidersCards = () => {
@@ -59,6 +61,7 @@ const ProvidersCards = () => {
       icon_src: `/images/common/cards_icon.png`,
     },
   ]);
+  const lang = useLocale();
 
   return (
     <section className="flex flex-wrap gap-y-8 lg:gap-x-8 gap-x-0">
@@ -83,9 +86,12 @@ const ProvidersCards = () => {
             <p className="text-[#555555] lg:text-base text-[14px] my-1 leading-5 mb-3">
               {item.description}
             </p>
-            <div className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-[6px] rounded-lg font-semibold md:min-w-[250px] min-w-full mx-auto">
+            <Link
+              href={`/${lang}/service_providers/${item.id}`}
+              className="block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-[6px] rounded-lg font-semibold md:min-w-[250px] min-w-full mx-auto mt-4"
+            >
               عرض التفاصيل
-            </div>
+            </Link>
           </div>
         );
       })}

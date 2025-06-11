@@ -87,12 +87,39 @@ const SingleJob = () => {
               التواصل مع جهة التوظيف
             </p>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
+              <div className="w-6 ms-2">
+                <Image
+                  src={`/images/common/website.png`}
+                  alt="About Us"
+                  width={50}
+                  height={50}
+                  className="w-full h-auto"
+                />
+              </div>
               <p className=" lg:text-lg text-base">www.elite.com</p>
             </div>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
+              <div className="w-6 ms-2">
+                <Image
+                  src={`/images/common/email.png`}
+                  alt="About Us"
+                  width={50}
+                  height={50}
+                  className="w-full h-auto"
+                />
+              </div>
               <p className=" lg:text-lg text-base">www.elite.com</p>
             </div>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
+              <div className="w-6 ms-2">
+                <Image
+                  src={`/images/common/contact.png`}
+                  alt="About Us"
+                  width={50}
+                  height={50}
+                  className="w-full h-auto"
+                />
+              </div>
               <p className=" lg:text-lg text-base">www.elite.com</p>
             </div>
           </div>
