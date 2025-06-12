@@ -255,7 +255,8 @@ const ClientTab = ({ profileData }) => {
               className="px-5 py-3 text-lg font-medium text-white bg-[#61B8A0] rounded-md hover:bg-[#5d9887] disabled:cursor-not-allowed cursor-pointer"
               onClick={() => {
                 localStorage.removeItem("auth_token");
-                window.location.href = "/";
+                localStorage.removeItem("user_name");
+                window.location.href = `/${lang}`;
               }}
             >
               {t("logout")}

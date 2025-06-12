@@ -19,6 +19,7 @@ import {
   FaChevronDown,
   FaHandsHelping,
   FaBuilding,
+  FaSignInAlt,
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
@@ -115,8 +116,18 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
       icon: <FaBell />,
       badge: "1",
     },
-    { href: "profile", label: "الملف الشخصي", icon: <FaUser /> },
-    { href: "logout", label: "تسجيل الخروج", icon: <FaSignOutAlt /> },
+
+    ...(isAuthenticated || user
+      ? [
+          { href: "profile", label: "الملف الشخصي", icon: <FaUser /> },
+          {
+            href: "/",
+            label: "تسجيل الخروج",
+            icon: <FaSignOutAlt />,
+            logout: true,
+          },
+        ]
+      : [{ href: "/login", label: "تسجيل الدخول", icon: <FaSignInAlt /> }]),
   ];
 
   return (
@@ -155,20 +166,22 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
         } transition-transform duration-300 ease-in-out z-50 md:hidden`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 bg-[var(--main)] text-white">
-          <div className="flex items-center gap-2">
-            <div>
-              <p className="text-sm font-semibold">
-                مرحبا، {user?.full_name_ar}
-              </p>
+        {user ? (
+          <div className="flex items-center justify-between p-4 bg-[var(--main)] text-white">
+            <div className="flex items-center gap-2">
+              <div>
+                <p className="text-sm font-semibold">
+                  مرحبا، {user?.full_name_ar}
+                </p>
+              </div>
             </div>
+            <img
+              src={`https://sfma.srv814693.hstgr.cloud/storage/${user?.logo}`} // Replace with user profile image path
+              alt="Profile"
+              className="rounded-full bg-white w-16 h-auto"
+            />
           </div>
-          <img
-            src={`https://sfma.srv814693.hstgr.cloud/storage/${user?.logo}`} // Replace with user profile image path
-            alt="Profile"
-            className="rounded-full bg-white w-16 h-auto"
-          />
-        </div>
+        ) : null}
 
         {/* Navigation Items */}
         <nav className="p-4 space-y-2">
@@ -212,6 +225,13 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
                 key={item.label}
                 href={`/${lang}/${item.href}`}
                 className="flex items-center gap-3 p-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                onClick={() => {
+                  if (item.logout) {
+                    localStorage.removeItem("auth_token");
+                    localStorage.removeItem("user_name");
+                    window.location.href = `/${lang}`;
+                  }
+                }}
               >
                 <span className="text-xl">{item.icon}</span>
                 <span className="text-sm font-medium ">{item.label}</span>
@@ -226,7 +246,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
         </nav>
 
         {/* Language Toggle */}
-        <div className="px-4 border-t">
+        {/* <div className="px-4 border-t">
           <button
             onClick={() => setLang(lang === "en" ? "ar" : "en")}
             className="w-full text-start text-sm text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors"
@@ -234,7 +254,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
             {lang === "en" ? "العربية" : "English"}{" "}
             <span className="ml-2">🌐</span>
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Overlay to close sidebar */}

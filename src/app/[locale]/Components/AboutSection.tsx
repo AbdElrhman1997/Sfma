@@ -21,13 +21,13 @@ const AboutSection = () => {
           {t("description")}
         </p>
         <Link
-          className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-6 py-[7px] rounded-lg font-semibold lg:text-base text-[12px]"
+          className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-6 py-[7px] rounded-lg lg:mx-0 mx-auto font-semibold lg:text-base text-[12px]"
           href={`/${lang}/about`}
         >
           {t("read_more")}
         </Link>
       </div>
-      <div className="w-full md:w-1/2  md:max-w-[450px] max-w-[350px] ">
+      <div className="w-full md:w-1/2  md:max-w-[450px] max-w-[350px]">
         <Image
           src="/images/home_page/about_section.png"
           alt="About Us"
