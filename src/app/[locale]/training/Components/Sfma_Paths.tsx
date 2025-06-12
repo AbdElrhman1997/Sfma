@@ -76,13 +76,13 @@ export default function Sfma_Paths() {
   );
 
   return (
-    <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
-      <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
+    <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 lg:mt-8 mt-5">
+      <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}
       </h2>
-      <h4 className="text-[18px] text-[#898989] mb-8 text-center">
+      <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4">
         {t("sub_title")}
-      </h4>
+      </p>
 
       <div className="flex flex-wrap justify-center gap-6">
         {loadingPaths ? (

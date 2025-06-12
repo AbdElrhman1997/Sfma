@@ -66,7 +66,7 @@ export default function LoginForm({ locale, messages }) {
       }
 
       localStorage.setItem("auth_token", result.token);
-      localStorage.setItem("user_name", result?.data?.full_name_ar);
+      localStorage.setItem("user_name", JSON.stringify(result?.data));
       toast.success(result.message || "تم تسجيل الدخول بنجاح!");
       window.location.href = "/";
       return {

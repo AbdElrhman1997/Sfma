@@ -110,6 +110,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  href={`/${lang}/Calendar`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  جدول دورات SFMA
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${lang}/certified_trainers`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >

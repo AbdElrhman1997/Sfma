@@ -8,7 +8,7 @@ const Banner_Section = () => {
   return (
     <div className="relative" dir={lang == "en" ? "ltr" : "rtl"}>
       <Image
-        src="/images/training/training_section_bg.png"
+        src="/images/training/banner_bg.png"
         alt="About Us"
         width={500}
         height={500}

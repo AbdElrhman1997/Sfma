@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Image from "next/image";
+import MobileNav from "./MobileNav";
 
 const mainLinks = [
   { href: "", label: "home" },
@@ -29,6 +30,7 @@ const mainLinks = [
     label: "training",
     dropdown: [
       { href: "training", label: "الدورات التدريبية" },
+      { href: "Calendar", label: "جدول دورات SFMA" },
       { href: "workshops", label: "ورش العمل" },
       { href: "certified_trainers", label: "مدربونا المعتمدون" },
       { href: "certificate_verification", label: "التحقق من الشهادات" },
@@ -46,6 +48,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user_name"));
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("auth_token");
@@ -126,13 +129,8 @@ const NavBar = () => {
         </ul>
 
         {/* Mobile Menu Toggle */}
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? (
-            <FaTimes className="text-2xl text-primary" />
-          ) : (
-            <FaBars className="text-2xl text-gray-700" />
-          )}
-        </button>
+
+        <MobileNav lang={lang} isAuthenticated={isAuthenticated} user={user} />
         <div className="hidden lg:flex items-center gap-2 text-sm">
           {isAuthenticated ? (
             <>
@@ -164,7 +162,7 @@ const NavBar = () => {
                   />
                 </Link>
               </div>
-              <p>مرحبا {localStorage.getItem("user_name")}</p>
+              <p>مرحبا {user?.full_name_ar}</p>
             </>
           ) : (
             <div className="relative p-3 grid place-items-center rounded-full font-bold cursor-pointer hover:underline">
@@ -180,7 +178,8 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
+
+      {/* {isOpen && (
         <div className="md:hidden px-6 pb-4 space-y-3 bg-white border-t">
           <div className="md:hidden px-6 pb-4 space-y-3 bg-white border-t">
             {mainLinks.map((link) =>
@@ -226,11 +225,10 @@ const NavBar = () => {
             )}
           </div>
 
-          {/* Mobile Auth Section */}
-          <div className="flex items-center gap-3 pt-4 border-t mt-4 pt-4">
+          <div className="flex items-center gap-3 pt-4 border-t mt-4">
             {isAuthenticated ? (
               <>
-                <div className="relative w-8 h-8 bg-[var(--main)] p-1.5 grid place-items-center rounded-full">
+                <div className="relative w-8 h-8 bg-[var(--main)] p-2 grid place-items-center rounded-full">
                   <Link href={`/${lang}/notifications`}>
                     <Image
                       src="/images/common/notification.png"
@@ -241,7 +239,7 @@ const NavBar = () => {
                     />
                   </Link>
                 </div>
-                <div className="relative w-8 h-8 bg-[var(--second_main)] p-1.5 grid place-items-center rounded-full">
+                <div className="relative w-8 h-8 bg-[var(--second_main)] p-2 grid place-items-center rounded-full">
                   <Link href={`/${lang}/profile`}>
                     <Image
                       src="/images/common/person.png"
@@ -266,7 +264,7 @@ const NavBar = () => {
             )}
           </div>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };
