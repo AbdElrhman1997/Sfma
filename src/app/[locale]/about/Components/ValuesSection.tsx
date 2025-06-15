@@ -24,7 +24,7 @@ const ValuesSection = () => {
         <div className="flex flex-col items-center mx-4">
           <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
             <Image
-              src="/images/about_page/Group (1).png"
+              src="/images/about_page/Group_5.png"
               alt="About Us"
               width={500}
               height={400}
@@ -39,7 +39,7 @@ const ValuesSection = () => {
           <div className="w-[2px] h-6 bg-black"></div>
           <div className="md:w-32 w-24 md:h-32 h-24 mt-4 flex items-center justify-center bg-[#5FB69E] text-white rounded-full text-4xl relative shadow-lg border-10 border-white outline-10 outline-[#5FB69E] p-5">
             <Image
-              src="/images/about_page/Group (2).png"
+              src="/images/about_page/Group (3).png"
               alt="About Us"
               width={500}
               height={400}
@@ -50,7 +50,7 @@ const ValuesSection = () => {
         <div className="flex flex-col items-center mx-4">
           <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
             <Image
-              src="/images/about_page/Group (3).png"
+              src="/images/about_page/Group (2).png"
               alt="About Us"
               width={500}
               height={400}
@@ -63,11 +63,11 @@ const ValuesSection = () => {
           </p>
         </div>
         <div className="flex flex-col items-center mx-4">
-          <p className="text-lg font-bold text-black mt-2">{t("justice")}</p>
+          <p className="text-lg font-bold text-black mt-2">العدل - الإنصاف</p>
           <div className="w-[2px] h-6 bg-black"></div>
           <div className="md:w-32 w-24 md:h-32 h-24 mt-4 flex items-center justify-center bg-[#5FB69E] text-white rounded-full text-4xl relative shadow-lg border-10 border-white outline-10 outline-[#5FB69E] p-5">
             <Image
-              src="/images/about_page/Group (2).png"
+              src="/images/about_page/Group.png"
               alt="About Us"
               width={500}
               height={400}

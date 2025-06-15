@@ -100,7 +100,7 @@ export default function Paths({ from_home }) {
       </div>
       {from_home ? (
         <Link
-          href={`/${lang}/paths`}
+          href={`/${lang}/training`}
           className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
         >
           قراءة المزيد

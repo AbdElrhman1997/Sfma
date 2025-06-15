@@ -70,12 +70,12 @@ const BannerSection = () => {
         speed={1300}
         loop={true}
         pagination={{ clickable: true }}
-        className="w-full min-h-[50vh] md:min-h-[30vh] xl:max-h-[80vh] 2xl:max-h-[90vh] custom-swiper"
+        className="w-full min-h-[50vh] md:min-h-[30vh] xl:max-h-[80vh] 2xl:min-h-[70vh] 2xl:max-h-[90vh] custom-swiper"
         grabCursor={true}
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full min-h-[50vh] md:min-h-[30vh] xl:max-h-[80vh] 2xl:max-h-[90vh]">
+            <div className="relative w-full min-h-[50vh] md:min-h-[30vh] xl:max-h-[80vh] 2xl:min-h-[70vh] 2xl:max-h-[90vh]">
               {/* Full-width image and overlay */}
               <div className="absolute w-full h-full top-0 left-0">
                 <div className="absolute w-full h-full bg-black opacity-70 z-40"></div>
@@ -88,19 +88,19 @@ const BannerSection = () => {
               {/* Container for content */}
               <div className="container relative z-50 pt-16 pb-6">
                 <div className="text-white xl:text-start text-center">
-                  <div className="md:mt-8 xl:mt-10 mb-3 xl:mx-0 mx-auto bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-5 px-3 lg:py-2 py-1 rounded-lg font-semibold xl:text-sm text-[13px]">
+                  <div className="md:mt-8 xl:mt-10 mb-3 2xl:mb-5 xl:mx-0 mx-auto bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-5 px-3 lg:py-2 py-1 rounded-lg font-semibold 2xl:text-lg xl:text-sm text-[13px]">
                     فعاليات SFMA
                   </div>
-                  <h2 className="lg:text-4xl md:text-2xl text-xl font-bold xl:max-w-7/12 w-full lg:leading-14 leading-8">
+                  <h2 className="lg:text-4xl md:text-2xl text-xl font-bold xl:max-w-7/12 2xl:max-w-9/12 w-full lg:leading-14 leading-8">
                     {banner?.title}
                   </h2>
-                  <p className="lg:text-lg md:text-base text-sm mt-4 xl:max-w-7/12 md:leading-8 leading-6">
+                  <p className="2xl:text-2xl lg:text-lg md:text-base text-sm mt-4 xl:max-w-7/12 2xl:max-w-9/12 2xl:leading-12 md:leading-8 leading-6">
                     {banner?.description}
                   </p>
                   <Link
                     href={banner?.btn_url}
                     target="_blank"
-                    className="block mb-12 bg-white md:text-base text-sm text-[var(--main)] font-semibold lg:py-3 py-2 lg:px-6 px-4 rounded-lg hover:opacity-85 xl:mx-0 mx-auto transition duration-300 w-fit mt-6"
+                    className="block mb-12 bg-white 2xl:text-xl md:text-base text-sm text-[var(--main)] font-semibold lg:py-3 py-2 lg:px-6 px-4 rounded-lg hover:opacity-85 xl:mx-0 mx-auto transition duration-300 w-fit mt-6"
                   >
                     {banner?.btn_text || "تعرف على المزيد"}
                   </Link>

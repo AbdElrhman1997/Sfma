@@ -31,7 +31,7 @@ export default function Memberships() {
 
   const renderCourseCard = (item) => (
     <div
-      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full max-w-xs mb-12 border-b-4 border-[var(--main)] md:mx-0 mx-auto"
+      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full max-w-xs mb-12 border-b-4 border-[var(--main)] md:mx-0 mx-auto lg:min-w-[32%]"
       dir="rtl"
     >
       {/* Top icon */}
@@ -46,7 +46,9 @@ export default function Memberships() {
       </div>
 
       {/* Title */}
-      <h3 className="text-[#1DAEE5] font-bold text-xl mb-4">{item.name}</h3>
+      <h3 className="text-[#1DAEE5] font-bold text-xl xl:mb-8 xl:mt-4 mt-0 mb-4">
+        {item.name}
+      </h3>
 
       {/* Button */}
       <Link href={`/${lang}/${item.link}`}>

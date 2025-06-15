@@ -2,13 +2,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import Link from "next/link";
 
 const services = [
-  { id: 1, text: "التدريب والتطوير" },
-  { id: 2, text: "العضويات" },
-  { id: 3, text: "التقارير والدراسات" },
-  { id: 4, text: "إدارة الفعاليات" },
-  { id: 5, text: "الاستشارات" },
+  { id: 1, text: "التدريب والتطوير", link: "training" },
+  { id: 2, text: "العضويات", link: "institutions" },
+  { id: 3, text: "التقارير والدراسات", link: "data_library" },
+  { id: 4, text: "إدارة الفعاليات", link: "events" },
+  { id: 5, text: "الاستشارات", link: "consultants" },
 ];
 
 export default function ServicesGrid() {
@@ -32,8 +33,9 @@ export default function ServicesGrid() {
         <div className="max-w-6xl mx-auto grid grid-cols-10 gap-4">
           {services.map((service, index) => {
             return (
-              <div
+              <Link
                 key={service.id}
+                href={`/${lang}/${service.link}`}
                 className={`col-span-10 md:col-span-5 lg:col-span-2 rounded-xl flex flex-col items-center justify-center py-7 cursor-pointer shadow-lg transform transition duration-300 hover:scale-105 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] hover:from-[var(--second_main_gradiant)] hover:to-[var(--second_main)]`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -48,7 +50,7 @@ export default function ServicesGrid() {
                 <p className="font-bold text-white text-center text-base md:text-lg lg:text-xl">
                   {service.text}
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>

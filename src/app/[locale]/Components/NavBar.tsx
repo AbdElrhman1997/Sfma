@@ -33,6 +33,7 @@ const mainLinks = [
   { href: "jobs", label: "jobs" },
   { href: "service_providers", label: "service_providers" },
   { href: "news", label: "news" },
+  { href: "consultants", label: "consultants" },
   {
     label: "library",
     dropdown: [

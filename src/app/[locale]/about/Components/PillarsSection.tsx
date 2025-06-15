@@ -28,7 +28,7 @@ const PillarsSection = ({ title, description, p, lang }) => {
       <p className="text-[#555555] text-center lg:text-base text-sm md:mb-12 mb-4">
         {description}
       </p>
-      <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-x-8 gap-y-12">
+      <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8">
         {p?.map((content: string, index: number) => {
           return <PillersCard key={index} index={index} content={content} />;
         })}
