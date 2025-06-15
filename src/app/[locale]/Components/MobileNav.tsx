@@ -134,7 +134,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
     <nav>
       {/* Menu Toggle Button */}
       <button
-        className="md:hidden p-2 bg-[var(--main)] text-white rounded"
+        className="lg:hidden p-2 bg-[var(--main)] text-white rounded"
         onClick={() => setIsOpen(!isOpen)}
       >
         <svg
@@ -163,7 +163,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
             : lang == "en"
             ? "-translate-x-full"
             : "translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50 md:hidden`}
+        } transition-transform duration-300 ease-in-out z-50 lg:hidden`}
       >
         {/* Header */}
         {user ? (

@@ -12,7 +12,7 @@ const AdsSection = () => {
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div
-        className={`bg-[#D9D9D9] rounded-lg lg:h-[70vh] h-[40vh] flex justify-center items-center ${
+        className={`bg-[#D9D9D9] rounded-lg xl:h-[70vh] h-[40vh] flex justify-center items-center ${
           lang == "en" ? "md:text-left" : "md:text-right"
         } text-center text-4xl font-semibold`}
         dir={lang == "en" ? "ltr" : "rtl"}

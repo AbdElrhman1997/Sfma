@@ -1,5 +1,6 @@
 import { createTranslator } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Page = async ({ params }) => {
@@ -52,7 +53,12 @@ const Page = async ({ params }) => {
 
       <p className="text-[#898989] text-center mx-auto mt-2 leading-7 lg:text-lg text-[13px] mb-10 font-bold">
         تواجه مشكلة؟ تواصل معنا عن طريق
-        <span className="text-[var(--main)]"> info@sfma.sa </span>
+        <Link
+          href="mailto:info@sfma.sa"
+          className="inline-block underline text-[var(--main)] mx-3"
+        >
+          info@sfma.sa
+        </Link>
       </p>
     </section>
   );

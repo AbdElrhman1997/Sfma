@@ -3,7 +3,7 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const SingleJob = ({ id }) => {
+const SingleBlog = ({ id }) => {
   const [content, setContent]: any = useState({});
   const [loadingContent, setLoadingContent] = useState(false);
   const lang = useLocale();
@@ -187,4 +187,4 @@ const SingleJob = ({ id }) => {
   );
 };
 
-export default SingleJob;
+export default SingleBlog;

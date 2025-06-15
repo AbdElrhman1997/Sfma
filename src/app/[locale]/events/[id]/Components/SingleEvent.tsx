@@ -1,22 +1,91 @@
+"use client";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ImageSlider from "./ImageSlider";
 
-const SingleEvent = () => {
+const SingleEvent = ({ id }) => {
   const lang = useLocale();
+  const [content, setContent]: any = useState([]);
+  const [loadingContent, setLoadingContent] = useState(false);
+  const getEmbedUrl = (url) => {
+    const videoId = url?.split("v=")[1]?.split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
+  useEffect(() => {
+    const fetchSinglePath = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}sfma-events/get-sfma-event-details/${id}`;
+      try {
+        setLoadingContent(true);
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": lang || "ar",
+          },
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setContent(data?.data || {});
+        setLoadingContent(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoadingContent(false);
+      }
+    };
+
+    fetchSinglePath();
+  }, [lang]);
+
+  const formatDate = (isoDate) => {
+    if (!isoDate) return "";
+    const date = new Date(isoDate);
+    const day = date.getUTCDate();
+    const months = [
+      "يناير",
+      "فبراير",
+      "مارس",
+      "أبريل",
+      "مايو",
+      "يونيو",
+      "يوليو",
+      "أغسطس",
+      "سبتمبر",
+      "أكتوبر",
+      "نوفمبر",
+      "ديسمبر",
+    ];
+
+    const monthName = months[date.getUTCMonth()];
+    const year = date.getUTCFullYear();
+
+    return `${day} ${monthName} ${year}`;
+  };
+
+  const formatTime = (isoTime) => {
+    const dateObj = new Date(isoTime);
+    const hours = dateObj.getUTCHours();
+    const minutes = dateObj.getUTCMinutes();
+    return `${hours}:${minutes.toString().padStart(2, "0")}`;
+  };
 
   return (
     <section className="" dir={lang == "en" ? "ltr" : "rtl"}>
       <div className="container mx-auto">
         <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold mt-12">
-          المؤتمر والمعرض الدولي لإدارة المرافق 2025
+          {content?.title}
         </h1>
         <div className="flex flex-wrap justify-between items-center">
           <h3 className="lg:text-lg text-base text-[#555555] lg:mt-0 mt-4">
-            أكبر تجمع لخبراء إدارة المرافق في المملكة العربية السعودية
+            {content?.sub_title}
           </h3>
-          <div className="cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
+          <Link
+            href={`${content?.event_url}`}
+            target="_blank"
+            className="block cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+          >
             زيارة الموقع الرسمي للفعالية
-          </div>
+          </Link>
         </div>
         <div className="flex flex-wrap gap-x-7">
           <div className="flex items-center justify-start gap-3 mt-2">
@@ -30,7 +99,9 @@ const SingleEvent = () => {
               />
             </div>
             <p className=" lg:text-lg text-[12px] mt-2">
-              من 24 إلى 26 أغسطس 2025
+              {formatDate(content?.date_from) +
+                " - " +
+                formatDate(content?.date_to)}
             </p>
           </div>
           <div className="flex items-center justify-start gap-3 my-1">
@@ -43,9 +114,7 @@ const SingleEvent = () => {
                 className="w-full h-auto rounded-lg translate-y-1"
               />
             </div>
-            <p className=" lg:text-lg text-[12px] mt-2">
-              مركز الرياض الدولي للمعارض والمؤتمرات
-            </p>
+            <p className=" lg:text-lg text-[12px] mt-2">{content?.address}</p>
           </div>
         </div>
       </div>
@@ -54,29 +123,19 @@ const SingleEvent = () => {
           نبذة عن الحدث
         </p>
         <p className="text-[#555555] text-center mx-auto mt-2 leading-7 lg:text-base text-[13px]">
-          نحو مرافق ذكية ومستدامة تلبي تطلعات المستقبل
+          {content?.sub_title}
         </p>
         <section
           className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto md:pt-4 pt-2 `}
         >
           <div className="w-full md:w-1/2 flex flex-col justify-center">
             <p className="text-black text-justify lg:mb-6 lg:px-6 lg:leading-8 leading-6 lg:text-base text-[13px]">
-              يأتي المؤتمر والمعرض الدولي لإدارة المرافق لعام 2025 في نسخته
-              الثانية تحت شعار “ذكاء المرافق”، ليكون منصة رائدة تجمع بين الخبراء
-              المحليين والعالميين، وصناع القرار، والمبتكرين في مجال إدارة
-              المرافق. يهدف المؤتمر إلى استعراض أحدث التطورات والتقنيات في إدارة
-              المرافق الذكية، وتبادل الخبرات وأفضل الممارسات لتحقيق مستقبل
-              مستدام وذكي. يتماشى المؤتمر مع أهداف رؤية 2030 للمملكة العربية
-              السعودية، التي تسعى لتحويل المملكة إلى نموذجٍ عالمي في مختلف جوانب
-              الحياة، بدءًا من الاقتصاد المستدام إلى التكنولوجيا الحديثة. من
-              خلال تعزيز الابتكار في إدارة المرافق، يساهم المؤتمر في تحقيق هذه
-              الرؤية الطموحة عبر تطوير البنية التحتية الذكية وتحقيق كفاءة أعلى
-              في إدارة الموارد.
+              {content?.description}
             </p>
           </div>
           <div className="lg:w-1/2 lg:p-6 w-full">
-            <Image
-              src="/images/common/events__card_bg.jpg"
+            <img
+              src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.cover_image}`}
               alt="About Us"
               width={500}
               height={400}
@@ -85,18 +144,26 @@ const SingleEvent = () => {
           </div>
         </section>
       </div>
-      <div className="lg:w-1/2 lg:p-6 w-full mt-6  mx-auto opacity-85">
-        <Image
-          src="/images/common/events__card_bg.jpg"
-          alt="About Us"
-          width={500}
-          height={400}
-          className="w-full h-auto"
-        />
+      <div className="mt-8 container mx-auto">
+        <ImageSlider images={content?.images} />
       </div>
-      <div className="cursor-pointer mx-auto lg:text-base text-[12px] hover:opacity-85 mt-3 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-4 py-3 rounded-lg font-semibold">
+      <div className=" container mx-auto">
+        <iframe
+          src={getEmbedUrl(content?.video_url)}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className=" rounded-lg w-full md:w-1/2 lg:min-h-[350px] min-h-[230px] mx-auto"
+          style={{ display: "block" }}
+        ></iframe>
+      </div>
+      <Link
+        href={`${content?.event_url}`}
+        target="_blank"
+        className="block mx-auto cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+      >
         زيارة الموقع الرسمي للفعالية
-      </div>
+      </Link>
     </section>
   );
 };

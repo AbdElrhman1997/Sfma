@@ -65,62 +65,6 @@ const Course_Register = ({ translation }) => {
 
   return (
     <section>
-      <div className="relative w-full" dir={lang === "en" ? "ltr" : "rtl"}>
-        <div className="w-full" dir={lang === "en" ? "ltr" : "rtl"}>
-          {/* Image for large screens (lg and above) */}
-          <div className="hidden lg:block">
-            <Image
-              src="/images/training/Single_Course_Bg.png"
-              alt="About Us"
-              width={1920}
-              height={1080}
-              className="w-full h-auto object-contain"
-            />
-          </div>
-
-          {/* Image for small screens (mobile) */}
-          <div className="hidden md:block lg:hidden ">
-            <Image
-              src="/images/training/Single_Course_Bg_Mobile.png"
-              alt="About Us"
-              width={768}
-              height={432}
-              className="w-full h-[16rem]"
-            />
-          </div>
-
-          {/* Image for small screens (mobile) */}
-          <div className="block md:hidden">
-            <Image
-              src="/images/training/Single_Course_Bg_Mobile.png"
-              alt="About Us"
-              width={768}
-              height={432}
-              className="w-full h-[13.6rem]"
-            />
-          </div>
-        </div>
-
-        <div className="absolute bottom-13 right-0 text-white container mx-auto flex flex-col gap-3 md:gap-5">
-          <p className="text-lg md:text-2xl lg:text-4xl font-bold">
-            {choosed_course?.title}
-          </p>
-          <p className="text-base md:text-lg lg:text-xl font-semibold">
-            مقدمة من جمعية إدارة المرافق السعودية
-          </p>
-          {/* <Link
-            // href={`/${lang}/data_library/${course?.id}`}
-            href={`/${lang}/data_library/`}
-            target="_blank"
-            className="inline-block"
-          >
-            <div className="bg-transparent w-fit text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[12px] md:text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[var(--main)]">
-              سجل في الدورة الآن!
-            </div>
-          </Link> */}
-        </div>
-      </div>
-
       <div className="container mx-auto">
         {/* Course Overview */}
         <div className="mt-12 text-center">
@@ -211,8 +155,8 @@ const Course_Register = ({ translation }) => {
           </div>
         </div>
 
-        <div className="mt-6 lg:mb-12 mb-8">
-          <h1 className="text-base lg:text-2xl font-bold lg:mb-6 mb-3 text-[var(--main)]">
+        <div className="mt-6">
+          <h1 className="text-base lg:text-2xl font-bold  text-[var(--main)] mb-3">
             كود الخصم إن وجد
           </h1>
           <div className=" gap-3 rounded-lg flex justify-between">
@@ -224,6 +168,19 @@ const Course_Register = ({ translation }) => {
               تطبيق
             </div>
           </div>
+        </div>
+
+        <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
+          <input type="checkbox" id="terms_checkbox" />
+          <label htmlFor="terms_checkbox">
+            أوافق على{" "}
+            <Link
+              href={`/${lang}/terms`}
+              className="text-[var(--main)] underline"
+            >
+              الشروط والأحكام الخاصة بالجمعية
+            </Link>{" "}
+          </label>
         </div>
 
         {/* Course Contents */}

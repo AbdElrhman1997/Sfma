@@ -60,58 +60,33 @@ const Single_Workshop = ({ translation, id }) => {
   return !loadingWorkshop ? (
     <section>
       <div className="relative w-full" dir={lang === "en" ? "ltr" : "rtl"}>
-        <div className="w-full" dir={lang === "en" ? "ltr" : "rtl"}>
-          {/* Image for large screens (lg and above) */}
-          <div className="hidden lg:block">
-            <Image
-              src="/images/training/Single_Course_Bg.png"
-              alt="About Us"
-              width={1920}
-              height={1080}
-              className="w-full h-auto object-contain"
-            />
-          </div>
-
-          {/* Image for small screens (mobile) */}
-          <div className="hidden md:block lg:hidden ">
-            <Image
-              src="/images/training/Single_Course_Bg_Mobile.png"
-              alt="About Us"
-              width={768}
-              height={432}
-              className="w-full h-[16rem]"
-            />
-          </div>
-
-          {/* Image for small screens (mobile) */}
-          <div className="block md:hidden">
-            <Image
-              src="/images/training/Single_Course_Bg_Mobile.png"
-              alt="About Us"
-              width={768}
-              height={432}
-              className="w-full h-[13.6rem]"
-            />
-          </div>
-        </div>
-
-        <div className="absolute bottom-6 right-0 text-white container mx-auto flex flex-col gap-3 md:gap-5">
-          <p className="text-lg md:text-2xl lg:text-4xl font-bold">
-            {workshop?.title}
-          </p>
-          <p className="text-base md:text-lg lg:text-xl font-semibold">
-            مقدمة من جمعية إدارة المرافق السعودية
-          </p>
-          <Link
-            // href={`/${lang}/data_library/${course?.id}`}
-            href={`/${lang}/data_library/`}
-            target="_blank"
-            className="inline-block"
-          >
-            <div className="bg-transparent w-fit text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[12px] md:text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[var(--main)]">
-              سجل في الورشة الآن !
+        <div className=" text-white flex flex-col relative bg-[#1DAEE5D9]">
+          <div className="w-full" dir={lang === "en" ? "ltr" : "rtl"}>
+            <div className="absolute top-0 left-0 w-full -z-10">
+              <Image
+                src="/images/training/Single_Course_Bg.png"
+                alt="About Us"
+                width={1920}
+                height={1080}
+                className="w-full h-52 md:h-60 lg:h-72 xl:h-80 xl:max-h-96 object-cover"
+              />
             </div>
-          </Link>
+          </div>
+          <div className="container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-end">
+            <p className="text-lg md:text-2xl lg:text-4xl font-bold ">
+              {workshop?.title}
+            </p>
+            <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
+              مقدمة من جمعية إدارة المرافق السعودية
+            </p>
+            <div className="flex gap-4 mb-10">
+              <Link href={`/${lang}/events/all`} className="inline-block">
+                <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
+                  سجل في الورشة الآن !
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 

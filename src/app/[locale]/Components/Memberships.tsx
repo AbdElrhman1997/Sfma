@@ -59,7 +59,7 @@ export default function Memberships() {
 
   return (
     <div
-      className={`p-0 mt-8 container mx-auto`}
+      className={`p-0 xl:mt-14 xl:mb-8 mt-8 container mx-auto`}
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">

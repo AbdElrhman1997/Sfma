@@ -10,7 +10,7 @@ const AchiveGoals = () => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto mb-6 ${
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto lg:mb-6 xl:mb-10 ${
         lang == "en" ? "md:text-left" : "md:text-right"
       } text-center`}
       dir={lang == "en" ? "ltr" : "rtl"}

@@ -29,7 +29,7 @@ const Page = async ({ params }) => {
               />
             </div>
           </div>
-          <div className="lg:text-start text-center container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-center">
+          <div className="xl:text-start text-center container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-center">
             <p className="text-lg md:text-2xl lg:text-4xl font-bold ">
               الوظائف المتاحة
             </p>

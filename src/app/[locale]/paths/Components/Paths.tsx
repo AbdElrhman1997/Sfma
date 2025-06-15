@@ -76,7 +76,9 @@ export default function Paths({ from_home }) {
   return (
     <div
       dir={lang === "en" ? "ltr" : "rtl"}
-      className={`p-0 mt-8 bg-${from_home ? "[#F6F6F6] py-10" : "white"}`}
+      className={`p-0 xl:py-12 lg:mt-8 bg-${
+        from_home ? "[#F6F6F6] py-10" : "white"
+      }`}
     >
       <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}

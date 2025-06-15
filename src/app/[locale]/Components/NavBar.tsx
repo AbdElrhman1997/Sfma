@@ -11,13 +11,6 @@ const mainLinks = [
   { href: "", label: "home" },
   { href: "about", label: "about" },
   {
-    label: "library",
-    dropdown: [
-      { href: "data_library", label: "مكتبة الكتب" },
-      { href: "video_library", label: "مكتبة الفيديوهات" },
-    ],
-  },
-  {
     label: "memberships",
     dropdown: [
       { href: "institutions", label: "عضويات المؤسسات" },
@@ -40,6 +33,13 @@ const mainLinks = [
   { href: "jobs", label: "jobs" },
   { href: "service_providers", label: "service_providers" },
   { href: "news", label: "news" },
+  {
+    label: "library",
+    dropdown: [
+      { href: "data_library", label: "مكتبة الكتب" },
+      { href: "video_library", label: "مكتبة الفيديوهات" },
+    ],
+  },
 ];
 
 const NavBar = () => {
@@ -62,7 +62,7 @@ const NavBar = () => {
 
   const renderDropdown = (items: any[]) => (
     <div
-      className="absolute top-[120%] left-1/2 -translate-x-1/2 w-64 bg-white shadow-2xl rounded-xl border border-gray-100 
+      className="absolute top-[140%] left-1/2 -translate-x-1/2 w-64 bg-white shadow-2xl rounded-xl border border-gray-100 
         transition-all duration-300 ease-out animate-dropdown z-40"
     >
       {/* Arrow */}

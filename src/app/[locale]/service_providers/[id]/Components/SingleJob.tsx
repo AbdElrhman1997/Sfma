@@ -1,15 +1,52 @@
+"use client";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const SingleJob = () => {
+const SingleJob = ({ id }) => {
   const lang = useLocale();
+  const [content, setContent]: any = useState({});
+  const [loadingContent, setLoadingContent] = useState(false);
+
+  useEffect(() => {
+    const fetchSinglePath = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-provider-details/${id}`;
+      try {
+        setLoadingContent(true);
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": lang || "ar",
+          },
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setContent(data?.data || {});
+        setLoadingContent(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoadingContent(false);
+      }
+    };
+
+    fetchSinglePath();
+  }, [lang, id]);
+
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    const day = date.getUTCDate().toString().padStart(2, "0");
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <section className="container mx-auto" dir={lang == "en" ? "ltr" : "rtl"}>
       <div className="lg:flex justify-between items-center my-10 gap-6">
         <div className="lg:w-52 w-28 border-2 lg:mb-0 mb-10 border-[var(--second_main)] rounded-md p-4 lg:mx-0 mx-auto">
-          <Image
-            src={`/images/common/cards_icon.png`}
+          <img
+            src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.logo}`}
             alt="About Us"
             width={50}
             height={50}
@@ -18,15 +55,19 @@ const SingleJob = () => {
         </div>
         <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-6 w-full">
           <p className="font-bold lg:text-2xl text-xl lg:text-start text-center">
-            شركة درع الأمان للحراسات الأمنية
+            {content?.name}
           </p>
           <p className="lg:text-lg text-base lg:mt-6 mt-2 lg:text-justify text-center">
-            الرياض - المملكة العربية السعودية
+            {content?.city}
           </p>
           <div className="flex items-center lg:justify-start justify-center gap-4">
-            <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
+            <a
+              href={`https://${content?.contact_person}`}
+              target="_blank"
+              className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+            >
               زيارة الموقع الإلكتروني{" "}
-            </div>
+            </a>
             <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
               دوام كامل
             </div>
@@ -38,30 +79,19 @@ const SingleJob = () => {
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4">
             <p className="font-bold lg:text-xl text-base">نبذة عن الشركة</p>
             <p className="lg:text-lg text-base mt-2 lg:text-justify text-center">
-              شركة سعودية متخصصة في تقديم خدمات الحراسة الأمنية المدنية للمنشآت
-              الحكومية والخاصة. نمتلك فريقاً من الحراس المدربين وفق أعلى
-              المعايير الأمنية ونستخدم أحدث أنظمة المراقبة لحماية الأفراد
-              والممتلكات على مدار الساعة.
+              {content?.description}
             </p>
           </div>
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4  lg:mt-12 mt-6">
             <p className="font-bold lg:text-xl text-base">الخدمات المقدمة</p>
             <ul className="list-disc ps-5 mt-1">
-              <li className="lg:text-lg text-base mt-2">
-                حراسة المواقع والمنشآت الإدارية والتجارية
-              </li>
-              <li className="lg:text-lg text-base mt-2">
-                تأمين الفعاليات والمؤتمرات
-              </li>
-              <li className="lg:text-lg text-base mt-2">
-                تركيب أنظمة المراقبة (CCTV)
-              </li>
-              <li className="lg:text-lg text-base mt-2">
-                خدمات دوريات أمنية متحركة
-              </li>
-              <li className="lg:text-lg text-base mt-2">
-                تدريب أفراد الأمن الخاص
-              </li>
+              {content?.services?.map((item, idx) => {
+                return (
+                  <li key={idx} className="lg:text-lg text-base mt-2">
+                    {lang == "en" ? item?.en : item?.ar}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -80,7 +110,7 @@ const SingleJob = () => {
                   className="w-full h-auto"
                 />
               </div>
-              <p className=" lg:text-lg text-base">www.elite.com</p>
+              <p className=" lg:text-lg text-base">{content?.contact_person}</p>
             </div>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
               <div className="w-6 ms-2">
@@ -92,7 +122,7 @@ const SingleJob = () => {
                   className="w-full h-auto"
                 />
               </div>
-              <p className=" lg:text-lg text-base">www.elite.com</p>
+              <p className=" lg:text-lg text-base">{content?.email}</p>
             </div>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
               <div className="w-6 ms-2">
@@ -104,7 +134,7 @@ const SingleJob = () => {
                   className="w-full h-auto"
                 />
               </div>
-              <p className=" lg:text-lg text-base">www.elite.com</p>
+              <p className=" lg:text-lg text-base">{content?.phone}</p>
             </div>
           </div>
         </div>

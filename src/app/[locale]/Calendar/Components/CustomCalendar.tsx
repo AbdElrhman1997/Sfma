@@ -83,7 +83,7 @@ const CustomCalendar = () => {
         tileContent={tileContent}
         tileClassName={tileClassName}
         locale="ar-EG" // Arabic locale
-        className="rounded-lg shadow-lg p-2 w-full max-w-6xl"
+        className="rounded-lg shadow-lg lg:p-2 w-full max-w-6xl"
         // calendarType="ISO 8601"
       />
     </div>

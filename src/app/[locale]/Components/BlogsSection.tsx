@@ -1,22 +1,39 @@
+"use client";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useEffect, useState } from "react";
 
 const BlogsSection = () => {
   const t = useTranslations("HomePage.NewsSection");
   const lang = useLocale();
-  const courses = [
-    {
-      id: 1,
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-    },
-  ];
+  const [content, setContent]: any = useState([]);
+  const [loadingContent, setLoadingContent] = useState(false);
+
+  useEffect(() => {
+    const fetchSinglePath = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-books?type=1`;
+      try {
+        setLoadingContent(true);
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": lang || "ar",
+          },
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setContent(data?.data || {});
+        setLoadingContent(false);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        setLoadingContent(false);
+      }
+    };
+
+    fetchSinglePath();
+  }, [lang]);
 
   return (
     <section
@@ -37,7 +54,7 @@ const BlogsSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center pt-4">
-          {courses.map((item, index) => {
+          {content?.map((item, index) => {
             return (
               <div
                 key={index}
@@ -46,11 +63,10 @@ const BlogsSection = () => {
                 <div className="w-full h-52 bg-[#9D9D9D] rounded-lg"></div>
                 <div className="py-4">
                   <h3 className="text-lg font-bold leading-tight text-[#555555]">
-                    عنوان المقال - عنوان المقال - عنوان المقال
+                    {item?.name}
                   </h3>
                   <p className="text-sm text-[#636363] mt-2">
-                    لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على
-                    العميل ليتصور طريقه و …
+                    {item?.description}
                   </p>
                   <Link
                     href={`/${lang}/news/${item?.id}`}

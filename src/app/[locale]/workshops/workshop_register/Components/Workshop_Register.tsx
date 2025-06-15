@@ -147,19 +147,32 @@ const Course_Register = ({ translation }) => {
           </div>
         </div>
 
-        <div className="mt-6 lg:mb-12 mb-8">
-          <h1 className="text-base lg:text-2xl font-bold lg:mb-6 mb-3 text-[var(--main)]">
+        <div className="mt-6">
+          <h1 className="text-base lg:text-2xl font-bold  text-[var(--main)] mb-3">
             كود الخصم إن وجد
           </h1>
           <div className=" gap-3 rounded-lg flex justify-between">
             <input
               type="text"
-              className="text-[12px] md:text-lg lg:text-xl font-bold bg-[#F4F4F4] rounded-lg w-full"
+              className="text-[12px] md:text-lg lg:text-xl px-4 font-bold bg-[#F4F4F4] rounded-lg w-full"
             />
             <div className="text-[14px] lg:text-2xl font-bold bg-[var(--second_main)] px-4 lg:px-8 py-[6px] lg:py-3 text-white rounded-lg">
               تطبيق
             </div>
           </div>
+        </div>
+
+        <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
+          <input type="checkbox" id="terms_checkbox" />
+          <label htmlFor="terms_checkbox">
+            أوافق على{" "}
+            <Link
+              href={`/${lang}/terms`}
+              className="text-[var(--main)] underline"
+            >
+              الشروط والأحكام الخاصة بالجمعية
+            </Link>{" "}
+          </label>
         </div>
 
         {/* Course Contents */}

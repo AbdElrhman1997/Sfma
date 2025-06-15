@@ -30,7 +30,7 @@ export default async function Page({ params: { locale, id } }: any) {
 
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <SingleJob />
+      <SingleJob id={id} />
     </div>
   );
 }
