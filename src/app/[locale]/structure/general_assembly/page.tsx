@@ -4,7 +4,7 @@ import React from "react";
 import Single from "./Components/Single";
 
 export default async function Page({ params: { locale, id } }: any) {
-  const messages = (await import(`../../../../../messages/${locale}.json`))
+  const messages = (await import(`../../../../messages/${locale}.json`))
     .default;
   const t = createTranslator({
     locale,
