@@ -1,64 +1,65 @@
 "use client";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 const SideBarFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState(1);
-
+  const t = useTranslations("filters");
   const [filter_list, set_filter_list] = useState([
     {
       id: 1,
-      name: "عرض الجميع",
+      name: t("filters.all"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 2,
-      name: "إدارة المرافق",
+      name: t("filters.facility_management"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 3,
-      name: "الأمن والحراسة",
+      name: t("filters.security"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 4,
-      name: "النظافة",
+      name: t("filters.cleaning"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 5,
-      name: "الصيانة والتشغيل",
+      name: t("filters.maintenance"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 6,
-      name: "النقل اللوجيستي",
+      name: t("filters.logistics"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 7,
-      name: "المقاولات والخدمات الفنية",
+      name: t("filters.contracting"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 8,
-      name: "الاستشارات",
+      name: t("filters.consulting"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 9,
-      name: "إدارة الطاقة",
+      name: t("filters.energy_management"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 10,
-      name: "الخدمات البيئية والنفايات",
+      name: t("filters.environmental"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
     {
       id: 11,
-      name: "خدمات أخرى",
+      name: t("filters.other_services"),
       icon_src: `/images/common/providers_icon_2.png`,
     },
   ]);

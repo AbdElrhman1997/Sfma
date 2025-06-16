@@ -40,7 +40,7 @@ export default function Next_Courses() {
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
       <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
-        الدورات القادمة
+        {t("next_courses")}
       </h2>
       <h4 className="text-[18px] text-[#898989] mb-8 text-center">
         {t("sub_title")}

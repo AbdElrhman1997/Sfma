@@ -9,7 +9,7 @@ const Page = async ({ params }) => {
   const t = createTranslator({
     locale,
     messages,
-    namespace: "AboutPage",
+    namespace: "common",
   });
 
   return (
@@ -28,12 +28,11 @@ const Page = async ({ params }) => {
             </div>
           </div>
           <div className="xl:text-start text-center container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-end pb-12">
-            <p className="text-lg md:text-2xl lg:text-4xl font-bold ">
-              آخر مستجدات SFMA وقطاع إدارة المرافق
+            <p className="text-lg md:text-2xl lg:text-4xl font-bold">
+              {t("latest_updates_title")}
             </p>
             <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
-              اكتشف آخر أخبار الجمعية وأبرز التطورات في مجال إدارة المرافق، وكن
-              دائمًا في قلب الحدث
+              {t("latest_updates_description")}
             </p>
           </div>
         </div>

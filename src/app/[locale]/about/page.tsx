@@ -41,12 +41,7 @@ const Page = async ({ params }) => {
         lang={locale}
       />
       <Our_Tasks />
-      <Our_Vision
-        title={t("OurVisionSection.title")}
-        description={t("OurVisionSection.description")}
-        content={t("OurVisionSection.content")}
-        lang={locale}
-      />
+      <Our_Vision />
       <Our_Message />
       <ValuesSection />
       <Our_Goals

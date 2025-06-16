@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ const SingleJob = ({ id }) => {
   const lang = useLocale();
   const [content, setContent]: any = useState({});
   const [loadingContent, setLoadingContent] = useState(false);
+  const t = useTranslations("company");
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -66,39 +67,42 @@ const SingleJob = ({ id }) => {
               target="_blank"
               className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
             >
-              زيارة الموقع الإلكتروني{" "}
+              {t("company.visit_website")}
             </a>
             <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-              دوام كامل
+              {t("company.full_time")}
             </div>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7 col-span-12 ">
+        <div className="lg:col-span-7 col-span-12">
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4">
-            <p className="font-bold lg:text-xl text-base">نبذة عن الشركة</p>
+            <p className="font-bold lg:text-xl text-base">
+              {t("company.about")}
+            </p>
             <p className="lg:text-lg text-base mt-2 lg:text-justify text-center">
               {content?.description}
             </p>
           </div>
-          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4  lg:mt-12 mt-6">
-            <p className="font-bold lg:text-xl text-base">الخدمات المقدمة</p>
+
+          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-12 mt-6">
+            <p className="font-bold lg:text-xl text-base">
+              {t("company.services")}
+            </p>
             <ul className="list-disc ps-5 mt-1">
-              {content?.services?.map((item, idx) => {
-                return (
-                  <li key={idx} className="lg:text-lg text-base mt-2">
-                    {lang == "en" ? item?.en : item?.ar}
-                  </li>
-                );
-              })}
+              {content?.services?.map((item, idx) => (
+                <li key={idx} className="lg:text-lg text-base mt-2">
+                  {lang === "en" ? item?.en : item?.ar}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="lg:col-span-5 col-span-12">
           <div className=" shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10">
             <p className="font-bold lg:text-xl text-base">
-              التواصل مع جهة التوظيف
+              {t("company.contact_employer")}
             </p>
             <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
               <div className="w-6 ms-2">

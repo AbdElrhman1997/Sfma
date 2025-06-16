@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 const Banner_Section = () => {
-  const t = useTranslations("HomePage.AboutSection");
+  const t = useTranslations("common");
   const lang = useLocale();
 
   return (
@@ -14,15 +14,10 @@ const Banner_Section = () => {
         height={500}
         className="w-full object-cover min-h-52 md:h-60 lg:h-72 xl:h-80 xl:max-h-96"
       />
-      <div className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full  container mx-auto">
-        <p className="lg:text-4xl text-xl font-bold">
-          نحو مستقبل أكثر كفاءة نمنحك أدوات النجاح!
-        </p>
+      <div className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full container mx-auto">
+        <p className="lg:text-4xl text-xl font-bold">{t("title")}</p>
         <p className="lg:text-xl text-sm font-semibold lg:mt-6 mt-4 lg:leading-10">
-          نقدم برامج تدريبية متخصصة وشاملة تمنحك المهارات والأدوات العملية
-          الحديثة لتحقيق النجاح والتميز في مجال إدارة المرافق بكفاءة واحترافية
-          عالية، بإشراف نخبة من المدربين المعتمدين ذوي الخبرة الواسعة في هذا
-          المجال
+          {t("description")}
         </p>
       </div>
     </div>

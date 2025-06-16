@@ -1,18 +1,19 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const SingleJob = ({ id }) => {
-  const [content, setContent]: any = useState({});
-  const [loadingContent, setLoadingContent] = useState(false);
+  const [job, setJob]: any = useState({});
+  const [loading, setLoading] = useState(false);
   const lang = useLocale();
+  const t = useTranslations("job");
 
   useEffect(() => {
-    const fetchSinglePath = async () => {
+    const fetchJobDetails = async () => {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}jobs/get-job-details/${id}`;
       try {
-        setLoadingContent(true);
+        setLoading(true);
         const res = await fetch(apiUrl, {
           method: "GET",
           headers: {
@@ -21,15 +22,15 @@ const SingleJob = ({ id }) => {
           cache: "no-store",
         });
         const data = await res.json();
-        setContent(data?.data || {});
-        setLoadingContent(false);
+        setJob(data?.data || {});
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching categories:", error);
-        setLoadingContent(false);
+        console.error("Error fetching job details:", error);
+        setLoading(false);
       }
     };
 
-    fetchSinglePath();
+    fetchJobDetails();
   }, [lang, id]);
 
   const formatDate = (isoDate) => {
@@ -41,144 +42,138 @@ const SingleJob = ({ id }) => {
   };
 
   return (
-    <section className="container mx-auto" dir={lang == "en" ? "ltr" : "rtl"}>
+    <section className="container mx-auto" dir={lang === "en" ? "ltr" : "rtl"}>
       <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold mt-12">
-        {content?.name}
+        {job?.name}
       </h1>
+
       <div className="flex flex-wrap justify-between items-center">
         <h3 className="lg:text-lg text-base text-[#555555] lg:mt-0 mt-4">
-          {content?.company_name}
+          {job?.company_name}
         </h3>
+
         <div className="flex items-center gap-4">
           <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-            دوام كامل
+            {t("full_time")}
           </div>
           <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[#888888] to-[#555555] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-            تم النشر في {formatDate(content?.created_at)}
+            {t("posted_on")} {formatDate(job?.created_at)}
           </div>
         </div>
       </div>
+
       <div className="grid grid-cols-12 lg:gap-16 lg:mt-12 mt-6">
-        <div className="lg:col-span-7 col-span-12 ">
+        {/* معلومات الوظيفة */}
+        <div className="lg:col-span-7 col-span-12">
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4">
-            <p className="font-bold lg:text-xl text-base">تفاصيل الوظيفة</p>
+            <p className="font-bold lg:text-xl text-base">{t("details")}</p>
             <ul className="list-disc ps-5 mt-1">
               <li className="lg:text-lg text-base mt-2">
-                <span className="font-bold"> : ساعات العمل </span>{" "}
-                {content?.work_hours}
+                <span className="font-bold"> {t("work_hours")} : </span>{" "}
+                {job?.work_hours}
               </li>
               <li className="lg:text-lg text-base mt-2">
-                <span className="font-bold"> : مدة العقد </span>
-                {content?.contract_time}
+                <span className="font-bold"> {t("contract_duration")} : </span>{" "}
+                {job?.contract_time}
               </li>
               <li className="lg:text-lg text-base mt-2">
-                <span className="font-bold"> : الراتب </span>
-                {content?.contract_time}
+                <span className="font-bold"> {t("salary")} : </span>{" "}
+                {job?.salary}
               </li>
               <li className="lg:text-lg text-base mt-2">
-                <span className="font-bold"> : موقع العمل </span>
-                {content?.location}
+                <span className="font-bold"> {t("location")} : </span>{" "}
+                {job?.location}
               </li>
             </ul>
           </div>
+
+          {/* وصف الوظيفة */}
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
-            <p className="font-bold lg:text-xl text-base">وصف الوظيفة</p>
+            <p className="font-bold lg:text-xl text-base">{t("description")}</p>
             <p className="lg:text-lg text-base mt-2 lg:text-justify text-center">
-              {content?.description}
+              {job?.description}
             </p>
           </div>
+
+          {/* المهام */}
           <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
-            <p className="font-bold lg:text-xl text-base">المهام والمسؤوليات</p>
+            <p className="font-bold lg:text-xl text-base">{t("tasks")}</p>
             <ul className="list-disc ps-5 mt-1">
-              {content?.tasks?.map((item, idx) => {
-                return (
-                  <li key={idx} className="lg:text-lg text-base mt-2">
+              {job?.tasks?.map((item, idx) => (
+                <li key={idx} className="lg:text-lg text-base mt-2">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* المؤهلات */}
+          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
+            <p className="font-bold lg:text-xl text-base">
+              {t("requirements")}
+            </p>
+            {job?.requirements?.map((req, idx) => (
+              <ul key={idx} className="list-disc ps-5 mt-1">
+                <p className="font-bold lg:text-lg text-sm -ms-5">
+                  {req?.title}
+                </p>
+                {req?.items?.map((item, subIdx) => (
+                  <li key={subIdx} className="lg:text-base text-xs mt-1">
                     {item}
                   </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
-            <p className="font-bold lg:text-xl text-base">المؤهلات المطلوبة</p>
-            {console.log(content?.requirements)}
-            {content?.requirements?.map((requirement, idx) => {
-              return (
-                <ul key={idx} className="list-disc ps-5 mt-1">
-                  <p className="font-bold lg:text-lg text-sm -ms-5">
-                    {requirement?.title}
-                  </p>
-                  {requirement?.items?.map((requirement_details) => {
-                    return (
-                      <li key={idx} className="lg:text-base text-xs mt-1">
-                        {requirement_details}
-                      </li>
-                    );
-                  })}
-                </ul>
-              );
-            })}
+                ))}
+              </ul>
+            ))}
           </div>
         </div>
+
+        {/* معلومات الشركة */}
         <div className="lg:col-span-5 col-span-12">
-          <div className=" shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10">
+          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10">
             <p className="font-bold lg:text-xl text-base">
-              التواصل مع جهة التوظيف
+              {t("contact_employer")}
             </p>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/website.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
+
+            {[
+              { icon: "website", text: job?.company_website },
+              { icon: "email", text: job?.company_email },
+              { icon: "contact", text: job?.company_phone },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4"
+              >
+                <div className="w-6 ms-2">
+                  <Image
+                    src={`/images/common/${item.icon}.png`}
+                    alt="icon"
+                    width={50}
+                    height={50}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <p className="lg:text-lg text-base">{item.text}</p>
               </div>
-              <p className=" lg:text-lg text-base">
-                {content?.company_website}
-              </p>
-            </div>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/email.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className=" lg:text-lg text-base">{content?.company_email}</p>
-            </div>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/contact.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className=" lg:text-lg text-base">{content?.company_phone}</p>
-            </div>
+            ))}
           </div>
-          <div className=" shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
-            <p className="font-bold lg:text-xl text-base">نبذة عن الشركة</p>
-            <div className=" mt-6 bg-white w-full p-4 rounded-lg">
+
+          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 mt-10">
+            <p className="font-bold lg:text-xl text-base">
+              {t("about_company")}
+            </p>
+            <div className="mt-6 bg-white w-full p-4 rounded-lg">
               <div className="w-16 mx-auto">
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.company_logo}`}
-                  alt="About Us"
+                  src={`https://sfma.srv814693.hstgr.cloud/storage/${job?.company_logo}`}
+                  alt="Company Logo"
                   width={50}
                   height={50}
                   className="w-full h-auto rounded-lg"
                 />
               </div>
             </div>
-            <p className=" lg:text-base text-[14px] text-justify leading-7 mt-5">
-              {content?.about_company}
+            <p className="lg:text-base text-[14px] text-justify leading-7 mt-5">
+              {job?.about_company}
             </p>
           </div>
         </div>

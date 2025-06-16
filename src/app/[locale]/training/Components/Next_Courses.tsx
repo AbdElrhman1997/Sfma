@@ -26,7 +26,6 @@ export default function Next_Courses() {
 
         const data = await res.json();
         setContent(data?.data || []);
-        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
@@ -75,7 +74,7 @@ export default function Next_Courses() {
 
         <Link href={`/${lang}/training/${course?.id}`} className="inline-block">
           <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-            تصفح الدورات
+            {t("read_more_2")}
           </div>
         </Link>
       </div>
@@ -85,7 +84,7 @@ export default function Next_Courses() {
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
       <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
-        الدورات القادمة
+        {t("next_courses")}
       </h2>
       <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4">
         {t("sub_title")}

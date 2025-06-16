@@ -6,6 +6,8 @@ import Link from "next/link";
 import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Image from "next/image";
 import MobileNav from "./MobileNav";
+import { useRouter } from "next/navigation";
+import { GrLanguage } from "react-icons/gr";
 
 const mainLinks = [
   { href: "", label: "home" },
@@ -49,7 +51,16 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user_name"));
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user_name");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("auth_token");
@@ -59,6 +70,11 @@ const NavBar = () => {
 
   const toggleDropdown = (key: string) => {
     setActive(active === key ? null : key);
+  };
+
+  const setLang = (newLocale) => {
+    router.push(`/${newLocale}`); // Navigate to the new locale
+    router.refresh(); // Refresh the page to apply the new locale
   };
 
   const renderDropdown = (items: any[]) => (
@@ -135,6 +151,14 @@ const NavBar = () => {
         <div className="hidden lg:flex items-center gap-2 text-sm">
           {isAuthenticated ? (
             <>
+              <div className="relative grid place-items-center rounded-full">
+                <div
+                  onClick={() => setLang(lang === "en" ? "ar" : "en")}
+                  className="hover:text-primary cursor-pointer"
+                >
+                  <GrLanguage className="text-xl text-[var(--main)]" />
+                </div>
+              </div>
               <div className="relative w-7 h-7 bg-[var(--main)] p-2 grid place-items-center rounded-full">
                 <Link
                   href={`/${lang}/notifications`}

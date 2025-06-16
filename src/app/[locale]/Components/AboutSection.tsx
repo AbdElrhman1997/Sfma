@@ -10,7 +10,7 @@ const AboutSection = () => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto pt-12 md:mt-8 mt-0 mb-4 ${
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto pt-12 mt-0 mb-7 ${
         lang == "en" ? "md:text-left" : "md:text-right"
       } text-center`}
       dir={lang == "en" ? "ltr" : "rtl"}

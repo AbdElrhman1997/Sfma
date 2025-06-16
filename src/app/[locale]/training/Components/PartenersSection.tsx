@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const PartenersSection = () => {
-  const t = useTranslations("HomePage.PartenersSection");
+  const t = useTranslations("common");
   const lang = useLocale();
   const [partners, setPartners] = useState([]);
 
@@ -41,7 +41,7 @@ const PartenersSection = () => {
     >
       <div className="w-full flex flex-col items-center">
         <h2 className="text-3xl font-bold text-[#1DAEE5] mb-3">
-          شركاء التدريب
+          {t("training_team")}
         </h2>
 
         <Swiper

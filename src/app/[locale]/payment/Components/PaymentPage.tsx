@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ const PaymentPage = () => {
   const lang = useLocale();
   // get payment data from course or workshop
   const payment_data: any = JSON.parse(localStorage.getItem("payment_data"));
-
+  const t = useTranslations("Payment");
   const [selectedValue, setSelectedValue] = useState("option1");
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -101,10 +101,10 @@ const PaymentPage = () => {
       {/* Title Section */}
       <div className="text-center">
         <h1 className="text-xl lg:text-3xl font-bold mb-2 text-[var(--main)]">
-          اختيار طريقة الدفع
+          {t("title")}
         </h1>
         <h3 className="text-[#737373] lg:text-xl text-base mb-8">
-          يرجى اختيار الطريقة المناسبة لإتمام عملية الدفع
+          {t("subtitle")}
         </h3>
       </div>
 
@@ -120,7 +120,7 @@ const PaymentPage = () => {
               className="accent-black w-5 lg:w-6 h-5 lg:h-6"
             />
             <p className="text-base lg:text-xl font-bold -translate-y-1">
-              تحويل بنكي
+              {t("bank_transfer")}
             </p>
           </label>
           <div className="w-14">
@@ -135,7 +135,7 @@ const PaymentPage = () => {
         </div>
 
         <p className="text-[#555555] mt-4 font-medium text-sm lg:text-lg">
-          التحويل البنكي المباشر إلى حساب SFMA
+          {t("direct_bank_transfer")}
         </p>
 
         <div className="flex items-center gap-3">
@@ -149,18 +149,15 @@ const PaymentPage = () => {
             />
           </div>
           <p className="text-[#8D99AE] lg:mt-2 mt-1 lg:text-base text-xs mb-1 lg:mb-2">
-            يجب رفع إيصال الدفع لإتمام العملية
+            {t("receipt_required")}
           </p>
         </div>
       </div>
 
       {/* File Upload */}
       <div className="md:col-span-6 col-span-12 text-sm text-right bg-[#F6F6F6] p-6 rounded-xl mt-10">
-        <label
-          htmlFor="logo"
-          className="block lg:text-xl text-base font-bold mb-2 text-black"
-        >
-          قم برفع إيصال الدفع
+        <label className="block lg:text-xl text-base font-bold mb-2 text-black">
+          {t("upload_receipt")}
         </label>
 
         <div className="relative">
@@ -188,11 +185,11 @@ const PaymentPage = () => {
               />
             </svg>
             <p className="font-bold mt-[6px] mb-2 lg:text-base text-xs">
-              اسحب الملفات هنا أو{" "}
-              <span className="text-[var(--main)]">اضغط لاختيار الملف</span>
+              {t("drag_or_click")}{" "}
+              <span className="text-[var(--main)]">{t("click_to_upload")}</span>
             </p>
             <p className="font-semibold text-[#8D99AE] lg:text-sm text-[11px]">
-              PDF أو JPG (بحد أقصى 5 ميجابايت)
+              {t("file_hint")}
             </p>
           </div>
         </div>
@@ -213,11 +210,8 @@ const PaymentPage = () => {
           </div>
         )}
       </div>
-      <button
-        className="block mt-6 mx-auto cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-12 px-6 lg:py-2 py-[6px] rounded-lg font-semibold lg:text-base text-[12px]"
-        onClick={handleSubmit}
-      >
-        إتمام الدفع
+      <button className="..." onClick={handleSubmit}>
+        {t("complete_payment")}
       </button>
     </div>
   );

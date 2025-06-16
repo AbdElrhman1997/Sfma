@@ -22,12 +22,13 @@ import {
   FaSignInAlt,
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const MobileNav = ({ lang, isAuthenticated, user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const router = useRouter();
-
+  const t = useTranslations();
   const toggleDropdown = (label) => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
@@ -38,80 +39,67 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
   };
 
   const navItems = [
-    { href: "", label: "الرئيسية", icon: <FaHome /> },
-    { href: "about", label: "عن الجمعية", icon: <FaInfoCircle /> },
+    { href: "", label: t("Home"), icon: <FaHome /> },
+    { href: "about", label: t("AboutUs"), icon: <FaInfoCircle /> },
     {
-      label: "المكتبة",
+      label: t("Library"),
       icon: <FaBook />,
       dropdown: [
-        {
-          href: "data_library",
-          label: "مكتبة الكتب",
-          // icon: <FaBook />
-        },
-        {
-          href: "video_library",
-          label: "مكتبة الفيديوهات",
-          //  icon: <FaVideo />
-        },
+        { href: "data_library", label: t("BookLibrary") },
+        { href: "video_library", label: t("VideoLibrary") },
       ],
     },
     {
-      label: "العضويات",
+      label: t("Memberships"),
       icon: <FaUsers />,
       dropdown: [
-        {
-          href: "institutions",
-          label: "عضويات المؤسسات",
-        }, // Building for institutions
-        { href: "individuals", label: "عضويات الأفراد" }, // Single user for individuals
-        {
-          href: "volunteers",
-          label: "عضويات المتطوعين",
-        }, // Hands helping for volunteers
-        {
-          href: "membership_verification",
-          label: "التحقق من العضويات",
-        }, // User check for verification
+        { href: "institutions", label: t("InstitutionMemberships") },
+        { href: "individuals", label: t("IndividualMemberships") },
+        { href: "volunteers", label: t("VolunteerMemberships") },
+        { href: "membership_verification", label: t("MembershipVerification") },
       ],
     },
     {
-      label: "التدريب",
+      label: t("Training"),
       icon: <FaChalkboardTeacher />,
       dropdown: [
         {
           href: "training",
-          label: "الدورات التدريبية",
+          label: t("TrainingCourses"),
           icon: <FaChalkboardTeacher />,
         },
         {
           href: "Calendar",
-          label: "جدول دورات SFMA",
+          label: t("SFMACoursesSchedule"),
           icon: <FaCalendarAlt />,
         },
         {
           href: "workshops",
-          label: "ورش العمل",
+          label: t("Workshops"),
           icon: <FaChalkboardTeacher />,
         },
         {
           href: "certified_trainers",
-          label: "مدربونا المعتمدون",
+          label: t("CertifiedTrainers"),
           icon: <FaUsersCog />,
         },
         {
           href: "certificate_verification",
-          label: "التحقق من الشهادات",
+          label: t("CertificateVerification"),
           icon: <FaUserCheck />,
         },
       ],
     },
-    { href: "events", label: "الفعاليات", icon: <FaCalendarAlt /> },
-    { href: "jobs", label: "الوظائف", icon: <FaBriefcase /> },
-    { href: "service_providers", label: "مزودي الخدمات", icon: <FaTools /> },
-    { href: "news", label: "الأخبار", icon: <FaNewspaper /> },
+    { href: "events", label: t("Events"), icon: <FaCalendarAlt /> },
+    { href: "jobs", label: t("Jobs"), icon: <FaBriefcase /> },
     {
-      label: "الإشعارات",
+      href: "service_providers",
+      label: t("ServiceProviders"),
+      icon: <FaTools />,
+    },
+    { href: "news", label: t("News"), icon: <FaNewspaper /> },
+    {
+      label: t("Notifications"),
       href: "notifications",
       icon: <FaBell />,
       badge: "1",
@@ -119,15 +107,15 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
 
     ...(isAuthenticated || user
       ? [
-          { href: "profile", label: "الملف الشخصي", icon: <FaUser /> },
+          { href: "profile", label: t("Profile"), icon: <FaUser /> },
           {
             href: "/",
-            label: "تسجيل الخروج",
+            label: t("Logout"),
             icon: <FaSignOutAlt />,
             logout: true,
           },
         ]
-      : [{ href: "/login", label: "تسجيل الدخول", icon: <FaSignInAlt /> }]),
+      : [{ href: "/login", label: t("Login"), icon: <FaSignInAlt /> }]),
   ];
 
   return (
@@ -246,7 +234,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
         </nav>
 
         {/* Language Toggle */}
-        {/* <div className="px-4 border-t">
+        <div className="px-4 border-t">
           <button
             onClick={() => setLang(lang === "en" ? "ar" : "en")}
             className="w-full text-start text-sm text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors"
@@ -254,7 +242,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
             {lang === "en" ? "العربية" : "English"}{" "}
             <span className="ml-2">🌐</span>
           </button>
-        </div> */}
+        </div>
       </div>
 
       {/* Overlay to close sidebar */}

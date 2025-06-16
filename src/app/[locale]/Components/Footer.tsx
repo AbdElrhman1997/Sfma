@@ -98,14 +98,14 @@ const Footer = () => {
 
           {/* Column 3: Services */}
           <div>
-            <h3 className="text-lg font-bold mb-4">التدريب والدورات</h3>
+            <h3 className="text-lg font-bold mb-4">{t("title")}</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href={`/${lang}/training`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  الدورات التدريبية
+                  {t("training_courses")}
                 </Link>
               </li>
               <li>
@@ -113,7 +113,7 @@ const Footer = () => {
                   href={`/${lang}/Calendar`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  جدول دورات SFMA
+                  {t("calendar")}
                 </Link>
               </li>
               <li>
@@ -121,7 +121,7 @@ const Footer = () => {
                   href={`/${lang}/certified_trainers`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  المدربين المعتمدين
+                  {t("certified_trainers")}
                 </Link>
               </li>
               <li>
@@ -129,7 +129,7 @@ const Footer = () => {
                   href={`/${lang}/certificate_verification`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  التحقق من الشهادات
+                  {t("certificate_verification")}
                 </Link>
               </li>
             </ul>
@@ -168,7 +168,7 @@ const Footer = () => {
                   href={`/${lang}/membership_verification`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  التحقق من العضويات
+                  {t("volunteers")}
                 </Link>
               </li>
             </ul>

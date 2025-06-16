@@ -5,7 +5,7 @@ import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const AchiveGoals = () => {
-  const t = useTranslations("HomePage.AboutSection");
+  const t = useTranslations("HomePage");
   const lang = useLocale();
 
   return (
@@ -17,11 +17,11 @@ const AchiveGoals = () => {
     >
       <div className="w-full md:w-1/2 flex flex-col justify-center">
         <h2 className="lg:text-4xl text-2xl font-bold text-[#1DAEE5] lg:mb-6 mb-2 leading-14">
-          طوّر حياتك المهنية بسرعة غير مسبوقة{" "}
+          {t("career_growth")}
         </h2>
 
-        <div className=" bg-[var(--main)] w-fit text-white lg:px-7 px-4 lg:py-[14px] py-2 font-bold lg:text-3xl text-base lg:mx-0 mx-auto">
-          وحقق أهدافك بكفاءة أكبر!
+        <div className="bg-[var(--main)] w-fit text-white lg:px-7 px-4 lg:py-[14px] py-2 font-bold lg:text-3xl text-base lg:mx-0 mx-auto">
+          {t("achieve_goals")}
         </div>
       </div>
       <div className="w-full md:w-1/3  md:max-w-[450px] max-w-[350px] ">

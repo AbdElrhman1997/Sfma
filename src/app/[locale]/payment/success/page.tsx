@@ -1,6 +1,6 @@
 "use client";
 import { CheckCircle } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -13,7 +13,7 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
   );
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
-
+  const t = useTranslations("RegistrationStatus");
   return (
     <div
       className="min-h-[85vh] flex items-center justify-center bg-white px-4 text-center"
@@ -27,16 +27,14 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
 
         {/* Title */}
         <h2 className="text-2xl lg:text-3xl font-bold mb-2 text-black">
-          تمت عملية التسجيل بنجاح
+          {t("success_title")}
         </h2>
-
-        {/* Description */}
         <p className="text-[#333] mb-6 text-sm lg:text-base">
-          لقد قمت بالتسجيل في
+          {t("registered_in")}
           <br />
-          {source == "workshop"
-            ? `${choosed_workshop?.title}`
-            : `دورة ${choosed_course?.title}`}
+          {source === "workshop"
+            ? choosed_workshop?.title
+            : `${t("course")} ${choosed_course?.title}`}
         </p>
 
         {/* Buttons */}

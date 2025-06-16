@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function WorkshopPage() {
-  const t = useTranslations("Training");
+  const t = useTranslations("");
   const [loadingWorkshops, setLoadingWorkshops] = useState(false);
   const [content, setContent] = useState([]);
   const lang = useLocale();
@@ -143,7 +143,7 @@ export default function WorkshopPage() {
           className="mt-3 text-[var(--main)] flex items-center justify-start font-semibold"
         >
           <span className="lg:text-base text-[14px] font-bold">
-            عرض التفاصيل
+            {t("common.see")}
           </span>
           <div className={`${lang === "en" ? "rotate-y-180" : ""}`}>
             <Image
@@ -165,11 +165,10 @@ export default function WorkshopPage() {
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <p className="text-[#555555] lg:text-start text-center lg:text-3xl text-xl font-bold lg:mt-8 mt-6">
-        ورش العمل
+        {t("common.title_2")}
       </p>
       <p className="text-[#555555] lg:text-start text-center mx-auto lg:mt-2 leading-7 lg:text-base text-[13px]">
-        تقدم SFMA ورش عمل تطبيقية تركز على المهارات العملية والمجالات المتخصصة
-        في إدارة المرافق.
+        {t("common.description_2")}
       </p>
 
       <div className="flex flex-wrap justify-center gap-6 my-10">

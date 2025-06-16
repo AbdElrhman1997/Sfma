@@ -65,7 +65,7 @@ const ActivitiesSection = () => {
         href={`/${lang}/events`}
         className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
       >
-        قراءة المزيد
+        {t("read_more")}
       </Link>
       {/* <button className="cursor-pointer flex items-center mx-auto bg-[#61B8A0] text-white py-[2px] px-[2px] pe-4 rounded-full gap-3 hover:bg-[#5d9887] transition w-fit my-4 mt-7">
         <div className="w-12 h-12 bg-[#1DAEE5] text-white flex items-center justify-center rounded-full border-2 border-white">

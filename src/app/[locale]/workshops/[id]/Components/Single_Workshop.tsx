@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -56,6 +56,7 @@ const Single_Workshop = ({ translation, id }) => {
     //   value: "العربية",
     // },
   ];
+  const t = useTranslations("common");
 
   return !loadingWorkshop ? (
     <section>
@@ -77,12 +78,12 @@ const Single_Workshop = ({ translation, id }) => {
               {workshop?.title}
             </p>
             <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
-              مقدمة من جمعية إدارة المرافق السعودية
+              {t("p_1")}
             </p>
             <div className="flex gap-4 mb-10">
               <Link href={`/${lang}/events/all`} className="inline-block">
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
-                  سجل في الورشة الآن !
+                  {t("p_12")}
                 </div>
               </Link>
             </div>
@@ -119,7 +120,7 @@ const Single_Workshop = ({ translation, id }) => {
         </div>
         {workshop?.description ? (
           <div className="mt-6 bg-[#F6F6F6] p-6">
-            <p className="font-bold lg:text-xl">نبذة عن الورشة</p>
+            <p className="font-bold lg:text-xl">{t("p_13")}</p>
             <p className="text-justify mt-3 leading-7 font-semibold lg:text-base text-[14px]">
               {workshop?.description}
             </p>
@@ -128,7 +129,7 @@ const Single_Workshop = ({ translation, id }) => {
 
         {workshop?.workshop_details ? (
           <div className="mt-6 lg:p-6 p-2">
-            <p className="font-extrabold lg:text-xl mb-6">محاور الورشة</p>
+            <p className="font-extrabold lg:text-xl mb-6"> {t("p_14")}</p>
             <div className="flex justify-between flex-wrap gap-8">
               {workshop?.workshop_details?.map((workshop) => {
                 return (
@@ -159,10 +160,10 @@ const Single_Workshop = ({ translation, id }) => {
             localStorage.setItem("choosed_workshop", JSON.stringify(workshop));
           }}
         >
-          سجل في الورشة الآن
+          {t("p_15")}
         </Link>
         <p className="text-base lg:text-xl mt-3 text-[#555555]">
-          متبقي {workshop?.seats} مقعد فقط
+          {t("p_17")} {workshop?.seats} {t("p_16")}
         </p>
       </div>
     </section>

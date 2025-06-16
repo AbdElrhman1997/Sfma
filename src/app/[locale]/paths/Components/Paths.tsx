@@ -53,7 +53,10 @@ export default function Paths({ from_home }) {
     ));
 
   const renderCourseCard = (path) => (
-    <div className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
+    <div
+      key={path?.id}
+      className="group bg-[#61B8A0] rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300"
+    >
       <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
         <img
           src={`${process.env.NEXT_PUBLIC_URL}${path?.image}`}
@@ -67,7 +70,7 @@ export default function Paths({ from_home }) {
 
       <Link href={`/${lang}/paths/${path?.id}`} className="inline-block">
         <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-          تصفح الدورات
+          {t("read_more_2")}
         </div>
       </Link>
     </div>
@@ -103,7 +106,7 @@ export default function Paths({ from_home }) {
           href={`/${lang}/training`}
           className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
         >
-          قراءة المزيد
+          {t("read_more")}
         </Link>
       ) : null}
     </div>

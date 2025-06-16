@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -47,6 +47,8 @@ const Single_Course = ({ translation, id }) => {
     },
   ];
 
+  const t = useTranslations("common");
+
   return !loadingCourse ? (
     <section>
       <div className="relative w-full" dir={lang === "en" ? "ltr" : "rtl"}>
@@ -67,12 +69,12 @@ const Single_Course = ({ translation, id }) => {
               {course?.title}
             </p>
             <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
-              مقدمة من جمعية إدارة المرافق السعودية
+              {t("p_1")}
             </p>
             <div className="flex gap-4 mb-10">
               <Link href={`/${lang}/events/all`} className="inline-block">
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
-                  سجل في الدورة الآن!
+                  {t("p_2")}
                 </div>
               </Link>
             </div>
@@ -83,9 +85,7 @@ const Single_Course = ({ translation, id }) => {
       <div className="container mx-auto">
         {/* Course Overview */}
         <div className="mt-6">
-          <h1 className="text-xl lg:text-3xl font-bold mb-3">
-            نظرة شاملة عن الدورة :
-          </h1>
+          <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_3")}</h1>
           <h3 className="text-[#555555] font-semibold text-sm lg:text-base">
             {course?.description}
           </h3>
@@ -114,7 +114,7 @@ const Single_Course = ({ translation, id }) => {
 
         {/* Learning Objectives */}
         <div className="mt-6">
-          <h1 className="text-xl lg:text-3xl font-bold mb-3">أهداف التعلم :</h1>
+          <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_4")}</h1>
           <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
             {course?.meta_data?.goals?.map((item, index) => (
               <div
@@ -138,9 +138,7 @@ const Single_Course = ({ translation, id }) => {
 
         {/* Course Contents */}
         <div className="mt-6">
-          <h1 className="text-xl lg:text-3xl font-bold mb-3">
-            محتويات الدورة :
-          </h1>
+          <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_5")}</h1>
           <div className="bg-[#F6F6F6] p-6 grid gap-6 mt-6 mb-8">
             {course?.section?.map((item, index) => (
               <div
@@ -160,9 +158,7 @@ const Single_Course = ({ translation, id }) => {
 
         {/* Next Session Dates */}
         <div className="mt-6">
-          <h1 className="text-xl lg:text-3xl font-bold mb-3">
-            مواعيد الدورة القادمة :
-          </h1>
+          <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_6")}</h1>
           <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
             {nextSessions.map((item, index) => (
               <div
@@ -191,7 +187,7 @@ const Single_Course = ({ translation, id }) => {
 
         {/* Certificates Dates */}
         <div className="mt-6">
-          <h1 className="text-xl lg:text-3xl font-bold mb-3">الشهادات :</h1>
+          <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_7")}</h1>
           <div className="bg-[#F6F6F6] p-6 grid gap-6 mt-6 mb-8">
             {course?.certificates?.map((item, index) => (
               <div
@@ -213,9 +209,7 @@ const Single_Course = ({ translation, id }) => {
         <p className="text-2xl lg:text-4xl mb-3">
           <span className="font-bold">{course?.online_price}</span> ر.س
         </p>
-        <p className="text-base lg:text-xl mb-4 text-[#555555]">
-          شامل المواد التدريبية والشهادات المعتمدة
-        </p>
+        <p className="text-base lg:text-xl mb-4 text-[#555555]">{t("p_8")}</p>
         <div className="flex items-center gap-5">
           <div className="w-14">
             <Image
@@ -245,9 +239,7 @@ const Single_Course = ({ translation, id }) => {
             />
           </div>
         </div>
-        <p className="text-base lg:text-xl mt-3 text-[#555555]">
-          يوجد خصم للمجموعات
-        </p>
+        <p className="text-base lg:text-xl mt-3 text-[#555555]">{t("p_9")}</p>
       </div>
       <div className="flex flex-col items-center  text-center mt-8 mb-16">
         <Link
@@ -257,11 +249,9 @@ const Single_Course = ({ translation, id }) => {
             localStorage.setItem("choosed_course", JSON.stringify(course));
           }}
         >
-          سجل الآن
+          {t("p_10")}
         </Link>
-        <p className="text-base lg:text-xl mt-3 text-[#555555]">
-          المقاعد محدودة - احجز مقعدك الآن!
-        </p>
+        <p className="text-base lg:text-xl mt-3 text-[#555555]">{t("p_11")}</p>
       </div>
     </section>
   ) : null;

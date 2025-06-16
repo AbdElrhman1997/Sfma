@@ -1,9 +1,10 @@
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 const AlertSection = () => {
   const lang = useLocale();
+  const t = useTranslations("");
 
   return (
     <section
@@ -25,15 +26,14 @@ const AlertSection = () => {
         {/* Content */}
         <div className="text-start">
           <h1 className="text-lg lg:text-2xl font-bold">
-            هل تمثل شركة تقدم خدمات في إدارة المرافق؟
+            {t("facilities.question")}
           </h1>
           <h3 className="my-3 text-base lg:text-lg leading-8">
-            يمكنك التواصل معنا لإدراج شركتك ضمن دليل مزوّدي الخدمات المعتمدين من
-            جمعية إدارة المرافق السعودية.
+            {t("facilities.description")}
           </h3>
           <Link href={`/${lang}/about`}>
             <button className="text-[13px] lg:text-base bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white font-semibold py-2 lg:py-3 px-4 lg:px-6 rounded-lg hover:bg-[var(--second_main)]/90 transition duration-200">
-              تواصل معنا
+              {t("facilities.contact_us")}
             </button>
           </Link>
         </div>

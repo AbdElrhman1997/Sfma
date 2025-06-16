@@ -8,6 +8,7 @@ import "./globals.css";
 import { Cairo } from "next/font/google";
 import Footer from "./Components/Footer";
 import Image from "next/image";
+import LanguageSwitcher from "./Components/LanguageSwitcher";
 
 const cairo = Cairo({
   subsets: ["latin", "arabic"], // Supports Arabic & Latin characters
@@ -40,6 +41,7 @@ export default async function LocaleLayout({
           <NavBar />
           <div className="lg:min-h-[450px] min-h-[300px]">{children}</div>
           <Footer />
+          <LanguageSwitcher />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,120 +1,108 @@
 "use client";
+
 import { useState } from "react";
 import Select from "react-select";
+import { useTranslations } from "next-intl";
 
 const Filters = () => {
-  const categories: any = [
+  const t = useTranslations();
+
+  const categories = [
     {
-      value: "دورات تدريبية",
-      label: "دورات تدريبية",
+      value: t("categories.training_courses"),
+      label: t("categories.training_courses"),
     },
     {
-      value: "ورش عمل",
-      label: "ورش عمل",
+      value: t("categories.workshops"),
+      label: t("categories.workshops"),
     },
   ];
+
+  const paths = [
+    {
+      value: t("paths.all_paths"),
+      label: t("paths.all_paths"),
+    },
+    {
+      value: t("paths.safety_path"),
+      label: t("paths.safety_path"),
+    },
+    {
+      value: t("paths.environment_path"),
+      label: t("paths.environment_path"),
+    },
+  ];
+
+  const attendance_state = [
+    {
+      value: t("attendance_state.both"),
+      label: t("attendance_state.both"),
+    },
+    {
+      value: t("attendance_state.in_person"),
+      label: t("attendance_state.in_person"),
+    },
+    {
+      value: t("attendance_state.online"),
+      label: t("attendance_state.online"),
+    },
+  ];
+
+  const cities = [
+    {
+      value: t("cities.all_cities"),
+      label: t("cities.all_cities"),
+    },
+    {
+      value: t("cities.riyadh"),
+      label: t("cities.riyadh"),
+    },
+    {
+      value: t("cities.jeddah"),
+      label: t("cities.jeddah"),
+    },
+    {
+      value: t("cities.dammam"),
+      label: t("cities.dammam"),
+    },
+  ];
+
   const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const paths: any = [
-    {
-      value: "عرض جميع المسارات",
-      label: "عرض جميع المسارات",
-    },
-    {
-      value: "مسار الأمن والسلامة",
-      label: "مسار الأمن والسلامة",
-    },
-    {
-      value: "مسار الحفاظ على البيئة",
-      label: "مسار الحفاظ على البيئة",
-    },
-  ];
   const [selectedPath, setSelectedPath] = useState(null);
-
-  const attendace_state: any = [
-    {
-      value: "حضوري - أون لاين",
-      label: "حضوري - أون لاين",
-    },
-    {
-      value: "حضوري",
-      label: "حضوري",
-    },
-    {
-      value: "أون لاين",
-      label: "أون لاين",
-    },
-  ];
-  const [selectedAttendaceState, setSelectedAttendaceState] = useState(null);
-
-  const citicies: any = [
-    {
-      value: "جميع المدن",
-      label: "جميع المدن",
-    },
-    {
-      value: "الرياض",
-      label: "الرياض",
-    },
-    {
-      value: "جدة",
-      label: "جدة",
-    },
-    {
-      value: "الدمام",
-      label: "الدمام",
-    },
-  ];
-  const [selectedCiticies, setSelectedCiticies] = useState(null);
+  const [selectedAttendanceState, setSelectedAttendanceState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   return (
     <section className="container mx-auto mt-8">
       <div className="flex flex-wrap gap-x-3 justify-center mt-7 mb-3">
         <Select
-          options={categories.map((cat) => ({
-            value: cat.value,
-            label: cat.label,
-          }))}
-          placeholder={"دورات تدريبية"}
-          onChange={(option) => {
-            setSelectedCategory(option);
-          }}
+          options={categories}
+          placeholder={t("placeholders.category")}
+          onChange={(option) => setSelectedCategory(option)}
           className="md:w-[24%] w-full md:mb-0 mb-2"
           isClearable
         />
+
         <Select
-          options={attendace_state.map((cat) => ({
-            value: cat.value,
-            label: cat.label,
-          }))}
-          placeholder={"حضوري - أون لاين"}
-          onChange={(option) => {
-            setSelectedPath(option);
-          }}
+          options={attendance_state}
+          placeholder={t("placeholders.attendance")}
+          onChange={(option) => setSelectedAttendanceState(option)}
           className="md:w-[24%] w-full md:mt-0 mt-4 md:mb-0 mb-2"
           isClearable
         />
+
         <Select
-          options={citicies.map((cat) => ({
-            value: cat.value,
-            label: cat.label,
-          }))}
-          placeholder={"جميع المدن"}
-          onChange={(option) => {
-            setSelectedAttendaceState(option);
-          }}
+          options={cities}
+          placeholder={t("placeholders.city")}
+          onChange={(option) => setSelectedCity(option)}
           className="md:w-[24%] w-full md:mt-0 mt-4 md:mb-0 mb-2"
           isClearable
         />
+
         <Select
-          options={paths.map((cat) => ({
-            value: cat.value,
-            label: cat.label,
-          }))}
-          placeholder={"عرض جميع المسارات"}
-          onChange={(option) => {
-            setSelectedCiticies(option);
-          }}
+          options={paths}
+          placeholder={t("placeholders.path")}
+          onChange={(option) => setSelectedPath(option)}
           className="md:w-[24%] w-full md:mt-0 mt-4 md:mb-0 mb-2"
           isClearable
         />

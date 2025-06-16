@@ -77,12 +77,10 @@ const NewsSection = ({ from_home }) => {
                       <h3 className="text-lg font-bold leading-tight text-[#555555]">
                         {item?.title}
                       </h3>
-                      <p className="truncate overflow-hidden whitespace-nowrap max-h-14">
-                        <div
-                          className="text-[#636363] mt-2 "
-                          dangerouslySetInnerHTML={{ __html: item?.content }}
-                        />
-                      </p>
+                      <div
+                        className="text-[#636363] mt-2 truncate overflow-hidden whitespace-nowrap max-h-14"
+                        dangerouslySetInnerHTML={{ __html: item?.content }}
+                      />
                       <Link
                         href={`/${lang}/news/${item?.id}`}
                         className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
@@ -112,7 +110,7 @@ const NewsSection = ({ from_home }) => {
                 href={`/${lang}/news`}
                 className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
               >
-                قراءة المزيد
+                {t("read_more")}
               </Link>
             ) : null}
           </div>

@@ -1,38 +1,46 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function LanguageSwitcher() {
-  const locale = useLocale(); // 'en' or 'ar'
-  const pathname = usePathname(); // e.g., /about, /contact
+const LanguageSwitcher = () => {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
 
-  const targetLocale = locale === "ar" ? "en" : "ar";
+  useEffect(() => {
+    setMounted(true); // Avoid hydration issues
+  }, []);
 
-  // Adjust the path to use the new locale
-  const pathWithoutLocale = pathname.replace(/^\/(ar|en)/, "");
-  const newPath = `/${targetLocale}${pathWithoutLocale}`;
+  const toggleLanguage = () => {
+    const newLocale = locale === "ar" ? "en" : "ar";
+    const segments = pathname.split("/");
+    segments[1] = newLocale;
+    const newPath = segments.join("/");
+    router.push(newPath);
+  };
 
-  const flagSrc =
-    locale === "ar"
-      ? "/images/logos/united-kingdom.svg"
-      : "/images/logos/saudi-arabia.svg";
+  if (!mounted) return null;
+
+  const getLabelAndFlag = () => {
+    return locale === "ar"
+      ? { label: "English", flag: "🇺🇸" }
+      : { label: "العربية", flag: "🇸🇦" };
+  };
+
+  const { label, flag } = getLabelAndFlag();
 
   return (
-    <Link
-      href={newPath}
-      locale={undefined} // Important for custom locale handling
-      className="relative w-9 h-9 grid place-items-center rounded-full"
+    <button
+      onClick={toggleLanguage}
+      className="fixed bottom-4 right-4 z-50 bg-[var(--main)] cursor-pointer text-white px-4 py-2 rounded-full shadow-lg transition-all text-sm font-semibold flex items-center gap-2"
     >
-      <Image
-        src={flagSrc}
-        alt="Change Language"
-        width={40}
-        height={40}
-        className="object-contain"
-      />
-    </Link>
+      <span className="text-lg">{flag}</span>
+      {label}
+    </button>
   );
-}
+};
+
+export default LanguageSwitcher;

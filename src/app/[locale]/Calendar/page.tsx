@@ -18,7 +18,7 @@ const Page = async ({ params }) => {
     <section className="" dir={locale == "en" ? "ltr" : "rtl"}>
       <Filters />
       <p className="text-[#555555] font-bold lg:mt-7 mt-3 text-center lg:text-xl text-base">
-        اضغط على الدورة اللي ترغب فيها لمزيد من التفاصيل
+        {t("instruction")}
       </p>
 
       <div className="grid grid-cols-4 container mx-auto lg:mt-9 mt-5 relative">

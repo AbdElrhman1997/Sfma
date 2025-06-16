@@ -12,7 +12,7 @@ const Page = async ({ params }) => {
   const t = createTranslator({
     locale,
     messages,
-    namespace: "Training",
+    namespace: "",
   });
 
   return (
@@ -31,12 +31,11 @@ const Page = async ({ params }) => {
             </div>
           </div>
           <div className="lg:text-start text-center container mx-auto h-52 md:h-60 lg:h-72 xl:min-h-80 flex flex-col justify-center">
-            <p className="text-lg md:text-2xl lg:text-4xl font-bold ">
-              مزوّدي الخدمات
+            <p className="text-lg md:text-2xl lg:text-4xl font-bold">
+              {t("providers.title")}
             </p>
             <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
-              استعرض الشركات المتخصصة في خدمات إدارة المرافق، مصنّفة حسب مجال
-              الخدمة
+              {t("providers.subtitle")}
             </p>
           </div>
         </div>

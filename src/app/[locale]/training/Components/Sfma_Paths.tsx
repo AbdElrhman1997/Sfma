@@ -69,7 +69,7 @@ export default function Sfma_Paths() {
 
       <Link href={`/${lang}/paths/${path?.id}`} className="inline-block">
         <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-          تصفح الدورات
+          {t("read_more_2")}
         </div>
       </Link>
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const CalenderSection = () => {
-  const t = useTranslations("HomePage.AdsSection");
+  const t = useTranslations("common");
   const lang = useLocale();
 
   return (
@@ -17,7 +17,7 @@ const CalenderSection = () => {
         } text-center text-7xl font-semibold`}
         dir={lang == "en" ? "ltr" : "rtl"}
       >
-        التقويم
+        {t("Calender")}
       </div>
     </section>
   );

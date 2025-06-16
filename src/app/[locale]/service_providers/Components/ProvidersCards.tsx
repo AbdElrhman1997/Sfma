@@ -1,5 +1,5 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ const ProvidersCards = () => {
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
   const isEmpty = !loadingContent && content.length === 0;
+  const t = useTranslations("common");
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -61,7 +62,7 @@ const ProvidersCards = () => {
               href={`/${lang}/service_providers/${item?.id}`}
               className="block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-[6px] rounded-lg font-semibold md:min-w-[250px] min-w-full mx-auto mt-4"
             >
-              عرض التفاصيل
+              {t("show_details")}
             </Link>
           </div>
         );

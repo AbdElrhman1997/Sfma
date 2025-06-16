@@ -5,14 +5,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 const BannerSection = () => {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const lang = useLocale();
-
+  const t = useTranslations();
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -89,7 +89,7 @@ const BannerSection = () => {
               <div className="container relative z-50 pt-16 pb-6">
                 <div className="text-white xl:text-start text-center">
                   <div className="md:mt-8 xl:mt-10 mb-3 2xl:mb-5 xl:mx-0 mx-auto bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-5 px-3 lg:py-2 py-1 rounded-lg font-semibold 2xl:text-lg xl:text-sm text-[13px]">
-                    فعاليات SFMA
+                    {t("common.sfma_events")}
                   </div>
                   <h2 className="lg:text-4xl md:text-2xl text-xl font-bold xl:max-w-7/12 2xl:max-w-9/12 w-full lg:leading-14 leading-8">
                     {banner?.title}

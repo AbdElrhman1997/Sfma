@@ -1,5 +1,81 @@
 {
+  "common": {
+    "sfma_events": "SFMA Events",
+    "instruction": "Click on the course you are interested in for more details",
+    "resume": "Professional biography",
+    "learn_more": "Learn more about trainer",
+    "no_image": "No images available",
+    "members_images": "Members Images",
+    "members_images_2": "Board Members",
+    "members_images_3": "General Assembly Members",
+    "latest_updates_title": "The Latest Updates from SFMA and the Facilities Management Sector",
+    "latest_updates_description": "Discover the latest SFMA news and key developments in the facilities management field—always stay at the heart of what's happening",
+    "search": "search",
+    "show_details": "Show details",
+    "training_schedule_title": "June Training Schedule",
+    "training_schedule_description": "Click on the course or workshop you’re interested in for more details",
+    "view_2025_schedule": "View 2025 Training Schedule",
+    "title": "Towards a more efficient future, we equip you with the tools for success!",
+    "description": "We offer specialized and comprehensive training programs that provide you with the modern practical skills and tools to achieve success and excellence in facility management, under the supervision of elite certified trainers with extensive experience in the field.",
+    "Calender": "Calender",
+    "training_team": "Training team",
+    "p_1": "Presented by the Saudi Facility Management Association",
+    "p_2": "Register for the course now!",
+    "p_3": "Course Overview:",
+    "p_4": "Learning Objectives:",
+    "p_5": "Course Contents:",
+    "p_6": "Upcoming Course Dates:",
+    "p_7": "Certificates:",
+    "p_8": "Includes training materials and accredited certificates",
+    "p_9": "Group discounts available",
+    "p_10": "Register Now",
+    "p_11": "Limited seats – reserve yours now!",
+    "p_12": "Register for the workshop now!",
+    "p_13": "About the Workshop",
+    "p_14": "Workshop Topics",
+    "p_15": "Register for the Workshop Now",
+    "p_16": "seat only",
+    "p_17": "remaining",
+    "title_2": "Workshops",
+    "description_2": "SFMA offers practical workshops focusing on hands-on skills and specialized areas in facility management.",
+    "see": "show details",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": ""
+  },
+  "NewsletterSection": {
+    "title": "Subscribe to the Newsletter",
+    "button": "Subscribe"
+  },
+  "serviceProviders": {
+    "title": "Certified Service Providers",
+    "description": "Discover service providers contributing to the professional community in specialized fields",
+    "read_more": "Read More",
+    "show_more": "Show More Service Providers"
+  },
+  "memberships": {
+    "title": "SFMA Memberships",
+    "description": "Explore our diverse memberships for individuals, companies, and volunteers, and be part of our professional community",
+    "institutions": "Institutional Memberships",
+    "individuals": "Individual Memberships",
+    "volunteers": "Volunteer Memberships",
+    "read_more": "Read More"
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "We provide integrated solutions to support you in achieving the highest levels of efficiency and professionalism.",
+    "training": "Training & Development",
+    "memberships": "Memberships",
+    "reports": "Reports & Studies",
+    "events": "Events Management",
+    "consulting": "Consulting"
+  },
   "HomePage": {
+    "career_growth": "Develop your career at an unprecedented speed",
+    "achieve_goals": "And achieve your goals more efficiently!",
     "AboutSection": {
       "title": "About SFMA",
       "description": "The Saudi Facilities Management Association (SFMA) is a non-profit organization established on 1441/11/9 AH, corresponding to 2020/6/30 AD, under the supervision of the Ministry of Human Resources and Social Development. It aims to promote the concept of facilities management as a key partner in achieving the Kingdom’s Vision 2030, through a comprehensive strategic plan that seeks to achieve inclusive and sustainable development, through effective partnerships between the public and private sectors and the third sector, to support national development in all aspects of facilities management and its diverse services.",
@@ -28,7 +104,9 @@
       "location": "Riyadh International Convention & Exhibition Center",
       "date": "From August 24 to 26, 2025",
       "visit_site": "Visit the official event site",
-      "read_more": "Read More"
+      "read_more": "Read More",
+      "show_details": "Show details",
+      "show_events": "Show all events"
     },
     "AdsSection": {
       "title": "Advertisement Space",
@@ -44,6 +122,12 @@
       "title_placeholder": "Launching new initiatives and developing innovative strategies to enhance efficiency...",
       "description_placeholder": "Lorem Ipsum is a dummy text used in designs to show the client how it will look...",
       "read_more": "Read More"
+    },
+    "NewsSection2": {
+      "title": "Latest Articles & Updates",
+      "description": "Follow the latest articles highlighting modern facility management concepts and techniques",
+      "read_more": "Read More",
+      "more": "More Articles"
     }
   },
   "AboutPage": {
@@ -235,16 +319,246 @@
     "individuals": "Individuals",
     "consultants": "Consultants",
     "volunteers": "Volunteers",
+    "service_providers": "Service Providers",
     "data_center": "Knowledge Center",
     "copyright": "All rights reserved SFMA.SA",
     "footer_p_1": "Saudi Facilities Management Association,",
     "footer_p_2": "a professional entity contributing to the development of the facilities management sector in the Kingdom",
     "contact_info": "Contact Info",
-    "address": "Riyadh - Kingdom of Saudi Arabia"
+    "address": "Riyadh - Kingdom of Saudi Arabia",
+    "title": "Training and Courses",
+    "training_courses": "Training Courses",
+    "calendar": "SFMA Course Schedule",
+    "certified_trainers": "Certified Trainers",
+    "certificate_verification": "Certificate Verification",
+    "membership_verification": "Membership Verification"
   },
   "Training": {
-    "title": "مسارات التدريب التي تقدمها SFMA",
-    "sub_title": "ارتقِ بمهاراتك مع برامج تدريبية متخصصة في إدارة المرافق وفق أحدث المعايير العالمية"
+    "title": "Training Paths Offered by SFMA",
+    "sub_title": "Enhance your skills with specialized training programs in facilities management according to the latest global standards",
+    "read_more": "Read More",
+    "read_more_2": "Show Courses",
+    "course_details": "Course details",
+    "path_courses": "Path courses",
+    "next_courses": "Next courses"
   },
-  "Paths": {}
+  "Paths": {},
+  "our_message": {
+    "title": "Our Message",
+    "subtitle": "We are committed to empowering the facilities management sector through education, professional development, and strategic partnerships.",
+    "content": "The Saudi Facilities Management Association (SFMA) strives to empower the facilities management sector in the Kingdom of Saudi Arabia by providing a supportive environment for education and professional development, building strategic partnerships with relevant entities, and delivering high-quality services to its members, aiming to enhance the level of services provided in facilities and contribute to sustainable development."
+  },
+  "our_tasks": {
+    "title": "Our Tasks",
+    "subtitle": "The association seeks to advance the facilities management sector through skill development and enhancing professional competence.",
+    "content": "The Saudi Facilities Management Association is a professional association aimed at developing and enhancing the level of workers in the facilities management sector. Its tasks include establishing foundations and standards for practicing the profession and developing them, including licensing conditions, setting rules and exams required for obtaining professional certificates, preparing studies and research, organizing courses, holding seminars and conferences related to the profession, as well as providing consultations. Ultimately, we will be the hub for all facilities management professionals."
+  },
+  "our_vision": {
+    "title": "Our Vision",
+    "description": "The destination for facilities management experts and success partners in Saudi Arabia",
+    "content": "To be the primary reference in the Kingdom of Saudi Arabia for enhancing the efficiency and effectiveness of facilities management, contributing to the realization of Vision 2030 by advancing the facilities management sector and offering best global practices. This includes building a comprehensive professional community that supports innovation and sustainability, facilitates knowledge sharing and expertise exchange, and improves the quality of facilities, boosts performance, and strengthens the sector's competitiveness locally and globally."
+  },
+  "months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  },
+  "categories": {
+    "training_courses": "Training Courses",
+    "workshops": "Workshops"
+  },
+  "paths": {
+    "all_paths": "Show All Paths",
+    "safety_path": "Safety and Security Path",
+    "environment_path": "Environment Preservation Path"
+  },
+  "attendance_state": {
+    "both": "In-person - Online",
+    "in_person": "In-person",
+    "online": "Online"
+  },
+  "cities": {
+    "all_cities": "All Cities",
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "dammam": "Dammam"
+  },
+  "placeholders": {
+    "category": "Training Courses",
+    "attendance": "In-person - Online",
+    "city": "All Cities",
+    "path": "Show All Paths"
+  },
+  "certificate_verification": {
+    "certificate_verification_title": "Certificate Verification",
+    "certificate_verification_description": "Enter your certificate serial number to verify its status",
+    "certificate_label": "Enter Certificate Number",
+    "verify_button": "Verify",
+    "contact_text": "Having issues? Contact us via",
+    "contact_email": "info@sfma.sa"
+  },
+  "membership_verification": {
+    "membership_verification": "Membership Verification",
+    "enter_serial_instruction": "Enter your membership serial number to check its status",
+    "enter_membership_number": "Enter Membership Number",
+    "verify_button": "Verify",
+    "valid_certificate": "Valid Certificate",
+    "name": "Name",
+    "certificate_type": "Certificate Type",
+    "issue_date": "Issue Date",
+    "contact_support": "Having trouble? Contact us via"
+  },
+  "ConsultationSection": {
+    "title": "Professional Consultation Service",
+    "description": "The Saudi Facility Management Association offers specialized consulting services to help individuals and organizations develop effective and sustainable facility management solutions. Whether you're representing a government entity, a company, or looking to improve your work environment — our experts are ready to support you.",
+    "button": "Request a Consultation"
+  },
+  "ConsultationAlert": {
+    "title": "Ready to connect with an expert?",
+    "description": "Our team of experts is ready to help you develop innovative and sustainable facility management solutions.",
+    "button": "Contact Us"
+  },
+  "Consultation": {
+    "HowWeHelp": {
+      "title": "How We Help You",
+      "subtitle": "Our integrated consulting approach ensures sustainable and effective solutions",
+      "steps": {
+        "1": {
+          "title": "Understanding Your Needs",
+          "description": "We begin with a detailed session to understand your challenges and the goals you want to achieve in facility management."
+        },
+        "2": {
+          "title": "Identifying the Right Solutions",
+          "description": "Our expert team develops tailored solutions to meet your unique needs, aligned with global best practices."
+        },
+        "3": {
+          "title": "Providing Ongoing Support",
+          "description": "Our role doesn't end with delivering solutions — we continue to support and follow up to ensure successful implementation."
+        }
+      }
+    }
+  },
+  "Blogs": {
+    "job_details": "Job Details",
+    "job_description": "Job Description",
+    "job_tasks": "Tasks and Responsibilities",
+    "job_requirements": "Required Qualifications",
+    "working_hours": "Working Hours",
+    "contract_duration": "Contract Duration",
+    "salary": "Salary",
+    "work_location": "Work Location",
+    "contact_employer": "Contact the Employer",
+    "company_website": "Company Website",
+    "company_email": "Company Email",
+    "company_phone": "Company Phone",
+    "about_company": "About the Company",
+    "full_time": "Full Time",
+    "posted_on": "Posted on"
+  },
+  "event_planning": {
+    "title": "Event Planning Service",
+    "description": "The Saudi Facilities Management Association has extensive experience in planning and executing all types of events, including conferences, exhibitions, workshops, and seminars. We provide comprehensive solutions to manage your event from idea to completion.",
+    "card_1_title": "Comprehensive Planning & Execution",
+    "card_1_desc": "We handle all stages of the event with precision and high professionalism.",
+    "card_2_title": "Specialized Event Management Team",
+    "card_2_desc": "Our team manages all event stages with utmost precision and professionalism.",
+    "card_3_title": "Top Standard Event Organization",
+    "card_3_desc": "We adhere to global quality standards in event management.",
+    "cta": "Request Event Planning"
+  },
+  "job": {
+    "full_time": "Full Time",
+    "posted_on": "Posted on",
+    "details": "Job Details",
+    "work_hours": "Work Hours",
+    "contract_duration": "Contract Duration",
+    "salary": "Salary",
+    "location": "Location",
+    "description": "Job Description",
+    "tasks": "Responsibilities",
+    "requirements": "Requirements",
+    "contact_employer": "Contact Employer",
+    "about_company": "About the Company"
+  },
+  "Payment": {
+    "title": "Choose Payment Method",
+    "subtitle": "Please select the appropriate method to complete the payment",
+    "bank_transfer": "Bank Transfer",
+    "direct_bank_transfer": "Direct bank transfer to SFMA account",
+    "receipt_required": "Payment receipt must be uploaded to complete the process",
+    "upload_receipt": "Upload Payment Receipt",
+    "drag_or_click": "Drag files here or",
+    "click_to_upload": "click to choose a file",
+    "file_hint": "PDF or JPG (Max 5MB)",
+    "complete_payment": "Complete Payment"
+  },
+  "RegistrationStatus": {
+    "failed_title": "Registration Failed",
+    "success_title": "Registration Successful",
+    "registered_in": "You have registered for",
+    "course": "Course"
+  },
+  "filters": {
+    "all": "Show All",
+    "facility_management": "Facility Management",
+    "security": "Security & Guarding",
+    "cleaning": "Cleaning",
+    "maintenance": "Maintenance & Operations",
+    "logistics": "Logistics Transport",
+    "contracting": "Contracting & Technical Services",
+    "consulting": "Consulting",
+    "energy_management": "Energy Management",
+    "environmental": "Environmental & Waste Services",
+    "other_services": "Other Services",
+    "search": "Search"
+  },
+  "facilities": {
+    "question": "Do you represent a company that provides facility management services?",
+    "description": "You can contact us to have your company listed in the directory of certified service providers by the Saudi Facility Management Association.",
+    "contact_us": "Contact Us"
+  },
+  "providers": {
+    "title": "Service Providers",
+    "subtitle": "Browse companies specialized in facility management services, categorized by service area"
+  },
+  "company": {
+    "about": "About the Company",
+    "services": "Provided Services",
+    "visit_website": "Visit Website",
+    "full_time": "Full Time",
+    "contact_employer": "Contact Employer"
+  },
+  "course_registration": {
+    "title": "Course Registration",
+    "subtitle": "Please fill in the form below to reserve your spot in the upcoming course.",
+    "attendance_type": "Attendance Type",
+    "attendance_offline": "On-site Attendance (3,000 SAR)",
+    "attendance_online": "Online Attendance (1,500 SAR)",
+    "select_city": "Select City",
+    "cities": {
+      "riyadh": "Riyadh",
+      "jeddah": "Jeddah",
+      "dammam": "Dammam"
+    },
+    "discount_code": "Discount Code (if any)",
+    "apply": "Apply",
+    "terms_note": "I agree to the",
+    "terms_link": "Association's Terms and Conditions",
+    "start_date": "Course Start Date:",
+    "course_fee": "Course Fee:",
+    "discount": "Discount:",
+    "amount_due": "Amount Due:",
+    "confirm_and_continue": "Confirm Details and Proceed to Payment",
+    "after_payment_note": "This course will be added to your profile under “My Courses” after successful payment.",
+    "online_note": "A link will be sent after registration."
+  }
 }

@@ -3,21 +3,15 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const MangementMemberships = () => {
+const CertifiedTrainers = () => {
   const lang = useLocale();
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
-  const [activeTab, setActiveTab] = useState("board");
   const t = useTranslations();
-
-  const tabs = [
-    { id: 1, name: "board", label: t("common.members_images_2") },
-    { id: 2, name: "general_assembly", label: t("common.members_images_3") },
-  ];
 
   useEffect(() => {
     const fetchSinglePath = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}members/get-members?type=${activeTab}`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}courses/get-instructors`;
       try {
         setLoadingContent(true);
         const res = await fetch(apiUrl, {
@@ -37,14 +31,14 @@ const MangementMemberships = () => {
     };
 
     fetchSinglePath();
-  }, [lang, activeTab]);
+  }, [lang]);
 
-  const Card = ({ membership }) => {
+  const Card = ({ trainer }) => {
     return (
       <div className="bg-[#F6F6F6] shadow lg:col-span-1 md:col-span-2 col-span-3 border-b-4 border-[var(--second_main)] rounded-lg px-4 text-center">
         <div className="w-32 border-2 border-[var(--second_main)] rounded-lg mx-auto -translate-y-7">
           <img
-            src={`${membership?.image}`}
+            src={`${process.env.NEXT_PUBLIC_URL}${trainer?.user?.logo}`}
             alt="About Us"
             width={500}
             height={500}
@@ -52,13 +46,10 @@ const MangementMemberships = () => {
           />
         </div>
         <p className="text-[#555555] font-bold text-xl mt-3 -translate-y-6">
-          {membership?.name}
-        </p>
-        <p className="text-[#555555] text-base mt-1 mb-3 -translate-y-6">
-          {membership?.position}
+          {trainer?.user?.name}
         </p>
         <Link
-          href={`/${lang}/structure/${activeTab}/${membership?.id}`}
+          href={`/${lang}/certified_trainers/${trainer?.id}`}
           className="block cursor-pointer mx-auto hover:opacity-85 -translate-y-6 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-4 py-[6px] rounded-lg font-semibold text-[15px]"
         >
           {t("common.learn_more")}
@@ -69,24 +60,6 @@ const MangementMemberships = () => {
 
   return (
     <section dir={lang == "en" ? "ltr" : "rtl"}>
-      <h2 className="lg:text-3xl text-xl  font-bold text-[#1DAEE5] mb-4 text-center mt-6">
-        {t("common.members_images")}
-      </h2>
-      <div className="flex border-gray-200 flex-wrap mb-6 justify-center gap-3">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            className={`py-2 px-4 font-bold focus:outline-none rounded-md min-w-[14rem] cursor-pointer  ${
-              activeTab === tab.name
-                ? "bg-[#61B8A0] text-white "
-                : "text-black bg-[#D9D9D9] hover:text-gray-700"
-            }`}
-            onClick={() => setActiveTab(tab.name)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
       {loadingContent ? (
         <div className="flex flex-wrap justify-center gap-6">
           {[1, 2, 3].map((index) => (
@@ -105,8 +78,8 @@ const MangementMemberships = () => {
         </div>
       ) : content?.length ? (
         <div className="grid grid-cols-3 gap-x-8 gap-y-16 container mx-auto lg:mt-24 mt-16 mb-12">
-          {content?.map((membership, index) => (
-            <Card key={membership?.id} membership={membership} />
+          {content?.map((trainer, index) => (
+            <Card key={trainer?.id} trainer={trainer} />
           ))}
         </div>
       ) : (
@@ -118,4 +91,4 @@ const MangementMemberships = () => {
   );
 };
 
-export default MangementMemberships;
+export default CertifiedTrainers;

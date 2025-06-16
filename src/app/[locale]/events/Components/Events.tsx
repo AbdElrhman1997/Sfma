@@ -8,7 +8,7 @@ const Events = () => {
   const lang = useLocale();
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
-
+  const t = useTranslations("HomePage.ActivitiesSection");
   useEffect(() => {
     const fetcEvents = async () => {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}sfma-events/get-sfma-events?is_featured=0`;
@@ -51,10 +51,10 @@ const Events = () => {
     <section className="container mx-auto">
       <div>
         <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center mt-9">
-          فعاليات SFMA
+          {t("title")}
         </h2>
         <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4">
-          كن جزءًا من أهم الأحداث في مجال إدارة المرافق
+          {t("description")}
         </p>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 justify-center items-center pt-4">
@@ -128,7 +128,7 @@ const Events = () => {
                 className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
               >
                 <span className="lg:text-base text-[14px] font-bold">
-                  عرض التفاصيل
+                  {t("show_details")}
                 </span>
                 <div className={`${lang == "en" ? "rotate-y-180" : ""}`}>
                   <Image
@@ -148,7 +148,7 @@ const Events = () => {
         href={`/${lang}/events/all`}
         className="cursor-pointer block mx-auto hover:opacity-85 mt-8 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
       >
-        عرض جميع الفعاليات
+        {t("show_events")}
       </Link>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -9,6 +9,7 @@ const SinglePath = ({ translation, id }) => {
   const dir = lang === "en" ? "ltr" : "rtl";
   const [path, setPath]: any = useState({});
   const [loadingPath, setLoadingPath] = useState(false);
+  const t = useTranslations("Training");
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -63,7 +64,7 @@ const SinglePath = ({ translation, id }) => {
         {/* Course Details Link */}
         <Link href={`/${lang}/training/${course?.id}`} className="inline-block">
           <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-            تفاصيل الدورة
+            {t("course_details")}
           </div>
         </Link>
       </div>
@@ -98,12 +99,11 @@ const SinglePath = ({ translation, id }) => {
       {/* Courses Section */}
       <div dir={dir} className="p-0 mt-8">
         <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
-          دورات المسار
+          {t("path_courses")}
         </h2>
 
         <div className="flex flex-wrap justify-center gap-6 mt-9">
           {path?.course?.map((course) => {
-            console.log(course);
             return renderPathCard(course);
           })}
         </div>

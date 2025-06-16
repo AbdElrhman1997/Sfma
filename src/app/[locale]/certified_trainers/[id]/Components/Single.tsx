@@ -7,10 +7,9 @@ const Single = ({ id }) => {
   const [content, setContent]: any = useState({});
   const [loadingContent, setLoadingContent] = useState(false);
   const t = useTranslations();
-
   useEffect(() => {
     const fetchSinglePath = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}members/get-member-details/${id}`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}courses/get-instructor-details?instructor_id=${id}`;
       try {
         setLoadingContent(true);
         const res = await fetch(apiUrl, {
@@ -37,7 +36,7 @@ const Single = ({ id }) => {
       <div className="bg-[#F6F6F6] lg:max-w-2/3 mx-auto shadow flex items-center justify-start lg:col-span-1 md:col-span-2 col-span-3 rounded-md text-center lg:p-6 p-4">
         <div className="lg:w-32 w-28 border-2 border-[var(--second_main)] rounded-lg">
           <img
-            src={`${content?.image}`}
+            src={`${process.env.NEXT_PUBLIC_URL}${content?.user?.logo}`}
             alt="About Us"
             width={500}
             height={500}
@@ -45,8 +44,12 @@ const Single = ({ id }) => {
           />
         </div>
         <div className="ms-4">
-          <p className="font-bold lg:text-xl text-base">{content?.name}</p>
-          <p className="lg:text-base text-[13px] mt-1">{content?.position}</p>
+          <p className="font-bold lg:text-xl text-base">
+            {content?.user?.name}
+          </p>
+          <p className="lg:text-base text-[13px] mt-1">
+            {content?.user?.job_title}
+          </p>
         </div>
       </div>
       <div className="lg:max-w-2/3 mx-auto">

@@ -1,11 +1,12 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 
 const Single = ({ id }) => {
   const lang = useLocale();
   const [content, setContent]: any = useState({});
   const [loadingContent, setLoadingContent] = useState(false);
+  const t = useTranslations();
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -49,7 +50,8 @@ const Single = ({ id }) => {
         </div>
       </div>
       <div className="lg:max-w-2/3 mx-auto">
-        <p className="font-bold mt-5 mb-2">السيرة المهنية</p>
+        <p className="font-bold mt-5 mb-2">{t("common.resume")}</p>
+
         {/* <p>{content?.bio}</p> */}
         <div
           className="text-justify font-semibold lg:text-base text-[13px]"
