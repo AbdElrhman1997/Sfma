@@ -79,6 +79,11 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
           icon: <FaChalkboardTeacher />,
         },
         {
+          href: "exams",
+          label: "الإختبارات",
+          icon: <FaChalkboardTeacher />,
+        },
+        {
           href: "certified_trainers",
           label: t("CertifiedTrainers"),
           icon: <FaUsersCog />,

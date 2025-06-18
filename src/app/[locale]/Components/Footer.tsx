@@ -118,6 +118,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  href={`/${lang}/exams`}
+                  className="block text-white hover:text-[#ffffffdc]"
+                >
+                  الاختبارات
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${lang}/certified_trainers`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >

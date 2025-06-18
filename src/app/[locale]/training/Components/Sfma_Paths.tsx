@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Sfma_Paths() {
-  const t = useTranslations("Training");
+  const t = useTranslations("Exams");
   const lang = useLocale();
 
   const [loadingPaths, setLoadingPaths] = useState(false);

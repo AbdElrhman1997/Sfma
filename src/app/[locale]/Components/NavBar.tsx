@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import Image from "next/image";
 import MobileNav from "./MobileNav";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,7 @@ const mainLinks = [
       { href: "training", label: "الدورات التدريبية" },
       { href: "Calendar", label: "جدول دورات SFMA" },
       { href: "workshops", label: "ورش العمل" },
+      { href: "exams", label: "الإختبارات" },
       { href: "certified_trainers", label: "مدربونا المعتمدون" },
       { href: "certificate_verification", label: "التحقق من الشهادات" },
     ],
@@ -151,14 +152,6 @@ const NavBar = () => {
         <div className="hidden lg:flex items-center gap-2 text-sm">
           {isAuthenticated ? (
             <>
-              <div className="relative grid place-items-center rounded-full">
-                <div
-                  onClick={() => setLang(lang === "en" ? "ar" : "en")}
-                  className="hover:text-primary cursor-pointer"
-                >
-                  <GrLanguage className="text-xl text-[var(--main)]" />
-                </div>
-              </div>
               <div className="relative w-7 h-7 bg-[var(--main)] p-2 grid place-items-center rounded-full">
                 <Link
                   href={`/${lang}/notifications`}
