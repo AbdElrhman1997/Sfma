@@ -144,12 +144,14 @@ const Events = () => {
           </div>
         ))}
       </div>
-      <Link
-        href={`/${lang}/events/all`}
-        className="cursor-pointer block mx-auto hover:opacity-85 mt-8 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
-      >
-        {t("show_events")}
-      </Link>
+      {content?.length > 3 ? (
+        <Link
+          href={`/${lang}/events/all`}
+          className="cursor-pointer block mx-auto hover:opacity-85 mt-8 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+        >
+          {t("show_events")}
+        </Link>
+      ) : null}
     </section>
   );
 };

@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const SinglePath = ({ translation, id }) => {
   const lang = useLocale();
@@ -39,7 +39,7 @@ const SinglePath = ({ translation, id }) => {
     return (
       <div
         key={course?.id}
-        className="group bg-white relative rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300"
+        className="group bg-white relative rounded-lg shadow-md text-center h-fit hover:scale-105 transition duration-300"
       >
         {/* Course Image and Title */}
         <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
@@ -70,6 +70,13 @@ const SinglePath = ({ translation, id }) => {
       </div>
     );
   };
+
+  const gridClass = useMemo(() => {
+    if (!path?.course?.length) return "grid grid-cols-1";
+    return path?.course.length === 1
+      ? "grid grid-cols-1"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12 gap-8";
+  }, [path?.course]);
 
   return !loadingPath ? (
     <div className="min-h-screen container mx-auto">
@@ -102,10 +109,16 @@ const SinglePath = ({ translation, id }) => {
           {t("path_courses")}
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-6 mt-9">
-          {path?.course?.map((course) => {
-            return renderPathCard(course);
-          })}
+        <div
+          className={
+            gridClass + " justify-center items-stretch mb-10 container mx-auto"
+          }
+        >
+          <div className="flex flex-wrap justify-center gap-6 mt-9">
+            {path?.course?.map((course) => {
+              return renderPathCard(course);
+            })}
+          </div>
         </div>
       </div>
     </div>

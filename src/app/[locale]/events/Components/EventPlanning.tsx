@@ -38,7 +38,7 @@ const EventPlanning = () => {
         <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center mt-9">
           {t("title")}
         </h2>
-        <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4">
+        <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4 lg:max-w-2/3 lg:mx-auto">
           {t("description")}
         </p>
       </div>

@@ -118,7 +118,7 @@ export default function WorkshopPage() {
         />
       </div>
 
-      <div className="p-4 text-[#555555] text-start">
+      <div className="py-4 px-1 text-[#555555] text-start">
         <h3 className="text-lg font-bold leading-tight">{workshop?.title}</h3>
 
         <div className="flex gap-x-7">

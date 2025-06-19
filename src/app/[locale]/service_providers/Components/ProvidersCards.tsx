@@ -2,7 +2,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ProvidersCards = () => {
   const lang = useLocale();
@@ -10,10 +10,16 @@ const ProvidersCards = () => {
   const [loadingContent, setLoadingContent] = useState(false);
   const isEmpty = !loadingContent && content.length === 0;
   const t = useTranslations("common");
+  const [search, setSearch] = useState("");
+  const textInput: any = useRef("textInput");
 
   useEffect(() => {
     const fetchSinglePath = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-providers`;
+      const apiUrl = `${
+        process.env.NEXT_PUBLIC_API_URL
+      }service-provider/get-service-providers${
+        search ? `?search=${search}` : ""
+      }`;
       try {
         setLoadingContent(true);
         const res = await fetch(apiUrl, {
@@ -33,14 +39,30 @@ const ProvidersCards = () => {
     };
 
     fetchSinglePath();
-  }, [lang]);
+  }, [lang, search]);
 
   return (
     <section className="flex flex-wrap gap-y-8 lg:gap-x-8 gap-x-0">
+      <div className="lg:w-1/2 w-[97%] shadow flex absolute -top-24 left-1/2 -translate-x-1/2 z-10 bg-white p-3 rounded-lg justify-between items-center gap-3">
+        <input
+          type="text"
+          placeholder="ابحث بإسم الشركة"
+          className="bg-[#F6F6F6] text-black placeholder:text-[#8D99AE] outline-0 border-[1px] border-[#EDEDED] p-2 rounded-xl w-full lg:text-base text-[13px]"
+          ref={textInput}
+        />
+        <div
+          className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-12 px-6 py-[6px] rounded-lg font-semibold lg:text-base text-[13px]"
+          onClick={(e) => {
+            setSearch(textInput.current.value);
+          }}
+        >
+          بحث
+        </div>
+      </div>
       {content?.map((item) => {
         return (
           <div
-            className="bg-[#F6F6F6] shadow w-fit p-4 text-center lg:max-w-[30%] max-w-full mx-auto"
+            className="bg-[#F6F6F6] shadow-lg w-fit p-4 text-center lg:max-w-[30%] max-w-full mx-auto"
             key={item.id}
           >
             <div className="bg-white p-3 border-[1px] rounded-xl border-[var(--second_main)] w-fit mx-auto">

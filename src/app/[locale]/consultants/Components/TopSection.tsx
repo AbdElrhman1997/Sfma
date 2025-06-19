@@ -20,7 +20,7 @@ const TopSection = () => {
         <p className="text-black text-justify lg:mb-6 mb-2 lg:leading-8">
           {t("description")}
         </p>
-        <Link href={`/${lang}/about`} className="block">
+        <Link href={`mailto:example@sfma.xom`} className="block">
           <button className="lg:text-lg text-[13px] bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white font-semibold lg:py-3 py-2 lg:px-4 px-3 rounded-lg hover:bg-[var(--second_main)]/90 transition duration-200 cursor-pointer">
             {t("button")}
           </button>

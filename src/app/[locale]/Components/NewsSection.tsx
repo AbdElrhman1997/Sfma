@@ -1,4 +1,5 @@
 "use client";
+import { formatDate } from "@/utils/formatDate";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import React, { useEffect, useState } from "react";
 const NewsSection = ({ from_home }) => {
   const t = useTranslations("HomePage.NewsSection");
   const lang = useLocale();
-  const [content, setContent]: any = useState([]);
+  const [content, setContent] = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
 
   useEffect(() => {
@@ -40,8 +41,8 @@ const NewsSection = ({ from_home }) => {
     <>
       {content?.length ? (
         <section
-          className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto text-start mt-6`}
-          dir={lang == "en" ? "ltr" : "rtl"}
+          className={`flex flex-col items-center justify-between gap-8 container mx-auto text-start mt-6`}
+          dir={lang === "en" ? "ltr" : "rtl"}
         >
           <div className="w-full flex flex-col justify-center">
             {from_home ? (
@@ -57,53 +58,55 @@ const NewsSection = ({ from_home }) => {
               </div>
             ) : null}
 
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center pt-4">
-              {content?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md"
-                  >
-                    <div className="w-full">
-                      <img
-                        src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.thumbnail_image}`}
-                        alt="About Us"
-                        width={500}
-                        height={400}
-                        className="w-full max-h-[300px] object-cover rounded-lg"
-                      />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-stretch pt-4">
+              {content?.map((item, index) => (
+                <div
+                  key={index}
+                  className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md transform transition-all hover:scale-105"
+                >
+                  {!from_home ? (
+                    <div className="absolute top-4 right-4 z-50 bg-[var(--main)] text-white px-5 py-3 rounded-full shadow-lg transition-all text-sm font-semibold flex items-center gap-2">
+                      {formatDate(item?.created_at)}
                     </div>
-                    <div className="p-4">
-                      <h3 className="text-lg font-bold leading-tight text-[#555555]">
-                        {item?.title}
-                      </h3>
-                      <div
-                        className="text-[#636363] mt-2 truncate overflow-hidden whitespace-nowrap max-h-14"
-                        dangerouslySetInnerHTML={{ __html: item?.content }}
-                      />
-                      <Link
-                        href={`/${lang}/news/${item?.id}`}
-                        className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
-                      >
-                        <span className="text-lg font-bold">
-                          {t("read_more")}
-                        </span>
-                        <div
-                          className={`${lang == "en" ? "rotate-y-180" : ""}`}
-                        >
-                          <Image
-                            src="/images/logos/arrow-left.svg"
-                            alt="About Us"
-                            width={18}
-                            height={18}
-                            className=" rounded-lg mx-2"
-                          />
-                        </div>
-                      </Link>
-                    </div>
+                  ) : null}
+
+                  <div className="w-full">
+                    <img
+                      src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.thumbnail_image}`}
+                      alt={item?.title || "News Image"}
+                      width={500}
+                      height={400}
+                      className="w-full h-56 object-cover rounded-t-lg"
+                    />
                   </div>
-                );
-              })}
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold leading-tight text-[#555555] line-clamp-2">
+                      {item?.title}
+                    </h3>
+                    <div
+                      className="text-[#636363] mt-2 line-clamp-3"
+                      dangerouslySetInnerHTML={{ __html: item?.content }}
+                    />
+                    <Link
+                      href={`/${lang}/news/${item?.id}`}
+                      className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
+                    >
+                      <span className="text-lg font-bold">
+                        {t("read_more")}
+                      </span>
+                      <div className={`${lang === "en" ? "rotate-y-180" : ""}`}>
+                        <Image
+                          src="/images/logos/arrow-left.svg"
+                          alt="Arrow"
+                          width={18}
+                          height={18}
+                          className="rounded-lg mx-2"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
             {from_home ? (
               <Link

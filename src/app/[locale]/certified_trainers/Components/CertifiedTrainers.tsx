@@ -45,7 +45,7 @@ const CertifiedTrainers = () => {
             className="w-full h-auto object-cover rounded-lg "
           />
         </div>
-        <p className="text-[#555555] font-bold text-xl mt-3 -translate-y-6">
+        <p className="text-[#555555] font-bold text-xl my-3 -translate-y-6">
           {trainer?.user?.name}
         </p>
         <Link

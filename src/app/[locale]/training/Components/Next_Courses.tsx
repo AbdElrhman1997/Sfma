@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function Next_Courses() {
   const t = useTranslations("Training");
@@ -52,37 +52,45 @@ export default function Next_Courses() {
     ));
 
   const renderCourseCard = (course) => (
-    <div className="flex flex-wrap justify-center gap-6 mt-9">
-      <div className="group bg-white relative rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300">
-        <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
-          <img
-            src={`${process.env.NEXT_PUBLIC_URL}${course?.image}`}
-            alt={course?.name}
-            className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-          />
-          <p className="relative font-bold mt-[26px] mb-5 text-black">
-            {course?.title}
-          </p>
-        </div>
-        <div className="absolute top-0 start-0 -translate-5 bg-[var(--main)] text-white py-2 px-4 rounded-lg">
-          {new Date(course.date_from).getDate()} -{" "}
-          {new Date(course.date_to).getDate()}{" "}
-          {new Date(course.date_from).toLocaleDateString("ar-EG", {
-            month: "long",
-          })}
-        </div>
-
-        <Link href={`/${lang}/training/${course?.id}`} className="inline-block">
-          <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-            {t("read_more_2")}
-          </div>
-        </Link>
+    <div className="group bg-white relative rounded-lg shadow-md text-center h-fit hover:scale-105 transition duration-300">
+      <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
+        <img
+          src={`${process.env.NEXT_PUBLIC_URL}${course?.image}`}
+          alt={course?.name}
+          className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
+        />
+        <p className="relative font-bold mt-[26px] mb-5 text-black">
+          {course?.title}
+        </p>
       </div>
+      <div className="absolute top-0 start-0 -translate-5 bg-[var(--main)] text-white py-2 px-4 rounded-lg">
+        {new Date(course.date_from).getDate()} -{" "}
+        {new Date(course.date_to).getDate()}{" "}
+        {new Date(course.date_from).toLocaleDateString("ar-EG", {
+          month: "long",
+        })}
+      </div>
+
+      <Link href={`/${lang}/training/${course?.id}`} className="inline-block">
+        <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
+          {t("read_more_3")}
+        </div>
+      </Link>
     </div>
   );
 
+  const gridClass = useMemo(() => {
+    if (!content?.length) return "grid grid-cols-1";
+    return content.length === 1
+      ? "grid grid-cols-1"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12 gap-8";
+  }, [content]);
+
   return (
-    <div dir={lang === "en" ? "ltr" : "rtl"} className="p-0 mt-8">
+    <div
+      dir={lang === "en" ? "ltr" : "rtl"}
+      className="p-0 lg:mt-8 mt-4 container mx-auto"
+    >
       <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("next_courses")}
       </h2>
@@ -90,14 +98,20 @@ export default function Next_Courses() {
         {t("sub_title")}
       </p>
 
-      <div className="flex flex-wrap justify-center gap-6 mb-10">
+      <div
+        className={
+          gridClass + " justify-center items-stretch mb-10 container mx-auto"
+        }
+      >
         {loadingPaths ? (
           renderLoadingCards()
         ) : (
           <>
-            {content?.map((course) => {
-              return renderCourseCard(course);
-            })}
+            {content?.map((course, index) => (
+              <div key={index} className="flex justify-center mt-6">
+                {renderCourseCard(course)}
+              </div>
+            ))}
           </>
         )}
       </div>

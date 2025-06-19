@@ -1,4 +1,6 @@
 "use client";
+import { getVideoId } from "@/utils/getVideoId";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Video_Library = ({ translation, lang }) => {
@@ -59,23 +61,35 @@ const Video_Library = ({ translation, lang }) => {
                 </div>
               ))
             : content?.map((video, index) => (
-                <div
+                <Link
                   key={index}
-                  className="md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg max-w-[330px] hover:scale-105 hover:opacity-85 hover:border-[#1DAEE5] cursor-pointer transition duration-300"
+                  href={`${video?.vedio_url}`}
+                  target="_blank"
+                  className="block md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg max-w-[330px] hover:scale-105 hover:opacity-85 hover:border-[#1DAEE5] cursor-pointer transition duration-300"
                 >
-                  <div className="w-full h-56 bg-gray-200">
-                    <iframe
-                      className="w-full h-full"
-                      src={getEmbedUrl(video?.vedio_url)}
-                      title={video?.name || `video-${index}`}
-                      allowFullScreen
-                    ></iframe>
+                  <div className="w-full h-56 bg-gray-200 relative">
+                    <img
+                      src={`https://img.youtube.com/vi/${getVideoId(
+                        video?.vedio_url
+                      )}/hqdefault.jpg`}
+                      alt={video?.name || `video-${index}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg
+                        className="w-16 h-16 text-white bg-black bg-opacity-50 rounded-full p-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
                   <div className="p-4">
                     <p className="text-gray-800 font-bold">{video?.name}</p>
                     <p className="text-sm mt-2">{video?.description}</p>
                   </div>
-                </div>
+                </Link>
               ))}
         </div>
 

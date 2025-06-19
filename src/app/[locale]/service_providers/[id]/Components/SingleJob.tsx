@@ -69,9 +69,6 @@ const SingleJob = ({ id }) => {
             >
               {t("company.visit_website")}
             </a>
-            <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-              {t("company.full_time")}
-            </div>
           </div>
         </div>
       </div>
@@ -100,46 +97,55 @@ const SingleJob = ({ id }) => {
           </div>
         </div>
         <div className="lg:col-span-5 col-span-12">
-          <div className=" shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10">
+          <div className=" shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10 border-[1.5px] border-[var(--second_main)]">
             <p className="font-bold lg:text-xl text-base">
               {t("company.contact_employer")}
             </p>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/website.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className=" lg:text-lg text-base">{content?.contact_person}</p>
-            </div>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/email.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className=" lg:text-lg text-base">{content?.email}</p>
-            </div>
-            <div className="flex items-center justify-start gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4">
-              <div className="w-6 ms-2">
-                <Image
-                  src={`/images/common/contact.png`}
-                  alt="About Us"
-                  width={50}
-                  height={50}
-                  className="w-full h-auto"
-                />
-              </div>
-              <p className=" lg:text-lg text-base">{content?.phone}</p>
-            </div>
+            {[
+              {
+                icon: "website",
+                text: content?.website,
+                link: content?.website ? `https://${content.website}` : null,
+              },
+              {
+                icon: "email",
+                text: content?.email,
+                link: content?.email ? `mailto:${content.email}` : null,
+              },
+              {
+                icon: "contact",
+                text: content?.phone,
+                link: content?.phone
+                  ? content.phone.includes("whatsapp")
+                    ? `https://wa.me/${content.phone.replace(/\D/g, "")}`
+                    : `tel:${content.phone.replace(/\D/g, "")}`
+                  : null,
+              },
+            ].map((item, idx) => {
+              return item?.link ? (
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 bg-[#DFDFDF] rounded-lg p-2 mt-4"
+                >
+                  <div className="w-6 ms-2">
+                    <Image
+                      src={`/images/common/${item.icon}.png`}
+                      alt="icon"
+                      width={50}
+                      height={50}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <Link
+                    href={item.link || ""}
+                    target="_blank"
+                    className="lg:text-lg text-base underline"
+                  >
+                    {item.text}
+                  </Link>
+                </div>
+              ) : null;
+            })}
           </div>
         </div>
       </div>

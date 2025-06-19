@@ -25,7 +25,9 @@ const TrainingPage = ({ translation, lang }) => {
         {t("training_schedule_description")}
       </p>
 
-      <CustomCalendar />
+      <div className="xl:px-28 lg:px-16 ">
+        <CustomCalendar />
+      </div>
 
       <Link
         href={`/${lang}/Calendar`}

@@ -1,5 +1,6 @@
 "use client"; // Required for client-side interactivity
 
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,7 @@ export default function Data_Library({ translation, lang }) {
     { id: 2, name: "articles", label: translation?.articles },
     { id: 3, name: "researches", label: translation?.research },
   ];
-
+  const t = useTranslations();
   useEffect(() => {
     const fetchBooks = async () => {
       setLoadingBooks(true);
@@ -84,25 +85,37 @@ export default function Data_Library({ translation, lang }) {
               key={book?.id}
               className="group bg-[#F6F6F6] p-4 rounded-lg shadow-md w-72 text-center h-fit hover:scale-105 transition duration-300"
             >
-              <div className=" transition-shadow duration-300 overflow-hidden rounded-lg">
+              <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
                 <img
                   src={`https://sfma.srv814693.hstgr.cloud/storage/${book?.image}`}
                   alt={book?.name}
                   className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                 />
-                <p className="relative font-bold mt-[26px] mb-5 min-h-[55px]">
+                <p className="relative font-bold mt-[26px] mb-5 min-h-[30px] line-clamp-2 text-ellipsis">
                   {book?.name}
                 </p>
               </div>
 
-              <Link
-                href={`/${lang}/data_library/${book?.id}`}
-                className="inline-block mt-2"
-              >
-                <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
-                  {translation.read_book}
-                </div>
-              </Link>
+              {activeTab == 3 ? (
+                <Link
+                  href={`https://sfma.srv814693.hstgr.cloud/storage/${book?.file}`}
+                  target="_blank"
+                  className="inline-block mt-2"
+                >
+                  <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
+                    {t("common.read")}
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  href={`/${lang}/data_library/${book?.id}`}
+                  className="inline-block mt-2"
+                >
+                  <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
+                    {translation.read_book}
+                  </div>
+                </Link>
+              )}
             </div>
           ))}
         </div>

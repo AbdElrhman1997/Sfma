@@ -81,7 +81,10 @@ const Single_Workshop = ({ translation, id }) => {
               {t("p_1")}
             </p>
             <div className="flex gap-4 mb-10">
-              <Link href={`/${lang}/events/all`} className="inline-block">
+              <Link
+                href={`/${lang}/workshops/workshop_register`}
+                className="inline-block"
+              >
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
                   {t("p_12")}
                 </div>
@@ -130,7 +133,7 @@ const Single_Workshop = ({ translation, id }) => {
         {workshop?.workshop_details ? (
           <div className="mt-6 lg:p-6 p-2">
             <p className="font-extrabold lg:text-xl mb-6"> {t("p_14")}</p>
-            <div className="flex justify-between flex-wrap gap-8">
+            <div className="flex justify-start flex-wrap xl:gap-16 gap-4">
               {workshop?.workshop_details?.map((workshop) => {
                 return (
                   <div className="flex gap-4" key={workshop?.id}>

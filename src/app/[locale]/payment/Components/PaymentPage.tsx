@@ -210,9 +210,12 @@ const PaymentPage = () => {
           </div>
         )}
       </div>
-      <button className="..." onClick={handleSubmit}>
+      <div
+        className="block mt-6 mx-auto cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-12 px-6 lg:py-2 py-[6px] rounded-lg font-semibold lg:text-base text-[12px]"
+        onClick={handleSubmit}
+      >
         {t("complete_payment")}
-      </button>
+      </div>
     </div>
   );
 };

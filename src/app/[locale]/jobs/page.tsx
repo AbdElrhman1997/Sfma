@@ -1,7 +1,6 @@
 import { createTranslator } from "next-intl";
 import Image from "next/image";
 import React from "react";
-import SearchBar from "./Components/SearchBar";
 import JobCards from "./Components/JobCards";
 import Link from "next/link";
 
@@ -40,7 +39,6 @@ const Page = async ({ params }) => {
         </div>
       </div>
       <div className="container mx-auto mt-16 relative">
-        <SearchBar />
         <JobCards />
       </div>
     </section>

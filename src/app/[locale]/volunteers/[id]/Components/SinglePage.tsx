@@ -1,14 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ContentCard from "./ContentCard";
+import { Link } from "@/i18n/navigation";
 
 const SinglePage = ({ id }) => {
   const locale = useLocale();
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+  const t = useTranslations();
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -39,7 +41,7 @@ const SinglePage = ({ id }) => {
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
       {/* Header Section */}
-      <div className="bg-white xl:mt-20 mt-12 -z-10 mb-20 xl:mb-20">
+      <div className="bg-white xl:mt-20 mt-12 -z-10 mb-10 xl:mb-20">
         <div className="flex items-center justify-between text-white relative">
           {/* Left Side */}
           <div className="md:text-2xl text-[13px] font-bold bg-[#21B6E4] w-full p-4 py-6 text-center">
@@ -52,7 +54,7 @@ const SinglePage = ({ id }) => {
             style={{ zIndex: 1 }}
           >
             <img
-              src={`https://just.isamstore.com/storage/${content?.icon}`}
+              src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.icon}`}
               alt="Consultant Badge"
               width={180}
               height={180}
@@ -61,15 +63,17 @@ const SinglePage = ({ id }) => {
           </div>
 
           {/* Right Side */}
-          <div className="md:text-2xl text-[13px] font-bold bg-[#21B6E4] text-white w-full p-4 py-6 md:text-center text-left">
-            {content?.price}{" "}
-            <span className="md:text-xl text-[11px] font-semibold">ر.س</span>
-          </div>
+          {content?.price && (
+            <div className="md:text-2xl text-[13px] font-bold bg-[#21B6E4] text-white w-full p-4 py-6 md:text-center text-left">
+              {content?.price}{" "}
+              <span className="md:text-xl text-[11px] font-semibold">ر.س</span>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Details Section */}
-      <div className="container mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-6 gap-x-0 gap-y-12 justify-between mb-14">
+      <div className="container mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-6 gap-x-0 gap-y-6 justify-between xl:mb-14 mb-10">
         {content?.details?.map((content, index) => (
           <React.Fragment key={index}>
             <ContentCard subscription={content} lang={locale} id={id} />
@@ -103,6 +107,18 @@ const SinglePage = ({ id }) => {
           </div>
         )}
       </div>
+      <Link
+        href={`/${locale}/membership_register`}
+        className="block mx-auto xl:mt-6 mt-3 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-sm"
+      >
+        {t("Institutions.membership_register")}
+      </Link>
+      <Link
+        href={`/${locale}/terms`}
+        className="block mx-auto my-2 underline text-[#555555] text-center"
+      >
+        {t("Institutions.terms")}
+      </Link>
     </div>
   );
 };

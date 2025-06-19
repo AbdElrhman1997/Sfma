@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-const Institutions = ({ translation, lang }) => {
+const Individuals = ({ translation, lang }) => {
   const skeletons = Array.from({ length: 3 });
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
@@ -42,7 +42,7 @@ const Institutions = ({ translation, lang }) => {
         <h2 className="md:text-[26px] text-[22px] font-bold text-[#1DAEE5] mb-1 text-center">
           {translation.title}
         </h2>
-        <h3 className="md:text-[16px] text-[14px] font-semibold mb-4 text-center">
+        <h3 className="md:text-[16px] text-[14px] font-semibold mb-4 text-center lg:max-w-2/3 lg:mx-auto">
           {translation.sub_title}
         </h3>
 
@@ -83,4 +83,4 @@ const Institutions = ({ translation, lang }) => {
   );
 };
 
-export default Institutions;
+export default Individuals;

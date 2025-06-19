@@ -253,7 +253,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
       {/* Overlay to close sidebar */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
+          className="fixed inset-0 bg-black opacity-50 z-40 lg:hidden"
           onClick={() => setIsOpen(false)}
         ></div>
       )}

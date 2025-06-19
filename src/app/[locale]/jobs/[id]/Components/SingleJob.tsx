@@ -1,6 +1,7 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const SingleJob = ({ id }) => {
@@ -129,15 +130,33 @@ const SingleJob = ({ id }) => {
 
         {/* معلومات الشركة */}
         <div className="lg:col-span-5 col-span-12">
-          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10">
+          <div className="shadow bg-[#F6F6F6] rounded-lg px-6 py-4 lg:mt-0 mt-10 border-[1.5px] border-[var(--second_main)]">
             <p className="font-bold lg:text-xl text-base">
               {t("contact_employer")}
             </p>
 
             {[
-              { icon: "website", text: job?.company_website },
-              { icon: "email", text: job?.company_email },
-              { icon: "contact", text: job?.company_phone },
+              {
+                icon: "website",
+                text: job?.company_website,
+                link: job?.company_website
+                  ? `https://${job.company_website}`
+                  : null,
+              },
+              {
+                icon: "email",
+                text: job?.company_email,
+                link: job?.company_email ? `mailto:${job.company_email}` : null,
+              },
+              {
+                icon: "contact",
+                text: job?.company_phone,
+                link: job?.company_phone
+                  ? job.company_phone.includes("whatsapp")
+                    ? `https://wa.me/${job.company_phone.replace(/\D/g, "")}`
+                    : `tel:${job.company_phone.replace(/\D/g, "")}`
+                  : null,
+              },
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -152,7 +171,13 @@ const SingleJob = ({ id }) => {
                     className="w-full h-auto"
                   />
                 </div>
-                <p className="lg:text-lg text-base">{item.text}</p>
+                <Link
+                  href={item.link || ""}
+                  target="_blank"
+                  className="lg:text-lg text-base underline"
+                >
+                  {item.text}
+                </Link>
               </div>
             ))}
           </div>

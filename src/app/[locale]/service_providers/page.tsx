@@ -4,7 +4,6 @@ import React from "react";
 import AlertSection from "./Components/AlertSection";
 import SideBarFilter from "./Components/SideBarFilter";
 import ProvidersCards from "./Components/ProvidersCards";
-import SearchBar from "./Components/SearchBar";
 
 const Page = async ({ params }) => {
   const { locale } = params;
@@ -41,11 +40,10 @@ const Page = async ({ params }) => {
         </div>
       </div>
       <div className="grid grid-cols-4 container mx-auto mt-16 relative">
-        <SearchBar />
-        <div className="lg:col-span-1">
+        <div className="xl:col-span-1">
           <SideBarFilter />
         </div>
-        <div className="lg:col-span-3 col-span-4">
+        <div className="xl:col-span-3 col-span-4">
           <ProvidersCards />
         </div>
         <div className="col-span-4">

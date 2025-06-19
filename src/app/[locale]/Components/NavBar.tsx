@@ -80,8 +80,8 @@ const NavBar = () => {
 
   const renderDropdown = (items: any[]) => (
     <div
-      className="absolute top-[140%] left-1/2 -translate-x-1/2 w-64 bg-white shadow-2xl rounded-xl border border-gray-100 
-        transition-all duration-300 ease-out animate-dropdown z-40"
+      className="absolute top-[140%] left-1/2 w-64 bg-white shadow-2xl rounded-xl border border-gray-100 
+    transition-all duration-200 ease-in-out animate-dropdown z-40"
     >
       {/* Arrow */}
       <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l-2 border-t-2 border-gray-100" />
@@ -124,11 +124,10 @@ const NavBar = () => {
             link.dropdown ? (
               <li
                 key={link.label}
-                className="relative"
-                onMouseEnter={() => setActive(link.label)}
-                onMouseLeave={() => setActive(null)}
+                className="relative cursor-pointer"
+                onClick={() => toggleDropdown(link.label)}
               >
-                <button className="flex items-center gap-1 text-gray-800 hover:text-primary transition">
+                <button className="flex items-center gap-1 text-gray-800 hover:text-primary cursor-pointer">
                   {t(link.label)} <FaChevronDown size={12} />
                 </button>
                 {active === link.label && renderDropdown(link.dropdown)}

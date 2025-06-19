@@ -1,4 +1,5 @@
 "use client";
+import { formatDate } from "@/utils/formatDate";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
@@ -31,14 +32,6 @@ const SingleNew = ({ id }) => {
     fetchSinglePath();
   }, [lang]);
 
-  const formatDate = (isoDate) => {
-    const date = new Date(isoDate);
-    const day = date.getUTCDate().toString().padStart(2, "0");
-    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
-    const year = date.getUTCFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
   return (
     <div className="container mx-auto p-6 rounded-lg my-6">
       {/* Header */}
@@ -47,7 +40,14 @@ const SingleNew = ({ id }) => {
       </h1>
 
       {/* Date and Location */}
-      <div className="flex justify-start lg:text-lg text-[14px] text-gray-600 lg:my-6 my-2">
+      <div className="flex justify-start lg:text-lg text-[14px] text-gray-600 lg:my-6 my-2 gap-3">
+        <img
+          src={`/images/logos/Date_Icon.png`}
+          alt="About Us"
+          width={50}
+          height={50}
+          className="w-6 h-auto object-cover"
+        />
         <span>{formatDate(content?.created_at)}</span>
       </div>
 

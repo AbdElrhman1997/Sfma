@@ -34,7 +34,7 @@ const Single = ({ translation, id }) => {
   }, [lang, id]);
 
   return !loadingContent ? (
-    <div className="min-h-screen container mx-auto">
+    <div className="container mx-auto">
       <div className="flex flex-col md:flex-row w-full rounded-lg overflow-hidden pt-16 pb-12">
         {/* Left Section: Book Cover */}
         <div className="md:w-1/3 w-full">
@@ -76,25 +76,6 @@ const Single = ({ translation, id }) => {
           </Link>
         </div>
       </div>
-      <Link
-        href={`https://sfma.srv814693.hstgr.cloud/storage/${content?.file}`}
-        target="_blank"
-      >
-        <div
-          className="relative w-[300px] h-[450px] bg-cover bg-center mx-auto mb-16"
-          style={{
-            backgroundImage: content?.image
-              ? `url(https://sfma.srv814693.hstgr.cloud/storage/${content?.image})`
-              : "url(https://sfma.srv814693.hstgr.cloud/storage/fallback-image.jpg)",
-          }}
-        >
-          <div className="absolute inset-0 bg-[#00000092] flex items-center justify-center cursor-pointer">
-            <h2 className="text-3xl font-bold text-white">
-              {translation.show_book}
-            </h2>
-          </div>
-        </div>
-      </Link>
     </div>
   ) : (
     <div className="h-[70vh]"></div>

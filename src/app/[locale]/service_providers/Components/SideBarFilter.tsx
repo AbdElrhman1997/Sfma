@@ -5,75 +5,44 @@ import React, { useState, useEffect } from "react";
 
 const SideBarFilter = () => {
   const [selectedCategory, setSelectedCategory] = useState(1);
-  const t = useTranslations("filters");
-  const [filter_list, set_filter_list] = useState([
-    {
-      id: 1,
-      name: t("filters.all"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 2,
-      name: t("filters.facility_management"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 3,
-      name: t("filters.security"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 4,
-      name: t("filters.cleaning"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 5,
-      name: t("filters.maintenance"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 6,
-      name: t("filters.logistics"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 7,
-      name: t("filters.contracting"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 8,
-      name: t("filters.consulting"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 9,
-      name: t("filters.energy_management"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 10,
-      name: t("filters.environmental"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-    {
-      id: 11,
-      name: t("filters.other_services"),
-      icon_src: `/images/common/providers_icon_2.png`,
-    },
-  ]);
+  const [filterList, setFilterList] = useState([]);
+  const lang = useTranslations();
+  const t = useTranslations("");
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-categories`;
+      try {
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": "ar",
+          },
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setFilterList(data?.data || {});
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, [lang]);
 
   const handleCategoryClick = async (item) => {
     setSelectedCategory(item.id);
     try {
-      const response = await fetch("/api/filter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ categoryId: item.id }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-providers`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ category_id: item.id }),
+        }
+      );
       if (!response.ok) {
         console.error("Failed to post category ID to backend");
       }
@@ -87,8 +56,8 @@ const SideBarFilter = () => {
   }, [selectedCategory]);
 
   return (
-    <section className="lg:flex hidden flex-col gap-3 bg-[#F6F6F6] shadow w-fit p-4">
-      {filter_list.map((item) => (
+    <section className="xl:flex hidden flex-col gap-3 bg-[#F6F6F6] shadow w-fit p-4">
+      {filterList?.map((item) => (
         <div
           key={item.id}
           className={`rounded-lg flex items-center gap-x-3 w-fit py-3 px-5 min-w-[250px] cursor-pointer hover:opacity-80 ${
@@ -98,24 +67,6 @@ const SideBarFilter = () => {
           }`}
           onClick={() => handleCategoryClick(item)}
         >
-          <div className="w-[20px]">
-            {/* {item.icon ? (
-              <div>{item.icon}</div>
-            ) : ( */}
-            <Image
-              src={item.icon_src}
-              alt={item.name}
-              width={20}
-              height={20}
-              style={{
-                filter:
-                  selectedCategory === item.id
-                    ? "brightness(0) invert(1)"
-                    : "none",
-              }}
-            />
-            {/* )} */}
-          </div>
           <p className="font-semibold">{item.name}</p>
         </div>
       ))}

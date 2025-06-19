@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ImageSlider from "./ImageSlider";
+import { formatDate } from "@/utils/formatDate";
 
 const SingleEvent = ({ id }) => {
   const lang = useLocale();
@@ -37,31 +38,6 @@ const SingleEvent = ({ id }) => {
     fetchSinglePath();
   }, [lang]);
 
-  const formatDate = (isoDate) => {
-    if (!isoDate) return "";
-    const date = new Date(isoDate);
-    const day = date.getUTCDate();
-    const months = [
-      "يناير",
-      "فبراير",
-      "مارس",
-      "أبريل",
-      "مايو",
-      "يونيو",
-      "يوليو",
-      "أغسطس",
-      "سبتمبر",
-      "أكتوبر",
-      "نوفمبر",
-      "ديسمبر",
-    ];
-
-    const monthName = months[date.getUTCMonth()];
-    const year = date.getUTCFullYear();
-
-    return `${day} ${monthName} ${year}`;
-  };
-
   const formatTime = (isoTime) => {
     const dateObj = new Date(isoTime);
     const hours = dateObj.getUTCHours();
@@ -71,23 +47,16 @@ const SingleEvent = ({ id }) => {
 
   return (
     <section className="" dir={lang == "en" ? "ltr" : "rtl"}>
-      <div className="container mx-auto">
-        <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold mt-12">
+      <div className="container mx-auto lg:text-start text-center">
+        <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold lg:mt-12 mt-8">
           {content?.title}
         </h1>
         <div className="flex flex-wrap justify-between items-center">
-          <h3 className="lg:text-lg text-base text-[#555555] lg:mt-0 mt-4">
+          <h3 className="lg:text-lg text-base text-[#555555] mt-4">
             {content?.sub_title}
           </h3>
-          <Link
-            href={`${content?.event_url}`}
-            target="_blank"
-            className="block cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
-          >
-            زيارة الموقع الرسمي للفعالية
-          </Link>
         </div>
-        <div className="flex flex-wrap gap-x-7">
+        <div className="flex flex-wrap gap-x-7 lg:justify-start justify-center">
           <div className="flex items-center justify-start gap-3 mt-2">
             <div className="w-4">
               <Image
@@ -117,6 +86,15 @@ const SingleEvent = ({ id }) => {
             <p className=" lg:text-lg text-[12px] mt-2">{content?.address}</p>
           </div>
         </div>
+        {content?.event_url && (
+          <Link
+            href={`${content?.event_url}`}
+            target="_blank"
+            className="block cursor-pointer lg:-mx-0 mx-auto lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+          >
+            زيارة الموقع الرسمي للفعالية
+          </Link>
+        )}
       </div>
       <div className="bg-[#F6F6F6] py-8 lg:mt-10 mt-6">
         <p className="text-[var(--main)] text-center lg:text-3xl text-xl font-bold">
@@ -147,23 +125,27 @@ const SingleEvent = ({ id }) => {
       <div className="mt-8 container mx-auto">
         <ImageSlider images={content?.images} />
       </div>
-      <div className=" container mx-auto">
-        <iframe
-          src={getEmbedUrl(content?.video_url)}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className=" rounded-lg w-full md:w-1/2 lg:min-h-[350px] min-h-[230px] mx-auto"
-          style={{ display: "block" }}
-        ></iframe>
-      </div>
-      <Link
-        href={`${content?.event_url}`}
-        target="_blank"
-        className="block mx-auto cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
-      >
-        زيارة الموقع الرسمي للفعالية
-      </Link>
+      {content?.video_url && (
+        <div className=" container mx-auto">
+          <iframe
+            src={getEmbedUrl(content?.video_url)}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className=" rounded-lg w-full md:w-1/2 lg:min-h-[350px] min-h-[230px] mx-auto"
+            style={{ display: "block" }}
+          ></iframe>
+        </div>
+      )}
+      {content?.event_url && (
+        <Link
+          href={`${content?.event_url}`}
+          target="_blank"
+          className="block mx-auto cursor-pointer lg:text-base text-[12px] hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+        >
+          زيارة الموقع الرسمي للفعالية
+        </Link>
+      )}
     </section>
   );
 };

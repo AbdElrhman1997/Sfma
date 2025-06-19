@@ -42,12 +42,12 @@ const Volunteers = ({ translation, lang }) => {
         <h2 className="md:text-[26px] text-[22px] font-bold text-[#1DAEE5] mb-1 text-center">
           {translation.title}
         </h2>
-        <h3 className="md:text-[16px] text-[14px] font-semibold mb-4 text-center">
+        <h3 className="md:text-[16px] text-[14px] font-semibold mb-4 text-center lg:max-w-2/3 lg:mx-auto">
           {translation.sub_title}
         </h3>
 
         {/* Content Area */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-8 gap-y-8 mt-7 mb-3 text-start">
+        <div className="md:gap-x-8 gap-y-8 mt-7 mb-3 text-start mx-auto">
           {loadingContent
             ? skeletons.map((_, index) => (
                 <div
@@ -62,7 +62,7 @@ const Volunteers = ({ translation, lang }) => {
                 </div>
               ))
             : content?.map((subscription, index) => (
-                <div className="mt-12" key={index}>
+                <div className="xl:mt-18 mt-16" key={index}>
                   <Card
                     subscription={subscription}
                     lang={lang}
