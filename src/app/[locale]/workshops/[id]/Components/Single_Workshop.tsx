@@ -84,6 +84,12 @@ const Single_Workshop = ({ translation, id }) => {
               <Link
                 href={`/${lang}/workshops/workshop_register`}
                 className="inline-block"
+                onClick={() => {
+                  localStorage.setItem(
+                    "choosed_workshop",
+                    JSON.stringify(workshop)
+                  );
+                }}
               >
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
                   {t("p_12")}

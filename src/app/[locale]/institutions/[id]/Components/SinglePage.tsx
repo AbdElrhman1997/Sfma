@@ -11,6 +11,7 @@ const SinglePage = ({ id }) => {
   const [loadingContent, setLoadingContent] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const t = useTranslations();
+  const auth_token: any = localStorage.getItem("auth_token");
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -109,7 +110,10 @@ const SinglePage = ({ id }) => {
       </div>
 
       <Link
-        href={`/${locale}/membership_register`}
+        href={auth_token ? `/${locale}/membership-request` : `/${locale}/login`}
+        onClick={() => {
+          localStorage.setItem("choosed_membership", JSON.stringify(content));
+        }}
         className="block mx-auto xl:mt-6 mt-3 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-sm"
       >
         {t("Institutions.membership_register")}

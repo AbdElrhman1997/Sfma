@@ -2,14 +2,18 @@
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { any } from "zod";
 
-const Course_Register = ({ translation }) => {
+const Course_Register = () => {
   const lang = useLocale();
   const choosed_course: any = JSON.parse(
     localStorage.getItem("choosed_course")
   );
+  const auth_token: any = localStorage.getItem("auth_token");
   const [selectedValue, setSelectedValue] = useState("offline");
+  const router = useRouter();
 
   const payment_data = {
     type: "course",
@@ -25,7 +29,11 @@ const Course_Register = ({ translation }) => {
     },
     {
       title: "رسوم الدورة :",
-      desc: `${choosed_course?.online_price} ر.س`,
+      desc: `${
+        selectedValue == "offline"
+          ? choosed_course?.price
+          : choosed_course?.online_price
+      } ر.س`,
     },
     {
       title: "الخصم :",
@@ -35,7 +43,11 @@ const Course_Register = ({ translation }) => {
     },
     {
       title: "المبلغ المستحق :",
-      desc: `${choosed_course?.online_price} ر.س`,
+      desc: `${
+        selectedValue == "offline"
+          ? choosed_course?.price - choosed_course?.discounted_price
+          : choosed_course?.online_price - choosed_course?.discounted_price
+      } ر.س`,
     },
   ];
 
@@ -100,7 +112,7 @@ const Course_Register = ({ translation }) => {
                 />
                 <div className="-translate-y-1">
                   <p className="text-base lg:text-xl font-bold">
-                    حضور من المقر (3,000 ر.س)
+                    حضور من المقر ({choosed_course?.price} ر.س)
                   </p>
 
                   <div className="lg:mt-2 mt-1">
@@ -144,7 +156,7 @@ const Course_Register = ({ translation }) => {
                 />
                 <div className="-translate-y-1">
                   <p className="text-base lg:text-xl font-bold">
-                    حضور أونلاين (1,500 ر.س)
+                    حضور أونلاين ({choosed_course?.online_price} ر.س)
                   </p>
                   <p className="text-[#555555] lg:mt-2 mt-1 font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
                     سيتم إرسال رابط الحضور بعد التسجيل
@@ -170,55 +182,65 @@ const Course_Register = ({ translation }) => {
           </div>
         </div>
 
-        <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
-          <input type="checkbox" id="terms_checkbox" />
-          <label htmlFor="terms_checkbox">
-            أوافق على{" "}
-            <Link
-              href={`/${lang}/terms`}
-              className="text-[var(--main)] underline"
-            >
-              الشروط والأحكام الخاصة بالجمعية
-            </Link>{" "}
-          </label>
-        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // تمنع الفورم من الإرسال التلقائي
+            if (!document.getElementById("terms_checkbox")?.checked) {
+              alert("يرجى الموافقة على الشروط والأحكام أولاً");
+              return;
+            }
 
-        {/* Course Contents */}
-        <div className="mt-6">
-          <div className="bg-[#F6F6F6] p-6 flex flex-col items-center gap-6 mt-6 mb-8">
-            {courseContent.map((item, index) => (
-              <div
-                key={index}
-                className="bg-[#DFDFDF] lg:w-2/3 w-full  gap-3 px-2 lg:px-4 py-3 lg:py-5 rounded-lg flex justify-between"
-              >
-                <div className="text-[12px] md:text-lg lg:text-xl font-bold">
-                  {item.title}
-                </div>
-                <div className="text-[12px] md:text-lg lg:text-xl font-bold">
-                  {item.desc}
-                </div>
-              </div>
-            ))}
-            <div className="flex flex-col items-center  text-center">
+            localStorage.setItem("payment_data", JSON.stringify(payment_data));
+
+            router.push(
+              `${auth_token ? `/${lang}/payment` : `/${lang}/login`}`
+            );
+          }}
+        >
+          <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
+            <input type="checkbox" id="terms_checkbox" required />
+            <label htmlFor="terms_checkbox">
+              أوافق على{" "}
               <Link
-                href={`/${lang}/payment`}
-                className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
-                onClick={() => {
-                  localStorage.setItem(
-                    "payment_data",
-                    JSON.stringify(payment_data)
-                  );
-                }}
+                href={`/${lang}/terms`}
+                className="text-[var(--main)] underline"
               >
-                تأكيد البيانات والمتابعة للدفع
-              </Link>
-              <p className="text-[14px] lg:text-xl mt-3 text-[#555555]">
-                سيتم إضافة هذه الدورة إلى ملفك الشخصي ضمن قسم
-                &rdquo;دوراتي&rdquo; بعد إتمام الدفع بنجاح.
-              </p>
+                الشروط والأحكام الخاصة بالجمعية
+              </Link>{" "}
+            </label>
+          </div>
+
+          {/* Course Contents */}
+          <div className="mt-6">
+            <div className="bg-[#F6F6F6] p-6 flex flex-col items-center gap-6 mt-6 mb-8">
+              {courseContent.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-[#DFDFDF] lg:w-2/3 w-full  gap-3 px-2 lg:px-4 py-3 lg:py-5 rounded-lg flex justify-between"
+                >
+                  <div className="text-[12px] md:text-lg lg:text-xl font-bold">
+                    {item.title}
+                  </div>
+                  <div className="text-[12px] md:text-lg lg:text-xl font-bold">
+                    {item.desc}
+                  </div>
+                </div>
+              ))}
+              <div className="flex flex-col items-center  text-center">
+                <button
+                  type="submit"
+                  className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+                >
+                  تأكيد البيانات والمتابعة للدفع
+                </button>
+                <p className="text-[14px] lg:text-xl mt-3 text-[#555555]">
+                  سيتم إضافة هذه الدورة إلى ملفك الشخصي ضمن قسم
+                  &rdquo;دوراتي&rdquo; بعد إتمام الدفع بنجاح.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );

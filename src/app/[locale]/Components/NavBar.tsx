@@ -147,7 +147,7 @@ const NavBar = () => {
 
         {/* Mobile Menu Toggle */}
 
-        <MobileNav lang={lang} isAuthenticated={isAuthenticated} user={user} />
+        {/* <MobileNav lang={lang} isAuthenticated={isAuthenticated} user={user} /> */}
         <div className="hidden lg:flex items-center gap-2 text-sm">
           {isAuthenticated ? (
             <>

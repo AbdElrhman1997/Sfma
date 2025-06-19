@@ -16,7 +16,7 @@ export default async function Page({ params: { locale } }: any) {
 
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <Course_Register translation={{}} />
+      <Course_Register />
     </div>
   );
 }
