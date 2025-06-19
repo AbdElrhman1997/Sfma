@@ -73,7 +73,7 @@ const MembershipRequestPage = () => {
     files.forEach((file) => {
       formData.append("attachments", file);
     });
-    formData.append("agreed", true);
+    // formData.append("agreed", true);
 
     try {
       const res = await fetch(
@@ -213,10 +213,10 @@ const MembershipRequestPage = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault(); // تمنع الفورم من الإرسال التلقائي
-          if (!document.getElementById("terms_checkbox")?.checked) {
-            alert("يرجى الموافقة على الشروط والأحكام أولاً");
-            return;
-          }
+          // if (!document.getElementById("terms_checkbox")?.checked) {
+          //   alert("يرجى الموافقة على الشروط والأحكام أولاً");
+          //   return;
+          // }
 
           handleSubmit();
 

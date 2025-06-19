@@ -177,10 +177,6 @@ const Course_Register = ({ translation }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault(); // تمنع الفورم من الإرسال التلقائي
-            if (!document.getElementById("terms_checkbox")?.checked) {
-              alert("يرجى الموافقة على الشروط والأحكام أولاً");
-              return;
-            }
 
             localStorage.setItem("payment_data", JSON.stringify(payment_data));
 
