@@ -44,19 +44,18 @@ const SingleJob = ({ id }) => {
 
   return (
     <section className="container mx-auto" dir={lang === "en" ? "ltr" : "rtl"}>
-      <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold mt-12">
-        {job?.name}
-      </h1>
+      <div className="flex flex-wrap justify-between items-center  mt-12">
+        <div>
+          <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold">
+            {job?.name}
+          </h1>
 
-      <div className="flex flex-wrap justify-between items-center">
-        <h3 className="lg:text-lg text-base text-[#555555] lg:mt-0 mt-4">
-          {job?.company_name}
-        </h3>
+          <h3 className="lg:text-lg text-base text-[#555555] lg:mt-2 mt-4">
+            {job?.company_name}
+          </h3>
+        </div>
 
         <div className="flex items-center gap-4">
-          <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-            {t("full_time")}
-          </div>
           <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[#888888] to-[#555555] w-fit text-white px-3 py-2 rounded-lg font-semibold">
             {t("posted_on")} {formatDate(job?.created_at)}
           </div>

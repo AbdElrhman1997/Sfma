@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
@@ -8,43 +8,6 @@ import Image from "next/image";
 import MobileNav from "./MobileNav";
 import { useRouter } from "next/navigation";
 import { GrLanguage } from "react-icons/gr";
-
-const mainLinks = [
-  { href: "", label: "home" },
-  { href: "about", label: "about" },
-  {
-    label: "memberships",
-    dropdown: [
-      { href: "institutions", label: "عضويات المؤسسات" },
-      { href: "individuals", label: "عضويات الأفراد" },
-      { href: "volunteers", label: "عضويات المتطوعين" },
-      { href: "membership_verification", label: "التحقق من العضويات" },
-    ],
-  },
-  {
-    label: "training",
-    dropdown: [
-      { href: "training", label: "الدورات التدريبية" },
-      { href: "Calendar", label: "جدول دورات SFMA" },
-      { href: "workshops", label: "ورش العمل" },
-      { href: "exams", label: "الإختبارات" },
-      { href: "certified_trainers", label: "مدربونا المعتمدون" },
-      { href: "certificate_verification", label: "التحقق من الشهادات" },
-    ],
-  },
-  { href: "events", label: "actions" },
-  { href: "jobs", label: "jobs" },
-  { href: "service_providers", label: "service_providers" },
-  { href: "news", label: "news" },
-  { href: "consultants", label: "consultants" },
-  {
-    label: "library",
-    dropdown: [
-      { href: "data_library", label: "مكتبة الكتب" },
-      { href: "video_library", label: "مكتبة الفيديوهات" },
-    ],
-  },
-];
 
 const NavBar = () => {
   const t = useTranslations("NavBar");
@@ -54,6 +17,53 @@ const NavBar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const navRef = useRef(null);
+
+  const mainLinks = [
+    { href: "", label: t("home") },
+    { href: "about", label: t("about") },
+    {
+      label: t("memberships_2._"),
+      dropdown: [
+        { href: "institutions", label: t("memberships_2.institutions") },
+        { href: "individuals", label: t("memberships_2.individuals") },
+        { href: "volunteers", label: t("memberships_2.volunteers") },
+        {
+          href: "membership_verification",
+          label: t("memberships_2.verification"),
+        },
+      ],
+    },
+    {
+      label: t("training_2._"),
+      dropdown: [
+        { href: "training", label: t("training_2.courses") },
+        { href: "Calendar", label: t("training_2.calendar") },
+        { href: "workshops", label: t("training_2.workshops") },
+        { href: "exams", label: t("training_2.exams") },
+        { href: "certified_trainers", label: t("training_2.trainers") },
+        {
+          href: "certificate_verification",
+          label: t("training_2.cert_verification"),
+        },
+      ],
+    },
+    { href: "events", label: t("events") },
+    { href: "jobs", label: t("jobs") },
+    {
+      href: "service_providers",
+      label: t("service_providers"),
+    },
+    { href: "news", label: t("news") },
+    { href: "consultants", label: t("consultants") },
+    {
+      label: t("library_2._"),
+      dropdown: [
+        { href: "data_library", label: t("library_2.books") },
+        { href: "video_library", label: t("library_2.videos") },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user_name");
@@ -71,11 +81,6 @@ const NavBar = () => {
 
   const toggleDropdown = (key: string) => {
     setActive(active === key ? null : key);
-  };
-
-  const setLang = (newLocale) => {
-    router.push(`/${newLocale}`); // Navigate to the new locale
-    router.refresh(); // Refresh the page to apply the new locale
   };
 
   const renderDropdown = (items: any[]) => (
@@ -101,6 +106,19 @@ const NavBar = () => {
     </div>
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActive(null);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav
       className="bg-[#F6F6F6] shadow-sm sticky top-0 z-50"
@@ -119,7 +137,10 @@ const NavBar = () => {
         </div>
 
         {/* Desktop Nav */}
-        <ul className="hidden lg:flex items-center gap-4 font-medium relative justify-center text-sm">
+        <ul
+          ref={navRef}
+          className="hidden lg:flex items-center gap-4 font-medium relative justify-center text-sm"
+        >
           {mainLinks.map((link) =>
             link.dropdown ? (
               <li
@@ -128,7 +149,7 @@ const NavBar = () => {
                 onClick={() => toggleDropdown(link.label)}
               >
                 <button className="flex items-center gap-1 text-gray-800 hover:text-primary cursor-pointer">
-                  {t(link.label)} <FaChevronDown size={12} />
+                  {link.label} <FaChevronDown size={12} />
                 </button>
                 {active === link.label && renderDropdown(link.dropdown)}
               </li>
@@ -138,7 +159,7 @@ const NavBar = () => {
                   href={`/${lang}/${link.href}`}
                   className="text-gray-800 hover:text-primary transition"
                 >
-                  {t(link.label)}
+                  {link.label}
                 </Link>
               </li>
             )
@@ -179,7 +200,9 @@ const NavBar = () => {
                   />
                 </Link>
               </div>
-              <p>مرحبا {user?.full_name_ar}</p>
+              <p>
+                {t("welcome")} {user?.full_name_ar}
+              </p>
             </>
           ) : (
             <div className="relative p-3 grid place-items-center rounded-full font-bold cursor-pointer hover:underline">

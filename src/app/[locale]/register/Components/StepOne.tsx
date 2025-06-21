@@ -54,7 +54,6 @@ const StepOne = ({ register, errors, watch }) => {
           throw new Error("فشل في تحميل الفيديوهات");
         }
         const data = await res.json();
-        console.log(data);
         setCities(data?.data);
       } catch (error) {
         console.error(error);
@@ -63,8 +62,6 @@ const StepOne = ({ register, errors, watch }) => {
 
     fetchCities();
   }, [watch("country")]);
-
-  console.log(watch("country"));
 
   return (
     <div className="grid grid-cols-12 gap-5">

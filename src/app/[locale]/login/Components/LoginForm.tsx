@@ -67,11 +67,11 @@ export default function LoginForm({ locale, messages }) {
 
       localStorage.setItem("auth_token", result.token);
       localStorage.setItem("user_name", JSON.stringify(result?.data));
-      toast.success(result.message || "تم تسجيل الدخول بنجاح!");
+      toast.success("تم تسجيل الدخول بنجاح!");
       window.location.href = "/";
       return {
         success: true,
-        message: result.message || "تم تسجيل الدخول بنجاح!",
+        message: "تم تسجيل الدخول بنجاح!",
       };
     } catch (error) {
       const errorMessage =

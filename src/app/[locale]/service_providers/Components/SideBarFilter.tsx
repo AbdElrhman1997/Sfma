@@ -51,10 +51,6 @@ const SideBarFilter = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
-
   return (
     <section className="xl:flex hidden flex-col gap-3 bg-[#F6F6F6] shadow w-fit p-4">
       {filterList?.map((item) => (

@@ -28,14 +28,10 @@ const FailedPage = ({ params: { locale, id } }: any) => {
 
         {/* Title */}
         <h2 className="text-2xl lg:text-3xl font-bold mb-2 text-black">
-          {t("failed_title")}
+          {t("failed_membership_title")}
         </h2>
         <p className="text-[#333] mb-6 text-sm lg:text-base">
-          {t("registered_in")}
-          <br />
-          {source === "workshop"
-            ? choosed_workshop?.title
-            : `${t("course")} ${choosed_course?.title}`}
+          {t("failed_membership_sub_title")}
         </p>
 
         {/* Buttons */}

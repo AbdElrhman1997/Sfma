@@ -28,7 +28,6 @@ export default function Paths({ from_home }) {
 
         const data = await res.json();
         setContent(data || []);
-        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
@@ -65,7 +64,7 @@ export default function Paths({ from_home }) {
           <p className="xl:text-8xl text-7xl font-bold">
             {content?.categories_count + 1}+
           </p>
-          <p className="xl:text-4xl text-3xl font-bold">مسارات تدريبية</p>
+          <p className="xl:text-4xl text-3xl font-bold">{t("paths")}</p>
         </div>
       </Link>
     ) : (

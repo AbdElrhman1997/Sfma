@@ -8,7 +8,7 @@ const ValuesSection = () => {
 
   return (
     <section
-      className="container mx-auto text-center md:pt-6 pt-2 mt-8 mb-12"
+      className="container mx-auto text-center mt-8 md:mb-8 mb-12"
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       {/* العنوان الرئيسي */}
@@ -20,77 +20,72 @@ const ValuesSection = () => {
       </p>
 
       {/* المخطط الدائري */}
-      <div className="flex items-center justify-center md:gap-y-8 md:gap-x-8 gap-x-10 gap-y-14 pt-4 flex-wrap">
-        <div className="flex flex-col items-center mx-4">
-          <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
-            <Image
-              src="/images/about_page/Group_5.png"
-              alt="About Us"
-              width={500}
-              height={400}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-          <div className="w-[2px] h-6 bg-black"></div>
-          <p className="text-lg font-bold text-black mt-2">{t("partners")}</p>
-        </div>
-        <div className="flex flex-col items-center mx-4">
-          <p className="text-lg font-bold text-black mt-2">{t("education")}</p>
-          <div className="w-[2px] h-6 bg-black"></div>
-          <div className="md:w-32 w-24 md:h-32 h-24 mt-4 flex items-center justify-center bg-[#5FB69E] text-white rounded-full text-4xl relative shadow-lg border-10 border-white outline-10 outline-[#5FB69E] p-5">
-            <Image
-              src="/images/about_page/Group (3).png"
-              alt="About Us"
-              width={500}
-              height={400}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col items-center mx-4">
-          <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
-            <Image
-              src="/images/about_page/Group (2).png"
-              alt="About Us"
-              width={500}
-              height={400}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-          <div className="w-[2px] h-6 bg-black"></div>
-          <p className="text-lg font-bold text-black mt-2">
-            {t("reliability")}
-          </p>
-        </div>
-        <div className="flex flex-col items-center mx-4">
-          <p className="text-lg font-bold text-black mt-2">العدل - الإنصاف</p>
-          <div className="w-[2px] h-6 bg-black"></div>
-          <div className="md:w-32 w-24 md:h-32 h-24 mt-4 flex items-center justify-center bg-[#5FB69E] text-white rounded-full text-4xl relative shadow-lg border-10 border-white outline-10 outline-[#5FB69E] p-5">
-            <Image
-              src="/images/about_page/Group.png"
-              alt="About Us"
-              width={500}
-              height={400}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col items-center mx-4">
-          <div className="md:w-32 w-24 md:h-32 h-24 flex items-center justify-center bg-[#1DAEE5] text-white rounded-full text-4xl relative -top-4 shadow-lg border-10 border-white outline-10 outline-[#1DAEE5] p-5">
-            <Image
-              src="/images/about_page/Group (1).png"
-              alt="About Us"
-              width={500}
-              height={400}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-          <div className="w-[2px] h-6 bg-black"></div>
-          <p className="text-lg font-bold text-black mt-2">
-            {" "}
-            {t("confidence")}
-          </p>
-        </div>
+      <div className="flex flex-wrap justify-center items-start lg:gap-y-8 gap-y-10 lg:gap-x-12 gap-x-6 pt-4">
+        {[
+          {
+            img: "/images/about_page/Group_5.png",
+            label: t("partners"),
+            bg: "#1DAEE5",
+          },
+          {
+            img: "/images/about_page/Group (3).png",
+            label: t("education"),
+            bg: "#5FB69E",
+          },
+          {
+            img: "/images/about_page/Group (2).png",
+            label: t("reliability"),
+            bg: "#1DAEE5",
+          },
+          {
+            img: "/images/about_page/Group.png",
+            label: t("fairness"),
+            bg: "#5FB69E",
+          },
+          {
+            img: "/images/about_page/Group (1).png",
+            label: t("confidence"),
+            bg: "#1DAEE5",
+          },
+        ].map((item, idx) => {
+          const isGreen = item.bg === "#5FB69E"; // التعليم والعدل
+
+          return (
+            <div
+              key={idx}
+              className={`w-1/3 md:w-auto flex flex-col items-center px-2 ${
+                isGreen ? "md:flex-col-reverse" : ""
+              }`}
+            >
+              {/* Text */}
+              <p className="md:text-lg text-sm font-bold text-black md:mt-2 mt-1 text-center min-w-[100px]">
+                {item.label}
+              </p>
+
+              {/* Line */}
+              <div className="w-[2px] md:h-6 h-3 bg-black"></div>
+
+              {/* Icon Circle */}
+              <div
+                className={`lg:w-32 md:w-24 w-16 lg:h-32 md:h-24 h-16 flex items-center justify-center text-white rounded-full text-4xl relative ${
+                  idx % 2 == 1 ? "md:-top-4 top-4" : "top-4"
+                } shadow-lg md:border-[10px] border-[6px] border-white lg:p-5 md:p-4 p-3`}
+                style={{
+                  backgroundColor: item.bg,
+                  outline: `10px solid ${item.bg}`,
+                }}
+              >
+                <Image
+                  src={item.img}
+                  alt={item.label}
+                  width={500}
+                  height={400}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

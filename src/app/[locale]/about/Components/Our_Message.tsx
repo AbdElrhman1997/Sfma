@@ -8,7 +8,7 @@ const Our_Message = () => {
 
   return (
     <section
-      className={` gap-8 container mx-auto md:pt-6 pt-2 mt-8 text-start`}
+      className={` gap-8 container mx-auto mt-8 text-start`}
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="">
@@ -25,7 +25,7 @@ const Our_Message = () => {
         } text-center`}
         dir={lang == "en" ? "ltr" : "rtl"}
       >
-        <div className="w-full md:w-1/2">
+        <div className="md:block hidden w-full md:w-1/2">
           <Image
             src="/images/about_page/Our_Message.png"
             alt={t("our_message.title")}
@@ -35,9 +35,18 @@ const Our_Message = () => {
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-center">
-          <p className="text-black text-justify mb-6 lg:text-base xl:text-lg lg:leading-6 xl:leading-8">
+          <p className="text-black text-justify lg:text-base xl:text-lg lg:leading-6 xl:leading-8">
             {t("our_message.content")}
           </p>
+        </div>
+        <div className="md:hidden block w-full md:w-1/2">
+          <Image
+            src="/images/about_page/Our_Message.png"
+            alt={t("our_message.title")}
+            width={500}
+            height={400}
+            className="w-full h-auto rounded-md"
+          />
         </div>
       </section>
     </section>

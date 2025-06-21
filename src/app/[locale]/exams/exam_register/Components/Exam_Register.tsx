@@ -41,7 +41,6 @@ const Exam_Register = () => {
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    console.log(selectedValue);
   };
 
   const handleCityChange = (event) => {

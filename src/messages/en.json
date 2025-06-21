@@ -104,13 +104,16 @@
       "read_more": "Read More",
       "QouteSection": "\"Success stories always begin with a vision, and the most successful visions are those built on the strength of a vibrant society, a thriving economy, and an ambitious nation.\""
     },
-    "ServicesSection": {
+    "ServicesGrid": {
       "title": "Our Services",
-      "description": "We provide you with integrated solutions to support you in achieving the highest levels of efficiency and professionalism.",
-      "services_1": "Training & Development",
-      "services_2": "Memberships",
-      "services_3": "Reports & Studies",
-      "services_4": "Events"
+      "description": "We offer you integrated solutions to support you in achieving the highest levels of efficiency and professionalism.",
+      "services": {
+        "training": "Training & Development",
+        "memberships": "Memberships",
+        "reports": "Reports & Studies",
+        "events": "Event Management",
+        "consulting": "Consulting"
+      }
     },
     "CoursesSection": {
       "title": "Training Courses",
@@ -200,6 +203,7 @@
       "partners": "Partnerships",
       "education": "Education",
       "reliability": "Reliability",
+      "fairness": "Justice and fairness",
       "justice": "Justice",
       "confidence": "Confidence"
     }
@@ -224,7 +228,7 @@
     "research": "Studies and Research",
     "read_book": "Browse Book",
     "show_book": "Read Book",
-    "terms": "Trems and conditions"
+    "terms": "Terms and conditions"
   },
   "Institutions": {
     "title": "Institution Memberships",
@@ -232,7 +236,10 @@
     "no_data_available": "Content needs improvement",
     "currency": "SAR / year",
     "memberships_advantages": "View membership benefits",
-    "membership_register": "Membership Register"
+    "membership_register": "Membership Register",
+    "terms": "Terms and conditions",
+    "show_requirments": "Show register requirments",
+    "no_requirments": "No requirments Available"
   },
   "Individuals": {
     "title": "Individual Memberships",
@@ -291,8 +298,8 @@
     "contact_us": "Contact Methods",
     "employee_info": "Employment Information",
     "logout": "Log Out",
-    "full_name_ar_min": "Name must be at least 2 characters long (Arabic)",
-    "full_name_en_min": "Name must be at least 2 characters long (English)",
+    "full_name_ar_min": "Full name must contain four words (Arabic)",
+    "full_name_en_min": "Full name must contain four words (English)",
     "gender_required": "Please select a gender",
     "date_of_birth_invalid": "Please enter a valid birth date",
     "nationality_required": "Please select a nationality",
@@ -325,37 +332,64 @@
   "Profile": {},
   "NavBar": {
     "home": "Home",
-    "about": "About",
-    "about_orgnization": "About SFMA",
+    "about": "About SFMA",
+    "about_orgnization": "About the Association",
     "library": "Library",
     "memberships": "Memberships",
     "training": "Training",
     "jobs": "Jobs",
     "actions": "Events",
-    "ads": "Ads",
+    "ads": "Advertisements",
     "news": "News",
-    "about_us": "Know Us",
-    "lists": "Lists",
+    "about_us": "Get to Know Us",
+    "lists": "Rules & Regulations",
     "structure": "Organizational Structure",
     "data_library": "Information Library",
     "video_library": "Video Library",
-    "institutions": "Institutions",
-    "individuals": "Individuals",
-    "consultants": "Consultants",
-    "volunteers": "Volunteers",
-    "service_providers": "Service Providers",
+    "institutions": "Institution Memberships",
+    "individuals": "Individual Memberships",
+    "volunteers": "Volunteer Memberships",
     "data_center": "Knowledge Center",
+    "service_providers": "Service Providers",
+    "consultants": "Consulting Services",
     "copyright": "All rights reserved SFMA.SA",
-    "footer_p_1": "Saudi Facilities Management Association,",
-    "footer_p_2": "a professional entity contributing to the development of the facilities management sector in the Kingdom",
-    "contact_info": "Contact Info",
+    "footer_p_1": "Saudi Facility Management Association,",
+    "footer_p_2": "A professional entity contributing to the development of the FM sector in the Kingdom",
+    "contact_info": "Contact Information",
     "address": "Riyadh - Kingdom of Saudi Arabia",
     "title": "Training and Courses",
     "training_courses": "Training Courses",
-    "calendar": "SFMA Course Schedule",
+    "calendar": "SFMA Course Calendar",
     "certified_trainers": "Certified Trainers",
     "certificate_verification": "Certificate Verification",
-    "membership_verification": "Membership Verification"
+    "membership_verification": "Membership Verification",
+    "profile": "Profile",
+    "memberships_2": {
+      "_": "Memberships",
+      "institutions": "Institution Memberships",
+      "individuals": "Individual Memberships",
+      "volunteers": "Volunteer Memberships",
+      "verification": "Membership Verification"
+    },
+    "training_2": {
+      "_": "Training",
+      "courses": "Training Courses",
+      "calendar": "SFMA Course Calendar",
+      "workshops": "Workshops",
+      "exams": "Exams",
+      "trainers": "Certified Trainers",
+      "cert_verification": "Certificate Verification"
+    },
+    "events": "Events",
+    "library_2": {
+      "_": "Library",
+      "books": "Book Library",
+      "videos": "Video Library"
+    },
+    "notifications": "Notifications",
+    "logout": "Logout",
+    "login": "Login",
+    "welcome": "Welcome"
   },
   "Training": {
     "title": "Training Paths Offered by SFMA",
@@ -365,7 +399,8 @@
     "read_more_3": "Course detials",
     "course_details": "Course details",
     "path_courses": "Path courses",
-    "next_courses": "Next courses"
+    "next_courses": "Next courses",
+    "paths": "Training paths"
   },
   "Paths": {},
   "our_message": {
@@ -527,10 +562,14 @@
     "complete_payment": "Complete Payment"
   },
   "RegistrationStatus": {
-    "failed_title": "Registration Failed",
-    "success_title": "Registration Successful",
+    "failed_title": "Registration failed",
+    "failed_membership_title": "An error occurred while submitting the request",
+    "failed_membership_sub_title": "Please try again",
+    "success_title": "Registration completed successfully",
+    "success_membership_title": "The request has been submitted successfully",
+    "success_membership_sub_title": "Your request will be reviewed and responded to as soon as possible",
     "registered_in": "You have registered for",
-    "course": "Course"
+    "course": "course"
   },
   "filters": {
     "all": "Show All",
@@ -585,5 +624,46 @@
     "confirm_and_continue": "Confirm Details and Proceed to Payment",
     "after_payment_note": "This course will be added to your profile under “My Courses” after successful payment.",
     "online_note": "A link will be sent after registration."
+  },
+  "MembershipRequest": {
+    "form_title": "Membership Request Form",
+    "upload_title": "Upload Required Files",
+    "upload_drag_or_click": "Drag files here or",
+    "upload_click_to_upload": "click to upload",
+    "upload_hint": "Only JPG and PNG files are supported",
+    "preview_remove": "Remove image",
+    "checkbox_agree": "I agree to the",
+    "terms_link": "Association's Terms and Conditions",
+    "represent_you": "You represent:",
+    "please_choose": "Please choose",
+    "represent_service_provider": "Service Provider",
+    "represent_government": "Government Entity",
+    "represent_supplier": "Supplier",
+    "represent_other": "Other, please specify",
+    "membership_fee_title": "Membership Fee",
+    "membership_type": "Membership Type:",
+    "membership_duration": "Duration:",
+    "membership_duration_value": "One Year",
+    "membership_fee": "Membership Fee",
+    "submit_button": "Submit Request",
+    "error_no_valid_files": "No supported files selected",
+    "requirement_title": "Show Registration Requirements",
+    "no_requirements": "No requirements available",
+    "receipt_required": "Payment receipt must be uploaded to complete the process",
+    "upload_receipt": "Upload Payment Receipt",
+    "drag_or_click": "Drag files here or",
+    "click_to_upload": "click to choose a file",
+    "file_hint": "PDF or JPG (Max 5MB)",
+    "you_represent": "You represent",
+    "please_select": "Please select",
+    "agree": "I agree to the",
+    "terms_and_conditions": "Association's Terms and Conditions",
+    "one_year": "One year",
+    "duration": "Duration",
+    "submit_request": "Submit Request",
+    "service_provider": "Service Provider",
+    "government": "Government Entity",
+    "supplier": "Supplier",
+    "other_specify": "Other, please specify"
   }
 }

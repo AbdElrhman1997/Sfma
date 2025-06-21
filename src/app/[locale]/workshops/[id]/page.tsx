@@ -24,7 +24,6 @@ export default async function Page({ params: { locale, id } }: any) {
 
   // const data = await res.json();
   // const single_book = data?.data || {};
-  // console.log(single_book);
 
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>

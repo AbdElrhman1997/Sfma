@@ -17,40 +17,42 @@ const ActivitiesSection = () => {
       <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center">
         {t("title")}
       </h2>
-      <p className="text-[#555555] text-center lg:text-base text-sm md:mb-12 mb-4">
+      <p className="text-[#555555] text-center lg:text-base text-sm xl:mb-12 sm:mb-4 mb-2">
         {t("description")}
       </p>
       <div
-        className={`flex flex-col md:flex-row items-center container mx-auto text-start`}
+        className={`flex flex-col xl:flex-row items-center container mx-auto text-start`}
         dir={lang == "en" ? "ltr" : "rtl"}
       >
-        <div>
-          <h2 className="text-xl md:text-xl font-bold mb-2 leading-relaxed">
+        <div className="w-full md:w-8/12 xl:w-6/12">
+          <h2 className="text-base sm:text-xl font-bold sm:mb-2 mb-1 leading-relaxed xl:text-start text-center">
             {t("p_1")}
           </h2>
 
-          <p className="font-semibold text-lg mb-6">{t("p_2")}</p>
+          <p className="font-semibold sm:text-lg text-[15px] xl:mb-6 mb-3 xl:text-start text-center">
+            {t("p_2")}
+          </p>
 
-          <div className="flex flex-col md:flex-row md:justify-start justify-center gap-4 mb-6">
-            <div className="flex items-center gap-2 bg-[#1DAEE5] text-white md:px-1 px-2 py-[11px] lg:w-[300px] w-full md:mx-0 mx-auto ">
+          <div className="flex flex-col md:flex-row md:justify-start justify-center gap-4 xl:mb-6 mb-4">
+            <div className="flex items-center sm:justify-start justify-center gap-2 bg-[var(--main)] text-white md:px-1 px-2 py-[11px] lg:w-1/2 w-full xl:mx-0 mx-auto ">
               <FaMapMarkerAlt className=" text-lg" />
-              <span className="text-sm">{t("location")}</span>
+              <span className="xl:text-sm text-xs ">{t("location")}</span>
             </div>
-            <div className="flex items-center gap-2 bg-[#1DAEE5] text-white md:px-1 px-2 py-[11px] lg:w-[300px] w-full md:mx-0 mx-auto ">
+            <div className="flex items-center sm:justify-start justify-center gap-2 bg-[var(--main)] text-white md:px-1 px-2 py-[11px] lg:w-1/2 w-full xl:mx-0 mx-auto ">
               <FaCalendarAlt className=" text-lg" />
-              <span className="text-sm"> {t("date")}</span>
+              <span className="xl:text-sm text-xs "> {t("date")}</span>
             </div>
           </div>
 
           <a
             href="https://fmexcon.com/"
-            className="block bg-[#013047] hover:bg-[#014b6d] text-white py-[11px] px-3 font-semibold text-center transition-all duration-300 transform hover:scale-[104%] lg:mb-0 mb-6"
+            className="block bg-[#013047] hover:bg-[#014b6d] text-white py-[11px] px-3 font-semibold text-center transition-all duration-300 transform hover:scale-[104%] xl:mb-0 mb-4"
             target="_blank"
           >
             {t("visit_site")}
           </a>
         </div>
-        <div className="w-full md:w-5/12 h-[350px] mx-auto">
+        <div className="w-full sm:w-8/12 xl:w-[500px] md:h-[350px] h-[250px] mx-auto">
           <iframe
             src="https://www.youtube.com/embed/j6fitq7Vvfs"
             title="YouTube video player"

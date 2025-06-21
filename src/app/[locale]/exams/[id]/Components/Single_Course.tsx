@@ -24,7 +24,6 @@ const Single_Course = ({ translation, id }) => {
         });
         const data = await res.json();
         setCourse(data?.data || {});
-        console.log(data?.data);
         setLoadingCourse(false);
       } catch (error) {
         console.error("Error fetching categories:", error);

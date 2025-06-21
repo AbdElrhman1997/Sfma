@@ -89,7 +89,6 @@ const PaymentPage = () => {
 
       // optional: لو عايز تطبع البيانات حتى لو حصل redirect
       const data = await res.json();
-      console.log("Response:", data);
     } catch (error) {
       console.error("Error submitting form:", error);
       router.push(`/${lang}/error-page`);

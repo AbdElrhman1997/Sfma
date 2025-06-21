@@ -24,7 +24,6 @@ const Single_Workshop = ({ translation, id }) => {
         const data = await res.json();
         setWorkshop(data?.data || {});
         setLoadingWorkshop(false);
-        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
         setLoadingWorkshop(false);

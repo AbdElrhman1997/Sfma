@@ -121,7 +121,7 @@ const Footer = () => {
                   href={`/${lang}/exams`}
                   className="block text-white hover:text-[#ffffffdc]"
                 >
-                  الاختبارات
+                  {t("training_2.exams")}
                 </Link>
               </li>
               <li>

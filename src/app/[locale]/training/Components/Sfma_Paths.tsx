@@ -28,7 +28,6 @@ export default function Sfma_Paths() {
 
         const data = await res.json();
         setContent(data?.data || []);
-        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
@@ -65,7 +64,7 @@ export default function Sfma_Paths() {
           <p className="xl:text-8xl text-3xl font-bold">
             {content?.length - 5}+
           </p>
-          <p className="xl:text-4xl text-3xl font-bold">مسارات تدريبية</p>
+          <p className="xl:text-4xl text-3xl font-bold">{t("paths")}</p>
         </div>
       </Link>
     ) : idx < 5 ? (

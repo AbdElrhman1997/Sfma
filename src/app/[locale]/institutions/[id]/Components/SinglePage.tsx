@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ContentCard from "./ContentCard";
@@ -12,6 +12,16 @@ const SinglePage = ({ id }) => {
   const [isOpen, setIsOpen] = useState(true);
   const t = useTranslations();
   const auth_token: any = localStorage.getItem("auth_token");
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (isOpen && contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    } else {
+      setHeight(0);
+    }
+  }, [isOpen, content]);
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -85,28 +95,35 @@ const SinglePage = ({ id }) => {
       {/* Requirements Accordion */}
       <div className="w-full container mx-auto rounded-md overflow-hidden">
         <div
-          className="bg-[var(--second_main)] text-white px-4 py-5 flex justify-between items-center cursor-pointer rounded-t-md"
+          className="bg-[var(--second_main)] text-white px-4 py-[14px] flex justify-between items-center cursor-pointer rounded-t-md"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="font-bold text-sm">عرض متطلبات التسجيل</span>
+          <span className="font-bold lg:text-sm text-xs">
+            {t("Institutions.show_requirments")}
+          </span>
           {isOpen ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
         </div>
 
-        {isOpen && (
-          <div className="bg-[#f8f8f8] px-6 py-4 text-sm text-gray-800 rounded-b-md">
+        <div
+          className="transition-all duration-500 ease-in-out overflow-hidden bg-[#f8f8f8] text-sm text-gray-800 rounded-b-md"
+          style={{
+            maxHeight: isOpen ? `${height + 32}px` : "0px", // 32px for padding (py-4)
+          }}
+        >
+          <div ref={contentRef} className="px-6 py-4">
             <ul className="list-disc pr-4 space-y-1 leading-relaxed font-semibold">
               {content?.requirement?.length ? (
-                content?.requirement?.map((item) => (
+                content.requirement.map((item) => (
                   <li key={item?.id}>{item?.text}</li>
                 ))
               ) : (
-                <div className="text-center lg:text-xl lg:my-6">
-                  لا توجد متطلبات متاحة
+                <div className="text-center lg:text-lg min-h-[60px] flex items-center justify-center">
+                  {t("Institutions.no_requirments")}
                 </div>
               )}
             </ul>
           </div>
-        )}
+        </div>
       </div>
 
       <Link
@@ -114,7 +131,7 @@ const SinglePage = ({ id }) => {
         onClick={() => {
           localStorage.setItem("choosed_membership", JSON.stringify(content));
         }}
-        className="block mx-auto xl:mt-6 mt-3 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-sm"
+        className="block mx-auto xl:mt-6 mt-4 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-sm"
       >
         {t("Institutions.membership_register")}
       </Link>

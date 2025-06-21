@@ -11,11 +11,8 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png"];
 
 const MembershipRequestPage = () => {
   const lang = useLocale();
-  // get payment data from course or workshop
-  const choosed_membership: any = JSON.parse(
-    localStorage.getItem("choosed_membership")
-  );
-  const t = useTranslations("Payment");
+  const t = useTranslations("MembershipRequest");
+
   const [selectedValue, setSelectedValue] = useState("option1");
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -24,6 +21,12 @@ const MembershipRequestPage = () => {
   const router = useRouter();
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [files, setFiles]: any = useState([]);
+  const [selcetedRepresent, setSelcetedRepresent] =
+    useState("service_provider");
+
+  const choosed_membership: any = JSON.parse(
+    localStorage.getItem("choosed_membership")
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
@@ -37,9 +40,7 @@ const MembershipRequestPage = () => {
     );
 
     if (validFiles.length === 0) {
-      toast.error("لم يتم اختيار أي ملفات بصيغ مدعومة", {
-        position: "top-right",
-      });
+      toast.error(t("file_error"), { position: "top-right" });
       resetFileInput();
       return;
     }
@@ -50,9 +51,7 @@ const MembershipRequestPage = () => {
       newPreviewUrls.push(tempUrl);
     });
 
-    // حذف روابط الصور السابقة
     previewUrls.forEach((url) => URL.revokeObjectURL(url));
-
     setPreviewUrls(newPreviewUrls);
     setFiles(validFiles);
   };
@@ -67,13 +66,13 @@ const MembershipRequestPage = () => {
   const handleSubmit = async () => {
     const token = localStorage.getItem("auth_token");
 
-    const formData = new FormData();
+    const formData: any = new FormData();
     formData.append("membership_id", choosed_membership?.id);
-    formData.append("applicant_type", "service_provider");
-    files.forEach((file) => {
-      formData.append("attachments", file);
+    formData.append("applicant_type", selcetedRepresent);
+    formData.append("agreed", true);
+    files.forEach((file, index) => {
+      formData.append(`attachments[${index}]`, file);
     });
-    // formData.append("agreed", true);
 
     try {
       const res = await fetch(
@@ -84,23 +83,20 @@ const MembershipRequestPage = () => {
           headers: {
             Authorization: `Bearer ${token}`,
             "Accept-Language": "ar",
+            Accept: "application/json",
           },
         }
       );
 
       if (res.status === 200) {
         router.push(
-          `/${lang}/payment/success?source=${choosed_membership?.type}`
+          `/${lang}/membership-request/success?source=${choosed_membership?.type}`
         );
       } else {
         router.push(
-          `/${lang}/payment/failed?source=${choosed_membership?.type}`
+          `/${lang}/membership-request/failed?source=${choosed_membership?.type}`
         );
       }
-
-      // optional: لو عايز تطبع البيانات حتى لو حصل redirect
-      const data = await res.json();
-      console.log("Response:", data);
     } catch (error) {
       console.error("Error submitting form:", error);
       router.push(`/${lang}/error-page`);
@@ -121,51 +117,69 @@ const MembershipRequestPage = () => {
   };
 
   const courseContent = [
+    { title: t("membership_type"), desc: choosed_membership?.name },
+    { title: t("duration"), desc: t("one_year") },
+    { title: t("membership_fee"), desc: choosed_membership?.price },
+  ];
+
+  const agency_represent = [
     {
-      title: "نوع العضوية :",
-      desc: `${choosed_membership?.name} `,
+      ref: "service_provider",
+      title: t("service_provider"),
+      img_src: "membership-request_icon_1.png",
     },
     {
-      title: "المدة :",
-      desc: `${
-        choosed_membership?.discounted_price
-          ? choosed_membership?.discounted_price
-          : 0.0
-      } ر.س`,
+      ref: "government",
+      title: t("government"),
+      img_src: "membership-request_icon_2.png",
     },
     {
-      title: "رسوم العضوية",
-      desc: choosed_membership?.price,
+      ref: "supplier",
+      title: t("supplier"),
+      img_src: "membership-request_icon_3.png",
+    },
+    {
+      ref: "other",
+      title: t("other_specify"),
+      img_src: "membership-request_icon_4.png",
     },
   ];
 
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"}>
-      {/* Title Section */}
       <div className="text-center">
         <h1 className="text-xl lg:text-3xl font-bold mb-2 text-[var(--main)]">
-          نموذج طلب عضوية
+          {t("form_title")}
         </h1>
       </div>
 
-      {/* File Upload */}
       <div className="md:col-span-6 col-span-12 text-sm text-right bg-[#F6F6F6] p-6 rounded-xl mt-10">
-        <label className="block lg:text-xl text-base font-bold mb-2 text-black">
-          قم برفع الملفات المطلوبة
-        </label>
-
         <div className="relative">
+          <div className="flex items-center gap-x-4">
+            <div className="lg:w-10 w-7">
+              <Image
+                src={`/images/common/upload-image.png`}
+                alt="upload"
+                height={50}
+                width={50}
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="font-bold lg:text-xl text-base">
+              {t("upload_title")}
+            </p>
+          </div>
           <input
             id="logo"
             type="file"
             accept="image/jpeg,image/png"
-            multiple // ✅ هنا
+            multiple
             ref={fileInputRef}
             onChange={handleFileChange}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
           />
 
-          <div className="flex flex-col items-center border-4 border-dashed border-gray-300 rounded-md bg-gray-100 px-6 py-10 text-gray-500 mt-6 text-center">
+          <div className="flex flex-col items-center border-4 border-dashed border-gray-300 rounded-md bg-gray-100 px-6 py-10 text-gray-500 mt-4 text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10 text-gray-500"
@@ -210,40 +224,110 @@ const MembershipRequestPage = () => {
           </div>
         )}
       </div>
+
       <form
         onSubmit={(e) => {
-          e.preventDefault(); // تمنع الفورم من الإرسال التلقائي
-          // if (!document.getElementById("terms_checkbox")?.checked) {
-          //   alert("يرجى الموافقة على الشروط والأحكام أولاً");
-          //   return;
-          // }
-
+          e.preventDefault();
           handleSubmit();
-
           router.push(`${auth_token ? `/${lang}/payment` : `/${lang}/login`}`);
         }}
       >
-        <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
-          <input type="checkbox" id="terms_checkbox" required />
+        <div className="bg-[#F6F6F6] p-6 mt-6">
+          <div className="flex items-center gap-x-4">
+            <div className="lg:w-10 w-7">
+              <Image
+                src={`/images/common/fa-solid_users.png`}
+                alt="represent"
+                height={50}
+                width={50}
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="font-bold lg:text-xl text-base">
+              <span>{t("you_represent")} :</span>{" "}
+              <span className="text-[#8D99AE]">{t("please_select")}</span>
+            </p>
+          </div>
 
+          <div className="flex items-center lg:flex-nowrap flex-wrap lg:gap-x-6  gap-y-6 mt-5">
+            {agency_represent.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => setSelcetedRepresent(item.ref)}
+                className={`${
+                  item.ref === selcetedRepresent
+                    ? "bg-[#1DAEE521] border-2 border-[var(--main)]"
+                    : "bg-[#EDEDED]"
+                } cursor-pointer lg:min-h-40 lg:mx-0 mx-auto lg:w-2/3 w-[140px] lg:h-auto h-[120px] gap-3 p-3 lg:p-5 rounded-lg text-center flex flex-col justify-center items-center`}
+              >
+                <div
+                  className={`lg:h-10 h-5 mb-2 mx-auto ${
+                    index == 3
+                      ? "lg:w-8 w-6"
+                      : index == 0
+                      ? "lg:w-9 w-7"
+                      : index == 1
+                      ? "lg:w-10 w-7"
+                      : index == 2
+                      ? "lg:w-[52px] w-9"
+                      : ""
+                  }`}
+                >
+                  <Image
+                    src={`/images/common/${item.img_src}`}
+                    alt="membership-request_icon"
+                    height={50}
+                    width={50}
+                    className={`w-full h-auto`}
+                  />
+                </div>
+                <div className="text-[12px] md:text-lg lg:text-xl font-semibold">
+                  {item.title}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
+          <input
+            type="checkbox"
+            id="terms_checkbox"
+            required
+            className="w-full"
+          />
           <label htmlFor="terms_checkbox">
-            أوافق على{" "}
+            {t("agree")}{" "}
             <Link
               href={`/${lang}/terms`}
               className="text-[var(--main)] underline"
             >
-              الشروط والأحكام الخاصة بالجمعية
-            </Link>{" "}
+              {t("terms_and_conditions")}
+            </Link>
           </label>
         </div>
 
-        {/* Course Contents */}
-        <div className="mt-6">
-          <div className="bg-[#F6F6F6] p-6 flex flex-col items-center gap-6 mt-6 mb-8">
+        <div className="mt-6 py-6 bg-[#F6F6F6]">
+          <div className="flex items-center gap-x-4 px-6">
+            <div className="w-9">
+              <Image
+                src={`/images/common/link_icon.png`}
+                alt="membership-request_icon"
+                height={50}
+                width={50}
+                className="w-full h-auto"
+              />
+            </div>
+            <p className="font-bold lg:text-xl text-base">
+              {t("membership_fee_title")}
+            </p>
+          </div>
+
+          <div className="p-6 flex flex-col items-center gap-6">
             {courseContent.map((item, index) => (
               <div
                 key={index}
-                className="bg-[#DFDFDF] lg:w-2/3 w-full  gap-3 px-2 lg:px-4 py-3 lg:py-5 rounded-lg flex justify-between"
+                className="bg-[#DFDFDF] w-full gap-3 px-2 lg:px-4 py-3 lg:py-5 rounded-lg flex justify-between"
               >
                 <div className="text-[12px] md:text-lg lg:text-xl font-bold">
                   {item.title}
@@ -253,14 +337,15 @@ const MembershipRequestPage = () => {
                 </div>
               </div>
             ))}
-            <div className="flex flex-col items-center  text-center">
-              <button
-                type="submit"
-                className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
-              >
-                إرسال الطلب
-              </button>
-            </div>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <button
+              type="submit"
+              className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+            >
+              {t("submit_request")}
+            </button>
           </div>
         </div>
       </form>

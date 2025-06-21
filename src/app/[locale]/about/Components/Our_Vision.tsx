@@ -8,7 +8,7 @@ const Our_Vision = () => {
 
   return (
     <section
-      className={` gap-8 container mx-auto md:pt-6 pt-2 mt-8 text-start`}
+      className={` gap-8 container mx-auto mt-8 text-start`}
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <div className="">
@@ -26,7 +26,7 @@ const Our_Vision = () => {
         dir={lang === "en" ? "ltr" : "rtl"}
       >
         <div className="w-full md:w-1/2 flex flex-col justify-center">
-          <p className="text-black text-justify mb-6 lg:text-base xl:text-lg lg:leading-6 xl:leading-8">
+          <p className="text-black text-justify md:mb-6 lg:text-base xl:text-lg lg:leading-6 xl:leading-8">
             {t("our_vision.content")}
           </p>
         </div>

@@ -12,20 +12,6 @@ const Page = async ({ params }) => {
     namespace: "Volunteers",
   });
 
-  // Fetch videos from API (server-side)
-  // const res = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_URL}memberships/get-memberships?type=3`,
-  //   {
-  //     headers: {
-  //       "Accept-Language": locale || "ar",
-  //     },
-  //     cache: "no-store",
-  //   }
-  // );
-
-  // const data = await res.json();
-  // const subscriptions = data?.data || [];
-
   return (
     <div className="container mx-auto p-6 mt-6">
       <MembershipRequestPage />

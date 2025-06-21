@@ -61,7 +61,7 @@ const BlogsSection = () => {
                   alt={item?.name}
                   className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                 />
-                <p className="text-sm text-[#636363] mt-2">
+                <p className="text-sm text-[#636363] mt-3 lg:leading-6">
                   {item?.description}
                 </p>
                 <Link

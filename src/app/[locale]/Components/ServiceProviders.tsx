@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Required for client-side interactivity
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -22,7 +22,7 @@ export default function ServiceProviders() {
           cache: "no-store",
         });
         const data = await res.json();
-        setContent(data?.data || []);
+        setContent(data?.data || {});
         setLoadingContent(false);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -43,7 +43,7 @@ export default function ServiceProviders() {
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 flex items-center justify-center z-10">
         <img
           src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.logo}`}
-          alt={t("title")}
+          alt="service provider"
           width={100}
           height={100}
           className="object-contain"
@@ -65,6 +65,7 @@ export default function ServiceProviders() {
 
   return (
     <>
+      {console.log(content)}
       {content?.length ? (
         <div
           dir={lang === "en" ? "ltr" : "rtl"}
@@ -77,12 +78,14 @@ export default function ServiceProviders() {
             {t("description")}
           </h4>
 
-          <div className="flex flex-wrap justify-between lg:gap-6 gap-16">
-            {content?.map((item) => renderCourseCard(item))}
+          <div className="flex flex-wrap justify-center lg:gap-6 gap-12">
+            {content?.map((item) => {
+              return renderCourseCard(item);
+            })}
           </div>
           <Link
             href={`/${lang}/service_providers`}
-            className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
+            className="lg:mt-8 mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
           >
             {t("show_more")}
           </Link>

@@ -30,7 +30,7 @@ export default function Memberships() {
 
   const renderCourseCard = (item) => (
     <div
-      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full max-w-xs mb-12 border-b-4 border-[var(--main)] md:mx-0 mx-auto lg:min-w-[32%]"
+      className="relative bg-[#F6F6F6] rounded-xl shadow-md text-center px-6 pt-10 pb-6 w-full mb-12 border-b-4 border-[var(--main)] md:mx-0 mx-auto"
       key={item.id}
       dir="rtl"
     >
@@ -71,7 +71,7 @@ export default function Memberships() {
         {t("description")}
       </p>
 
-      <div className="flex flex-wrap justify-between gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-6">
         {content.map((item) => renderCourseCard(item))}
       </div>
     </div>

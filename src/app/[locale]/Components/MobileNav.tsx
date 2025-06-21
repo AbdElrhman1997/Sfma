@@ -28,7 +28,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const router = useRouter();
-  const t = useTranslations();
+  const t = useTranslations("NavBar");
   const toggleDropdown = (label) => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
@@ -38,90 +38,157 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
     router.refresh(); // Refresh the page to apply the new locale
   };
 
-  const navItems = [
-    { href: "", label: t("Home"), icon: <FaHome /> },
-    { href: "about", label: t("AboutUs"), icon: <FaInfoCircle /> },
+  const mainLinks = [
+    { href: "", label: t("home"), icon: <FaHome /> },
+    { href: "about", label: t("about"), icon: <FaInfoCircle /> },
     {
-      label: t("Library"),
-      icon: <FaBook />,
-      dropdown: [
-        { href: "data_library", label: t("BookLibrary") },
-        { href: "video_library", label: t("VideoLibrary") },
-      ],
-    },
-    {
-      label: t("Memberships"),
+      label: t("memberships_2._"),
       icon: <FaUsers />,
       dropdown: [
-        { href: "institutions", label: t("InstitutionMemberships") },
-        { href: "individuals", label: t("IndividualMemberships") },
-        { href: "volunteers", label: t("VolunteerMemberships") },
-        { href: "membership_verification", label: t("MembershipVerification") },
+        { href: "institutions", label: t("memberships_2.institutions") },
+        { href: "individuals", label: t("memberships_2.individuals") },
+        { href: "volunteers", label: t("memberships_2.volunteers") },
+        {
+          href: "membership_verification",
+          label: t("memberships_2.verification"),
+        },
       ],
     },
     {
-      label: t("Training"),
+      label: t("training_2._"),
       icon: <FaChalkboardTeacher />,
       dropdown: [
-        {
-          href: "training",
-          label: t("TrainingCourses"),
-          icon: <FaChalkboardTeacher />,
-        },
-        {
-          href: "Calendar",
-          label: t("SFMACoursesSchedule"),
-          icon: <FaCalendarAlt />,
-        },
-        {
-          href: "workshops",
-          label: t("Workshops"),
-          icon: <FaChalkboardTeacher />,
-        },
-        {
-          href: "exams",
-          label: "الإختبارات",
-          icon: <FaChalkboardTeacher />,
-        },
-        {
-          href: "certified_trainers",
-          label: t("CertifiedTrainers"),
-          icon: <FaUsersCog />,
-        },
+        { href: "training", label: t("training_2.courses") },
+        { href: "Calendar", label: t("training_2.calendar") },
+        { href: "workshops", label: t("training_2.workshops") },
+        { href: "exams", label: t("training_2.exams") },
+        { href: "certified_trainers", label: t("training_2.trainers") },
         {
           href: "certificate_verification",
-          label: t("CertificateVerification"),
-          icon: <FaUserCheck />,
+          label: t("training_2.cert_verification"),
         },
       ],
     },
-    { href: "events", label: t("Events"), icon: <FaCalendarAlt /> },
-    { href: "jobs", label: t("Jobs"), icon: <FaBriefcase /> },
+    { href: "events", label: t("events"), icon: <FaCalendarAlt /> },
+    { href: "jobs", label: t("jobs"), icon: <FaBriefcase /> },
     {
       href: "service_providers",
-      label: t("ServiceProviders"),
+      label: t("service_providers"),
       icon: <FaTools />,
     },
-    { href: "news", label: t("News"), icon: <FaNewspaper /> },
+    { href: "news", label: t("news"), icon: <FaNewspaper /> },
+    { href: "consultants", label: t("consultants") },
     {
-      label: t("Notifications"),
+      label: t("library_2._"),
+      icon: <FaBook />,
+      dropdown: [
+        { href: "data_library", label: t("library_2.books") },
+        { href: "video_library", label: t("library_2.videos") },
+      ],
+    },
+    {
+      label: t("notifications"),
       href: "notifications",
       icon: <FaBell />,
       badge: "1",
     },
-
     ...(isAuthenticated || user
       ? [
-          { href: "profile", label: t("Profile"), icon: <FaUser /> },
+          { href: "profile", label: t("profile"), icon: <FaUser /> },
           {
             href: "/",
-            label: t("Logout"),
+            label: t("logout"),
             icon: <FaSignOutAlt />,
             logout: true,
           },
         ]
-      : [{ href: "/login", label: t("Login"), icon: <FaSignInAlt /> }]),
+      : [{ href: "/login", label: t("login"), icon: <FaSignInAlt /> }]),
   ];
+
+  // const navItems = [
+  //   { href: "", label: t("Home"), icon: <FaHome /> },
+  //   { href: "about", label: t("AboutUs"), icon: <FaInfoCircle /> },
+  //   {
+  //     label: t("Library"),
+  //     icon: <FaBook />,
+  //     dropdown: [
+  //       { href: "data_library", label: t("BookLibrary") },
+  //       { href: "video_library", label: t("VideoLibrary") },
+  //     ],
+  //   },
+  //   {
+  //     label: t("Memberships"),
+  //     icon: <FaUsers />,
+  //     dropdown: [
+  //       { href: "institutions", label: t("InstitutionMemberships") },
+  //       { href: "individuals", label: t("IndividualMemberships") },
+  //       { href: "volunteers", label: t("VolunteerMemberships") },
+  //       { href: "membership_verification", label: t("MembershipVerification") },
+  //     ],
+  //   },
+  //   {
+  //     label: t("Training"),
+  //     icon: <FaChalkboardTeacher />,
+  //     dropdown: [
+  //       {
+  //         href: "training",
+  //         label: t("TrainingCourses"),
+  //         icon: <FaChalkboardTeacher />,
+  //       },
+  //       {
+  //         href: "Calendar",
+  //         label: t("SFMACoursesSchedule"),
+  //         icon: <FaCalendarAlt />,
+  //       },
+  //       {
+  //         href: "workshops",
+  //         label: t("Workshops"),
+  //         icon: <FaChalkboardTeacher />,
+  //       },
+  //       {
+  //         href: "exams",
+  //         label: "الإختبارات",
+  //         icon: <FaChalkboardTeacher />,
+  //       },
+  //       {
+  //         href: "certified_trainers",
+  //         label: t("CertifiedTrainers"),
+  //         icon: <FaUsersCog />,
+  //       },
+  //       {
+  //         href: "certificate_verification",
+  //         label: t("CertificateVerification"),
+  //         icon: <FaUserCheck />,
+  //       },
+  //     ],
+  //   },
+  //   { href: "events", label: t("Events"), icon: <FaCalendarAlt /> },
+  //   { href: "jobs", label: t("Jobs"), icon: <FaBriefcase /> },
+  //   {
+  //     href: "service_providers",
+  //     label: t("ServiceProviders"),
+  //     icon: <FaTools />,
+  //   },
+  //   { href: "news", label: t("News"), icon: <FaNewspaper /> },
+  //   {
+  //     label: t("Notifications"),
+  //     href: "notifications",
+  //     icon: <FaBell />,
+  //     badge: "1",
+  //   },
+
+  //   ...(isAuthenticated || user
+  //     ? [
+  //         { href: "profile", label: t("Profile"), icon: <FaUser /> },
+  //         {
+  //           href: "/",
+  //           label: t("Logout"),
+  //           icon: <FaSignOutAlt />,
+  //           logout: true,
+  //         },
+  //       ]
+  //     : [{ href: "/login", label: t("Login"), icon: <FaSignInAlt /> }]),
+  // ];
 
   return (
     <nav>
@@ -164,7 +231,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
             <div className="flex items-center gap-2">
               <div>
                 <p className="text-sm font-semibold">
-                  مرحبا، {user?.full_name_ar}
+                  {t("welcome")} {user?.full_name_ar}
                 </p>
               </div>
             </div>
@@ -178,7 +245,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
 
         {/* Navigation Items */}
         <nav className="p-4 space-y-2">
-          {navItems.map((item) =>
+          {mainLinks?.map((item) =>
             item.dropdown ? (
               <div key={item.label}>
                 <div

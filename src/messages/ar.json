@@ -64,8 +64,6 @@
     "": "",
     "": "",
     "": "",
-    "": "",
-    "": "",
     "": ""
   },
 
@@ -87,14 +85,16 @@
     "volunteers": "عضويات متطوعين",
     "read_more": "قراءة المزيد"
   },
-  "services": {
+  "ServicesGrid": {
     "title": "خدماتنا",
     "description": "نقدّم لك حلولاً متكاملة لدعمك في تحقيق أعلى مستويات الكفاءة والاحترافية.",
-    "training": "التدريب والتطوير",
-    "memberships": "العضويات",
-    "reports": "التقارير والدراسات",
-    "events": "إدارة الفعاليات",
-    "consulting": "الاستشارات"
+    "services": {
+      "training": "التدريب والتطوير",
+      "memberships": "العضويات",
+      "reports": "التقارير والدراسات",
+      "events": "إدارة الفعاليات",
+      "consulting": "الاستشارات"
+    }
   },
   "HomePage": {
     "career_growth": "طوّر حياتك المهنية بسرعة غير مسبوقة",
@@ -144,7 +144,7 @@
       "description": "اكتشف آخر أخبار الجمعية وأبرز التطورات في مجال إدارة المرافق، وكن دائمًا في قلب الحدث",
       "title_placeholder": "إطلاق مبادرات جديدة وتطوير استراتيجيات مبتكرة لتعزيز كفاءة ...",
       "description_placeholder": "لوريم إيبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه و...",
-      "read_more": "أكمل القراءة"
+      "read_more": "قراءة المزيد"
     },
     "NewsSection2": {
       "title": "آخر المقالات والمستجدات",
@@ -201,7 +201,7 @@
       "partners": "الشراكات",
       "education": "التعليم",
       "reliability": "الإعتمادية",
-      "justice": "العدل",
+      "fairness": "العدل والإنصاف",
       "confidence": "الثقة"
     }
   },
@@ -233,7 +233,9 @@
     "currency": "ر.س / السنة",
     "memberships_advantages": "إطلع على مميزات العضوية",
     "membership_register": "تسجيل في العضوية",
-    "terms": "الشروط والأحكام"
+    "terms": "الشروط والأحكام",
+    "show_requirments": "عرض متطلبات التسجيل",
+    "no_requirments": "لا توجد متطلبات متاحة"
   },
   "Individuals": {
     "title": "عضويات الأفراد",
@@ -292,8 +294,8 @@
     "contact_us": "وسائل الاتصال",
     "employee_info": "المعلومات الوظيفية",
     "logout": "تسجيل الخروج",
-    "full_name_ar_min": "الاسم يجب أن يكون ٢ أحرف على الأقل (بالعربية)",
-    "full_name_en_min": "الاسم يجب أن يكون ٢ أحرف على الأقل (بالإنجليزية)",
+    "full_name_ar_min": "الاسم يجب أن يكون رباعي (بالعربية)",
+    "full_name_en_min": "الاسم يجب أن يكون رباعي (بالإنجليزية)",
     "gender_required": "يرجى اختيار الجنس",
     "date_of_birth_invalid": "يرجى اختيار تاريخ الميلاد بصيغة صحيحة",
     "nationality_required": "يرجى اختيار الجنسية",
@@ -357,7 +359,34 @@
     "calendar": "جدول دورات SFMA",
     "certified_trainers": "المدربين المعتمدين",
     "certificate_verification": "التحقق من الشهادات",
-    "membership_verification": "التحقق من الشهادات"
+    "membership_verification": "التحقق من الشهادات",
+    "profile": "الملف الشخصي",
+    "memberships_2": {
+      "_": "العضويات",
+      "institutions": "عضويات المؤسسات",
+      "individuals": "عضويات الأفراد",
+      "volunteers": "عضويات المتطوعين",
+      "verification": "التحقق من العضويات"
+    },
+    "training_2": {
+      "_": "التدريب",
+      "courses": "الدورات التدريبية",
+      "calendar": "جدول دورات SFMA",
+      "workshops": "ورش العمل",
+      "exams": "الإختبارات",
+      "trainers": "مدربونا المعتمدون",
+      "cert_verification": "التحقق من الشهادات"
+    },
+    "events": "الفعاليات",
+    "library_2": {
+      "_": "المكتبة",
+      "books": "مكتبة الكتب",
+      "videos": "مكتبة الفيديوهات"
+    },
+    "notifications": "الإشعارات",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "welcome": "مرحبا"
   },
 
   "Training": {
@@ -368,7 +397,8 @@
     "read_more_3": "تفاصيل الدورة",
     "course_details": "تفاصيل الدورة",
     "path_courses": "دورات المسار",
-    "next_courses": "الدورات القادمة"
+    "next_courses": "الدورات القادمة",
+    "paths": "مسارات تدريبية"
   },
   "Paths": {},
   "our_message": {
@@ -531,7 +561,11 @@
   },
   "RegistrationStatus": {
     "failed_title": "فشلت عملية التسجيل",
+    "failed_membership_title": "حدث خطأ في إرسال الطلب",
+    "failed_membership_sub_title": "برجاء المحاولة مرة أخرى",
     "success_title": "تمت عملية التسجيل بنجاح",
+    "success_membership_title": "تمت إرسال الطلب بنجاح",
+    "success_membership_sub_title": "سيتم مراجعة الطلب والرد في أقرب وقت ممكن",
     "registered_in": "لقد قمت بالتسجيل في",
     "course": "دورة"
   },
@@ -629,5 +663,46 @@
     "": "",
     "": "",
     "": ""
+  },
+  "MembershipRequest": {
+    "form_title": "نموذج طلب عضوية",
+    "upload_title": "قم برفع الملفات المطلوبة",
+    "upload_drag_or_click": "قم بسحب الملفات هنا أو",
+    "upload_click_to_upload": "انقر للتحميل",
+    "upload_hint": "فقط ملفات JPG و PNG مدعومة",
+    "preview_remove": "حذف الصورة",
+    "checkbox_agree": "أوافق على",
+    "terms_link": "الشروط والأحكام الخاصة بالجمعية",
+    "represent_you": "أنت تمثل:",
+    "please_choose": "يرجى الاختيار",
+    "represent_service_provider": "مقدم خدمة",
+    "represent_government": "جهة حكومية",
+    "represent_supplier": "مورد",
+    "represent_other": "أخرى يرجى التحديد",
+    "membership_fee_title": "رسوم العضوية",
+    "membership_type": "نوع العضوية:",
+    "membership_duration": "المدة:",
+    "membership_duration_value": "سنة",
+    "membership_fee": "رسوم العضوية",
+    "submit_button": "إرسال الطلب",
+    "error_no_valid_files": "لم يتم اختيار أي ملفات بصيغ مدعومة",
+    "requirement_title": "عرض متطلبات التسجيل",
+    "no_requirements": "لا توجد متطلبات متاحة",
+    "receipt_required": "يجب رفع إيصال الدفع لإتمام العملية",
+    "upload_receipt": "قم برفع إيصال الدفع",
+    "drag_or_click": "اسحب الملفات هنا أو",
+    "click_to_upload": "اضغط لاختيار الملف",
+    "file_hint": "PDF أو JPG (بحد أقصى 5 ميجابايت)",
+    "you_represent": "أنت تمثل",
+    "please_select": "يرجى الاختيار",
+    "agree": "أوافق على",
+    "terms_and_conditions": "الشروط والأحكام الخاصة بالجمعية",
+    "one_year": "سنة",
+    "duration": "المدة",
+    "submit_request": "إرسال الطلب",
+    "service_provider": "مقدم خدمة",
+    "government": "جهة حكومية",
+    "supplier": "مورد",
+    "other_specify": "أخرى يرجى التحديد"
   }
 }

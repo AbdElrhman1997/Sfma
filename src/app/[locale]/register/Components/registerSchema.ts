@@ -5,8 +5,21 @@ export const createRegisterSchema = (t: (key: string) => string) =>
   z
     .object({
       // Step 1: Personal Information
-      full_name_ar: z.string().min(2, t("full_name_ar_min")),
-      full_name_en: z.string().min(2, t("full_name_en_min")),
+      full_name_ar: z
+        .string()
+        .min(2, t("full_name_ar_min"))
+        .regex(/^[\u0600-\u06FF\s]+$/, { message: t("full_name_ar_min") })
+        .refine((val) => val.trim().split(/\s+/).length >= 4, {
+          message: t("full_name_ar_4_words"),
+        }),
+
+      full_name_en: z
+        .string()
+        .min(2, t("full_name_en_min"))
+        .regex(/^[A-Za-z\s]+$/, { message: t("full_name_en_min") })
+        .refine((val) => val.trim().split(/\s+/).length >= 4, {
+          message: t("full_name_en_4_words"),
+        }),
       gender: z.enum(["male", "female"], { message: t("gender_required") }),
       date_of_birth: z
         .string()

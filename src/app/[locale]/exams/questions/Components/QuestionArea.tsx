@@ -7,7 +7,6 @@ const QuestionArea = () => {
   const [selectedValue, setSelectedValue] = useState("offline");
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    console.log(selectedValue);
   };
 
   const handleOptionChange = (id) => {

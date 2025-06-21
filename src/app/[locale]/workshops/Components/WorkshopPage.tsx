@@ -60,7 +60,6 @@ export default function WorkshopPage() {
 
         const data = await res.json();
         setContent(data?.data || []);
-        console.log(data?.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {

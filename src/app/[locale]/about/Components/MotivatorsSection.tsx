@@ -5,7 +5,7 @@ const MotivatorsSection = ({ title, description, p, lang }) => {
 
   return (
     <section
-      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto md:pt-6 pt-0 mt-8 text-start`}
+      className={`flex flex-col md:flex-row items-center justify-between gap-8 container mx-auto mt-8 text-start`}
       dir={lang == "en" ? "ltr" : "rtl"}
     >
       <div className="w-full flex flex-col justify-center text-center">

@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
@@ -19,9 +20,12 @@ const AdsSection = () => {
       >
         {t("title")}
       </div>
-      <div className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mt-6 mx-auto">
+      <Link
+        href="mailto:info@sfma.sa"
+        className="block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mt-6 mx-auto"
+      >
         {t("button_text")}
-      </div>
+      </Link>
     </section>
   );
 };
