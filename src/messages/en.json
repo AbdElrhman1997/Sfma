@@ -665,5 +665,13 @@
     "government": "Government Entity",
     "supplier": "Supplier",
     "other_specify": "Other, please specify"
+  },
+  "certified_trainers": {
+    "title": "Our Certified Trainers at the Saudi Facility Management Association",
+    "sub_title": "Discover a selection of certified trainers across various facility management fields, delivering SFMA-accredited courses with expertise and professionalism."
+  },
+  "Exams": {
+    "title": "Exams Accredited by the Saudi Facility Management Association",
+    "sub_title": "You can now take official exams and obtain SFMA-accredited certificates without attending the course. Test your level directly and earn your certification."
   }
 }

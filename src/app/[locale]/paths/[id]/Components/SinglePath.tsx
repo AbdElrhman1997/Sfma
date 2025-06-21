@@ -97,30 +97,33 @@ const SinglePath = ({ translation, id }) => {
         <div className="w-3/5 md:w-2/5">
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${path?.image}`}
-            className="object-cover h-full w-full transition duration-300"
+            className="object-cover h-full w-full transition duration-300 rounded-xl"
             alt="path image"
           />
         </div>
       </div>
 
       {/* Courses Section */}
-      <div dir={dir} className="p-0 mt-8">
-        <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
-          {t("path_courses")}
-        </h2>
+      {path?.course?.length ? (
+        <div dir={dir} className="p-0 mt-8">
+          <h2 className="text-[26px] font-bold text-[#1DAEE5] text-center">
+            {t("path_courses")}
+          </h2>
 
-        <div
-          className={
-            gridClass + " justify-center items-stretch mb-10 container mx-auto"
-          }
-        >
-          <div className="flex flex-wrap justify-center gap-6 mt-9">
-            {path?.course?.map((course) => {
-              return renderPathCard(course);
-            })}
+          <div
+            className={
+              gridClass +
+              " justify-center items-stretch mb-10 container mx-auto"
+            }
+          >
+            <div className="flex flex-wrap justify-center gap-6 mt-9">
+              {path?.course?.map((course) => {
+                return renderPathCard(course);
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   ) : null;
 };

@@ -34,22 +34,20 @@ const Single = ({ id }) => {
   return (
     <div>
       <div className="bg-[#F6F6F6] lg:max-w-2/3 mx-auto shadow flex items-center justify-start lg:col-span-1 md:col-span-2 col-span-3 rounded-md text-center lg:p-6 p-4">
-        <div className="lg:w-32 w-28 border-2 border-[var(--second_main)] rounded-lg">
+        <div className="border-2 border-[var(--second_main)] rounded-md">
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${content?.user?.logo}`}
             alt="About Us"
             width={500}
             height={500}
-            className="w-full h-auto object-cover rounded-lg "
+            className="w-24 h-24 object-cover rounded-md "
           />
         </div>
-        <div className="ms-4">
+        <div className="ms-4 text-start">
           <p className="font-bold lg:text-xl text-base">
             {content?.user?.name}
           </p>
-          <p className="lg:text-base text-[13px] mt-1">
-            {content?.user?.job_title}
-          </p>
+          <p className="lg:text-base text-[13px]">{content?.user?.job_title}</p>
         </div>
       </div>
       <div className="lg:max-w-2/3 mx-auto">

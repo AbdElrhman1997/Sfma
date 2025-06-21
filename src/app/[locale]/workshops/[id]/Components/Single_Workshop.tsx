@@ -40,7 +40,7 @@ const Single_Workshop = ({ translation, id }) => {
       value: workshop?.type,
     },
     {
-      icon: "/images/logos/Group 107.png",
+      icon: "/images/logos/money.png",
       label: "سعر الدورة : ",
       value: workshop?.price + " ريال سعودي ",
     },

@@ -2,7 +2,7 @@
 
 import { createTranslator } from "next-intl";
 import React from "react";
-import Single_Course from "./Components/Single_Course";
+import Single_Course from "./Components/Single_Exam";
 
 export default async function Page({ params: { locale, id } }: any) {
   const messages = (await import(`../../../../messages/${locale}.json`))
@@ -14,22 +14,9 @@ export default async function Page({ params: { locale, id } }: any) {
     namespace: "Trainings",
   });
 
-  // const res = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API_URL}library/get-book/${id}`,
-  //   {
-  //     headers: {
-  //       "Accept-Language": locale || "ar",
-  //     },
-  //     cache: "no-store",
-  //   }
-  // );
-
-  // const data = await res.json();
-  // const single_book = data?.data || {};
-
   return (
     <div dir={locale === "en" ? "ltr" : "rtl"}>
-      <Single_Course translation={{}} id={id} />
+      <Single_Course id={id} />
     </div>
   );
 }

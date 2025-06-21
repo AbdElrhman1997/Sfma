@@ -1,5 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -35,22 +36,22 @@ const CertifiedTrainers = () => {
 
   const Card = ({ trainer }) => {
     return (
-      <div className="bg-[#F6F6F6] shadow lg:col-span-1 md:col-span-2 col-span-3 border-b-4 border-[var(--second_main)] rounded-lg px-4 text-center">
-        <div className="w-32 border-2 border-[var(--second_main)] rounded-lg mx-auto -translate-y-7">
+      <div className="bg-[#F6F6F6] shadow lg:col-span-1 md:col-span-2 col-span-3 border-b-4 border-[var(--second_main)] rounded-md px-4 text-center">
+        <div className="w-fit border-2 border-[var(--second_main)] rounded-md mx-auto -translate-y-8">
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${trainer?.user?.logo}`}
             alt="About Us"
             width={500}
             height={500}
-            className="w-full h-auto object-cover rounded-lg "
+            className="w-24 h-24 object-cover rounded-md "
           />
         </div>
-        <p className="text-[#555555] font-bold text-xl my-3 -translate-y-6">
+        <p className="text-[#555555] font-bold text-xl my-3 -translate-y-7">
           {trainer?.user?.name}
         </p>
         <Link
           href={`/${lang}/certified_trainers/${trainer?.id}`}
-          className="block cursor-pointer mx-auto hover:opacity-85 -translate-y-6 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-4 py-[6px] rounded-lg font-semibold text-[15px]"
+          className="block cursor-pointer mx-auto hover:opacity-85 -translate-y-7 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-4 py-[6px] rounded-lg font-semibold text-[15px]"
         >
           {t("common.learn_more")}
         </Link>
@@ -60,6 +61,23 @@ const CertifiedTrainers = () => {
 
   return (
     <section dir={lang == "en" ? "ltr" : "rtl"}>
+      <div className="relative" dir={lang == "en" ? "ltr" : "rtl"}>
+        <Image
+          src="/images/training/banner_bg.png"
+          alt="About Us"
+          width={500}
+          height={500}
+          className="w-full object-cover min-h-52 md:h-60 lg:h-72 xl:h-80 xl:max-h-96"
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-1/2 lg:px-20 px-3 lg:py-5 py-3 lg:text-[24px] text-[14px] font-semibold md:leading-[3rem] leading-relaxed text-white text-center w-full container mx-auto">
+          <p className="lg:text-4xl text-xl font-bold">
+            {t("certified_trainers.title")}
+          </p>
+          <p className="lg:text-xl text-sm font-semibold lg:mt-6 mt-4 lg:leading-10 lg:max-w-2/3 mx-auto">
+            {t("certified_trainers.sub_title")}
+          </p>
+        </div>
+      </div>
       {loadingContent ? (
         <div className="flex flex-wrap justify-center gap-6">
           {[1, 2, 3].map((index) => (
