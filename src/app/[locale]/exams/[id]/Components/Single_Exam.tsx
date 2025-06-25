@@ -131,20 +131,20 @@ const Single_Exam = ({ id }) => {
             الموضوعات التي يغطيها الاختبار تشمل:
           </h1>
           <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
-            {exam?.meta_data?.goals?.map((item, index) => (
+            {exam?.categories?.map((item, index) => (
               <div
                 key={index}
                 className="bg-[#DFDFDF] gap-3 p-3 rounded-lg flex items-center"
               >
                 <div className="w-7">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_URL}${item?.image}`}
+                    src={`/images/logos/true_icon.png`}
                     className="object-cover h-full w-full transition duration-300"
                     alt="path image"
                   />
                 </div>
                 <div className="text-[13px] md:text-base lg:text-lg">
-                  <span>{item.value}</span>
+                  <span>{item?.name}</span>
                 </div>
               </div>
             ))}
@@ -155,9 +155,13 @@ const Single_Exam = ({ id }) => {
       <div className="flex flex-col items-center  text-center mt-8 ">
         <Link
           className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-lg lg:text-2xl"
-          href={`/${lang}/exams/questions`}
+          href={
+            exam?.can_take_exam
+              ? `/${lang}/exams/questions`
+              : `/${lang}/exams/exam_register`
+          }
           onClick={() => {
-            localStorage.setItem("choosed_course", JSON.stringify(exam));
+            localStorage.setItem("choosed_exam", JSON.stringify(exam));
           }}
         >
           اطلب الاختبار الآن
@@ -167,7 +171,7 @@ const Single_Exam = ({ id }) => {
           &rdquo;الاختبارات&rdquo; بعد إتمام الدفع بنجاح.
         </p>
       </div>
-      <CommonQuestions />
+      {/* <CommonQuestions /> */}
     </section>
   ) : null;
 };
