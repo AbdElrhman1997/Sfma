@@ -6,7 +6,12 @@ import { useLocale } from "next-intl";
 
 const QuestionsPage = ({ id }) => {
   const [examQuestions, setExamQuestions]: any = useState({});
+  const [totalQuestions, setTotalQuestions] = useState([]);
   const [loadingCourse, setLoadingCourse] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
+  const [skippedQuestions, setSkippedQuestions] = useState(new Set()); // Track skipped questions
+  const [answers, setAnswers] = useState({});
   const lang = useLocale();
 
   useEffect(() => {
@@ -24,10 +29,20 @@ const QuestionsPage = ({ id }) => {
           cache: "no-store",
         });
         const data = await res.json();
+        console.log(data?.data);
         setExamQuestions(data?.data || {});
+
+        setTotalQuestions(
+          data?.data?.questions.map((question: any, i: number) => ({
+            id: question?.id,
+            question_num: i + 1,
+            text: `${i + 1}`,
+          }))
+        );
+
         setLoadingCourse(false);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching exam questions:", error);
         setLoadingCourse(false);
       }
     };
@@ -35,13 +50,73 @@ const QuestionsPage = ({ id }) => {
     fetchSinglePath();
   }, [lang, id]);
 
+  const handleAnswerSubmit = async (answerData) => {
+    const formData = new FormData();
+    Object.entries(answerData).forEach(([key, value]: any) => {
+      formData.append(key, value);
+    });
+    formData.append("exam_attempt_id", "40");
+    try {
+      const token = localStorage.getItem("auth_token");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}exams/submit-answer`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept-Language": lang || "ar",
+          },
+        }
+      );
+      const result = await res.json();
+      if (res.ok) {
+        setAnsweredQuestions((prev) =>
+          new Set(prev).add(answerData.exam_question_id)
+        );
+        setAnswers((prev) => ({
+          ...prev,
+          [answerData.exam_question_id]: answerData.exam_question_option_id,
+        }));
+        setSkippedQuestions((prev) => {
+          const newSkipped = new Set(prev);
+          newSkipped.delete(answerData.exam_question_id); // Remove from skipped if answered
+          return newSkipped;
+        });
+      }
+      return result;
+    } catch (error) {
+      console.error("Error submitting answer:", error);
+      return { error: true };
+    }
+  };
+
+  const handleQuestionChange = (index) => {
+    setCurrentQuestionIndex(index);
+  };
+
   return (
-    <div className="grid grid-cols-12 container mx-auto lg:mt-12 mt-10 gap-x-12 mb-6">
-      <div className="lg:col-span-5 col-span-12">
-        <QuestionsNumber />
+    <div className="grid lg:grid-cols-12 container mx-auto lg:mt-12 mt-10 gap-x-12 mb-6">
+      <div className="lg:col-span-5">
+        <QuestionsNumber
+          totalQuestions={totalQuestions || 0}
+          answeredQuestions={answeredQuestions}
+          skippedQuestions={skippedQuestions} // Pass skipped questions
+          currentQuestionIndex={currentQuestionIndex}
+          onQuestionChange={handleQuestionChange}
+        />
       </div>
-      <div className="lg:col-span-7 col-span-12">
-        <QuestionArea />
+      <div className="lg:col-span-7">
+        <QuestionArea
+          questions={examQuestions.questions || []}
+          currentQuestionIndex={currentQuestionIndex}
+          onQuestionChange={handleQuestionChange}
+          onAnswerSubmit={handleAnswerSubmit}
+          answeredQuestions={answeredQuestions}
+          answers={answers}
+          setAnswers={setAnswers}
+          setSkippedQuestions={setSkippedQuestions} // Pass setSkippedQuestions
+        />
       </div>
     </div>
   );

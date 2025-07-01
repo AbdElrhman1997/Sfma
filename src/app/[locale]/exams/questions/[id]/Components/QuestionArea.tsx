@@ -1,116 +1,123 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState, useEffect } from "react";
 
-const QuestionArea = () => {
+const QuestionArea = ({
+  questions,
+  currentQuestionIndex,
+  onQuestionChange,
+  onAnswerSubmit,
+  answeredQuestions,
+  answers,
+  setAnswers,
+  setSkippedQuestions,
+}) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const box2Ref = useRef(null);
-  const [selectedValue, setSelectedValue] = useState("offline");
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+
+  useEffect(() => {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion) {
+      const lastAnswer = answers[currentQuestion.id];
+      setSelectedOption(lastAnswer || null);
+    }
+  }, [currentQuestionIndex, questions, answers]);
+
+  const currentQuestion = questions[currentQuestionIndex] || {};
+  const isLastQuestion = currentQuestionIndex === questions.length - 1;
+  const isFirstQuestion = currentQuestionIndex === 0;
+
+  const handleOptionChange = (optionId) => {
+    setSelectedOption(optionId);
+    setAnswers((prev) => ({
+      ...prev,
+      [currentQuestion.id]: optionId,
+    }));
   };
 
-  const handleOptionChange = (id) => {
-    setSelectedOption(id);
+  const handleSubmit = async () => {
+    if (selectedOption !== null) {
+      const answerData = {
+        answer_text:
+          currentQuestion.options.find((opt) => opt.id === selectedOption)
+            ?.option || "",
+        exam_question_option_id: selectedOption,
+        exam_question_id: currentQuestion.id,
+      };
+      await onAnswerSubmit(answerData);
+      if (!isLastQuestion) {
+        onQuestionChange(currentQuestionIndex + 1);
+      }
+    }
+  };
+
+  const handlePrevious = () => {
+    if (!isFirstQuestion) {
+      onQuestionChange(currentQuestionIndex - 1);
+    }
+  };
+
+  const handleSkip = () => {
+    if (!isLastQuestion) {
+      setSkippedQuestions((prev) => new Set(prev).add(currentQuestion.id));
+      onQuestionChange(currentQuestionIndex + 1);
+    }
   };
 
   return (
-    <div className="flex flex-col items-start  bg-[#F6F6F6] p-4 rounded-lg w-full">
-      <div className="flex justify-between w-full mb-4">
-        <span className="lg:text-lg text-base font-bold">السؤال 1 من 20</span>
-        <button className="bg-yellow-300 font-semibold px-5 py-1 rounded-lg">
+    <div className="flex flex-col items-start bg-[#F6F6F6] lg:p-4 px-8 py-4 rounded-lg lg:w-full w-fit mx-auto">
+      {/* <div className="flex justify-between w-full mb-4">
+        <span className="lg:text-lg text-base font-bold">
+          السؤال {currentQuestionIndex + 1} من {questions.length}
+        </span>
+        <button
+          className="bg-yellow-300 font-semibold px-5 py-1 rounded-lg"
+          onClick={handleSkip}
+        >
           تخطي السؤال الآن
         </button>
-      </div>
-      <div className="w-full rounded-lg ">
-        <p className=" font-semibold mb-1">
-          في إدارة المرافق، ما هو المصطلح الذي يشير إلى عملية تقييم حالة الأصول
-          وتحديد الصيانة المطلوبة بناءً على الحالة الفعلية بدلاً من جدول زمني
-          ثابت؟
+      </div> */}
+      <div className="lg:w-full rounded-lg">
+        <p className="font-semibold mb-1 lg:text-lg text-[13px]">
+          {currentQuestion.question}
         </p>
-        <p className=" text-[#555555] mb-1">اختر اجابة واحدة صحيحة</p>
+        <p className="text-[#555555] mb-1 lg:text-lg text-[13px]">
+          اختر إجابة واحدة صحيحة
+        </p>
         <div className="space-y-2">
-          <div
-            ref={box2Ref}
-            className="border-[1px] mt-4 border-[#B1B1B1] px-4 py-3 w-full rounded-lg bg-[#EDEDED]"
-          >
-            <label className="flex items-start gap-x-3 lg:gap-x-5">
-              <input
-                type="radio"
-                value="online"
-                checked={selectedValue === "online"}
-                onChange={handleChange}
-                className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-              />
-              <div className="">
-                <p className="text-sm lg:text-[15px] font-semibold">
-                  الصيانة التصحيحية (Corrective Maintenance)
-                </p>
-              </div>
-            </label>
-          </div>
-          <div
-            ref={box2Ref}
-            className="border-[1px] mt-4 border-[#B1B1B1] px-4 py-3 w-full rounded-lg bg-[#EDEDED]"
-          >
-            <label className="flex items-start gap-x-3 lg:gap-x-5">
-              <input
-                type="radio"
-                value="online"
-                checked={selectedValue === "online"}
-                onChange={handleChange}
-                className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-              />
-              <div className="">
-                <p className="text-sm lg:text-[15px] font-semibold">
-                  الصيانة التصحيحية (Corrective Maintenance)
-                </p>
-              </div>
-            </label>
-          </div>
-          <div
-            ref={box2Ref}
-            className="border-[1px] mt-4 border-[#B1B1B1] px-4 py-3 w-full rounded-lg bg-[#EDEDED]"
-          >
-            <label className="flex items-start gap-x-3 lg:gap-x-5">
-              <input
-                type="radio"
-                value="online"
-                checked={selectedValue === "online"}
-                onChange={handleChange}
-                className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-              />
-              <div className="">
-                <p className="text-sm lg:text-[15px] font-semibold">
-                  الصيانة التصحيحية (Corrective Maintenance)
-                </p>
-              </div>
-            </label>
-          </div>
-          <div
-            ref={box2Ref}
-            className="border-[1px] mt-4 border-[#B1B1B1] px-4 py-3 w-full rounded-lg bg-[#EDEDED]"
-          >
-            <label className="flex items-start gap-x-3 lg:gap-x-5">
-              <input
-                type="radio"
-                value="online"
-                checked={selectedValue === "online"}
-                onChange={handleChange}
-                className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-              />
-              <div className="">
-                <p className="text-sm lg:text-[15px] font-semibold">
-                  الصيانة التصحيحية (Corrective Maintenance)
-                </p>
-              </div>
-            </label>
-          </div>
+          {currentQuestion.options?.map((option) => (
+            <div
+              key={option.id}
+              className="border-[1px] mt-4 border-[#B1B1B1] px-4 py-3 w-full rounded-lg bg-[#EDEDED]"
+            >
+              <label className="flex items-center gap-x-2 lg:gap-x-5">
+                <input
+                  type="radio"
+                  value={option.id}
+                  checked={selectedOption === option.id}
+                  onChange={() => handleOptionChange(option.id)}
+                  className="accent-black w-4 lg:w-[22px] h-4 lg:h-[22px]"
+                />
+                <div>
+                  <p className="text-[13px] lg:text-[17px] font-semibold">
+                    {option.option}
+                  </p>
+                </div>
+              </label>
+            </div>
+          ))}
         </div>
-        <div className="flex space-x-4 mt-5">
-          <button className="mt-4 w-[140px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white px-4 py-2 rounded-lg hover:opacity-85">
+        <div className="flex space-x-4 lg:mt-5 mt-2">
+          <button
+            onClick={handleSubmit}
+            className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white lg:px-4 px-3 py-2 rounded-lg hover:opacity-85"
+            disabled={selectedOption === null}
+          >
             التالي
           </button>
-          <button className="mt-4 w-[140px] bg-transparent border-2 border-[#898989] text-[#898989] cursor-pointer  px-4 py-2 rounded-lg hover:bg-[#898989] hover:text-white">
+          <button
+            onClick={handlePrevious}
+            className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] bg-transparent border-2 border-[#898989] text-[#898989] cursor-pointer lg:px-4 px-3 py-2 rounded-lg hover:bg-[#898989] hover:text-white"
+            disabled={isFirstQuestion}
+          >
             السابق
           </button>
         </div>

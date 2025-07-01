@@ -673,5 +673,33 @@
   "Exams": {
     "title": "Exams Accredited by the Saudi Facility Management Association",
     "sub_title": "You can now take official exams and obtain SFMA-accredited certificates without attending the course. Test your level directly and earn your certification."
+  },
+  "CoursesTab": {
+    "currentCoursesWorkshops": "Current Courses and Workshops",
+    "upcomingCourses": "Upcoming Courses",
+    "completedCourses": "Completed Courses",
+    "goToCourse": "Go to Course",
+    "workshop_in": "Workshop in",
+    "attend_type": "Attend type",
+    "offline": "In-person",
+    "online": "Online",
+    "go_to_course": "Go to Course",
+    "go_to_workshop": "Go to Workshop"
+  },
+  "CertificatesTab": {
+    "currentCertificates": "Attendance Certificates",
+    "completedCertificates": "Achievement Certificates",
+    "attendanceCertificate": "Attendance Certificate",
+    "achievementCertificate": "Achievement Certificate",
+    "issued": "Issued",
+    "previewCertificate": "Preview Certificate",
+    "download": "Download"
+  },
+  "PaymentsTab": {
+    "searchPlaceholder": "Search for client...",
+    "noResults": "No results found",
+    "typeMembership": "Membership",
+    "statusPaid": "Paid",
+    "statusPending": "Pending"
   }
 }

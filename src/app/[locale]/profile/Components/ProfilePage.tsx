@@ -44,7 +44,7 @@ const ProfilePage = () => {
     {
       id: 2,
       name: "courses",
-      label: "الدورات التدريبية",
+      label: "دوراتي التدريبية",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -235,11 +235,11 @@ const ProfilePage = () => {
           {activeTab == 1 ? (
             <ClientTab profileData={profileData} />
           ) : activeTab == 2 ? (
-            <CoursesTab profileData={profileData} />
+            <CoursesTab />
           ) : activeTab == 3 ? (
             <ExamsTab profileData={profileData} />
           ) : activeTab == 4 ? (
-            <CertificatesTab profileData={profileData} />
+            <CertificatesTab />
           ) : activeTab == 5 ? (
             <MembershipTab profileData={profileData} />
           ) : (

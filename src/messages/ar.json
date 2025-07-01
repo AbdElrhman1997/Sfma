@@ -688,5 +688,33 @@
   "certified_trainers": {
     "title": "مدربونا المعتمدون في جمعية إدارة المرافق السعودية",
     "sub_title": "اكتشف نخبة من المدربين المعتمدين في مختلف مجالات إدارة المرافق، ممن يقدّمون دورات SFMA المعتمدة بخبرة واحترافية."
+  },
+  "CoursesTab": {
+    "currentCoursesWorkshops": "الدورات والورش الحالية",
+    "upcomingCourses": "الدورات القادمة",
+    "completedCourses": "الدورات المكتملة",
+    "goToCourse": "انتقل للدورة",
+    "workshop_in": "ورشة عمل في",
+    "attend_type": "نوع الحضور",
+    "offline": "حضوري",
+    "online": "عن بعد",
+    "go_to_course": "انتقل للدورة",
+    "go_to_workshop": "انتقل إلى ورشة العمل"
+  },
+  "CertificatesTab": {
+    "currentCertificates": "شهادات حضور الدورات",
+    "completedCertificates": "شهادات الاجتياز",
+    "attendanceCertificate": "شهادة حضور دورة",
+    "achievementCertificate": "شهادة اجتياز",
+    "issued": "أصدرت",
+    "previewCertificate": "عرض الشهادة",
+    "download": "تحميل"
+  },
+  "PaymentsTab": {
+    "searchPlaceholder": "ابحث عن العميل...",
+    "noResults": "لا توجد نتائج للبحث",
+    "typeMembership": "عضوية",
+    "statusPaid": "مدفوعة",
+    "statusPending": "قيد الانتظار"
   }
 }
