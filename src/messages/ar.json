@@ -41,9 +41,9 @@
     "description_2": "تقدم SFMA ورش عمل تطبيقية تركز على المهارات العملية والمجالات المتخصصة في إدارة المرافق.",
     "see": "عرض التفاصيل",
     "read": "تصفح",
-    "": "",
-    "": "",
-    "": "",
+    "notifications": "الإشعارات",
+    "read_about_acount": "اطلع على كل ما يخص حسابك بشكل منظم وسهل",
+    "selcet_all": "تحديد الكل كمقروء",
     "": "",
     "": "",
     "": "",
@@ -85,17 +85,6 @@
     "volunteers": "عضويات متطوعين",
     "read_more": "قراءة المزيد"
   },
-  "ServicesGrid": {
-    "title": "خدماتنا",
-    "description": "نقدّم لك حلولاً متكاملة لدعمك في تحقيق أعلى مستويات الكفاءة والاحترافية.",
-    "services": {
-      "training": "التدريب والتطوير",
-      "memberships": "العضويات",
-      "reports": "التقارير والدراسات",
-      "events": "إدارة الفعاليات",
-      "consulting": "الاستشارات"
-    }
-  },
   "HomePage": {
     "career_growth": "طوّر حياتك المهنية بسرعة غير مسبوقة",
     "achieve_goals": "وحقق أهدافك بكفاءة أكبر!",
@@ -112,6 +101,18 @@
       "services_2": "العضويات",
       "services_3": "التقارير والدراسات",
       "services_4": "الفعاليات"
+    },
+
+    "ServicesGrid": {
+      "title": "خدماتنا",
+      "description": "نقدّم لك حلولاً متكاملة لدعمك في تحقيق أعلى مستويات الكفاءة والاحترافية.",
+      "services": {
+        "training": "التدريب والتطوير",
+        "memberships": "العضويات",
+        "reports": "التقارير والدراسات",
+        "events": "إدارة الفعاليات",
+        "consulting": "الاستشارات"
+      }
     },
     "CoursesSection": {
       "title": "الدورات التدريبية",
@@ -473,7 +474,8 @@
     "name": "الاسم",
     "certificate_type": "نوع الشهادة",
     "issue_date": "تاريخ الاصدار",
-    "contact_support": "تواجه مشكلة؟ تواصل معنا عن طريق"
+    "contact_support": "تواجه مشكلة؟ تواصل معنا عن طريق",
+    "verifying": "يتم التحقق"
   },
   "ConsultationSection": {
     "title": "خدمة الاستشارات المهنية",
@@ -716,5 +718,104 @@
     "typeMembership": "عضوية",
     "statusPaid": "مدفوعة",
     "statusPending": "قيد الانتظار"
+  },
+  "exam": {
+    "questions": "{count} سؤال - اختيار متعدد",
+    "passing_score": "درجة النجاح : {score}%",
+    "free": "مجاني",
+    "price": "الرسوم : {price} ر.س",
+    "request_exam": "اطلب الاختبار",
+    "valid_duration": "الاختبار متاح لمدة {hours} ساعة من تاريخ سداد الرسوم",
+    "final_result": "النتيجة النهائية"
+  },
+  "exam_register": {
+    "register_title": "التسجيل في دورة",
+    "discount_code": "كود الخصم إن وجد",
+    "apply": "تطبيق",
+    "agree": "أوافق على",
+    "terms": "الشروط والأحكام الخاصة بالجمعية",
+    "fees": "رسوم الاختبار :",
+    "discount": "الخصم :",
+    "total": "المبلغ المستحق :",
+    "confirm_and_pay": "تأكيد البيانات والمتابعة للدفع",
+    "added_to_profile": "سيتم إضافة هذا الاختبار إلى ملفك الشخصي ضمن قسم ”الاختبارات“ بعد إتمام الدفع بنجاح."
+  },
+  "single_exam": {
+    "fees": "الرسوم",
+    "free": "مجاني",
+    "questions": "عدد الأسئلة",
+    "question_label": "سؤال اختيار متعدد",
+    "passing_score": "درجة النجاح",
+    "passing_label": "درجة النجاح :",
+    "duration": "مدة الاتاحة",
+    "duration_label": "ساعة من تاريخ سداد الرسوم",
+    "subtitle": "اختبار معتمد من الجمعية",
+    "request_exam": "اطلب الاختبار الآن",
+    "overview_title": "نظرة شاملة عن الاختبار :",
+    "topics_title": "الموضوعات التي يغطيها الاختبار تشمل:",
+    "added_to_profile": "سيتم إضافة هذا الاختبار إلى ملفك الشخصي ضمن قسم ”الاختبارات“ بعد إتمام الدفع بنجاح."
+  },
+  "question": {
+    "choose_one": "اختر إجابة واحدة صحيحة",
+    "next": "التالي",
+    "prev": "السابق"
+  },
+  "exam_questions": {
+    "title": "أسئلة الاختبار",
+    "question_label": "سؤال",
+    "must_answer_all": "يجب الإجابة على جميع الأسئلة",
+    "out_of": "من",
+    "remaining": "الأسئلة المتبقية",
+    "submit_exam": "تقديم وانهاء الاختبار"
+  },
+  "result_page": {
+    "congrats_passed": "مبارك, لقد اجتزت الاختبار بنجاح",
+    "sorry_failed": "للأسف, لقد رسبت في الاختبار",
+    "exam_details": "تفاصيل الاختبار",
+    "questions_count": "عدد الأسئلة",
+    "multiple_choice_question": "سؤال اختيار متعدد",
+    "exam_category": "تصنيف الإختبار",
+    "passing_score": "الحد الأدني للنجاح",
+    "wrong_answers": "الإجابات الخاطئة",
+    "exam_date": "تاريخ الاختبار"
+  },
+  "course_register": {
+    "register_heading": "التسجيل في دورة",
+    "register_description": "يرجى ملء النموذج أدناه لحجز مكانك في الدورة القادمة",
+    "attendance_type": "نوع الحضور",
+    "offline_attendance": "حضور من المقر ({price} ر.س)",
+    "online_attendance": "حضور أونلاين ({price} ر.س)",
+    "online_note": "سيتم إرسال رابط الحضور بعد التسجيل",
+    "select_city": "حدد المدينة",
+    "discount_code": "كود الخصم إن وجد",
+    "apply": "تطبيق",
+    "agree_terms": "أوافق على",
+    "terms_link": "الشروط والأحكام الخاصة بالجمعية",
+    "start_date": "موعد بداية الدورة :",
+    "course_fee": "رسوم الدورة :",
+    "discount": "الخصم :",
+    "total_due": "المبلغ المستحق :",
+    "currency": "ر.س",
+    "confirm_and_continue": "تأكيد البيانات والمتابعة للدفع",
+    "note_after_payment": "سيتم إضافة هذه الدورة إلى ملفك الشخصي ضمن قسم ”دوراتي” بعد إتمام الدفع بنجاح."
+  },
+  "workshop_register": {
+    "workshop_registration_title": "تسجيل في ورشة عمل",
+    "workshop_registration_subtitle": "تحسين استدامة المرافق",
+    "attendance_type": "نوع الحضور",
+    "offline_attendance": "حضور من المقر ({price} ر.س)",
+    "online_attendance": "حضور أونلاين ({price} ر.س)",
+    "online_note": "سيتم إرسال رابط الحضور بعد التسجيل",
+    "select_city": "حدد المدينة",
+    "cities": ["الرياض", "جدة", "الدمام"],
+    "discount_code": "كود الخصم إن وجد",
+    "apply": "تطبيق",
+    "agree_terms": "أوافق على",
+    "terms_link": "الشروط والأحكام الخاصة بالجمعية",
+    "fees": "رسوم الحضور :",
+    "discount": "الخصم :",
+    "amount_due": "المبلغ المستحق :",
+    "confirm_and_continue": "تأكيد البيانات والمتابعة للدفع",
+    "note_after_payment": "سيتم إضافة هذه الورشة إلى ملفك الشخصي ضمن قسم “دوراتي” بعد إتمام الدفع بنجاح."
   }
 }

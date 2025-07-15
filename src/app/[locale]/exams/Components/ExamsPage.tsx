@@ -8,7 +8,7 @@ const ExamsPage = () => {
     <div className="w-full">
       <Banner_Section />
       <Exams />
-      <CommonQuestions />
+      {/* <CommonQuestions /> */}
     </div>
   );
 };

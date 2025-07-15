@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import QuestionsNumber from "./QuestionsNumber";
 import QuestionArea from "./QuestionArea";
 import { useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
 
 const QuestionsPage = ({ id }) => {
   const [examQuestions, setExamQuestions]: any = useState({});
@@ -13,6 +14,7 @@ const QuestionsPage = ({ id }) => {
   const [skippedQuestions, setSkippedQuestions] = useState(new Set()); // Track skipped questions
   const [answers, setAnswers] = useState({});
   const lang = useLocale();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -28,8 +30,11 @@ const QuestionsPage = ({ id }) => {
           },
           cache: "no-store",
         });
+        if (res.status === 403) {
+          router.push(`/${lang}/exams`);
+          return;
+        }
         const data = await res.json();
-        console.log(data?.data);
         setExamQuestions(data?.data || {});
 
         setTotalQuestions(
@@ -55,7 +60,7 @@ const QuestionsPage = ({ id }) => {
     Object.entries(answerData).forEach(([key, value]: any) => {
       formData.append(key, value);
     });
-    formData.append("exam_attempt_id", "40");
+    formData.append("exam_attempt_id", "41");
     try {
       const token = localStorage.getItem("auth_token");
       const res = await fetch(

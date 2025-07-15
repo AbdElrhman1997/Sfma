@@ -1,16 +1,19 @@
 "use client";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const Course_Register = ({ translation }) => {
+const Course_Register = () => {
+  const t = useTranslations("workshop_register");
   const lang = useLocale();
-  const choosed_workshop: any = JSON.parse(
-    localStorage.getItem("choosed_workshop")
-  );
+  const choosed_workshop =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("choosed_workshop") || "{}")
+      : {};
   const [selectedValue, setSelectedValue] = useState("offline");
-  const auth_token: any = localStorage.getItem("auth_token");
+  const auth_token =
+    typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
   const router = useRouter();
 
   const payment_data = {
@@ -22,7 +25,7 @@ const Course_Register = ({ translation }) => {
 
   const courseContent = [
     {
-      title: "رسوم الحضور :",
+      title: t("fees"),
       desc: `${
         selectedValue == "offline"
           ? choosed_workshop?.price
@@ -30,7 +33,7 @@ const Course_Register = ({ translation }) => {
       } ر.س`,
     },
     {
-      title: "الخصم :",
+      title: t("discount"),
       desc: `${
         choosed_workshop?.discounted_price
           ? choosed_workshop?.discounted_price
@@ -38,7 +41,7 @@ const Course_Register = ({ translation }) => {
       } ر.س`,
     },
     {
-      title: "المبلغ المستحق :",
+      title: t("amount_due"),
       desc: `${
         selectedValue == "offline"
           ? choosed_workshop?.price - choosed_workshop?.discounted_price
@@ -47,7 +50,7 @@ const Course_Register = ({ translation }) => {
     },
   ];
 
-  const [selectedCity, setSelectedCity] = useState("الرياض");
+  const [selectedCity, setSelectedCity] = useState(t("cities")[0]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -76,16 +79,16 @@ const Course_Register = ({ translation }) => {
         {/* Course Overview */}
         <div className="mt-12 text-center">
           <h1 className="text-xl lg:text-3xl font-bold mb-4 text-[var(--main)]">
-            تسجيل في ورشة عمل
+            {t("workshop_registration_title")}
           </h1>
           <h1 className="text-xl lg:text-3xl font-bold mb-4">
-            تحسين استدامة المرافق
+            {choosed_workshop?.title || t("workshop_registration_subtitle")}
           </h1>
         </div>
 
         <div className="mt-6 lg:mb-12 mb-8">
           <h1 className="text-xl lg:text-3xl font-bold mb-6 text-[var(--main)]">
-            نوع الحضور
+            {t("attendance_type")}
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Box 1 */}
@@ -104,12 +107,14 @@ const Course_Register = ({ translation }) => {
                 />
                 <div className="-translate-y-1">
                   <p className="text-base lg:text-xl font-bold">
-                    حضور من المقر ({choosed_workshop?.price} ر.س)
+                    {t("offline_attendance", {
+                      price: choosed_workshop?.price,
+                    })}
                   </p>
 
                   <div className="lg:mt-2 mt-1">
                     <p className="text-[#555555] font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
-                      حدد المدينة
+                      {t("select_city")}
                     </p>
 
                     {["الرياض", "جدة", "الدمام"].map((city, idx) => (
@@ -148,10 +153,12 @@ const Course_Register = ({ translation }) => {
                 />
                 <div className="-translate-y-1">
                   <p className="text-base lg:text-xl font-bold">
-                    حضور أونلاين ({choosed_workshop?.online_price} ر.س)
+                    {t("online_attendance", {
+                      price: choosed_workshop?.online_price,
+                    })}
                   </p>
                   <p className="text-[#555555] lg:mt-2 mt-1 font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
-                    سيتم إرسال رابط الحضور بعد التسجيل
+                    {t("online_note")}
                   </p>
                 </div>
               </label>
@@ -161,7 +168,7 @@ const Course_Register = ({ translation }) => {
 
         <div className="mt-6">
           <h1 className="text-base lg:text-2xl font-bold  text-[var(--main)] mb-3">
-            كود الخصم إن وجد
+            {t("discount_code")}
           </h1>
           <div className=" gap-3 rounded-lg flex justify-between">
             <input
@@ -169,7 +176,7 @@ const Course_Register = ({ translation }) => {
               className="text-[12px] md:text-lg lg:text-xl px-4 font-bold bg-[#F4F4F4] rounded-lg w-full"
             />
             <div className="text-[14px] lg:text-2xl font-bold bg-[var(--second_main)] px-4 lg:px-8 py-[6px] lg:py-3 text-white rounded-lg">
-              تطبيق
+              {t("apply")}
             </div>
           </div>
         </div>
@@ -187,14 +194,13 @@ const Course_Register = ({ translation }) => {
         >
           <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">
             <input type="checkbox" id="terms_checkbox" required />
-
             <label htmlFor="terms_checkbox">
-              أوافق على{" "}
+              {t("agree_terms")}{" "}
               <Link
                 href={`/${lang}/terms`}
                 className="text-[var(--main)] underline"
               >
-                الشروط والأحكام الخاصة بالجمعية
+                {t("terms_link")}
               </Link>{" "}
             </label>
           </div>
@@ -220,11 +226,10 @@ const Course_Register = ({ translation }) => {
                   type="submit"
                   className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
                 >
-                  تأكيد البيانات والمتابعة للدفع
+                  {t("confirm_and_continue")}
                 </button>
                 <p className="text-[14px] lg:text-xl mt-3 text-[#555555]">
-                  سيتم إضافة هذه الورشة إلى ملفك الشخصي ضمن قسم
-                  &rdquo;دوراتي&rdquo; بعد إتمام الدفع بنجاح.
+                  {t("note_after_payment")}
                 </p>
               </div>
             </div>

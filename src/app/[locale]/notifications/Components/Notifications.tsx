@@ -1,49 +1,168 @@
-import { useLocale } from "next-intl";
+"use client";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Notifications = () => {
   const lang = useLocale();
+  const [loading, setLoading] = useState(true);
+  const [notifications, setNotifications] = useState([]);
+  const t = useTranslations();
 
-  const NotificationCard = ({
-    time,
-    isRead = false,
-  }: {
-    time: string;
-    isRead?: boolean;
-  }) => (
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("auth_token");
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}notifications`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Accept-Language": lang || "ar",
+            },
+            cache: "no-store",
+          }
+        );
+        const data = await res.json();
+        if (data.success) {
+          setNotifications(data.data || []);
+        } else {
+          setNotifications([]);
+        }
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+        setNotifications([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotifications();
+  }, [lang]);
+
+  const getRelativeTime = (createdAt) => {
+    const now: any = new Date();
+    const created: any = new Date(createdAt);
+    const diffMs = now - created;
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffHours < 24) {
+      return lang === "ar" ? `منذ ${diffHours} ساعة` : `${diffHours} hours ago`;
+    } else if (diffDays < 30) {
+      const date = created.toLocaleDateString(
+        lang === "ar" ? "ar-EG" : "en-US",
+        {
+          day: "numeric",
+          month: "short",
+        }
+      );
+      const time = created.toLocaleTimeString(
+        lang === "ar" ? "ar-EG" : "en-US",
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      );
+      return lang === "ar" ? `${date}، ${time}` : `${date} ${time}`;
+    }
+    return created.toLocaleDateString(lang === "ar" ? "ar-EG" : "en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  const markAsSeen = async (notificationId) => {
+    try {
+      const token = localStorage.getItem("auth_token");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}notifications/${notificationId}/mark-as-seen`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept-Language": lang || "ar",
+          },
+        }
+      );
+      if (res.ok) {
+        setNotifications((prev) =>
+          prev.map((n) =>
+            n.id === notificationId ? { ...n, is_seen: true } : n
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error marking notification as seen:", error);
+    }
+  };
+
+  const markAllAsSeen = async () => {
+    try {
+      const token = localStorage.getItem("auth_token");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}notifications/mark-all-as-seen`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept-Language": lang || "ar",
+          },
+        }
+      );
+      if (res.ok) {
+        setNotifications((prev) => prev.map((n) => ({ ...n, is_seen: true })));
+      }
+    } catch (error) {
+      console.error("Error marking all notifications as seen:", error);
+    }
+  };
+
+  const NotificationCard = ({ notification }) => (
     <Link
-      href={`/${lang}/notifications/1`}
+      href={`/${lang}/notifications/${notification.id}`}
       className={`block shadow rounded-lg px-6 pb-4 mt-6 hover:opacity-85 cursor-pointer ${
-        isRead ? "bg-[#FBFBFB] border-[1px] border-[#E4E4E4]" : "bg-[#D3DFE9]"
+        notification.is_seen
+          ? "bg-[#FBFBFB] border-[1px] border-[#E4E4E4]"
+          : "bg-[#D3DFE9]"
       }`}
     >
       <div className="flex flex-wrap justify-between items-center">
         <h3
-          className={`lg:text-xl text-base  translate-y-1 ${
-            isRead ? "font-semibold" : "font-bold"
+          className={`lg:text-xl text-base translate-y-1 ${
+            notification.is_seen ? "font-semibold" : "font-bold"
           }`}
         >
-          عنوان الإشعار
+          {lang === "ar" ? notification.title_ar : notification.title_en}
         </h3>
         <div className="flex items-center gap-4">
+          {!notification.is_seen && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                markAsSeen(notification.id);
+              }}
+              className="lg:text-base text-[13px] mt-4 text-center w-fit px-3 py-2 rounded-full font-semibold bg-[#61B8A06B] text-[#1E614E] hover:bg-[#1E614E] hover:text-white transition-colors"
+            >
+              {lang === "ar" ? "علامة كمقروء" : "Mark as Read"}
+            </button>
+          )}
           <div
             className={`lg:text-base text-[13px] mt-4 text-center w-fit px-3 py-2 rounded-full font-semibold ${
-              isRead
+              notification.is_seen
                 ? "bg-[#8D99AE] text-white"
                 : "bg-[#61B8A06B] text-[#1E614E]"
             }`}
           >
-            {time}
+            {getRelativeTime(notification.created_at)}
           </div>
         </div>
       </div>
       <p className="lg:text-lg text-[14px] mt-2 text-justify truncate">
-        نبحث عن مدير إدارة مرافق ذو خبرة للإشراف على جميع جوانب إدارة المرافق في
-        مجمعاتنا التجارية والسكنية الفاخرة. سيكون المرشح المثالي مسؤولاً عن
-        قيادة فريق متعدد التخصصات، وإدارة عقود الموردين، وضمان الامتثال للمعايير
-        الوطنية والدولية، وتحسين كفاءة التشغيل. نحن نقدر المهنيين الذين يجمعون
-        بين المهارات التقنية القوية والقدرة على التفكير الاستراتيجي لتقديم بيئات
-        آمنة ومريحة ومستدامة لعملائنا.
+        {lang === "ar" ? notification.content_ar : notification.content_en}
       </p>
     </Link>
   );
@@ -54,31 +173,45 @@ const Notifications = () => {
       dir={lang === "en" ? "ltr" : "rtl"}
     >
       <h1 className="lg:text-4xl text-2xl text-[#555555] font-bold mt-12">
-        الإشعارات
+        {t("common.notifications")}
       </h1>
 
       <div className="flex flex-wrap justify-between items-center">
         <h3 className="lg:text-lg text-base text-[#555555] lg:mt-0 mt-4">
-          اطلع على كل ما يخص حسابك بشكل منظم وسهل
+          {t("common.read_about_acount")}
         </h3>
         <div className="flex items-center gap-4">
-          <div className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold">
-            تحديد الكل كمقروء
-          </div>
+          <button
+            onClick={markAllAsSeen}
+            className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
+          >
+            {t("common.selcet_all")}
+          </button>
         </div>
       </div>
 
       <div className="mt-10">
         {/* غير مقروء */}
-        <NotificationCard time="منذ ساعتين" />
-        <NotificationCard time="منذ ساعتين" />
+        {notifications
+          .filter((notification) => !notification.is_seen)
+          .map((notification) => (
+            <NotificationCard
+              key={notification.id}
+              notification={notification}
+            />
+          ))}
       </div>
 
       <div className="lg:mt-20 mt-12">
         {/* مقروء */}
-        <NotificationCard time="15 مايو، 09:00" isRead />
-        <NotificationCard time="15 مايو، 09:00" isRead />
-        <NotificationCard time="15 مايو، 09:00" isRead />
+        {notifications
+          .filter((notification) => notification.is_seen)
+          .map((notification) => (
+            <NotificationCard
+              key={notification.id}
+              notification={notification}
+            />
+          ))}
       </div>
     </section>
   );

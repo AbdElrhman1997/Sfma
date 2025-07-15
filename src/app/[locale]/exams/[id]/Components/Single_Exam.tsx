@@ -7,6 +7,8 @@ import CommonQuestions from "../../Components/CommonQuestions";
 
 const Single_Exam = ({ id }) => {
   const lang = useLocale();
+  const t = useTranslations("single_exam");
+
   const [exam, setCourse]: any = useState({});
   const [loadingCourse, setLoadingCourse] = useState(false);
 
@@ -34,31 +36,29 @@ const Single_Exam = ({ id }) => {
     fetchSinglePath();
   }, [lang, id]);
 
-  const t = useTranslations("common");
-
   const quick_look = [
     {
       id: 1,
-      title: " الرسوم ",
-      content: exam?.is_free ? "مجاني" : `${exam?.price} ر.س`,
+      title: t("fees"),
+      content: exam?.is_free ? t("free") : `${exam?.price} ر.س`,
       icon_src: "/images/logos/money.png",
     },
     {
       id: 2,
-      title: " عدد الأسئلة ",
-      content: `${exam?.total_questions} سؤال اختيار متعدد`,
+      title: t("questions"),
+      content: `${exam?.total_questions} ${t("question_label")}`,
       icon_src: "/images/common/icon_1.png",
     },
     {
       id: 3,
-      title: " درجة النجاح ",
-      content: `درجة النجاح : ${exam?.passing_score}%`,
+      title: t("passing_score"),
+      content: `${t("passing_label")} ${exam?.passing_score}%`,
       icon_src: "/images/common/icon_2.png",
     },
     {
       id: 4,
-      title: " مدة الاتاحة ",
-      content: ` ${exam?.duration_minutes} ساعة من تاريخ سداد الرسوم`,
+      title: t("duration"),
+      content: `${exam?.duration_minutes} ${t("duration_label")}`,
       icon_src: "/images/logos/icon_4.png",
     },
   ];
@@ -72,12 +72,19 @@ const Single_Exam = ({ id }) => {
               {exam?.title}
             </p>
             <p className="lg:text-xl md:text-lg text-[11px] font-semibold lg:my-6 my-3">
-              {t("p_1")}
+              {t("subtitle")}
             </p>
             <div className="flex gap-4 lg:mb-2 xl:mx-0 mx-auto">
-              <Link href={`/${lang}/exams/questions`} className="inline-block">
+              <Link
+                href={
+                  exam?.can_take_exam
+                    ? `/${lang}/exams/questions`
+                    : `/${lang}/exams/exam_register`
+                }
+                className="inline-block"
+              >
                 <div className="bg-white w-fit text-[var(--main)] border-[[var(--main)]] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
-                  اطلب الاختبار الآن
+                  {t("request_exam")}
                 </div>
               </Link>
             </div>
@@ -89,7 +96,7 @@ const Single_Exam = ({ id }) => {
         {/* Course Overview */}
         <div className="mt-6">
           <h1 className="text-lg lg:text-3xl font-bold mb-3">
-            نظرة شاملة عن الاختبار :
+            {t("overview_title")}
           </h1>
           <h3 className="text-[#555555] font-semibold text-sm lg:text-base">
             {exam?.description}
@@ -126,30 +133,32 @@ const Single_Exam = ({ id }) => {
         </div>
 
         {/* Learning Objectives */}
-        <div className="mt-6">
-          <h1 className="text-lg lg:text-3xl font-bold mb-3">
-            الموضوعات التي يغطيها الاختبار تشمل:
-          </h1>
-          <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
-            {exam?.categories?.map((item, index) => (
-              <div
-                key={index}
-                className="bg-[#DFDFDF] gap-3 p-3 rounded-lg flex items-center"
-              >
-                <div className="w-7">
-                  <img
-                    src={`/images/logos/true_icon.png`}
-                    className="object-cover h-full w-full transition duration-300"
-                    alt="path image"
-                  />
+        {exam?.categories?.length ? (
+          <div className="mt-6">
+            <h1 className="text-lg lg:text-3xl font-bold mb-3">
+              {t("topics_title")}
+            </h1>
+            <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
+              {exam?.categories?.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-[#DFDFDF] gap-3 p-3 rounded-lg flex items-center"
+                >
+                  <div className="w-7">
+                    <img
+                      src={`/images/logos/true_icon.png`}
+                      className="object-cover h-full w-full transition duration-300"
+                      alt="path image"
+                    />
+                  </div>
+                  <div className="text-[13px] md:text-base lg:text-lg">
+                    <span>{item?.name}</span>
+                  </div>
                 </div>
-                <div className="text-[13px] md:text-base lg:text-lg">
-                  <span>{item?.name}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
 
       <div className="flex flex-col items-center  text-center mt-8 ">
@@ -164,14 +173,12 @@ const Single_Exam = ({ id }) => {
             localStorage.setItem("choosed_exam", JSON.stringify(exam));
           }}
         >
-          اطلب الاختبار الآن
+          {t("request_exam")}
         </Link>
         <p className="text-base lg:text-xl mt-3 text-[#555555]">
-          سيتم إضافة هذا الاختبار إلى ملفك الشخصي ضمن قسم
-          &rdquo;الاختبارات&rdquo; بعد إتمام الدفع بنجاح.
+          {t("added_to_profile")}
         </p>
       </div>
-      {/* <CommonQuestions /> */}
     </section>
   ) : null;
 };

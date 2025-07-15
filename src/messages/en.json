@@ -40,7 +40,9 @@
     "description_2": "SFMA offers practical workshops focusing on hands-on skills and specialized areas in facility management.",
     "see": "show details",
     "read": "Read",
-    "": "",
+    "notifications": "Notifications",
+    "read_about_acount": "View everything about your account in an organized and easy way",
+    "selcet_all": "Mark all as read",
     "": "",
     "": "",
     "": "",
@@ -475,7 +477,8 @@
     "name": "Name",
     "certificate_type": "Certificate Type",
     "issue_date": "Issue Date",
-    "contact_support": "Having trouble? Contact us via"
+    "contact_support": "Having trouble? Contact us via",
+    "verifying": "Verifying"
   },
   "ConsultationSection": {
     "title": "Professional Consultation Service",
@@ -701,5 +704,104 @@
     "typeMembership": "Membership",
     "statusPaid": "Paid",
     "statusPending": "Pending"
+  },
+  "exam": {
+    "questions": "{count} questions - multiple choice",
+    "passing_score": "Passing score: {score}%",
+    "free": "Free",
+    "price": "Fees: {price} SAR",
+    "request_exam": "Request Exam",
+    "valid_duration": "Exam is available for {hours} hours from the date of payment",
+    "final_result": "Final result"
+  },
+  "exam_register": {
+    "register_title": "Register for Exam",
+    "discount_code": "Discount Code (if any)",
+    "apply": "Apply",
+    "agree": "I agree to the",
+    "terms": "Association's Terms & Conditions",
+    "fees": "Exam Fees:",
+    "discount": "Discount:",
+    "total": "Total Amount Due:",
+    "confirm_and_pay": "Confirm and Proceed to Payment",
+    "added_to_profile": "This exam will be added to your profile under 'Exams' after successful payment."
+  },
+  "single_exam": {
+    "fees": "Fees",
+    "free": "Free",
+    "questions": "Total Questions",
+    "question_label": "multiple choice questions",
+    "passing_score": "Passing Score",
+    "passing_label": "Passing Score:",
+    "duration": "Duration",
+    "duration_label": "hours from the date of payment",
+    "subtitle": "An exam accredited by the association",
+    "request_exam": "Request Exam Now",
+    "overview_title": "Quick Overview of the Exam:",
+    "topics_title": "Topics covered in the exam include:",
+    "added_to_profile": "This exam will be added to your profile under 'Exams' after successful payment."
+  },
+  "question": {
+    "choose_one": "Choose one correct answer",
+    "next": "Next",
+    "prev": "Previous"
+  },
+  "exam_questions": {
+    "title": "Exam Questions",
+    "question_label": "Question",
+    "must_answer_all": "All questions must be answered",
+    "out_of": "of",
+    "remaining": "Remaining Questions",
+    "submit_exam": "Submit and Finish Exam"
+  },
+  "result_page": {
+    "congrats_passed": "Congratulations, you passed the exam",
+    "sorry_failed": "Unfortunately, you failed the exam",
+    "exam_details": "Exam Details",
+    "questions_count": "Number of Questions",
+    "multiple_choice_question": "multiple choice questions",
+    "exam_category": "Exam Category",
+    "passing_score": "Minimum Passing Score",
+    "wrong_answers": "Wrong Answers",
+    "exam_date": "Exam Date"
+  },
+  "course_register": {
+    "register_heading": "Course Registration",
+    "register_description": "Please fill out the form below to reserve your spot in the upcoming course.",
+    "attendance_type": "Attendance Type",
+    "offline_attendance": "In-person attendance ({price} SAR)",
+    "online_attendance": "Online attendance ({price} SAR)",
+    "online_note": "The attendance link will be sent after registration.",
+    "select_city": "Select city",
+    "discount_code": "Discount code (if any)",
+    "apply": "Apply",
+    "agree_terms": "I agree to the",
+    "terms_link": "association's terms and conditions",
+    "start_date": "Course start date:",
+    "course_fee": "Course fee:",
+    "discount": "Discount:",
+    "total_due": "Total due:",
+    "currency": "SAR",
+    "confirm_and_continue": "Confirm and continue to payment",
+    "note_after_payment": "This course will be added to your profile under “My Courses” after successful payment."
+  },
+  "workshop_register": {
+    "workshop_registration_title": "Workshop Registration",
+    "workshop_registration_subtitle": "Sustainable Facilities Improvement",
+    "attendance_type": "Attendance Type",
+    "offline_attendance": "In-person attendance ({price} SAR)",
+    "online_attendance": "Online attendance ({price} SAR)",
+    "online_note": "The attendance link will be sent after registration",
+    "select_city": "Select City",
+    "cities": ["Riyadh", "Jeddah", "Dammam"],
+    "discount_code": "Discount code (if any)",
+    "apply": "Apply",
+    "agree_terms": "I agree to the",
+    "terms_link": "association's terms and conditions",
+    "fees": "Attendance fee:",
+    "discount": "Discount:",
+    "amount_due": "Amount due:",
+    "confirm_and_continue": "Confirm and continue to payment",
+    "note_after_payment": "This workshop will be added to your profile under “My Workshops” after successful payment."
   }
 }

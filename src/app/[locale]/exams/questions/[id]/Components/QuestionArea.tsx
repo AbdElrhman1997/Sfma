@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { useState, useEffect } from "react";
 
 const QuestionArea = ({
@@ -12,7 +13,7 @@ const QuestionArea = ({
   setSkippedQuestions,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const t = useTranslations("question");
   useEffect(() => {
     const currentQuestion = questions[currentQuestionIndex];
     if (currentQuestion) {
@@ -80,7 +81,7 @@ const QuestionArea = ({
           {currentQuestion.question}
         </p>
         <p className="text-[#555555] mb-1 lg:text-lg text-[13px]">
-          اختر إجابة واحدة صحيحة
+          {t("choose_one")}
         </p>
         <div className="space-y-2">
           {currentQuestion.options?.map((option) => (
@@ -94,7 +95,7 @@ const QuestionArea = ({
                   value={option.id}
                   checked={selectedOption === option.id}
                   onChange={() => handleOptionChange(option.id)}
-                  className="accent-black w-4 lg:w-[22px] h-4 lg:h-[22px]"
+                  className="accent-black w-4 lg:w-[22px] h-4 lg:h-[22px] cursor-pointer"
                 />
                 <div>
                   <p className="text-[13px] lg:text-[17px] font-semibold">
@@ -111,14 +112,14 @@ const QuestionArea = ({
             className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white lg:px-4 px-3 py-2 rounded-lg hover:opacity-85"
             disabled={selectedOption === null}
           >
-            التالي
+            {t("next")}
           </button>
           <button
             onClick={handlePrevious}
             className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] bg-transparent border-2 border-[#898989] text-[#898989] cursor-pointer lg:px-4 px-3 py-2 rounded-lg hover:bg-[#898989] hover:text-white"
             disabled={isFirstQuestion}
           >
-            السابق
+            {t("prev")}
           </button>
         </div>
       </div>
