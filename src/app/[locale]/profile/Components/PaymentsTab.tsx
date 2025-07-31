@@ -30,7 +30,8 @@ const PaymentsTab = ({ profileData }) => {
         const data = await res.json();
         if (data.status === 200) {
           const mappedData = data.data.orders.map((order) => ({
-            id: order.uuid,
+            id: order.id,
+            uuid: order.uuid,
             name: order.relative_details.title,
             date: new Date(order.created_at)
               .toLocaleDateString("ar-EG", {
@@ -74,10 +75,6 @@ const PaymentsTab = ({ profileData }) => {
     setFiltered(sorted);
   };
 
-  if (loading) {
-    return <div className="p-4 text-center">جاري التحميل...</div>;
-  }
-
   return (
     <div className="p-4">
       <input
@@ -87,85 +84,102 @@ const PaymentsTab = ({ profileData }) => {
         value={search}
         onChange={handleSearch}
       />
-      <div className="overflow-x-auto">
-        <table className="text-center w-full bg-[#F6F6F6] border-separate border-spacing-y-4 border border-gray-200 rounded-lg min-w-[700px]">
-          <thead className="bg-[#EDEDED] -translate-y-4">
-            <tr>
-              <th className="w-[100px] px-4 py-4 rounded-tr-lg"></th>
-              <th className="w-[100px] px-4 py-4">النوع</th>
-              <th className="w-[100px] px-4 py-4">فاتورة رقم</th>
-              <th className="px-4 py-4">تاريخ</th>
-              <th
-                className="px-4 py-2 rounded-tl-lg"
-                onClick={handleSortAmount}
-              >
-                السعر {sortAsc ? "↑" : "↓"}
-              </th>
-              <th className="px-4 py-4"></th>
-            </tr>
-          </thead>
-          <tbody className="border-separate border-spacing-y-4 border-spacing-x-0">
-            {filtered.map((item) => (
-              <tr key={item.id} className="bg-white rounded-lg overflow-hidden">
-                <td className="px-4 py-4 font-medium rounded-s-lg min-w-[300px] flex items-center">
-                  <div className="bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-12 h-12 text-white rounded-md text-[12px] mx-auto flex justify-center items-center">
-                    <div className="w-6">
+      {loading ? (
+        <div className="p-4 text-center">جاري التحميل...</div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="text-center w-full bg-[#F6F6F6] border-separate border-spacing-y-4 border border-gray-200 rounded-lg min-w-[700px]">
+            <thead className="bg-[#EDEDED] -translate-y-4">
+              <tr>
+                <th className="w-[100px] px-4 py-4 rounded-tr-lg"></th>
+                <th className="w-[100px] px-4 py-4">النوع</th>
+                <th className="w-[100px] px-4 py-4">فاتورة رقم</th>
+                <th className="px-4 py-4">تاريخ</th>
+                <th
+                  className="px-4 py-2 rounded-tl-lg"
+                  onClick={handleSortAmount}
+                >
+                  السعر {sortAsc ? "↑" : "↓"}
+                </th>
+                <th className="px-4 py-4"></th>
+              </tr>
+            </thead>
+            <tbody className="border-separate border-spacing-y-4 border-spacing-x-0">
+              {filtered.map((item) => (
+                <tr
+                  key={item.id}
+                  className="bg-white rounded-lg overflow-hidden"
+                >
+                  <td className="px-4 py-4 font-medium rounded-s-lg min-w-[300px] flex items-center">
+                    <div className="bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-12 h-12 text-white rounded-md text-[12px] mx-auto flex justify-center items-center">
+                      <div className="w-6">
+                        <Image
+                          src={"/images/logos/certified.png"}
+                          alt="session icon"
+                          width={500}
+                          height={500}
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    </div>
+                    <div>{item.name}</div>
+                  </td>
+                  <td className="px-4 py-4 font-medium min-w-[180px]">
+                    <div className="bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-[6px] rounded-full text-[12px] mx-auto">
+                      {t("typeMembership")}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 min-w-[180px]">{item.uuid}</td>
+                  <td className="px-4 py-4 min-w-[180px]">{item.date}</td>
+                  <td className="px-4 py-4 rounded-e-lg min-w-[180px]">
+                    {item.amount} ر.س
+                  </td>
+                  <td className="px-4 py-4 rounded-e-lg min-w-[180px] flex items-center gap-x-5">
+                    <a
+                      href={`${process.env.NEXT_PUBLIC_API_URL}orders/${item.id}/invoice/web`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-5"
+                    >
                       <Image
-                        src={"/images/logos/certified.png"}
-                        alt="session icon"
+                        src={"/images/logos/preview_payments.png"}
+                        alt="preview icon"
                         width={500}
                         height={500}
                         className="w-full h-auto"
                       />
-                    </div>
-                  </div>
-                  <div>{item.name}</div>
-                </td>
-                <td className="px-4 py-4 font-medium min-w-[180px]">
-                  <div className="bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-[6px] rounded-full text-[12px] mx-auto">
-                    {t("typeMembership")}
-                  </div>
-                </td>
-                <td className="px-4 py-4 min-w-[180px]">{item.id}</td>
-                <td className="px-4 py-4 min-w-[180px]">{item.date}</td>
-                <td className="px-4 py-4 rounded-e-lg min-w-[180px]">
-                  {item.amount} ر.س
-                </td>
-                <td className="px-4 py-4 rounded-e-lg min-w-[180px] flex items-center gap-x-5">
-                  <div className="w-5">
-                    <Image
-                      src={"/images/logos/preview_payments.png"}
-                      alt="session icon"
-                      width={500}
-                      height={500}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                  <div className="w-5">
-                    <Image
-                      src={"/images/logos/download_payments.png"}
-                      alt="session icon"
-                      width={500}
-                      height={500}
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr>
-                <td
-                  colSpan={6}
-                  className="text-center py-4 text-gray-500 bg-white rounded-lg"
-                >
-                  {t("noResults")}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+                    </a>
+                    <a
+                      href={`${process.env.NEXT_PUBLIC_API_URL}orders/${item.id}/invoice/download`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-5"
+                    >
+                      <Image
+                        src={"/images/logos/download_payments.png"}
+                        alt="download icon"
+                        width={500}
+                        height={500}
+                        className="w-full h-auto"
+                      />
+                    </a>
+                  </td>
+                </tr>
+              ))}
+              {filtered.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={6}
+                    className="text-center py-4 text-gray-500 bg-white rounded-lg"
+                  >
+                    {t("noResults")}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

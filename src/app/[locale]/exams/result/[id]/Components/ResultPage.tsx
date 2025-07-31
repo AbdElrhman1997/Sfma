@@ -93,13 +93,12 @@ const ResultPage = ({ id }) => {
       <div
         className="w-full flex flex-col items-center lg:py-20 py-7 lg:mt-10 mt-5 rounded-xl"
         style={{
-          background:
-            exam[0]?.percentage > 50
-              ? "linear-gradient(to right, var(--second_main_gradiant), var(--second_main))"
-              : "linear-gradient(to right, #dc4d4d, #ef4444)",
+          background: exam[0]?.is_passed
+            ? "linear-gradient(to right, var(--second_main_gradiant), var(--second_main))"
+            : "linear-gradient(to right, #dc4d4d, #ef4444)",
         }}
       >
-        {+exam[0]?.percentage > 50 ? (
+        {exam[0]?.is_passed ? (
           <>
             <div className="lg:w-28 w-14">
               <Image

@@ -295,11 +295,11 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
               >
                 <span className="text-xl">{item.icon}</span>
                 <span className="text-sm font-medium ">{item.label}</span>
-                {item.badge && (
+                {/* {item.badge && (
                   <span className="ml-auto bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {item.badge}
                   </span>
-                )}
+                )} */}
               </a>
             )
           )}

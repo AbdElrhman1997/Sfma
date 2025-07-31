@@ -317,7 +317,13 @@
     "password_max": "Password must be at most 32 characters",
     "password_confirmation_mismatch": "Password confirmation does not match",
     "has_account": "Already have an account?",
-    "login_to_account": "Log in now"
+    "login_to_account": "Log in now",
+    "profile_data": "Personal Information",
+    "courses": "Training Courses",
+    "exams": "Exams",
+    "certificates": "Certificates",
+    "mempership": "Membership",
+    "payments": "Payments"
   },
   "Login": {
     "login_to_account": "Login to your account",
@@ -330,6 +336,19 @@
     "email_invalid": "Invalid email address",
     "email_required": "Email is required",
     "password_min": "Password must be at least 8 characters long"
+  },
+  "Chatbot": {
+    "title": "Common questions",
+    "question1": "How do I update my profile?",
+    "answer1": "To update your profile, go to the 'Personal Information' tab and edit your details.",
+    "question2": "Where can I find my courses?",
+    "answer2": "You can find your courses under the 'My Training Courses' tab.",
+    "question3": "How do I view my exam results?",
+    "answer3": "Check your exam results in the 'Exams' tab after completing an exam.",
+    "question4": "How do I download my certificate?",
+    "answer4": "Go to the 'Certificates' tab and click the download icon next to your certificate.",
+    "waiting": "Waiting for response...",
+    "close": "Close"
   },
   "Profile": {},
   "NavBar": {
@@ -479,6 +498,23 @@
     "issue_date": "Issue Date",
     "contact_support": "Having trouble? Contact us via",
     "verifying": "Verifying"
+  },
+  "ExamsTab": {
+    "current_exams_title": "Current Exams",
+    "exam_count": "{count} Exam",
+    "session_icon_alt": "Session Icon",
+    "start_date": "Start Date",
+    "end_date": "End Date",
+    "start_exam": "Start Exam",
+    "start_icon_alt": "Start Icon",
+    "upcoming_exams_title": "Upcoming Exams",
+    "not_started": "Not Started",
+    "not_started_yet": "Not Started Yet",
+    "end_icon_alt": "End Icon",
+    "ended_exams_title": "Ended Exams",
+    "completed": "Completed",
+    "result": "Result",
+    "n/a": "N/A"
   },
   "ConsultationSection": {
     "title": "Professional Consultation Service",

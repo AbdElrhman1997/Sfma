@@ -3,18 +3,20 @@ import React, { useEffect, useState } from "react";
 import QuestionsNumber from "./QuestionsNumber";
 import QuestionArea from "./QuestionArea";
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const QuestionsPage = ({ id }) => {
   const [examQuestions, setExamQuestions]: any = useState({});
   const [totalQuestions, setTotalQuestions] = useState([]);
   const [loadingCourse, setLoadingCourse] = useState(false);
+  const [submitAnsowerLoading, setSubmitAnsowerLoading] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
   const [skippedQuestions, setSkippedQuestions] = useState(new Set()); // Track skipped questions
   const [answers, setAnswers] = useState({});
   const lang = useLocale();
   const router = useRouter();
+  const searchParams: any = useSearchParams();
 
   useEffect(() => {
     const fetchSinglePath = async () => {
@@ -60,9 +62,10 @@ const QuestionsPage = ({ id }) => {
     Object.entries(answerData).forEach(([key, value]: any) => {
       formData.append(key, value);
     });
-    formData.append("exam_attempt_id", "41");
+    formData.append("exam_attempt_id", searchParams.get("exam_attempt_id"));
     try {
       const token = localStorage.getItem("auth_token");
+      setSubmitAnsowerLoading(true);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}exams/submit-answer`,
         {
@@ -76,6 +79,7 @@ const QuestionsPage = ({ id }) => {
       );
       const result = await res.json();
       if (res.ok) {
+        setSubmitAnsowerLoading(false);
         setAnsweredQuestions((prev) =>
           new Set(prev).add(answerData.exam_question_id)
         );
@@ -92,6 +96,7 @@ const QuestionsPage = ({ id }) => {
       return result;
     } catch (error) {
       console.error("Error submitting answer:", error);
+      setSubmitAnsowerLoading(false);
       return { error: true };
     }
   };
@@ -117,6 +122,7 @@ const QuestionsPage = ({ id }) => {
           currentQuestionIndex={currentQuestionIndex}
           onQuestionChange={handleQuestionChange}
           onAnswerSubmit={handleAnswerSubmit}
+          submitAnsowerLoading={submitAnsowerLoading}
           answeredQuestions={answeredQuestions}
           answers={answers}
           setAnswers={setAnswers}

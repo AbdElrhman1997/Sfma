@@ -1,6 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
 const QuestionsNumber = ({
@@ -13,12 +13,15 @@ const QuestionsNumber = ({
   const lang = useLocale();
   const router = useRouter();
   const t = useTranslations("exam_questions");
+  const searchParams: any = useSearchParams();
 
   const handleFinishExam = async () => {
     try {
       const token = localStorage.getItem("auth_token");
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}exams/submit-exam/41`,
+        `${process.env.NEXT_PUBLIC_API_URL}exams/submit-exam/${searchParams.get(
+          "exam_attempt_id"
+        )}`,
         {
           method: "POST",
           headers: {

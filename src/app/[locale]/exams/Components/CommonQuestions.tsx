@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import { useLocale } from "next-intl";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const CommonQuestions = () => {
   const [is1Open, setIs1Open] = useState(true);
   const [is2Open, setIs2Open] = useState(true);
+  const [data, setData] = useState();
+  const lang = useLocale();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("auth_token");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}user-exams-by-status`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept-Language": lang || "ar",
+          },
+        }
+      );
+
+      const result = await res.json();
+      setData(result?.data);
+      console.log(data);
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <div className=" container mx-auto">

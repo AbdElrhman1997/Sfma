@@ -11,6 +11,7 @@ const QuestionArea = ({
   answers,
   setAnswers,
   setSkippedQuestions,
+  submitAnsowerLoading,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const t = useTranslations("question");
@@ -23,6 +24,7 @@ const QuestionArea = ({
   }, [currentQuestionIndex, questions, answers]);
 
   const currentQuestion = questions[currentQuestionIndex] || {};
+  console.log(questions?.length, currentQuestion, currentQuestionIndex);
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
   const isFirstQuestion = currentQuestionIndex === 0;
 
@@ -107,20 +109,29 @@ const QuestionArea = ({
           ))}
         </div>
         <div className="flex space-x-4 lg:mt-5 mt-2">
-          <button
-            onClick={handleSubmit}
-            className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white lg:px-4 px-3 py-2 rounded-lg hover:opacity-85"
-            disabled={selectedOption === null}
-          >
-            {t("next")}
-          </button>
-          <button
-            onClick={handlePrevious}
-            className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] bg-transparent border-2 border-[#898989] text-[#898989] cursor-pointer lg:px-4 px-3 py-2 rounded-lg hover:bg-[#898989] hover:text-white"
-            disabled={isFirstQuestion}
-          >
-            {t("prev")}
-          </button>
+          {currentQuestionIndex != 0 ? (
+            <button
+              onClick={handlePrevious}
+              className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] bg-transparent border-2 border-[#898989] text-[#898989] cursor-pointer lg:px-4 px-3 py-2 rounded-lg hover:bg-[#898989] hover:text-white"
+              disabled={isFirstQuestion}
+            >
+              {t("prev")}
+            </button>
+          ) : null}
+          {questions?.length ==
+          currentQuestionIndex + 1 ? null : submitAnsowerLoading ? (
+            <div className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white lg:px-4 px-3 py-2 rounded-lg hover:opacity-85 flex items-center justify-center">
+              <div className="w-5 h-5 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            <button
+              onClick={handleSubmit}
+              className="mt-4 lg:w-[140px] w-[120px] lg:text-base text-[13px] cursor-pointer bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] text-white lg:px-4 px-3 py-2 rounded-lg hover:opacity-85"
+              disabled={selectedOption === null}
+            >
+              {t("next")}
+            </button>
+          )}
         </div>
       </div>
     </div>

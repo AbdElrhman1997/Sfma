@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import Image from "next/image";
 import LanguageSwitcher from "./Components/LanguageSwitcher";
 import AdPopup from "./Components/AdPopup";
+import Chatbot from "./Components/Chatbot";
 
 const cairo = Cairo({
   subsets: ["latin", "arabic"], // Supports Arabic & Latin characters
@@ -44,6 +45,7 @@ export default async function LocaleLayout({
           <Footer />
           <LanguageSwitcher />
           <AdPopup />
+          <Chatbot />
         </NextIntlClientProvider>
       </body>
     </html>
