@@ -57,7 +57,7 @@ const BlogsSection = () => {
             >
               <div className="py-4">
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.image}`}
+                  src={`https://sffma.fmexcon.com/storage/${item?.image}`}
                   alt={item?.name}
                   className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                 />

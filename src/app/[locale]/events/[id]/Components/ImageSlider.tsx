@@ -84,7 +84,7 @@ const ImageSlider = ({ images }) => {
           <>
             <SwiperSlide key={index}>
               <img
-                src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.image}`}
+                src={`https://sffma.fmexcon.com/storage/${item?.image}`}
                 alt={`Slide ${index + 1}`}
                 style={{
                   width: "100%",

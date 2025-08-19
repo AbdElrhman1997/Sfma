@@ -75,12 +75,12 @@ const BannerSection = () => {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full min-h-[50vh] md:min-h-[30vh] xl:max-h-[80vh] 2xl:min-h-[70vh] 2xl:max-h-[90vh]">
+            <div className="relative w-full min-h-[50vh] md:min-h-[70vh] xl:max-h-[80vh] 2xl:min-h-[70vh] 2xl:max-h-[90vh]">
               {/* Full-width image and overlay */}
               <div className="absolute w-full h-full top-0 left-0">
                 <div className="absolute w-full h-full bg-black opacity-70 z-40"></div>
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${banner.image}`}
+                  src={`https://sffma.fmexcon.com/storage/${banner.image}`}
                   alt={`Banner ${banner.id}`}
                   className="object-cover w-full h-full"
                 />
@@ -97,13 +97,15 @@ const BannerSection = () => {
                   <p className="2xl:text-2xl lg:text-lg md:text-base text-sm mt-4 xl:max-w-7/12 2xl:max-w-9/12 2xl:leading-12 md:leading-8 leading-6">
                     {banner?.description}
                   </p>
-                  <Link
-                    href={banner?.btn_url}
-                    target="_blank"
-                    className="block mb-12 bg-white 2xl:text-xl md:text-base text-sm text-[var(--main)] font-semibold lg:py-3 py-2 lg:px-6 px-4 rounded-lg hover:opacity-85 xl:mx-0 mx-auto transition duration-300 w-fit mt-6"
-                  >
-                    {banner?.btn_text || "تعرف على المزيد"}
-                  </Link>
+                  {banner?.btn_url && (
+                    <Link
+                      href={banner?.btn_url}
+                      target="_blank"
+                      className="block mb-12 bg-white 2xl:text-xl md:text-base text-sm text-[var(--main)] font-semibold lg:py-3 py-2 lg:px-6 px-4 rounded-lg hover:opacity-85 xl:mx-0 mx-auto transition duration-300 w-fit mt-6"
+                    >
+                      {banner?.btn_text || "تعرف على المزيد"}
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -72,7 +72,7 @@ const NewsSection = ({ from_home }) => {
 
                   <div className="w-full">
                     <img
-                      src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.thumbnail_image}`}
+                      src={`https://sffma.fmexcon.com/storage/${item?.thumbnail_image}`}
                       alt={item?.title || "News Image"}
                       width={500}
                       height={400}

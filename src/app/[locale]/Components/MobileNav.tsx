@@ -236,7 +236,7 @@ const MobileNav = ({ lang, isAuthenticated, user }) => {
               </div>
             </div>
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${user?.logo}`} // Replace with user profile image path
+              src={`https://sffma.fmexcon.com/storage/${user?.logo}`} // Replace with user profile image path
               alt="Profile"
               className="rounded-full bg-white w-16 h-auto"
             />

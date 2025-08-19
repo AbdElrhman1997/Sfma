@@ -65,7 +65,7 @@ const SinglePage = ({ id }) => {
             style={{ zIndex: 1 }}
           >
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.icon}`}
+              src={`https://sffma.fmexcon.com/storage/${content?.icon}`}
               alt="Consultant Badge"
               width={180}
               height={180}

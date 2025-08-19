@@ -113,7 +113,7 @@ const SingleEvent = ({ id }) => {
           </div>
           <div className="lg:w-1/2 lg:p-6 w-full">
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.cover_image}`}
+              src={`https://sffma.fmexcon.com/storage/${content?.cover_image}`}
               alt="About Us"
               width={500}
               height={400}

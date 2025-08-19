@@ -68,7 +68,7 @@ const ProvidersCards = () => {
             <div className="bg-white p-3 border-[1px] rounded-xl border-[var(--second_main)] w-fit mx-auto">
               <div className="w-10">
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.logo}`}
+                  src={`https://sffma.fmexcon.com/storage/${item?.logo}`}
                   alt="About Us"
                   width={50}
                   height={50}

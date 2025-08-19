@@ -8,7 +8,7 @@ const Card = ({ subscription, lang, translation }) => {
     <div className="min-w-[330px] mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative hover:scale-105 transition duration-300 cursor-pointer hover:shadow-xl">
       <div className="flex justify-center">
         <img
-          src={`https://sfma.srv814693.hstgr.cloud/storage/${subscription?.icon}`}
+          src={`https://sffma.fmexcon.com/storage/${subscription?.icon}`}
           alt="Diamond Badge"
           className="absolute top-0 left-1/2 -translate-1/2"
           width={100}

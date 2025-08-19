@@ -15,7 +15,7 @@ const CoursesTab = () => {
         >
           <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${book?.image}`}
+              src={`https://sffma.fmexcon.com/storage/${book?.image}`}
               alt={book?.name}
               className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
             />
@@ -25,7 +25,7 @@ const CoursesTab = () => {
           </div>
 
           <Link
-            href={`https://sfma.srv814693.hstgr.cloud/storage/${book?.file}`}
+            href={`https://sffma.fmexcon.com/storage/${book?.file}`}
             target="_blank"
             className="inline-block mt-2"
           >

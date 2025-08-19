@@ -9,7 +9,7 @@ const ContentCard = ({ subscription, lang, id }) => {
     >
       <div className="w-20 h-full bg-[var(--second_main)] flex items-center justify-center">
         <img
-          src={`https://sfma.srv814693.hstgr.cloud/storage/${subscription?.icon}`}
+          src={`https://sffma.fmexcon.com/storage/${subscription?.icon}`}
           alt="icon"
           width={32}
           height={32}

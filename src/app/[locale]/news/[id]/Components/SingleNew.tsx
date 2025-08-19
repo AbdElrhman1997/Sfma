@@ -56,7 +56,7 @@ const SingleNew = ({ id }) => {
         <div className="my-8 lg:px-16">
           <div className="w-full mx-auto">
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.thumbnail_image}`}
+              src={`https://sffma.fmexcon.com/storage/${content?.thumbnail_image}`}
               alt="About Us"
               width={50}
               height={50}

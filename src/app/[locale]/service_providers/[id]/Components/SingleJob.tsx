@@ -47,7 +47,7 @@ const SingleJob = ({ id }) => {
       <div className="lg:flex justify-between items-center my-10 gap-6">
         <div className="lg:w-52 w-28 border-2 lg:mb-0 mb-10 border-[var(--second_main)] rounded-md p-4 lg:mx-0 mx-auto">
           <img
-            src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.logo}`}
+            src={`https://sffma.fmexcon.com/storage/${content?.logo}`}
             alt="About Us"
             width={50}
             height={50}

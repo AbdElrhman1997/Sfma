@@ -8,7 +8,7 @@ const Training_Card = ({ translation, single_book }) => {
         {/* Left Section: Book Cover */}
         <div className="md:w-1/3 w-full">
           <Image
-            src={`https://sfma.srv814693.hstgr.cloud/storage/${single_book?.image}`}
+            src={`https://sffma.fmexcon.com/storage/${single_book?.image}`}
             alt="Book Cover"
             width={300}
             height={450}
@@ -37,7 +37,7 @@ const Training_Card = ({ translation, single_book }) => {
 
           {/* Button */}
           <Link
-            href={`https://sfma.srv814693.hstgr.cloud/storage/${single_book?.file}`}
+            href={`https://sffma.fmexcon.com/storage/${single_book?.file}`}
             className="text-start cursor-pointer"
             target="_blank"
           >
@@ -48,15 +48,15 @@ const Training_Card = ({ translation, single_book }) => {
         </div>
       </div>
       <Link
-        href={`https://sfma.srv814693.hstgr.cloud/storage/${single_book?.file}`}
+        href={`https://sffma.fmexcon.com/storage/${single_book?.file}`}
         target="_blank"
       >
         <div
           className="relative w-[300px] h-[450px] bg-cover bg-center mx-auto mb-16"
           style={{
             backgroundImage: single_book?.image
-              ? `url(https://sfma.srv814693.hstgr.cloud/storage/${single_book?.image})`
-              : "url(https://sfma.srv814693.hstgr.cloud/storage/fallback-image.jpg)",
+              ? `url(https://sffma.fmexcon.com/storage/${single_book?.image})`
+              : "url(https://sffma.fmexcon.com/storage/fallback-image.jpg)",
           }}
         >
           <div className="absolute inset-0 bg-[#00000092] flex items-center justify-center cursor-pointer">

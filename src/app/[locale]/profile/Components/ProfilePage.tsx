@@ -93,7 +93,7 @@ const ProfilePage = () => {
         <div className="md:w-1/5 w-4/5 mx-auto">
           {profileData?.logo ? (
             <img
-              src={`https://sfma.srv814693.hstgr.cloud/storage/${profileData?.logo}`}
+              src={`https://sffma.fmexcon.com/storage/${profileData?.logo}`}
               alt="Profile Logo"
               width={200}
               height={200}

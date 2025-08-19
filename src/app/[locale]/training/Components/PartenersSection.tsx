@@ -61,7 +61,7 @@ const PartenersSection = () => {
             <SwiperSlide key={index}>
               <div className="rounded-lg w-[150px] h-[150px] md:w-[170px] md:h-[170px] mx-auto flex items-center justify-center overflow-hidden">
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${partner?.logo}`}
+                  src={`https://sffma.fmexcon.com/storage/${partner?.logo}`}
                   alt={`Partner ${index}`}
                   className="object-contain max-w-full max-h-full"
                 />

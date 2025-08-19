@@ -188,7 +188,7 @@ const SingleJob = ({ id }) => {
             <div className="mt-6 bg-white w-full p-4 rounded-lg">
               <div className="w-16 mx-auto">
                 <img
-                  src={`https://sfma.srv814693.hstgr.cloud/storage/${job?.company_logo}`}
+                  src={`https://sffma.fmexcon.com/storage/${job?.company_logo}`}
                   alt="Company Logo"
                   width={50}
                   height={50}

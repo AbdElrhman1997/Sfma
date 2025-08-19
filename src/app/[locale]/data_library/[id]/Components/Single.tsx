@@ -39,7 +39,7 @@ const Single = ({ translation, id }) => {
         {/* Left Section: Book Cover */}
         <div className="md:w-1/3 w-full">
           <img
-            src={`https://sfma.srv814693.hstgr.cloud/storage/${content?.image}`}
+            src={`https://sffma.fmexcon.com/storage/${content?.image}`}
             alt="Book Cover"
             width={300}
             height={450}
@@ -66,7 +66,7 @@ const Single = ({ translation, id }) => {
 
           {/* Button */}
           <Link
-            href={`https://sfma.srv814693.hstgr.cloud/storage/${content?.file}`}
+            href={`https://sffma.fmexcon.com/storage/${content?.file}`}
             className="text-start cursor-pointer"
             target="_blank"
           >

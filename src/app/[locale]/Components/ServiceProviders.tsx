@@ -42,7 +42,7 @@ export default function ServiceProviders() {
       {/* Top icon */}
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 flex items-center justify-center z-10">
         <img
-          src={`https://sfma.srv814693.hstgr.cloud/storage/${item?.logo}`}
+          src={`https://sffma.fmexcon.com/storage/${item?.logo}`}
           alt="service provider"
           width={100}
           height={100}
