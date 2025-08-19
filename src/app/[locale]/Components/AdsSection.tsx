@@ -40,7 +40,28 @@ const AdsSection = () => {
   }, [lang]);
 
   if (loading) return <div className="bg-[#D9D9D9] min-h-2/3"></div>; // Simple loading state
-  if (!ad) return <div>{t("no_ads_available")}</div>; // Fallback if no ad is fetched
+  if (!ad)
+    return (
+      <section
+        className="container mx-auto pt-10"
+        dir={lang == "en" ? "ltr" : "rtl"}
+      >
+        <div
+          className={`bg-[#D9D9D9] 2xl:min-h-[70vh] lg:min-h-[80vh] min-h-[50vh] rounded-lg flex justify-center items-center ${
+            lang == "en" ? "md:text-left" : "md:text-right"
+          } text-center lg:text-4xl text-xl font-semibold relative`}
+          dir={lang == "en" ? "ltr" : "rtl"}
+        >
+          {t("no_ads_available")}
+        </div>
+        <Link
+          href="mailto:info@sfma.sa"
+          className="block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mt-6 mx-auto"
+        >
+          {t("button_text")}
+        </Link>
+      </section>
+    ); // Fallback if no ad is fetched
 
   return (
     <section

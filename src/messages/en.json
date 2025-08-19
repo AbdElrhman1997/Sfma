@@ -136,6 +136,7 @@
       "show_events": "Show all events"
     },
     "AdsSection": {
+      "no_ads_available": "No ads available",
       "title": "Advertisement Space",
       "button_text": "Book your ad space now!"
     },

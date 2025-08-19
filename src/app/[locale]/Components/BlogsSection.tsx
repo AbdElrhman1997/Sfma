@@ -12,7 +12,7 @@ const BlogsSection = () => {
 
   useEffect(() => {
     const fetchSinglePath = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-books?type=1`;
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-books?type=2`;
       try {
         setLoadingContent(true);
         const res = await fetch(apiUrl, {
@@ -34,7 +34,7 @@ const BlogsSection = () => {
     fetchSinglePath();
   }, [lang]);
 
-  return (
+  return content?.length ? (
     <section
       className={`bg-[#F6F6F6] flex flex-col md:flex-row items-center justify-between gap-8 text-start mt-10 lg:pt-8 pt-4 lg:pb-10 pb-5`}
       dir={lang === "en" ? "ltr" : "rtl"}
@@ -92,7 +92,7 @@ const BlogsSection = () => {
         </Link>
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default BlogsSection;
