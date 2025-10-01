@@ -44,7 +44,7 @@ export default function RegisterForm({ locale, messages }) {
     watch,
     setValue,
   } = useForm<RegisterFormData>({
-    resolver: zodResolver(createRegisterSchema(t)),
+    resolver: zodResolver(createRegisterSchema({ t, from_profile: false })),
     defaultValues: {
       gender: undefined,
       nationality: "",
