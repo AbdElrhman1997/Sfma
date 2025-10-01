@@ -103,7 +103,14 @@ export default function Sfma_Paths() {
         {t("sub_title")}
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12 gap-8 justify-center items-stretch xl:p-0 p-5">
+      <div
+        className={`${
+          content?.length <= 2
+            ? "flex justify-center flex-wrap gap-8 xl:gap-12 p-5 xl:p-0"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 p-5 xl:p-0"
+        } items-stretch`}
+      >
+        {" "}
         {loadingPaths ? (
           renderLoadingCards()
         ) : (

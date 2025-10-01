@@ -17,7 +17,7 @@ const PartenersSection = () => {
     const fetchPartners = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}partners/get-partners`,
+          `${process.env.NEXT_PUBLIC_API_URL}training-partners/get-training-partners`,
           {
             headers: {
               "Accept-Language": lang || "ar",

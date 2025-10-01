@@ -90,7 +90,7 @@ const SingleJob = ({ id }) => {
             <ul className="list-disc ps-5 mt-1">
               {content?.services?.map((item, idx) => (
                 <li key={idx} className="lg:text-lg text-base mt-2">
-                  {lang === "en" ? item?.en : item?.ar}
+                  {item}
                 </li>
               ))}
             </ul>

@@ -1,19 +1,39 @@
-"use client"; // Required for client-side interactivity
-
+"use client";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Data_Library({ translation, lang }) {
-  const [activeTab, setActiveTab] = useState(1);
-  const [loadingBooks, setLoadingBooks] = useState(false);
-  const [content, setContent] = useState([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabNameParam = searchParams.get("tab_name") || "digitalBooks";
+
+  // عند الضغط على تاب
+  const handleTabClick = (tab) => {
+    setActiveTab(tab.id);
+
+    // تعديل URL بدون إعادة تحميل الصفحة
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab_name", tab.name);
+
+    router.replace(`?${params.toString()}`);
+  };
+
   const tabs = [
     { id: 1, name: "digitalBooks", label: translation?.digital_books },
     { id: 2, name: "articles", label: translation?.articles },
     { id: 3, name: "researches", label: translation?.research },
   ];
+
+  // Default tab based on URL param
+  const defaultTab = tabs.find((tab) => tab.name === tabNameParam)?.id || 1;
+
+  const [activeTab, setActiveTab] = useState(defaultTab);
+  const [loadingBooks, setLoadingBooks] = useState(false);
+  const [content, setContent] = useState([]);
   const t = useTranslations();
+
   useEffect(() => {
     const fetchBooks = async () => {
       setLoadingBooks(true);
@@ -55,7 +75,7 @@ export default function Data_Library({ translation, lang }) {
                 ? "bg-[#61B8A0] text-white "
                 : "text-black bg-[#D9D9D9] hover:text-gray-700"
             }`}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => handleTabClick(tab)}
           >
             {tab.label}
           </button>
@@ -112,7 +132,9 @@ export default function Data_Library({ translation, lang }) {
                   className="inline-block mt-2"
                 >
                   <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
-                    {translation.read_book}
+                    {tabNameParam == "articles"
+                      ? translation.show_blog
+                      : translation.read_book}
                   </div>
                 </Link>
               )}

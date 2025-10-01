@@ -1,12 +1,10 @@
 "use client";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-const SideBarFilter = () => {
-  const [selectedCategory, setSelectedCategory] = useState(1);
+const SideBarFilter = ({ setContent }) => {
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [filterList, setFilterList] = useState([]);
-  const lang = useTranslations();
   const t = useTranslations("");
 
   useEffect(() => {
@@ -21,42 +19,47 @@ const SideBarFilter = () => {
           cache: "no-store",
         });
         const data = await res.json();
-        setFilterList(data?.data || {});
+
+        // أضف "All" في الأول قبل التصنيفات من الباك
+        setFilterList([{ id: "all", name: "الكل" }, ...(data?.data || [])]);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     };
 
     fetchCategories();
-  }, [lang]);
+  }, [t]);
 
   const handleCategoryClick = async (item) => {
     setSelectedCategory(item.id);
+
+    // لو "all" جيب كل الداتا بدون category_id
+    const apiUrl =
+      item.id === "all"
+        ? `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-providers`
+        : `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-providers?category_id=${item.id}`;
+
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}service-provider/get-service-providers`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ category_id: item.id }),
-        }
-      );
-      if (!response.ok) {
-        console.error("Failed to post category ID to backend");
-      }
+      const res = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Accept-Language": "ar",
+        },
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setContent(data?.data);
     } catch (error) {
-      console.error("Error posting category ID:", error);
+      console.error("Error fetching providers:", error);
     }
   };
 
   return (
-    <section className="xl:flex hidden flex-col gap-3 bg-[#F6F6F6] shadow w-fit p-4">
+    <section className="flex xl:flex-col gap-3 bg-[#F6F6F6] shadow p-4 xl:w-fit w-full overflow-x-auto xl:mb-0 mb-10 xl:mx-0 mx-auto">
       {filterList?.map((item) => (
         <div
           key={item.id}
-          className={`rounded-lg flex items-center gap-x-3 w-fit py-3 px-5 min-w-[250px] cursor-pointer hover:opacity-80 ${
+          className={`rounded-lg flex items-center gap-x-3 w-fit py-3 px-5 min-w-[250px] cursor-pointer hover:opacity-80 xl:mx-0 mx-auto ${
             selectedCategory === item.id
               ? "bg-[var(--second_main)] text-white"
               : "bg-[#DFDFDF]"

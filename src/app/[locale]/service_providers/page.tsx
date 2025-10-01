@@ -1,18 +1,15 @@
-import { createTranslator } from "next-intl";
+"use client";
+import { createTranslator, useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import AlertSection from "./Components/AlertSection";
 import SideBarFilter from "./Components/SideBarFilter";
 import ProvidersCards from "./Components/ProvidersCards";
 
-const Page = async ({ params }) => {
+const Page = ({ params }) => {
   const { locale } = params;
-  const messages = (await import(`../../../messages/${locale}.json`)).default;
-  const t = createTranslator({
-    locale,
-    messages,
-    namespace: "",
-  });
+  const t = useTranslations("");
+  const [content, setContent]: any = useState([]);
 
   return (
     <section className="" dir={locale == "en" ? "ltr" : "rtl"}>
@@ -39,12 +36,12 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-4 container mx-auto mt-16 relative">
-        <div className="xl:col-span-1">
-          <SideBarFilter />
+      <div className="grid grid-cols-4 container mx-auto mt-16 relative xl:gap-x-8">
+        <div className="xl:col-span-1 col-span-4">
+          <SideBarFilter setContent={setContent} />
         </div>
         <div className="xl:col-span-3 col-span-4">
-          <ProvidersCards />
+          <ProvidersCards content={content} setContent={setContent} />
         </div>
         <div className="col-span-4">
           <AlertSection />

@@ -4,9 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const ProvidersCards = () => {
+const ProvidersCards = ({ content, setContent }) => {
   const lang = useLocale();
-  const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
   const isEmpty = !loadingContent && content.length === 0;
   const t = useTranslations("common");

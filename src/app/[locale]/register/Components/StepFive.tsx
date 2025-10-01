@@ -88,8 +88,8 @@ const StepFive = ({ register, errors, watch }) => {
         <input
           id="country"
           type="text"
-          {...register("country")}
-          defaultValue={watch("country")?.name}
+          // {...register("country")}
+          defaultValue={localStorage.getItem("country")}
           disabled
           className="mt-1 text-sm block w-full px-3 py-2 h-[45px] border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-600 cursor-not-allowed focus:outline-none"
         />
@@ -106,7 +106,7 @@ const StepFive = ({ register, errors, watch }) => {
           id="city"
           type="text"
           {...register("city")}
-          defaultValue={watch("city")}
+          defaultValue={localStorage.getItem("city")}
           disabled
           className="mt-1 text-sm block w-full px-3 py-2 h-[45px] border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-600 cursor-not-allowed focus:outline-none"
         />

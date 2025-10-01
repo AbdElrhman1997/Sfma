@@ -83,7 +83,7 @@ const AdsSection = () => {
           <img
             src={`${process.env.NEXT_PUBLIC_URL}${ad.image}`}
             alt={t("ad_alt_text")}
-            className="w-full lg:min-h-[80%] object-cover rounded-lg"
+            className="w-full lg:min-h-[80%] object-cover"
           />
         </a>
       </div>

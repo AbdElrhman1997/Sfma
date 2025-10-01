@@ -20,6 +20,7 @@ const Page = async ({ params }) => {
           articles: t("articles"),
           research: t("research"),
           read_book: t("read_book"),
+          show_blog: t("show_blog"),
         }}
         lang={locale}
       />

@@ -44,7 +44,7 @@ const SinglePath = ({ translation, id }) => {
         {/* Course Image and Title */}
         <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
           <img
-            src="/images/training/training_1.png"
+            src={`https://sffma.fmexcon.com/storage/${course?.image}`}
             alt="دورات في الأمن والسلامة"
             className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
           />
@@ -53,13 +53,13 @@ const SinglePath = ({ translation, id }) => {
           </p>
         </div>
         {/* Badge */}
-        <div className="absolute top-0 start-0 -translate-5 bg-[#1DAEE5] text-white py-2 px-4 rounded-lg font-bold text-[16px]">
+        {/* <div className="absolute top-0 start-0 -translate-5 bg-[#1DAEE5] text-white py-2 px-4 rounded-lg font-bold text-[16px]">
           {new Date(course.date_from).getDate()} -{" "}
           {new Date(course.date_to).getDate()}{" "}
           {new Date(course.date_from).toLocaleDateString("ar-EG", {
             month: "long",
           })}
-        </div>
+        </div> */}
 
         {/* Course Details Link */}
         <Link href={`/${lang}/training/${course?.id}`} className="inline-block">
@@ -111,16 +111,13 @@ const SinglePath = ({ translation, id }) => {
           </h2>
 
           <div
+            dir={dir}
             className={
               gridClass +
-              " justify-center items-stretch mb-10 container mx-auto"
+              " justify-center items-stretch mb-10 container mx-auto gap-6 mt-9"
             }
           >
-            <div className="flex flex-wrap justify-center gap-6 mt-9">
-              {path?.course?.map((course) => {
-                return renderPathCard(course);
-              })}
-            </div>
+            {path?.course?.map((course) => renderPathCard(course))}
           </div>
         </div>
       ) : null}

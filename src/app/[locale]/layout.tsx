@@ -11,6 +11,7 @@ import Image from "next/image";
 import LanguageSwitcher from "./Components/LanguageSwitcher";
 import AdPopup from "./Components/AdPopup";
 import Chatbot from "./Components/Chatbot";
+import { ToastContainer } from "react-toastify";
 
 const cairo = Cairo({
   subsets: ["latin", "arabic"], // Supports Arabic & Latin characters
@@ -39,6 +40,11 @@ export default async function LocaleLayout({
     <html lang={locale} className={cairo.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+          />
           {/* <Header /> */}
           <NavBar />
           <div className="lg:min-h-[450px] min-h-[300px]">{children}</div>

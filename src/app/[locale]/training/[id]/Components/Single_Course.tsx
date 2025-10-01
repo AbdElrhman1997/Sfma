@@ -165,7 +165,7 @@ const Single_Course = ({ translation, id }) => {
         </div>
 
         {/* Next Session Dates */}
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <h1 className="text-xl lg:text-3xl font-bold mb-3">{t("p_6")}</h1>
           <div className="bg-[#F6F6F6] p-6 grid lg:grid-cols-2 gap-6 mt-6 mb-8">
             {nextSessions.map((item, index) => (
@@ -191,7 +191,7 @@ const Single_Course = ({ translation, id }) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Certificates Dates */}
         <div className="mt-6">
@@ -215,7 +215,7 @@ const Single_Course = ({ translation, id }) => {
       </div>
       <div className="bg-[#F6F6F6] py-10 flex flex-col items-center text-center">
         <p className="text-2xl lg:text-4xl mb-3">
-          <span className="font-bold">{course?.online_price}</span> ر.س
+          <span className="font-bold">{course?.price}</span> {t("currency")}
         </p>
         <p className="text-base lg:text-xl mb-4 text-[#555555]">{t("p_8")}</p>
         <div className="flex items-center gap-5">

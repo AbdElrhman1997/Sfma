@@ -65,7 +65,7 @@ const Single = ({ translation, id }) => {
           </div>
 
           {/* Button */}
-          <Link
+          {/* <Link
             href={`https://sffma.fmexcon.com/storage/${content?.file}`}
             className="text-start cursor-pointer"
             target="_blank"
@@ -73,7 +73,7 @@ const Single = ({ translation, id }) => {
             <button className="bg-[#61B8A0] text-white px-6 py-2 rounded-lg hover:bg-[#5d9887] transition cursor-pointer">
               {translation.read_book}
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

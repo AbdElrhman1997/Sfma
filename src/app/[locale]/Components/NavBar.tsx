@@ -119,6 +119,24 @@ const NavBar = () => {
     };
   }, []);
 
+  function getFirstTwoNames(fullName?: string) {
+    if (!fullName) return "";
+
+    const parts = fullName.trim().split(/\s+/);
+
+    if (parts.length === 0) return "";
+
+    let firstName = parts[0];
+    if (parts[0] === "عبد" && parts[1]) {
+      firstName = parts[0] + " " + parts[1];
+    }
+
+    const secondNameIndex = firstName.includes(" ") ? 2 : 1;
+    const secondName = parts[secondNameIndex] || "";
+
+    return `${firstName} ${secondName}`.trim();
+  }
+
   return (
     <nav
       className="bg-[#F6F6F6] shadow-sm sticky top-0 z-50"
@@ -201,7 +219,7 @@ const NavBar = () => {
                 </Link>
               </div>
               <p>
-                {t("welcome")} {user?.full_name_ar}
+                {t("welcome")} {getFirstTwoNames(user?.full_name_ar)}
               </p>
             </>
           ) : (

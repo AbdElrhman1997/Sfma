@@ -92,77 +92,83 @@ const Course_Register = () => {
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Box 1 */}
-            <div
-              ref={box1Ref}
-              style={{ height: equalHeight }}
-              className="shadow-lg p-7 bg-[#F6F6F6] w-full"
-            >
-              <label className="flex items-start gap-x-3 lg:gap-x-5">
-                <input
-                  type="radio"
-                  value="offline"
-                  checked={selectedValue === "offline"}
-                  onChange={handleChange}
-                  className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-                />
-                <div className="-translate-y-1">
-                  <p className="text-base lg:text-xl font-bold">
-                    {t("offline_attendance", {
-                      price: choosed_workshop?.price,
-                    })}
-                  </p>
-
-                  <div className="lg:mt-2 mt-1">
-                    <p className="text-[#555555] font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
-                      {t("select_city")}
+            {(choosed_workshop?.type == "offline" ||
+              choosed_workshop?.type == "hybrid") && (
+              <div
+                ref={box1Ref}
+                style={{ height: equalHeight }}
+                className="shadow-lg p-7 bg-[#F6F6F6] w-full"
+              >
+                <label className="flex items-start gap-x-3 lg:gap-x-5">
+                  <input
+                    type="radio"
+                    value="offline"
+                    checked={selectedValue === "offline"}
+                    onChange={handleChange}
+                    className="accent-black w-5 lg:w-6 h-5 lg:h-6"
+                  />
+                  <div className="-translate-y-1">
+                    <p className="text-base lg:text-xl font-bold">
+                      {t("offline_attendance", {
+                        price: choosed_workshop?.price,
+                      })}
                     </p>
 
-                    {["الرياض", "جدة", "الدمام"].map((city, idx) => (
-                      <label
-                        key={idx}
-                        className="flex items-center gap-x-2 lg:gap-x-3 lg:my-0 my-2"
-                      >
-                        <input
-                          type="radio"
-                          value={city}
-                          checked={selectedCity === city}
-                          onChange={handleCityChange}
-                          className="accent-black w-4 lg:w-5 h-4 lg:h-5"
-                        />
-                        <p className="text-sm lg:text-lg font-bold">{city}</p>
-                      </label>
-                    ))}
+                    <div className="lg:mt-2 mt-1">
+                      <p className="text-[#555555] font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
+                        {t("select_city")}
+                      </p>
+
+                      {["الرياض", "جدة", "الدمام"].map((city, idx) => (
+                        <label
+                          key={idx}
+                          className="flex items-center gap-x-2 lg:gap-x-3 lg:my-0 my-2"
+                        >
+                          <input
+                            type="radio"
+                            value={city}
+                            checked={selectedCity === city}
+                            onChange={handleCityChange}
+                            className="accent-black w-4 lg:w-5 h-4 lg:h-5"
+                          />
+                          <p className="text-sm lg:text-lg font-bold">{city}</p>
+                        </label>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </label>
-            </div>
+                </label>
+              </div>
+            )}
 
             {/* Box 2 */}
-            <div
-              ref={box2Ref}
-              style={{ height: equalHeight }}
-              className="shadow-lg p-7 bg-[#F6F6F6] w-full"
-            >
-              <label className="flex items-start gap-x-3 lg:gap-x-5">
-                <input
-                  type="radio"
-                  value="online"
-                  checked={selectedValue === "online"}
-                  onChange={handleChange}
-                  className="accent-black w-5 lg:w-6 h-5 lg:h-6"
-                />
-                <div className="-translate-y-1">
-                  <p className="text-base lg:text-xl font-bold">
-                    {t("online_attendance", {
-                      price: choosed_workshop?.online_price,
-                    })}
-                  </p>
-                  <p className="text-[#555555] lg:mt-2 mt-1 font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
-                    {t("online_note")}
-                  </p>
-                </div>
-              </label>
-            </div>
+            {(choosed_workshop?.type == "online" ||
+              choosed_workshop?.type == "hybrid") && (
+              <div
+                ref={box2Ref}
+                style={{ height: equalHeight }}
+                className="shadow-lg p-7 bg-[#F6F6F6] w-full"
+              >
+                <label className="flex items-start gap-x-3 lg:gap-x-5">
+                  <input
+                    type="radio"
+                    value="online"
+                    checked={selectedValue === "online"}
+                    onChange={handleChange}
+                    className="accent-black w-5 lg:w-6 h-5 lg:h-6"
+                  />
+                  <div className="-translate-y-1">
+                    <p className="text-base lg:text-xl font-bold">
+                      {t("online_attendance", {
+                        price: choosed_workshop?.online_price,
+                      })}
+                    </p>
+                    <p className="text-[#555555] lg:mt-2 mt-1 font-semibold text-sm lg:text-lg mb-1 lg:mb-2">
+                      {t("online_note")}
+                    </p>
+                  </div>
+                </label>
+              </div>
+            )}
           </div>
         </div>
 
@@ -224,7 +230,7 @@ const Course_Register = () => {
               <div className="flex flex-col items-center  text-center">
                 <button
                   type="submit"
-                  className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+                  className="cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-3 px-6 rounded-md text-base lg:text-xl"
                 >
                   {t("confirm_and_continue")}
                 </button>

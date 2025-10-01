@@ -195,7 +195,7 @@ export default function HomePage() {
         initial="hidden"
         animate={isNewsletterInView ? "visible" : "hidden"}
       >
-        <NewsletterSection />
+        {/* <NewsletterSection /> */}
       </motion.div>
     </div>
   );

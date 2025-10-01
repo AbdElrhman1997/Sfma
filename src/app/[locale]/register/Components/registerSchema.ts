@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Function to create schema using the t function from next-intl
-export const createRegisterSchema = (t: (key: string) => string) =>
+export const createRegisterSchema = ({ t, from_profile }) =>
   z
     .object({
       // Step 1: Personal Information
@@ -20,13 +20,21 @@ export const createRegisterSchema = (t: (key: string) => string) =>
         .refine((val) => val.trim().split(/\s+/).length >= 4, {
           message: t("full_name_en_4_words"),
         }),
-      gender: z.enum(["male", "female"], { message: t("gender_required") }),
+      gender: from_profile
+        ? z.enum(["male", "female"]).optional()
+        : z.enum(["male", "female"], { message: t("gender_required") }),
       date_of_birth: z
         .string()
         .regex(/^\d{4}-\d{2}-\d{2}$/, t("date_of_birth_invalid")),
-      nationality: z.string().min(1, t("nationality_required")),
-      country: z.string().min(1, t("country_required")),
-      city: z.string().min(1, t("city_required")),
+      nationality: from_profile
+        ? z.string().optional()
+        : z.string().min(1, t("nationality_required")),
+      country: from_profile
+        ? z.string().optional()
+        : z.string().min(1, t("country_required")),
+      city: from_profile
+        ? z.string().optional()
+        : z.string().min(1, t("city_required")),
 
       // Step 2: Region Selection
       phone: z.string().min(10, t("phone_min")),
@@ -41,17 +49,26 @@ export const createRegisterSchema = (t: (key: string) => string) =>
       }),
 
       // Step 4: Password
-      password: z
-        .string()
-        .min(8, { message: t("password_min") })
-        .max(32, { message: t("password_max") }),
-      password_confirmation: z
-        .string()
-        .min(8, { message: t("password_min") })
-        .max(32, { message: t("password_max") }),
+      password: from_profile
+        ? z.string().optional()
+        : z
+            .string()
+            .min(8, { message: t("password_min") })
+            .max(32, { message: t("password_max") }),
+
+      password_confirmation: from_profile
+        ? z.string().optional()
+        : z
+            .string()
+            .min(8, { message: t("password_min") })
+            .max(32, { message: t("password_max") }),
     })
     .superRefine((data, ctx) => {
-      if (data.password !== data.password_confirmation) {
+      if (
+        data.password &&
+        data.password_confirmation &&
+        data.password !== data.password_confirmation
+      ) {
         ctx.addIssue({
           code: "custom",
           path: ["password_confirmation"],

@@ -9,6 +9,29 @@ const StepOne = ({ register, errors, watch }) => {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
 
+  const selectedCountryId = watch("country");
+  const selectedCityId = watch("city"); // بيراقب قيمة الـ city
+
+  useEffect(() => {
+    if (selectedCountryId) {
+      const selectedCountry = countries.find(
+        (c) => c.id === Number(selectedCountryId)
+      );
+      if (selectedCountry) {
+        localStorage.setItem("country", selectedCountry.name);
+      }
+    }
+  }, [selectedCountryId, countries]);
+
+  useEffect(() => {
+    if (selectedCityId) {
+      const selectedCity = cities.find((c) => c.id === Number(selectedCityId));
+      if (selectedCity) {
+        localStorage.setItem("city", selectedCity.name);
+      }
+    }
+  }, [selectedCityId, cities]);
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {

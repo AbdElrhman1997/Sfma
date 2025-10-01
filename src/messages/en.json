@@ -19,6 +19,7 @@
     "description": "We offer specialized and comprehensive training programs that provide you with the modern practical skills and tools to achieve success and excellence in facility management, under the supervision of elite certified trainers with extensive experience in the field.",
     "Calender": "Calender",
     "training_team": "Training team",
+    "currency": "SAR",
     "p_1": "Presented by the Saudi Facility Management Association",
     "p_2": "Register for the course now!",
     "p_3": "Course Overview:",
@@ -231,7 +232,8 @@
     "research": "Studies and Research",
     "read_book": "Browse Book",
     "show_book": "Read Book",
-    "terms": "Terms and conditions"
+    "terms": "Terms and conditions",
+    "show_blog": "Read blog"
   },
   "Institutions": {
     "title": "Institution Memberships",
@@ -293,6 +295,8 @@
     "previous": "Previous",
     "send": "Send",
     "welcome": "Welcome",
+    "update_success": "Profile updated successfully",
+    "update_failed": "Failed to update profile. Please try again",
     "persnola_info": "Personal Information",
     "contact_info": "Contact Information",
     "job_data": "Job Data",
@@ -314,6 +318,8 @@
     "company_name_required": "Please enter the company name",
     "company_type_required": "Please enter the business field",
     "company_sector_required": "Please select a sector",
+    "full_name_ar_4_words": "The full name in Arabic must consist of four words",
+    "full_name_en_4_words": "The full name in English must consist of four words",
     "password_min": "Password must be at least 8 characters",
     "password_max": "Password must be at most 32 characters",
     "password_confirmation_mismatch": "Password confirmation does not match",
@@ -324,7 +330,10 @@
     "exams": "Exams",
     "certificates": "Certificates",
     "mempership": "Membership",
-    "payments": "Payments"
+    "payments": "Payments",
+    "save": "Save",
+    "edit": "Edit",
+    "cancel": "Cancel"
   },
   "Login": {
     "login_to_account": "Login to your account",
@@ -486,6 +495,7 @@
     "certificate_label": "Enter Certificate Number",
     "verify_button": "Verify",
     "contact_text": "Having issues? Contact us via",
+    "serial_required": "Please enter certificate number",
     "contact_email": "info@sfma.sa"
   },
   "membership_verification": {
@@ -498,6 +508,7 @@
     "certificate_type": "Certificate Type",
     "issue_date": "Issue Date",
     "contact_support": "Having trouble? Contact us via",
+    "serial_required": "Please enter membership number",
     "verifying": "Verifying"
   },
   "ExamsTab": {

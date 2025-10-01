@@ -10,9 +10,8 @@ const AdPopup = () => {
   const lang = useLocale();
 
   useEffect(() => {
-    // Check if ad has been shown in this session
-    const adShown = localStorage.getItem("adShown");
-    if (adShown) return; // Exit if ad was already shown
+    const adShown = sessionStorage.getItem("adShown");
+    if (adShown) return;
 
     const fetchAd = async () => {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}ads-spaces`;
@@ -28,7 +27,7 @@ const AdPopup = () => {
         if (data.status === "success" && data.data.length > 0) {
           setAd(data.data[0]); // Use the first ad for simplicity
           setIsOpen(true); // Open popup on load
-          localStorage.setItem("adShown", "true"); // Mark ad as shown
+          sessionStorage.setItem("adShown", "true");
         }
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -76,9 +75,10 @@ const AdPopup = () => {
                 alt="Ad"
                 width={300}
                 height={200}
-                className="w-full h-auto object-cover rounded-lg"
+                className="bg-white w-full h-auto object-contain max-h-[70vh] rounded-lg bg-black"
               />
             </a>
+
             <p className="lg:text-base text-sm text-gray-600 mt-4 text-center">
               Remaining days: {ad.remaining_days}
             </p>

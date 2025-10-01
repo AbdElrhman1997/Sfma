@@ -44,16 +44,22 @@ const BlogsSection = () => {
           <h2 className="lg:text-3xl text-xl font-bold text-[var(--main)] text-center lg:mb-3 mb-2">
             {t("title")}
           </h2>
-          <h4 className="text-[#555555] text-center lg:mb-8 mb-4 lg:text-base text-sm">
+          <h4 className="text-[#555555] text-center lg:mb-5 mb-4 lg:text-base text-sm">
             {t("description")}
           </h4>
         </div>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 justify-center items-center pt-4">
+        <div
+          className={`${
+            content?.length <= 2
+              ? "flex justify-center flex-wrap gap-12 pt-4"
+              : "grid md:grid-cols-2 lg:grid-cols-3 gap-12 pt-4"
+          } items-stretch`}
+        >
           {content?.map((item, index) => (
             <div
               key={index}
-              className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md p-4"
+              className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md px-4 pt-2 pb-2"
             >
               <div className="py-4">
                 <img
@@ -61,9 +67,12 @@ const BlogsSection = () => {
                   alt={item?.name}
                   className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                 />
-                <p className="text-sm text-[#636363] mt-3 lg:leading-6">
-                  {item?.description}
-                </p>
+
+                <div
+                  className="text-[#636363] mt-4 leading-6 line-clamp-3"
+                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                />
+
                 <Link
                   href={`/${lang}/news/${item?.id}`}
                   className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
@@ -85,7 +94,7 @@ const BlogsSection = () => {
         </div>
 
         <Link
-          href={`/${lang}/data_library`}
+          href={`/${lang}/data_library?tab_name=articles`}
           className="mt-6 block cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] mx-auto"
         >
           {t("more")}

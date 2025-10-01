@@ -8,6 +8,7 @@ import Link from "next/link";
 const SinglePage = ({ id }) => {
   const locale = useLocale();
   const [content, setContent]: any = useState([]);
+  const formatter = new Intl.NumberFormat("en-US");
   const [loadingContent, setLoadingContent] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const t = useTranslations();
@@ -76,8 +77,10 @@ const SinglePage = ({ id }) => {
           {/* Right Side */}
           {content?.price && (
             <div className="md:text-2xl text-[13px] font-bold bg-[#21B6E4] text-white w-full p-4 py-6 md:text-center text-left">
-              {content?.price}{" "}
-              <span className="md:text-xl text-[11px] font-semibold">ر.س</span>
+              {formatter.format(content?.price)}{" "}
+              <span className="md:text-xl text-[11px] font-semibold">
+                {t("common.currency")}
+              </span>
             </div>
           )}
         </div>

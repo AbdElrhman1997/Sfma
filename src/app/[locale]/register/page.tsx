@@ -1,7 +1,6 @@
 import { createTranslator } from "next-intl";
 import React from "react";
 import RegisterForm from "./Components/RegisterForm";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RegisterFormWrapper from "../Components/RegisterFormWrapper";
 
@@ -24,11 +23,6 @@ const Page = async ({ params }) => {
         locale={locale}
         messages={messages}
         from_login={false}
-      />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
       />
     </div>
   );

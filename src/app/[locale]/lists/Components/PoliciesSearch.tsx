@@ -142,10 +142,10 @@ const PoliciesSearch = ({ translation, lang }) => {
 
 const PoliciesGrid = ({ policies, translation, loadingPolicies }) => {
   return (
-    <div>
-      <h2 className="text-center text-[#1DAEE5] font-bold text-[26px] my-6">
+    <div className="mt-8 md:mt-12">
+      {/* <h2 className="text-center text-[#1DAEE5] font-bold text-[26px] my-6">
         {translation.title}
-      </h2>
+      </h2> */}
 
       {loadingPolicies ? (
         <div className="flex flex-wrap justify-center gap-6">

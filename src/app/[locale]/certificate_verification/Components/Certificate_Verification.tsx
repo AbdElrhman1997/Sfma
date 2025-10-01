@@ -53,10 +53,10 @@ const Certificate_Verification = () => {
       dir={locale === "en" ? "ltr" : "rtl"}
     >
       <p className="text-[var(--main)] text-center lg:text-3xl text-xl font-bold mt-10">
-        {t("membership_verification")}
+        {t("certificate_verification_title")}
       </p>
       <p className="text-[#555555] text-center mx-auto mt-2 leading-7 lg:text-base text-[13px] mb-4">
-        {t("enter_serial_instruction")}
+        {t("certificate_verification_description")}
       </p>
       <div className="bg-[#F6F6F6] lg:w-fit mx-auto lg:py-7 py-3 lg:px-20 px-4 rounded-lg">
         <div className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ const Certificate_Verification = () => {
             htmlFor="certificate-input"
             className="font-semibold lg:text-lg text-[14px]"
           >
-            {t("enter_membership_number")}
+            {t("certificate_label")}
           </label>
           <div className="lg:min-w-[600px] w-[97%] flex mx-auto justify-between items-center gap-3">
             <input
@@ -114,7 +114,7 @@ const Certificate_Verification = () => {
       </div>
 
       <p className="text-[#898989] text-center mx-auto mt-2 leading-7 lg:text-lg text-[13px] mb-10 font-bold">
-        {t("contact_support")}{" "}
+        {t("contact_text")}{" "}
         <Link
           href="mailto:info@sfma.sa"
           className="inline-block underline text-[var(--main)] mx-3"

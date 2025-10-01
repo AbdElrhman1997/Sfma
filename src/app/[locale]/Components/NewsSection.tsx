@@ -58,11 +58,17 @@ const NewsSection = ({ from_home }) => {
               </div>
             ) : null}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-stretch pt-4">
+            <div
+              className={`${
+                content?.length <= 2
+                  ? "flex justify-center flex-wrap gap-10 pt-4"
+                  : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4"
+              } items-stretch`}
+            >
               {content?.map((item, index) => (
                 <div
                   key={index}
-                  className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md transform transition-all hover:scale-105"
+                  className="max-w-sm bg-white rounded-lg overflow-hidden shadow-md transform transition-all hover:scale-105 relative"
                 >
                   {!from_home ? (
                     <div className="absolute top-4 right-4 z-50 bg-[var(--main)] text-white px-5 py-3 rounded-full shadow-lg transition-all text-sm font-semibold flex items-center gap-2">
@@ -108,6 +114,7 @@ const NewsSection = ({ from_home }) => {
                 </div>
               ))}
             </div>
+
             {from_home ? (
               <Link
                 href={`/${lang}/news`}
