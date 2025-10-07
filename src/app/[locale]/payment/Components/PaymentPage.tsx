@@ -87,7 +87,6 @@ const PaymentPage = () => {
         router.push(`/${lang}/payment/failed?source=${payment_data?.type}`);
       }
 
-      // optional: لو عايز تطبع البيانات حتى لو حصل redirect
       const data = await res.json();
     } catch (error) {
       console.error("Error submitting form:", error);

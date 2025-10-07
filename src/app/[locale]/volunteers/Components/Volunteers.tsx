@@ -47,7 +47,7 @@ const Volunteers = ({ translation, lang }) => {
         </h3>
 
         {/* Content Area */}
-        <div className="md:gap-x-8 gap-y-8 mt-7 mb-3 text-start mx-auto">
+        <div className="flex justify-center flex-wrap gap-8  mt-7 mb-3">
           {loadingContent
             ? skeletons.map((_, index) => (
                 <div
@@ -62,7 +62,11 @@ const Volunteers = ({ translation, lang }) => {
                 </div>
               ))
             : content?.map((subscription, index) => (
-                <div className="xl:mt-18 mt-16" key={index}>
+                <div
+                  className="mt-12 lg:w-[31%] md:w-[48%] w-full "
+                  key={index}
+                >
+                  {" "}
                   <Card
                     subscription={subscription}
                     lang={lang}

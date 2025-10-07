@@ -5,7 +5,7 @@ const Card = ({ subscription, lang, translation }) => {
   const formatter = new Intl.NumberFormat("en-US");
 
   return (
-    <div className="min-w-[330px] w-fit mx-auto bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative hover:scale-105 transition duration-300 cursor-pointer hover:shadow-xl">
+    <div className=" bg-[#F6F6F6] shadow-md rounded-lg px-6 pb-8 text-center space-y-4 relative hover:scale-105 transition duration-300 cursor-pointer hover:shadow-xl">
       <div className="flex justify-center">
         <img
           src={`https://sffma.fmexcon.com/storage/${subscription?.icon}`}

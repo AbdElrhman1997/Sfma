@@ -105,7 +105,7 @@ const StepFive = ({ register, errors, watch }) => {
         <input
           id="city"
           type="text"
-          {...register("city")}
+          // {...register("city")}
           defaultValue={localStorage.getItem("city")}
           disabled
           className="mt-1 text-sm block w-full px-3 py-2 h-[45px] border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-600 cursor-not-allowed focus:outline-none"

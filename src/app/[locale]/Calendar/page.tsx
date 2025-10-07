@@ -17,9 +17,9 @@ const Page = async ({ params }) => {
   return (
     <section className="" dir={locale == "en" ? "ltr" : "rtl"}>
       <Filters />
-      <p className="text-[#555555] font-bold lg:mt-7 mt-3 text-center lg:text-xl text-base">
+      {/* <p className="text-[#555555] font-bold lg:mt-7 mt-3 text-center lg:text-xl text-base">
         {t("instruction")}
-      </p>
+      </p> */}
 
       <div className="grid grid-cols-4 container mx-auto lg:mt-9 mt-5 relative">
         <div className="lg:col-span-1 col-span-4">
@@ -29,6 +29,7 @@ const Page = async ({ params }) => {
           <CustomCalendar />
         </div>
       </div>
+      {/* <TrainingCalendarPage/> */}
     </section>
   );
 };

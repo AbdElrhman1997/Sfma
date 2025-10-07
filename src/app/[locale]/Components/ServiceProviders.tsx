@@ -65,7 +65,6 @@ export default function ServiceProviders() {
 
   return (
     <>
-      {console.log(content)}
       {content?.length ? (
         <div
           dir={lang === "en" ? "ltr" : "rtl"}

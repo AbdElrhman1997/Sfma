@@ -11,6 +11,9 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
   const choosed_workshop: any = JSON.parse(
     localStorage.getItem("choosed_workshop")
   );
+  const choosed_membership: any = JSON.parse(
+    localStorage.getItem("choosed_membership")
+  );
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
   const t = useTranslations("RegistrationStatus");
@@ -34,7 +37,9 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
           <br />
           {source === "workshop"
             ? choosed_workshop?.title
-            : `${t("course")} ${choosed_course?.title}`}
+            : source === "workshop"
+            ? `${t("course")} ${choosed_course?.title}`
+            : choosed_membership?.title}
         </p>
 
         {/* Buttons */}

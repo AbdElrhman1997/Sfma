@@ -25,12 +25,6 @@ const Page = async ({ params }) => {
         messages={messages}
         from_login={true}
       />
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-      />
     </div>
   );
 };

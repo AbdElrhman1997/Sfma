@@ -63,7 +63,7 @@ const BannerSection = () => {
   }
 
   return (
-    <div className="w-full" dir={lang === "en" ? "ltr" : "rtl"}>
+    <div className="w-full relative" dir={lang === "en" ? "ltr" : "rtl"}>
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2500, disableOnInteraction: false }}

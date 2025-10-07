@@ -47,7 +47,7 @@ const Individuals = ({ translation, lang }) => {
         </h3>
 
         {/* Content Area */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-8 gap-y-8 mt-7 mb-3 text-start">
+        <div className="flex justify-center flex-wrap gap-8  mt-7 mb-3">
           {loadingContent
             ? skeletons.map((_, index) => (
                 <div
@@ -62,7 +62,10 @@ const Individuals = ({ translation, lang }) => {
                 </div>
               ))
             : content?.map((subscription, index) => (
-                <div className="mt-12" key={index}>
+                <div
+                  className="mt-12 lg:w-[31%] md:w-[48%] w-full "
+                  key={index}
+                >
                   <Card
                     subscription={subscription}
                     lang={lang}

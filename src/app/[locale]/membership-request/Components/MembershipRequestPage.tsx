@@ -28,6 +28,13 @@ const MembershipRequestPage = () => {
     localStorage.getItem("choosed_membership")
   );
 
+  const payment_data = {
+    type: "membership",
+    relative_id: choosed_membership?.id,
+    payment_method: "bank_transfer",
+    attendance_type: selectedValue,
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
   };
@@ -66,6 +73,16 @@ const MembershipRequestPage = () => {
   const handleSubmit = async () => {
     const token = localStorage.getItem("auth_token");
 
+    if (!files || files.length === 0) {
+      toast.error(
+        lang === "ar"
+          ? "من فضلك قم بإرفاق ملف قبل المتابعة."
+          : "Please attach a file before proceeding.",
+        { position: "top-right" }
+      );
+      return;
+    }
+
     const formData: any = new FormData();
     formData.append("membership_id", choosed_membership?.id);
     formData.append("applicant_type", selcetedRepresent);
@@ -82,16 +99,15 @@ const MembershipRequestPage = () => {
           body: formData,
           headers: {
             Authorization: `Bearer ${token}`,
-            "Accept-Language": "ar",
+            "Accept-Language": lang,
             Accept: "application/json",
           },
         }
       );
 
       if (res.status === 200) {
-        router.push(
-          `/${lang}/membership-request/success?source=${choosed_membership?.type}`
-        );
+        localStorage.setItem("payment_data", JSON.stringify(payment_data));
+        router.push(`${auth_token ? `/${lang}/payment` : `/${lang}/login`}`);
       } else {
         router.push(
           `/${lang}/membership-request/failed?source=${choosed_membership?.type}`
@@ -177,6 +193,7 @@ const MembershipRequestPage = () => {
             ref={fileInputRef}
             onChange={handleFileChange}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+            required
           />
 
           <div className="flex flex-col items-center border-4 border-dashed border-gray-300 rounded-md bg-gray-100 px-6 py-10 text-gray-500 mt-4 text-center">
@@ -229,7 +246,6 @@ const MembershipRequestPage = () => {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit();
-          router.push(`${auth_token ? `/${lang}/payment` : `/${lang}/login`}`);
         }}
       >
         <div className="bg-[#F6F6F6] p-6 mt-6">

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import type { RegisterFormData } from "./registerSchema";
 
 export async function registerUser(data: RegisterFormData) {
@@ -7,7 +8,7 @@ export async function registerUser(data: RegisterFormData) {
     // Append all fields to FormData
     Object.entries(data).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
-        formData.append(key, value as string); // Cast required since FormData only accepts string or Blob
+        formData.append(key, value as string);
       }
     });
 
@@ -17,7 +18,6 @@ export async function registerUser(data: RegisterFormData) {
       `${process.env.NEXT_PUBLIC_API_URL}auth/register`,
       {
         method: "POST",
-        // Do not set Content-Type manually
         body: formData,
         headers: {
           "Accept-Language": "ar",
@@ -28,14 +28,33 @@ export async function registerUser(data: RegisterFormData) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.message || "فشل التسجيل");
+      const errors = result.errors || result;
+      if (errors && typeof errors === "object") {
+        console.log("first");
+        const allMessages = Object.values(errors).flat();
+        const firstError = allMessages[0];
+        const remaining = allMessages.length - 1;
+
+        const message: any =
+          remaining > 0
+            ? `${firstError} (و${remaining} أخطاء أخرى)`
+            : firstError;
+
+        return { success: false, message };
+      }
+
+      const fallbackMessage = result.message || "فشل التسجيل";
+      toast.error(fallbackMessage, { toastId: "register-error" });
+      return { success: false, message: fallbackMessage };
     }
 
-    return { success: true, message: result.message || "تم التسجيل بنجاح!" };
+    const successMessage = result.message || "تم التسجيل بنجاح!";
+    toast.success(successMessage);
+    return { success: true, message: successMessage };
   } catch (error) {
-    return {
-      success: false,
-      message: error instanceof Error ? error.message : "حدث خطأ أثناء التسجيل",
-    };
+    const errorMessage =
+      error instanceof Error ? error.message : "حدث خطأ أثناء التسجيل";
+    toast.error(message, { toastId: "register-error" });
+    return { success: false, message: errorMessage };
   }
 }

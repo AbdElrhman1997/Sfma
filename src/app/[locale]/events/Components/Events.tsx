@@ -53,11 +53,11 @@ const Events = () => {
         <h2 className="lg:text-3xl text-xl font-bold text-[#1DAEE5] lg:mb-3 mb-2 text-center mt-9">
           {t("title")}
         </h2>
-        <p className="text-[#555555] text-center lg:text-base text-sm md:mb-8 mb-4">
+        <p className="text-[#555555] text-center lg:text-base text-sm">
           {t("description")}
         </p>
       </div>
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 justify-center items-center pt-4">
+      <div className="flex gap-6 justify-center items-center flex-wrap pt-4">
         {content?.map((item, index) => (
           <div
             key={index}

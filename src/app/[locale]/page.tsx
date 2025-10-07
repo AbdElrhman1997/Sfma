@@ -15,6 +15,7 @@ import Memberships from "./Components/Memberships";
 import ServiceProviders from "./Components/ServiceProviders";
 import BlogsSection from "./Components/BlogsSection";
 import NewsletterSection from "./Components/NewsletterSection";
+import JobsSection from "./Components/JobsSection";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -165,22 +166,7 @@ export default function HomePage() {
       >
         <ServiceProviders />
       </motion.div>
-      <motion.div
-        ref={partenetsRef}
-        variants={slideUpVariants}
-        initial="hidden"
-        animate={isPartenetsInView ? "visible" : "hidden"}
-      >
-        <PartenersSection />
-      </motion.div>
-      <motion.div
-        ref={newsRef}
-        variants={fadeInVariants}
-        initial="hidden"
-        animate={isNewsInView ? "visible" : "hidden"}
-      >
-        <NewsSection from_home={true} />
-      </motion.div>
+
       <motion.div
         ref={blogsRef}
         variants={slideUpVariants}
@@ -189,6 +175,25 @@ export default function HomePage() {
       >
         <BlogsSection />
       </motion.div>
+
+      <motion.div
+        ref={newsRef}
+        variants={fadeInVariants}
+        initial="hidden"
+        animate={isNewsInView ? "visible" : "hidden"}
+      >
+        <NewsSection from_home={true} />
+      </motion.div>
+
+      <motion.div
+        ref={partenetsRef}
+        variants={slideUpVariants}
+        initial="hidden"
+        animate={isPartenetsInView ? "visible" : "hidden"}
+      >
+        <PartenersSection />
+      </motion.div>
+
       <motion.div
         ref={newsletterRef}
         variants={scaleUpVariants}
@@ -196,6 +201,14 @@ export default function HomePage() {
         animate={isNewsletterInView ? "visible" : "hidden"}
       >
         {/* <NewsletterSection /> */}
+      </motion.div>
+      <motion.div
+        ref={newsletterRef}
+        variants={scaleUpVariants}
+        initial="hidden"
+        animate={isNewsletterInView ? "visible" : "hidden"}
+      >
+        <JobsSection />
       </motion.div>
     </div>
   );
