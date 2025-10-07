@@ -54,7 +54,7 @@ export async function registerUser(data: RegisterFormData) {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "حدث خطأ أثناء التسجيل";
-    toast.error(message, { toastId: "register-error" });
+    toast.error(errorMessage, { toastId: "register-error" });
     return { success: false, message: errorMessage };
   }
 }
