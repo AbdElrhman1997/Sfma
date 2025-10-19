@@ -76,7 +76,7 @@ const Membership_Verification = () => {
             />
             <div
               onClick={handleVerify}
-              className={`cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] ${
+              className={`cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit min-w-[170px] text-white lg:px-12 px-6 lg:py-3 py-[6px] rounded-lg font-semibold lg:text-base text-[12px] text-center ${
                 loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >

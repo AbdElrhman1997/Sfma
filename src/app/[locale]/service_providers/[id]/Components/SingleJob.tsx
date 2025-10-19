@@ -63,7 +63,7 @@ const SingleJob = ({ id }) => {
           </p>
           <div className="flex items-center lg:justify-start justify-center gap-4">
             <a
-              href={`https://${content?.contact_person}`}
+              href={`${content?.website_url}`}
               target="_blank"
               className="cursor-pointer hover:opacity-85 mt-4 text-center bg-gradient-to-r from-[var(--main_gradiant)] to-[var(--main)] w-fit text-white px-3 py-2 rounded-lg font-semibold"
             >
@@ -104,8 +104,8 @@ const SingleJob = ({ id }) => {
             {[
               {
                 icon: "website",
-                text: content?.website,
-                link: content?.website ? `https://${content.website}` : null,
+                text: content?.website_url,
+                link: content?.website_url ? `${content.website_url}` : null,
               },
               {
                 icon: "email",
@@ -140,6 +140,7 @@ const SingleJob = ({ id }) => {
                     href={item.link || ""}
                     target="_blank"
                     className="lg:text-lg text-base underline"
+                    dir="ltr"
                   >
                     {item.text}
                   </Link>

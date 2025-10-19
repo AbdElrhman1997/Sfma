@@ -61,7 +61,7 @@ const ProvidersCards = ({ content, setContent }) => {
       {content?.map((item) => {
         return (
           <div
-            className="bg-[#F6F6F6] shadow-lg w-fit p-4 text-center lg:max-w-[30%] max-w-full mx-auto"
+            className="bg-[#F6F6F6] shadow-lg w-fit p-4 text-center lg:max-w-[30%] max-w-full lg:mx-auto"
             key={item.id}
           >
             <div className="bg-white p-3 border-[1px] rounded-xl border-[var(--second_main)] w-fit mx-auto">

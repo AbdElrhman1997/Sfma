@@ -36,11 +36,11 @@ const Page = ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-4 container mx-auto mt-16 relative xl:gap-x-8">
-        <div className="xl:col-span-1 col-span-4">
+      <div className="grid lg:grid-cols-4 grid-cols-5 container mx-auto mt-16 relative lg:gap-x-8 gap-x-5">
+        <div className="lg:col-span-1 col-span-2">
           <SideBarFilter setContent={setContent} />
         </div>
-        <div className="xl:col-span-3 col-span-4">
+        <div className="lg:col-span-3 col-span-3">
           <ProvidersCards content={content} setContent={setContent} />
         </div>
         <div className="col-span-4">

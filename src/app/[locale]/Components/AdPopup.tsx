@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -24,13 +23,22 @@ const AdPopup = () => {
           cache: "no-store",
         });
         const data = await res.json();
-        if (data.status === "success" && data.data.length > 0) {
-          setAd(data.data[0]); // Use the first ad for simplicity
-          setIsOpen(true); // Open popup on load
-          sessionStorage.setItem("adShown", "true");
+
+        // تحقق من وجود data.data
+        if (Array.isArray(data.data) && data.data.length > 0) {
+          // فلترة الإعلانات من نوع popup فقط
+          const popupAds = data.data.filter(
+            (item) => item.type === "popup" && item.status === true
+          );
+
+          if (popupAds.length > 0) {
+            setAd(popupAds[0]); // أول إعلان فقط
+            setIsOpen(true);
+            sessionStorage.setItem("adShown", "true");
+          }
         }
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching ads:", error);
       }
     };
 
@@ -48,15 +56,15 @@ const AdPopup = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 bg-[#0000007f] flex items-center justify-center z-50"
-          onClick={() => setIsOpen(false)} // Close on overlay click
+          onClick={() => setIsOpen(false)}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-white lg:p-9 p-2 rounded-lg shadow-lg relative max-w-5xl w-full lg:mx-0 mx-6"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            className="bg-white lg:p-9 p-2 rounded-lg shadow-lg relative max-w-5xl w-fit lg:mx-0 mx-6"
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsOpen(false)}
@@ -75,13 +83,13 @@ const AdPopup = () => {
                 alt="Ad"
                 width={300}
                 height={200}
-                className="bg-white w-full h-auto object-contain max-h-[70vh] rounded-lg bg-black"
+                className="bg-white w-full h-auto object-contain max-h-[70vh] rounded-lg p-8 shadow-xl"
               />
             </a>
 
-            <p className="lg:text-base text-sm text-gray-600 mt-4 text-center">
-              Remaining days: {ad.remaining_days}
-            </p>
+            {/* <p className="lg:text-base text-sm text-gray-600 mt-4 text-center">
+              عدد الأيام المتبقية: {ad.days_count}
+            </p> */}
           </motion.div>
         </motion.div>
       )}

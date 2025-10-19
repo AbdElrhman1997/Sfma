@@ -139,11 +139,11 @@ const Single_Workshop = ({ translation, id }) => {
           <div className="mt-6 lg:p-6 p-2">
             <p className="font-extrabold lg:text-xl mb-6"> {t("p_14")}</p>
             <div className="flex justify-start flex-wrap xl:gap-16 gap-4">
-              {workshop?.workshop_details?.map((workshop) => {
+              {workshop?.workshop_details?.map((workshop, idx) => {
                 return (
                   <div className="flex gap-4" key={workshop?.id}>
                     <div className="bg-[var(--main)] p-4 lg:w-13 w-10 lg:h-13 h-10 text-white lg:text-3xl text-lg flex items-center justify-center rounded-full">
-                      {workshop?.id}
+                      {idx + 1}
                     </div>
                     <div>
                       <p className="font-bold lg:text-lg text-[14px]">

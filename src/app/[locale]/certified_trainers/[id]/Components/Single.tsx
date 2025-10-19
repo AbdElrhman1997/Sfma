@@ -36,7 +36,7 @@ const Single = ({ id }) => {
       <div className="bg-[#F6F6F6] lg:max-w-2/3 mx-auto shadow flex items-center justify-start lg:col-span-1 md:col-span-2 col-span-3 rounded-md text-center lg:p-6 p-4">
         <div className="border-2 border-[var(--second_main)] rounded-md">
           <img
-            src={`${process.env.NEXT_PUBLIC_URL}${content?.user?.logo}`}
+            src={`${process.env.NEXT_PUBLIC_URL}${content?.user?.avatar}`}
             alt="About Us"
             width={500}
             height={500}
@@ -47,15 +47,17 @@ const Single = ({ id }) => {
           <p className="font-bold lg:text-xl text-base">
             {content?.user?.name}
           </p>
-          <p className="lg:text-base text-[13px]">{content?.user?.job_title}</p>
+          <p className="lg:text-base text-[13px]">{content?.specialization}</p>
         </div>
       </div>
       <div className="lg:max-w-2/3 mx-auto">
         <p className="font-bold mt-5 mb-2">{t("common.resume")}</p>
-        {/* <p>{content?.bio}</p> */}
         <div
           className="text-justify font-semibold lg:text-base text-[13px]"
-          dangerouslySetInnerHTML={{ __html: content?.bio }}
+          dangerouslySetInnerHTML={{
+            __html:
+              lang == "en" ? content?.description_en : content?.description_ar,
+          }}
         />
       </div>
     </div>

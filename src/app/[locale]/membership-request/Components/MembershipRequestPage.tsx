@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const ACCEPTED_TYPES = ["image/jpeg", "image/png"];
+const ACCEPTED_TYPES = ["image/jpeg", "image/png", "application/pdf"];
 
 const MembershipRequestPage = () => {
   const lang = useLocale();
@@ -106,8 +106,14 @@ const MembershipRequestPage = () => {
       );
 
       if (res.status === 200) {
-        localStorage.setItem("payment_data", JSON.stringify(payment_data));
-        router.push(`${auth_token ? `/${lang}/payment` : `/${lang}/login`}`);
+        // localStorage.setItem("payment_data", JSON.stringify(payment_data));
+        router.push(
+          `${
+            auth_token
+              ? `/${lang}/membership-request/success?source=${choosed_membership?.type}`
+              : `/${lang}/login`
+          }`
+        );
       } else {
         router.push(
           `/${lang}/membership-request/failed?source=${choosed_membership?.type}`
@@ -115,7 +121,8 @@ const MembershipRequestPage = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      router.push(`/${lang}/error-page`);
+      toast.error(error?.message);
+      // router.push(`/${lang}/error-page`);
     }
   };
 
@@ -188,7 +195,7 @@ const MembershipRequestPage = () => {
           <input
             id="logo"
             type="file"
-            accept="image/jpeg,image/png"
+            accept="image/jpeg,image/png,application/pdf"
             multiple
             ref={fileInputRef}
             onChange={handleFileChange}
@@ -220,26 +227,35 @@ const MembershipRequestPage = () => {
             </p>
           </div>
         </div>
+        <div className="mt-4 flex flex-wrap gap-4 relative">
+          {previewUrls.map((url, index) => (
+            <div key={index} className="relative">
+              <button
+                onClick={() => handleRemoveImage(index)}
+                className="absolute top-0 right-0 text-lg text-red-700 w-5 h-5 flex items-center justify-center bg-white rounded-full cursor-pointer"
+              >
+                x
+              </button>
 
-        {previewUrls.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-4 relative">
-            {previewUrls.map((url, index) => (
-              <div key={index} className="relative">
-                <button
-                  onClick={() => handleRemoveImage(index)}
-                  className="absolute top-0 right-0 text-lg text-red-700 w-5 h-5 flex items-center justify-center bg-white rounded-full cursor-pointer"
+              {files[index].type === "application/pdf" ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" w-24 h-24 bg-gray-200 flex items-center justify-center text-xs text-red-600 underline rounded-md border"
                 >
-                  x
-                </button>
+                  PDF
+                </a>
+              ) : (
                 <img
                   src={url}
                   alt={`Preview ${index}`}
                   className="w-24 h-24 object-cover rounded-md border"
                 />
-              </div>
-            ))}
-          </div>
-        )}
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <form
@@ -317,6 +333,7 @@ const MembershipRequestPage = () => {
             <Link
               href={`/${lang}/terms`}
               className="text-[var(--main)] underline"
+              target="_blank"
             >
               {t("terms_and_conditions")}
             </Link>

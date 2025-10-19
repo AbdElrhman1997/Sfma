@@ -40,7 +40,7 @@ export default function ServiceProviders() {
       dir="rtl"
     >
       {/* Top icon */}
-      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 flex items-center justify-center z-10">
+      <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 flex items-center justify-center z-10 bg-white p-2 border-[1px] rounded-xl border-[var(--main)]">
         <img
           src={`https://sffma.fmexcon.com/storage/${item?.logo}`}
           alt="service provider"

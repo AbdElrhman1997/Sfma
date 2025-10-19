@@ -112,18 +112,30 @@ export default function Data_Library({ translation, lang }) {
                   className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
                 />
                 <p className="relative font-bold mt-[26px] mb-5 min-h-[30px] line-clamp-2 text-ellipsis">
-                  {book?.name}
+                  {book?.name || book?.title}
                 </p>
               </div>
 
               {activeTab == 3 ? (
                 <Link
-                  href={`https://sffma.fmexcon.com/storage/${book?.file}`}
+                  href={`${book?.file_url}`}
                   target="_blank"
                   className="inline-block mt-2"
                 >
                   <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
                     {t("common.read")}
+                  </div>
+                </Link>
+              ) : activeTab == 1 ? (
+                <Link
+                  className="inline-block mt-2"
+                  href={`${book?.file_url}`}
+                  target="_blank"
+                >
+                  <div className="bg-[#61B8A0] text-white font-bold py-2 px-8 text-md rounded-lg">
+                    {tabNameParam == "articles"
+                      ? translation.show_blog
+                      : translation.read_book}
                   </div>
                 </Link>
               ) : (

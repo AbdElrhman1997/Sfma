@@ -97,66 +97,97 @@ export default function WorkshopPage() {
             className="w-full h-auto translate-y-1 "
           />
         </div>
-        <p className="lg:text-lg text-base mt-2">{text}</p>
+        <p className="lg:text-base text-sm mt-2">{text}</p>
       </div>
     );
   }
 
-  const renderWorkshopCard = (workshop) => (
-    <div
-      key={workshop?.id}
-      className="bg-[#F6F6F6] max-w-sm mx-auto rounded-lg overflow-hidden shadow-md px-4 pt-4 text-center"
-    >
-      <div className="w-full">
-        <Image
-          src="/images/common/events__card_bg.jpg"
-          alt="Workshop"
-          width={500}
-          height={400}
-          className="w-full h-auto rounded-lg"
-        />
-      </div>
+  const renderWorkshopCard = (workshop) => {
+    if (!workshop) return null;
 
-      <div className="py-4 px-1 text-[#555555] text-start">
-        <h3 className="text-lg font-bold leading-tight">{workshop?.title}</h3>
+    const hasImage = Boolean(workshop?.image);
+    const hasDate = Boolean(workshop?.date);
+    const hasTime = Boolean(workshop?.time);
+    const hasLocation =
+      Array.isArray(workshop?.location) && workshop.location.length > 0;
 
-        <div className="flex gap-x-7">
-          <DateItem
-            src="/images/logos/Date_Icon.png"
-            text={`${formatArabicDate(workshop?.date)}`}
-          />
-          <DateItem
-            src="/images/logos/Vector (1).png"
-            text={`${formatArabicTime(workshop?.time)}`}
-            size="w-5"
-          />
-        </div>
-
-        <DateItem
-          src="/images/logos/location_main.png"
-          text={`${workshop?.location[0]} - ${workshop?.location[1]}`}
-        />
-
-        <Link
-          href={`/${lang}/workshops/${workshop?.id}`}
-          className="mt-3 text-[var(--main)] flex items-center justify-start font-semibold"
-        >
-          <span className="lg:text-base text-[14px] font-bold">
-            {t("common.see")}
-          </span>
-          <div className={`${lang === "en" ? "rotate-y-180" : ""}`}>
-            <Image
-              src="/images/logos/arrow-left.svg"
-              alt="Arrow"
-              width={16}
-              height={16}
-              className="rounded-lg mx-2 translate-y-0.5"
+    return (
+      <div
+        key={workshop?.id || Math.random()}
+        className="max-w-sm lg:mx-0 mx-auto bg-[#F6F6F6] rounded-lg overflow-hidden shadow-md px-4 pt-4 flex flex-col justify-between"
+      >
+        {/* الصورة */}
+        {hasImage && (
+          <div className="w-full">
+            <img
+              src={`${process.env.NEXT_PUBLIC_URL}${workshop?.image}`}
+              alt={workshop?.title || "Workshop"}
+              width={500}
+              height={400}
+              className="w-full h-auto rounded-lg"
             />
           </div>
-        </Link>
+        )}
+
+        <div className="py-4 px-1 text-[#555555] text-start">
+          {/* العنوان */}
+          {workshop?.title && (
+            <h3 className="text-lg font-bold leading-tight">
+              {workshop.title}
+            </h3>
+          )}
+
+          {/* التاريخ والوقت */}
+          {(hasDate || hasTime) && (
+            <div className="flex gap-x-7 mt-2">
+              {hasDate && (
+                <DateItem
+                  src="/images/logos/Date_Icon.png"
+                  text={formatArabicDate(workshop.date)}
+                />
+              )}
+              {hasTime && (
+                <DateItem
+                  src="/images/logos/Vector (1).png"
+                  text={formatArabicTime(workshop.time)}
+                  size="w-5"
+                />
+              )}
+            </div>
+          )}
+
+          {/* الموقع */}
+          {hasLocation && (
+            <DateItem
+              src="/images/logos/location_main.png"
+              text={workshop.location.join(" - ")}
+            />
+          )}
+
+          {/* الزر */}
+          {workshop?.id && (
+            <Link
+              href={`/${lang}/workshops/${workshop.id}`}
+              className="mt-3 text-[var(--main)] flex items-center justify-start font-semibold"
+            >
+              <span className="lg:text-base text-[14px] font-bold">
+                {t("common.see")}
+              </span>
+              <div className={`${lang === "en" ? "rotate-y-180" : ""}`}>
+                <Image
+                  src="/images/logos/arrow-left.svg"
+                  alt="Arrow"
+                  width={16}
+                  height={16}
+                  className="rounded-lg mx-2 translate-y-0.5"
+                />
+              </div>
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section

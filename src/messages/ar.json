@@ -13,9 +13,9 @@
     "latest_updates_description": "اكتشف آخر أخبار الجمعية وأبرز التطورات في مجال إدارة المرافق، وكن دائمًا في قلب الحدث",
     "search": "بحث",
     "show_details": "عرض التفاصيل",
-    "training_schedule_title": "جدول تدريب شهر يونيو",
+    "training_schedule_title": "جدول المواعيد",
     "training_schedule_description": "اضغط على الدورة أو الورشة اللي ترغب فيها لمزيد من التفاصيل",
-    "view_2025_schedule": "اطلع على جدول تدريب 2025",
+    "view_2025_schedule": "اطلع على جدول المواعيد",
     "title": "نحو مستقبل أكثر كفاءة نمنحك أدوات النجاح!",
     "description": "نقدم برامج تدريبية متخصصة وشاملة تمنحك المهارات والأدوات العملية الحديثة لتحقيق النجاح والتميز في مجال إدارة المرافق بكفاءة واحترافية عالية، بإشراف نخبة من المدربين المعتمدين ذوي الخبرة الواسعة في هذا المجال",
     "Calender": "النقويم",
@@ -355,7 +355,11 @@
     "waiting": "بانتظار الرد...",
     "close": "إغلاق"
   },
-  "Profile": {},
+  "Profile": {
+    "membership_valid_until": "تاريخ انتهاء العضوية",
+    "pending_status": "طلب العضوية قيد المراجعة",
+    "pending_desc": "نشكرك على اهتمامك بالانضمام! سيتم مراجعة طلبك من قبل فريقنا، وسنقوم بإعلامك بالنتيجة في أقرب وقت ممكن."
+  },
   "NavBar": {
     "home": "الرئيسية",
     "about": "عن الجمعية",
@@ -388,7 +392,7 @@
     "calendar": "جدول دورات SFMA",
     "certified_trainers": "المدربين المعتمدين",
     "certificate_verification": "التحقق من الشهادات",
-    "membership_verification": "التحقق من الشهادات",
+    "membership_verification": "التحقق من العضويات",
     "profile": "الملف الشخصي",
     "memberships_2": {
       "_": "العضويات",
@@ -490,6 +494,7 @@
     "certificate_verification_description": "أدخل الرقم التسلسلي لشهادتك للتحقق من حالتها",
     "certificate_label": "أدخل رقم الشهادة",
     "verify_button": "تحقق",
+    "verifying": "يتم التحقق",
     "contact_text": "تواجه مشكلة؟ تواصل معنا عن طريق",
     "serial_required": "من فضلك أدخل رقم الشهادة",
     "contact_email": "info@sfma.sa"
@@ -732,6 +737,7 @@
     "one_year": "سنة",
     "duration": "المدة",
     "submit_request": "إرسال الطلب",
+    "submit_success": " تم إرسال الطلب بنجاح",
     "service_provider": "مقدم خدمة",
     "government": "جهة حكومية",
     "supplier": "مورد",
@@ -779,7 +785,7 @@
     "final_result": "النتيجة النهائية"
   },
   "exam_register": {
-    "register_title": "التسجيل في دورة",
+    "register_title": "التسجيل في إختبار",
     "discount_code": "كود الخصم إن وجد",
     "apply": "تطبيق",
     "agree": "أوافق على",

@@ -26,7 +26,7 @@ const TrainingPage = ({ translation, lang }) => {
       </p>
 
       <div className="xl:px-28 lg:px-16 ">
-        <CustomCalendar />
+        <CustomCalendar filters={{}} />
       </div>
 
       <Link

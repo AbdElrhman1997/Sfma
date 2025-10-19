@@ -1,11 +1,10 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
+import { useLocale, useTranslations } from "next-intl";
 
 const PartenersSection = () => {
   const t = useTranslations("HomePage.PartenersSection");
@@ -34,12 +33,14 @@ const PartenersSection = () => {
     fetchPartners();
   }, [lang]);
 
+  if (!partners.length) return null;
+
   return (
     <section
-      className={`xl:py-10 py-6 mt-10 text-center bg-[#F6F6F6]`}
+      className="xl:py-10 py-6 mt-10 text-center bg-[#F6F6F6]"
       dir={lang === "en" ? "ltr" : "rtl"}
     >
-      <div className="w-full flex flex-col items-center container mx-auto">
+      <div className="w-full flex flex-col items-center">
         <h2 className="lg:text-3xl text-xl font-bold text-[var(--main)] text-center lg:mb-3 mb-2">
           {t("title")}
         </h2>
@@ -62,7 +63,7 @@ const PartenersSection = () => {
         >
           {partners.map((partner, index) => (
             <SwiperSlide key={index}>
-              <div className="rounded-lg w-[150px] h-[150px] md:w-[170px] md:h-[170px] mx-auto flex items-center justify-center overflow-hidden">
+              <div className="rounded-lg w-[150px] h-[150px] mx-auto flex items-center justify-center overflow-hidden">
                 <img
                   src={`https://sffma.fmexcon.com/storage/${partner?.logo}`}
                   alt={`Partner ${index}`}
@@ -72,16 +73,6 @@ const PartenersSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        {/* <style jsx global>{`
-          .swiper-pagination-bullet {
-            background: #d1d1d1;
-            opacity: 1;
-          }
-          .swiper-pagination-bullet-active {
-            background: #61b8a0;
-          }
-        `}</style> */}
       </div>
     </section>
   );

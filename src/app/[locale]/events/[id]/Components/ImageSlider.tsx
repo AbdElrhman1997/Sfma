@@ -66,7 +66,7 @@ const ImageSlider = ({ images }) => {
           1024: { slidesPerView: 3 },
         }}
         autoplay={{
-          delay: 1400, // Delay between slides in milliseconds
+          delay: 2200, // Delay between slides in milliseconds
           disableOnInteraction: false, // Autoplay will not stop after user interaction
         }}
         navigation={{

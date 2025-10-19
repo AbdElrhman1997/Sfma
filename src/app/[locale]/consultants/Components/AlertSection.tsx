@@ -12,7 +12,7 @@ const AlertSection = () => {
         <h3 className="my-3 lg:text-xl text-base leading-8">
           {t("description")}
         </h3>
-        <Link href={`/${lang}/about`} className="block">
+        <Link href={`mailto:example@sfma.xom`} className="block">
           <button className="lg:text-lg text-[14px] bg-white text-[var(--second_main)] font-semibold lg:py-3 py-2 lg:px-4 px-3 rounded-lg transition duration-200 cursor-pointer">
             {t("button")}
           </button>

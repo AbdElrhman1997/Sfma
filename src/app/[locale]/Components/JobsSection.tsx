@@ -48,7 +48,7 @@ const JobsSection = () => {
   };
 
   return (
-    <>
+    <section dir={lang == "en" ? "ltr" : "rtl"}>
       {content?.length ? (
         <>
           {" "}
@@ -131,7 +131,7 @@ const JobsSection = () => {
           </div>
         </>
       ) : null}
-    </>
+    </section>
   );
 };
 

@@ -82,7 +82,7 @@ const BannerSection = () => {
             >
               {/* Overlay + image */}
               <div className="absolute w-full h-full top-0 left-0">
-                <div className="absolute w-full h-full bg-gradient-to-t from-black/70 to-transparent z-40"></div>
+                <div className="absolute w-full h-full bg-black/60 z-40"></div>
                 <img
                   src={`https://sffma.fmexcon.com/storage/${banner.image}`}
                   alt={`Banner ${banner.id}`}

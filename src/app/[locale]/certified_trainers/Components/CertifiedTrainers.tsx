@@ -39,7 +39,7 @@ const CertifiedTrainers = () => {
       <div className="bg-[#F6F6F6] shadow lg:col-span-1 md:col-span-2 col-span-3 border-b-4 border-[var(--second_main)] rounded-md px-4 text-center">
         <div className="w-fit border-2 border-[var(--second_main)] rounded-md mx-auto -translate-y-8">
           <img
-            src={`${process.env.NEXT_PUBLIC_URL}${trainer?.user?.logo}`}
+            src={`${process.env.NEXT_PUBLIC_URL}${trainer?.user?.avatar}`}
             alt="About Us"
             width={500}
             height={500}

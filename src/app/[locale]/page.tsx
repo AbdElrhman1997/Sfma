@@ -168,6 +168,15 @@ export default function HomePage() {
       </motion.div>
 
       <motion.div
+        ref={newsletterRef}
+        variants={scaleUpVariants}
+        initial="hidden"
+        animate={isNewsletterInView ? "visible" : "hidden"}
+      >
+        <JobsSection />
+      </motion.div>
+
+      <motion.div
         ref={blogsRef}
         variants={slideUpVariants}
         initial="hidden"
@@ -201,14 +210,6 @@ export default function HomePage() {
         animate={isNewsletterInView ? "visible" : "hidden"}
       >
         {/* <NewsletterSection /> */}
-      </motion.div>
-      <motion.div
-        ref={newsletterRef}
-        variants={scaleUpVariants}
-        initial="hidden"
-        animate={isNewsletterInView ? "visible" : "hidden"}
-      >
-        <JobsSection />
       </motion.div>
     </div>
   );

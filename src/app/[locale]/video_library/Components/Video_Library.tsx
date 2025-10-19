@@ -5,39 +5,43 @@ import { useEffect, useState } from "react";
 
 const Video_Library = ({ translation, lang }) => {
   const skeletons = Array.from({ length: 3 });
-
-  const getEmbedUrl = (url) => {
-    const videoId = url?.split("v=")[1]?.split("&")[0];
-    return `https://www.youtube.com/embed/${videoId}`;
-  };
-
   const [content, setContent]: any = useState([]);
+  const [pagination, setPagination]: any = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
   const [loadingContent, setLoadingContent] = useState(false);
   const isEmpty = !loadingContent && content.length === 0;
 
-  useEffect(() => {
-    const fetchSinglePath = async () => {
-      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-vedios`;
-      try {
-        setLoadingContent(true);
-        const res = await fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Accept-Language": lang || "ar",
-          },
-          cache: "no-store",
-        });
-        const data = await res.json();
-        setContent(data?.data || {});
-        setLoadingContent(false);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        setLoadingContent(false);
-      }
-    };
+  const perPage = 9;
 
-    fetchSinglePath();
-  }, [lang]);
+  const fetchVideos = async (page = 1) => {
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}library/get-vedios?page=${page}&per_page=${perPage}`;
+    try {
+      setLoadingContent(true);
+      const res = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Accept-Language": lang || "ar",
+        },
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setContent(data?.data || []);
+      setPagination(data?.pagination || {});
+      setLoadingContent(false);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      setLoadingContent(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchVideos(currentPage);
+  }, [lang, currentPage]);
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > pagination?.total_pages) return;
+    setCurrentPage(page);
+  };
 
   return (
     <div dir={lang === "en" ? "ltr" : "rtl"}>
@@ -97,6 +101,52 @@ const Video_Library = ({ translation, lang }) => {
           <p className="text-center text-gray-500 mt-10">
             لا توجد فيديوهات متاحة حالياً.
           </p>
+        )}
+
+        {/* Pagination Controls */}
+        {pagination?.total_pages > 1 && (
+          <div className="flex justify-center items-center mt-8 gap-2 flex-wrap">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`px-3 py-2 rounded-md border ${
+                currentPage === 1
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white hover:bg-[#1DAEE5] hover:text-white border-[#1DAEE5] text-[#1DAEE5]"
+              }`}
+            >
+              السابق
+            </button>
+
+            {Array.from(
+              { length: pagination?.total_pages },
+              (_, i) => i + 1
+            ).map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`px-3 py-2 rounded-md border ${
+                  page === currentPage
+                    ? "bg-[#1DAEE5] text-white border-[#1DAEE5]"
+                    : "bg-white text-[#1DAEE5] border-[#1DAEE5] hover:bg-[#1DAEE5] hover:text-white"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === pagination?.total_pages}
+              className={`px-3 py-2 rounded-md border ${
+                currentPage === pagination?.total_pages
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white hover:bg-[#1DAEE5] hover:text-white border-[#1DAEE5] text-[#1DAEE5]"
+              }`}
+            >
+              التالي
+            </button>
+          </div>
         )}
       </div>
     </div>

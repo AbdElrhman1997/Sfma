@@ -12,9 +12,9 @@
     "latest_updates_description": "Discover the latest SFMA news and key developments in the facilities management field—always stay at the heart of what's happening",
     "search": "search",
     "show_details": "Show details",
-    "training_schedule_title": "June Training Schedule",
+    "training_schedule_title": "Training Schedule",
     "training_schedule_description": "Click on the course or workshop you’re interested in for more details",
-    "view_2025_schedule": "View 2025 Training Schedule",
+    "view_2025_schedule": "View Timetable",
     "title": "Towards a more efficient future, we equip you with the tools for success!",
     "description": "We offer specialized and comprehensive training programs that provide you with the modern practical skills and tools to achieve success and excellence in facility management, under the supervision of elite certified trainers with extensive experience in the field.",
     "Calender": "Calender",
@@ -360,7 +360,11 @@
     "waiting": "Waiting for response...",
     "close": "Close"
   },
-  "Profile": {},
+  "Profile": {
+    "membership_valid_until": "Membership Expiration Date",
+    "pending_status": "Your membership request is under review",
+    "pending_desc": "Thank you for your interest in joining! Our team is currently reviewing your request and will get back to you as soon as possible."
+  },
   "NavBar": {
     "home": "Home",
     "about": "About SFMA",
@@ -494,6 +498,7 @@
     "certificate_verification_description": "Enter your certificate serial number to verify its status",
     "certificate_label": "Enter Certificate Number",
     "verify_button": "Verify",
+    "verifying": "Verifying",
     "contact_text": "Having issues? Contact us via",
     "serial_required": "Please enter certificate number",
     "contact_email": "info@sfma.sa"
@@ -714,6 +719,7 @@
     "one_year": "One year",
     "duration": "Duration",
     "submit_request": "Submit Request",
+    "submit_success": "Request send successfully",
     "service_provider": "Service Provider",
     "government": "Government Entity",
     "supplier": "Supplier",

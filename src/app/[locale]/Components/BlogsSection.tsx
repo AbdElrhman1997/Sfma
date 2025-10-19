@@ -59,25 +59,36 @@ const BlogsSection = () => {
           {content?.map((item, index) => (
             <div
               key={index}
-              className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md px-4 pt-2 pb-2"
+              className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-md flex flex-col transition hover:-translate-y-1 hover:shadow-lg duration-300"
             >
-              <div className="py-4">
+              {/* الصورة */}
+              <div className="relative overflow-hidden">
                 <img
                   src={`https://sffma.fmexcon.com/storage/${item?.image}`}
                   alt={item?.name}
-                  className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
+                  className="object-cover w-full h-[220px] sm:h-[240px] md:h-[260px] transition duration-500 group-hover:scale-105"
                 />
+              </div>
 
+              {/* المحتوى */}
+              <div className="flex flex-col justify-between flex-1 p-4">
+                {/* العنوان */}
+                <h3 className="text-lg font-bold text-[#333] leading-snug mb-2 line-clamp-2 min-h-[3.2rem]">
+                  {item?.title}
+                </h3>
+
+                {/* المحتوى */}
                 <div
-                  className="text-[#636363] mt-4 leading-6 line-clamp-3"
-                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                  className="text-[#555] text-sm leading-6 line-clamp-3 flex-1"
+                  dangerouslySetInnerHTML={{ __html: item?.content }}
                 />
 
+                {/* زر القراءة */}
                 <Link
-                  href={`/${lang}/news/${item?.id}`}
-                  className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
+                  href={`/${lang}/data_library/${item?.id}`}
+                  className="mt-4 inline-flex items-center text-[var(--main)] font-semibold hover:opacity-80 transition"
                 >
-                  <span className="text-lg font-bold">{t("read_more")}</span>
+                  <span className="text-base font-bold">{t("read_more")}</span>
                   <div className={`${lang === "en" ? "rotate-y-180" : ""}`}>
                     <Image
                       src="/images/logos/arrow-left.svg"

@@ -10,7 +10,7 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png"];
 
 const PaymentPage = () => {
   const lang = useLocale();
-  // get payment data from course or workshop
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const payment_data: any = JSON.parse(localStorage.getItem("payment_data"));
   const t = useTranslations("Payment");
   const [selectedValue, setSelectedValue] = useState("option1");
@@ -58,6 +58,7 @@ const PaymentPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const token = localStorage.getItem("auth_token");
 
     const formData = new FormData();
@@ -90,7 +91,10 @@ const PaymentPage = () => {
       const data = await res.json();
     } catch (error) {
       console.error("Error submitting form:", error);
-      router.push(`/${lang}/error-page`);
+      // router.push(`/${lang}/error-page`);
+      router.push(`/${lang}/payment/failed?source=${payment_data?.type}`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -208,12 +212,25 @@ const PaymentPage = () => {
           </div>
         )}
       </div>
-      <div
-        className="block mt-6 mx-auto cursor-pointer hover:opacity-85 bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] w-fit text-white lg:px-12 px-6 lg:py-2 py-[6px] rounded-lg font-semibold lg:text-base text-[12px]"
+      <button
         onClick={handleSubmit}
+        disabled={isSubmitting}
+        className={`block mt-6 mx-auto cursor-pointer w-fit text-white lg:px-12 px-6 lg:py-2 py-[6px] rounded-lg font-semibold lg:text-base text-[12px]
+    ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:opacity-85"}
+    bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] flex items-center justify-center gap-2`}
       >
-        {t("complete_payment")}
-      </div>
+        {isSubmitting ? (
+          <div className="flex items-center gap-1 min-h-6">
+            <span className="flex gap-[3px] ml-1">
+              <span className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+              <span className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+              <span className="w-2 h-2 bg-white rounded-full animate-bounce"></span>
+            </span>
+          </div>
+        ) : (
+          t("complete_payment")
+        )}
+      </button>
     </div>
   );
 };

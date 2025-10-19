@@ -11,9 +11,19 @@ const SingleEvent = ({ id }) => {
   const [content, setContent]: any = useState([]);
   const [loadingContent, setLoadingContent] = useState(false);
   const getEmbedUrl = (url) => {
-    const videoId = url?.split("v=")[1]?.split("&")[0];
-    return `https://www.youtube.com/embed/${videoId}`;
+    if (!url) return "";
+
+    let videoId = "";
+
+    if (url.includes("youtube.com/watch?v=")) {
+      videoId = url.split("v=")[1]?.split("&")[0];
+    } else if (url.includes("youtu.be/")) {
+      videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    }
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
   };
+
   useEffect(() => {
     const fetchSinglePath = async () => {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}sfma-events/get-sfma-event-details/${id}`;

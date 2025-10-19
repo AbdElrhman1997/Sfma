@@ -25,7 +25,9 @@ const Exam_Register = () => {
     {
       title: t("fees"),
       desc: `${
-        choosed_exam?.price ? choosed_exam?.price?.toFixed(2) : "0.00"
+        choosed_exam?.price
+          ? parseFloat(choosed_exam?.price)?.toFixed(2)
+          : "0.00"
       } ر.س`,
     },
     {

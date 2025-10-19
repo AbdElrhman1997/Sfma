@@ -53,43 +53,29 @@ export default function Sfma_Paths() {
       </div>
     ));
 
-  const renderCourseCard = (path, idx) =>
-    idx == 5 ? (
-      <Link
-        key={path?.id}
-        href={`/${lang}/paths`}
-        className="group cursor-pointer hover:opacity-95 min-h-[360px] text-white bg-[var(--second_main)] rounded-lg shadow-md text-center h-full hover:scale-105 transition duration-300"
-      >
-        <div className="flex flex-col justify-center h-full text-start px-16">
-          <p className="xl:text-8xl text-3xl font-bold">
-            {content?.length - 5}+
-          </p>
-          <p className="xl:text-4xl text-3xl font-bold">{t("paths")}</p>
+  const renderCourseCard = (path) => (
+    <div
+      key={path?.id}
+      className="group min-h-[360px] bg-[#61B8A0] rounded-lg shadow-md text-center h-fit hover:scale-105 transition duration-300"
+    >
+      <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
+        <img
+          src={`${process.env.NEXT_PUBLIC_URL}${path?.image}`}
+          className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
+          alt="path image"
+        />
+        <p className="relative font-bold mt-[26px] mb-5 text-white">
+          {path?.title}
+        </p>
+      </div>
+
+      <Link href={`/${lang}/paths/${path?.id}`} className="inline-block">
+        <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
+          {t("read_more_2")}
         </div>
       </Link>
-    ) : idx < 5 ? (
-      <div
-        key={path?.id}
-        className="group  min-h-[360px] bg-[#61B8A0] rounded-lg shadow-md text-center h-fit hover:scale-105 transition duration-300"
-      >
-        <div className="transition-shadow duration-300 overflow-hidden rounded-lg">
-          <img
-            src={`${process.env.NEXT_PUBLIC_URL}${path?.image}`}
-            className="object-cover h-full max-h-[17rem] w-full transition duration-300 group-hover:scale-105 group-hover:opacity-85"
-            alt="patn image"
-          />
-          <p className="relative font-bold mt-[26px] mb-5 text-white">
-            {path?.title}
-          </p>
-        </div>
-
-        <Link href={`/${lang}/paths/${path?.id}`} className="inline-block">
-          <div className="bg-[#61B8A0] text-white font-bold p-2 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[14px] transition-all duration-300 hover:border-[#61B8A0] hover:bg-white hover:text-[#61B8A0]">
-            {t("read_more_2")}
-          </div>
-        </Link>
-      </div>
-    ) : null;
+    </div>
+  );
 
   return (
     <div
@@ -110,17 +96,21 @@ export default function Sfma_Paths() {
             : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 p-5 xl:p-0"
         } items-stretch`}
       >
-        {" "}
-        {loadingPaths ? (
-          renderLoadingCards()
-        ) : (
-          <>
-            {content?.map((path, idx) => {
-              return renderCourseCard(path, idx);
-            })}
-          </>
-        )}
+        {loadingPaths
+          ? renderLoadingCards()
+          : content?.slice(0, 3).map((path) => renderCourseCard(path))}
       </div>
+
+      {!loadingPaths && content?.length > 3 && (
+        <div className="flex justify-center mt-6">
+          <Link
+            href={`/${lang}/paths`}
+            className="bg-gradient-to-r from-[var(--second_main_gradiant)] to-[var(--second_main)] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-85 transition"
+          >
+            {t("show_all_training_paths") || "عرض كل المسارات التدريبية"}
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

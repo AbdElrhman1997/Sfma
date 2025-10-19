@@ -55,18 +55,18 @@ const SideBarFilter = ({ setContent }) => {
   };
 
   return (
-    <section className="flex xl:flex-col gap-3 bg-[#F6F6F6] shadow p-4 xl:w-fit w-full overflow-x-auto xl:mb-0 mb-10 xl:mx-0 mx-auto">
+    <section className="flex-col gap-3 bg-[#F6F6F6] shadow p-4 xl:w-fit w-full overflow-x-auto xl:mb-0 mb-10 xl:mx-0 mx-auto space-y-5 py-6 h-fit">
       {filterList?.map((item) => (
         <div
           key={item.id}
-          className={`rounded-lg flex items-center gap-x-3 w-fit py-3 px-5 min-w-[250px] cursor-pointer hover:opacity-80 xl:mx-0 mx-auto ${
+          className={`rounded-lg flex items-center justify-center gap-x-3 w-full lg:py-3 lg:px-5 py-[6px] px-3 lg:min-w-[250px] cursor-pointer hover:opacity-80 xl:mx-0 mx-auto ${
             selectedCategory === item.id
               ? "bg-[var(--second_main)] text-white"
               : "bg-[#DFDFDF]"
           }`}
           onClick={() => handleCategoryClick(item)}
         >
-          <p className="font-semibold">{item.name}</p>
+          <p className="font-semibold lg:text-base text-sm">{item.name}</p>
         </div>
       ))}
     </section>
