@@ -154,7 +154,7 @@ const ProfilePage = () => {
           ) : activeTab == 4 ? (
             <CertificatesTab />
           ) : activeTab == 5 ? (
-            <MembershipTab profileData={profileData} />
+            <MembershipTab />
           ) : (
             <PaymentsTab profileData={profileData} />
           )}
