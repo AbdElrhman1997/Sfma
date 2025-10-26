@@ -70,7 +70,7 @@ const UserMembershipPage = () => {
   return (
     <div
       dir={locale === "en" ? "ltr" : "rtl"}
-      className="container mx-auto my-10 bg-white rounded-xl shadow-lg overflow-hidden"
+      className="my-10 bg-white rounded-xl shadow-lg overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between bg-[#21B6E4] text-white py-5 px-6 relative">
@@ -83,73 +83,74 @@ const UserMembershipPage = () => {
             : ""}
         </span>
       </div>
-      {/* Icon */}
-      <div className="flex justify-center mt-4">
-        <div className="bg-white p-2 rounded-full shadow-lg">
-          <img
-            src={`https://sffma.fmexcon.com/storage/${membership?.icon}`}
-            alt="Membership Icon"
-            width={120}
-            height={120}
-            className="rounded-full object-contain w-[120px] h-[120px]"
-          />
+      <div className="container mx-auto">
+        <div className="flex justify-center mt-4">
+          <div className="bg-white p-2 rounded-full shadow-lg">
+            <img
+              src={`https://sffma.fmexcon.com/storage/${membership?.icon}`}
+              alt="Membership Icon"
+              width={120}
+              height={120}
+              className="rounded-full object-contain w-[120px] h-[120px]"
+            />
+          </div>
         </div>
-      </div>
-      {/* Status */}
-      <div className="flex flex-col items-center justify-center mt-6 mb-8">
-        {status === "pending" && (
-          <>
-            <FaClock className="text-[#21B6E4] text-4xl mb-2 animate-pulse" />
-            <p className="font-bold text-gray-700">
-              {t("Profile.pending_status") || "طلبك قيد المراجعة"}
-            </p>
-            <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
-              {t("Profile.pending_desc") ||
-                "سيتم إشعارك فور الانتهاء من مراجعة طلب العضوية الخاص بك."}
-            </p>
-          </>
-        )}
+        {/* Status */}
+        <div className="flex flex-col items-center justify-center mt-6 mb-8">
+          {status === "pending" && (
+            <>
+              <FaClock className="text-[#21B6E4] text-4xl mb-2 animate-pulse" />
+              <p className="font-bold text-gray-700">
+                {t("Profile.pending_status") || "طلبك قيد المراجعة"}
+              </p>
+              <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
+                {t("Profile.pending_desc") ||
+                  "سيتم إشعارك فور الانتهاء من مراجعة طلب العضوية الخاص بك."}
+              </p>
+            </>
+          )}
 
-        {status === "approved" && (
-          <>
-            <FaCheckCircle className="text-[#16A34A] text-4xl mb-2" />
-            <p className="font-bold text-gray-700">
-              {t("Profile.approved_status") || "تمت الموافقة على عضويتك"}
-            </p>
-            <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
-              {t("Profile.approved_desc") ||
-                "يمكنك الآن الاستفادة من جميع المزايا."}
-            </p>
-          </>
-        )}
+          {status === "approved" && (
+            <>
+              <FaCheckCircle className="text-[#16A34A] text-4xl mb-2" />
+              <p className="font-bold text-gray-700">
+                {t("Profile.approved_status") || "تمت الموافقة على عضويتك"}
+              </p>
+              <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
+                {t("Profile.approved_desc") ||
+                  "يمكنك الآن الاستفادة من جميع المزايا."}
+              </p>
+            </>
+          )}
 
-        {status === "rejected" && (
-          <>
-            <FaTimesCircle className="text-[#DC2626] text-4xl mb-2" />
-            <p className="font-bold text-gray-700">
-              {t("Profile.rejected_status") || "تم رفض طلب العضوية"}
-            </p>
-            <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
-              {membership?.reason ||
-                t("Profile.rejected_desc") ||
-                "يمكنك التواصل معنا لمعرفة التفاصيل أو إعادة التقديم."}
-            </p>
-          </>
-        )}
-      </div>
-      {/* Membership Details */}
-      {membership?.membership_details?.length > 0 && (
-        <div className="px-6 pb-10">
-          <h2 className="text-lg font-bold text-gray-800 mb-3">
-            {t("Profile.membership_features") || "مميزات العضوية"}
-          </h2>
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            {membership.membership_details.map((item: any) => (
-              <li key={item.id}>{item.text}</li>
-            ))}
-          </ul>
+          {status === "rejected" && (
+            <>
+              <FaTimesCircle className="text-[#DC2626] text-4xl mb-2" />
+              <p className="font-bold text-gray-700">
+                {t("Profile.rejected_status") || "تم رفض طلب العضوية"}
+              </p>
+              <p className="text-gray-500 text-sm mt-1 text-center max-w-md">
+                {membership?.reason ||
+                  t("Profile.rejected_desc") ||
+                  "يمكنك التواصل معنا لمعرفة التفاصيل أو إعادة التقديم."}
+              </p>
+            </>
+          )}
         </div>
-      )}
+        {/* Membership Details */}
+        {membership?.membership_details?.length > 0 && (
+          <div className="px-6 pb-10">
+            <h2 className="text-lg font-bold text-gray-800 mb-3">
+              {t("Profile.membership_features") || "مميزات العضوية"}
+            </h2>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              {membership.membership_details.map((item: any) => (
+                <li key={item.id}>{item.text}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

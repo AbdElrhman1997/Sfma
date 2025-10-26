@@ -3,6 +3,7 @@ import { XCircle } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const FailedPage = ({ params: { locale, id } }: any) => {
   const choosed_course: any = JSON.parse(
@@ -14,6 +15,7 @@ const FailedPage = ({ params: { locale, id } }: any) => {
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
   const t = useTranslations("RegistrationStatus");
+  const lang = useLocale();
 
   return (
     <div
@@ -37,6 +39,20 @@ const FailedPage = ({ params: { locale, id } }: any) => {
             ? choosed_workshop?.title
             : `${t("course")} ${choosed_course?.title}`}
         </p>
+
+        <div className="flex flex-col items-center text-center">
+          <Link
+            href={`/${lang}`}
+            className=" flex items-center gap-x-3 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+          >
+            {t("back")}
+            {lang == "en" ? (
+              <FaArrowRight className="text-lg" />
+            ) : (
+              <FaArrowLeft className="text-lg" />
+            )}{" "}
+          </Link>
+        </div>
 
         {/* Buttons */}
         {/* <div className="flex gap-4 justify-center flex-wrap">

@@ -50,7 +50,7 @@ const Video_Library = ({ translation, lang }) => {
           {translation.title}
         </h2>
 
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8 justify-center mt-7 mb-3 text-start">
+        <div className="grid grid-cols-12 2xl:gap-12 lg:gap-10 gap-y-10 justify-center mt-7 mb-3 text-start">
           {loadingContent
             ? skeletons.map((_, index) => (
                 <div
@@ -69,7 +69,7 @@ const Video_Library = ({ translation, lang }) => {
                   key={index}
                   href={`${video?.vedio_url}`}
                   target="_blank"
-                  className="block md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg max-w-[330px] hover:scale-105 hover:opacity-85 hover:border-[#1DAEE5] cursor-pointer transition duration-300"
+                  className="block md:col-span-4 col-span-12 mx-auto bg-white shadow-lg overflow-hidden border-b-6 border-[#61B8A0] rounded-lg w-full hover:scale-105 hover:opacity-85 hover:border-[#1DAEE5] cursor-pointer transition duration-300"
                 >
                   <div className="w-full h-56 bg-gray-200 relative">
                     <img
@@ -109,7 +109,7 @@ const Video_Library = ({ translation, lang }) => {
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className={`px-3 py-2 rounded-md border ${
+              className={`px-3 py-2 rounded-md border cursor-pointer ${
                 currentPage === 1
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                   : "bg-white hover:bg-[#1DAEE5] hover:text-white border-[#1DAEE5] text-[#1DAEE5]"
@@ -127,8 +127,8 @@ const Video_Library = ({ translation, lang }) => {
                 onClick={() => handlePageChange(page)}
                 className={`px-3 py-2 rounded-md border ${
                   page === currentPage
-                    ? "bg-[#1DAEE5] text-white border-[#1DAEE5]"
-                    : "bg-white text-[#1DAEE5] border-[#1DAEE5] hover:bg-[#1DAEE5] hover:text-white"
+                    ? "bg-[#1DAEE5] text-white border-[#1DAEE5] cursor-pointer"
+                    : "bg-white text-[#1DAEE5] border-[#1DAEE5] cursor-pointer hover:bg-[#1DAEE5] hover:text-white"
                 }`}
               >
                 {page}
@@ -138,7 +138,7 @@ const Video_Library = ({ translation, lang }) => {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === pagination?.total_pages}
-              className={`px-3 py-2 rounded-md border ${
+              className={`px-3 py-2 rounded-md border cursor-pointer ${
                 currentPage === pagination?.total_pages
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                   : "bg-white hover:bg-[#1DAEE5] hover:text-white border-[#1DAEE5] text-[#1DAEE5]"

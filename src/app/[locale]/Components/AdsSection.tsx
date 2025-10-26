@@ -103,7 +103,7 @@ const AdsSection = () => {
       >
         {ads.map((ad) => (
           <SwiperSlide key={ad.id}>
-            <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[65vh]">
+            <div className="relative w-full min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[65vh]">
               <a
                 href={ad.url}
                 target="_blank"

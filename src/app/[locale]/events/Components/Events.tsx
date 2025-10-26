@@ -81,12 +81,12 @@ const Events = () => {
                   className="w-full h-auto rounded-lg"
                 />
               </div>
-              <div className="p-4" style={{ minHeight: "120px" }}>
+              <div className="p-4" style={{ minHeight: "100px" }}>
                 <h3 className="text-lg font-bold leading-tight text-[#555555] truncate">
                   {item?.title}
                 </h3>
 
-                <div className="flex gap-x-10 flex-wrap">
+                <div className="flex items-center gap-3 mt-1">
                   <div className="flex items-center gap-3 mt-2">
                     <div className="w-4">
                       <Image
@@ -102,7 +102,8 @@ const Events = () => {
                       {formatDate(item?.date_to)}
                     </p>
                   </div>
-
+                </div>
+                <div className="flex items-center gap-3 mt-1">
                   <div className="flex items-center gap-3 mt-2">
                     <div className="w-5">
                       <Image
@@ -120,7 +121,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-2">
+                <div className="flex items-center gap-3 mt-1 truncate">
                   <div className="w-4">
                     <Image
                       src="/images/logos/location_main.png"

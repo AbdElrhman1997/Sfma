@@ -62,82 +62,64 @@ const AllEvents = () => {
             className="max-w-sm lg:mx-0 mx-auto bg-white rounded-lg overflow-hidden shadow-md px-4 pt-4"
           >
             <div className="w-full">
-              <Image
-                src="/images/common/events__card_bg.jpg"
+              <img
+                src={`${process.env.NEXT_PUBLIC_URL}${item?.cover_image}`}
                 alt="About Us"
                 width={500}
                 height={400}
                 className="w-full h-auto rounded-lg"
               />
             </div>
-            <div className="p-4">
-              <h3 className="text-lg font-bold leading-tight text-[#555555]">
+            <div className="p-4" style={{ minHeight: "100px" }}>
+              <h3 className="text-lg font-bold leading-tight text-[#555555] truncate">
                 {item?.title}
               </h3>
-              <div className="flex gap-x-10">
-                <div className="flex items-center justify-start gap-3 mt-2">
+
+              <div className="flex items-center gap-3 mt-1">
+                <div className="flex items-center gap-3 mt-2">
                   <div className="w-4">
                     <Image
                       src="/images/logos/Date_Icon.png"
-                      alt="About Us"
+                      alt="date icon"
                       width={50}
                       height={50}
                       className="w-full h-auto translate-y-1"
                     />
                   </div>
-                  <p className=" lg:text-lg text-base mt-2">
-                    {formatDate(item?.date_from) +
-                      " - " +
-                      formatDate(item?.date_to)}
+                  <p className="lg:text-base text-sm mt-2">
+                    {formatDate(item?.date_from)} - {formatDate(item?.date_to)}
                   </p>
                 </div>
-                <div className="flex items-center justify-start gap-3 mt-2">
+              </div>
+              <div className="flex items-center gap-3 mt-1">
+                <div className="flex items-center gap-3 mt-2">
                   <div className="w-5">
                     <Image
                       src="/images/logos/Vector (1).png"
-                      alt="About Us"
+                      alt="time icon"
                       width={50}
                       height={50}
-                      className="w-full h-auto rounded-lg translate-y-1"
+                      className="w-full h-auto translate-y-1"
                     />
                   </div>
-                  <p className=" lg:text-lg text-base mt-2">
-                    {" "}
-                    {formatTime(item?.time_from) +
-                      " - " +
-                      formatTime(item?.time_to)}
+                  <p className="lg:text-base text-sm mt-2">
+                    {formatTime(item?.time_from)} - {formatTime(item?.time_to)}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center justify-start gap-3 mt-2">
+
+              <div className="flex items-center gap-3 mt-1 truncate">
                 <div className="w-4">
                   <Image
                     src="/images/logos/location_main.png"
-                    alt="About Us"
+                    alt="location icon"
                     width={50}
                     height={50}
-                    className="w-full h-auto rounded-lg translate-y-1.5"
+                    className="w-full h-auto translate-y-1.5"
                   />
                 </div>
-                <p className=" lg:text-lg text-base mt-2">{item?.address}</p>
+                <p className=" lg:text-base text-sm  mt-2">{item?.address}</p>
               </div>
-              <Link
-                href={`/${lang}/events/${item?.id}`}
-                className="mt-4 text-[var(--main)] flex items-center justify-start text-primary font-semibold cursor-pointer"
-              >
-                <span className="lg:text-base text-[14px] font-bold">
-                  عرض التفاصيل
-                </span>
-                <div className={`${lang == "en" ? "rotate-y-180" : ""}`}>
-                  <Image
-                    src="/images/logos/arrow-left.svg"
-                    alt="About Us"
-                    width={16}
-                    height={16}
-                    className=" rounded-lg mx-2 translate-y-0.5"
-                  />
-                </div>
-              </Link>
             </div>
           </div>
         ))}

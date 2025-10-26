@@ -247,7 +247,13 @@ const Single_Course = ({ translation, id }) => {
             />
           </div>
         </div>
-        <p className="text-base lg:text-xl mt-3 text-[#555555]">{t("p_9")}</p>
+        <p className="text-base lg:text-xl mt-6 text-[#555555]">{t("p_9")}</p>
+        <Link
+          href="mailto:example@sfma.org"
+          className="text-base lg:text-lg mt-1 text-[var(--main)] underline cursor-pointer hover:text-[var(--main)]/70"
+        >
+          {t("p_30")}
+        </Link>
       </div>
       <div className="flex flex-col items-center  text-center mt-8 mb-16">
         <Link

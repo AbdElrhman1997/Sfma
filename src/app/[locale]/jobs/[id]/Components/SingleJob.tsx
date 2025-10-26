@@ -138,9 +138,7 @@ const SingleJob = ({ id }) => {
               {
                 icon: "website",
                 text: job?.company_website,
-                link: job?.company_website
-                  ? `https://${job.company_website}`
-                  : null,
+                link: job?.company_website ? `${job.company_website}` : null,
               },
               {
                 icon: "email",
@@ -174,6 +172,7 @@ const SingleJob = ({ id }) => {
                   href={item.link || ""}
                   target="_blank"
                   className="lg:text-lg text-base underline"
+                  dir="ltr"
                 >
                   {item.text}
                 </Link>

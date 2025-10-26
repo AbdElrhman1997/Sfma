@@ -3,11 +3,14 @@ import { CheckCircle } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const SuccesPage = ({ params: { locale, id } }: any) => {
+  const lang = useLocale();
   const choosed_course: any = JSON.parse(
     localStorage.getItem("choosed_course")
   );
+  const choosed_exam: any = JSON.parse(localStorage.getItem("choosed_exam"));
   const choosed_workshop: any = JSON.parse(
     localStorage.getItem("choosed_workshop")
   );
@@ -32,15 +35,33 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
         <h2 className="text-2xl lg:text-3xl font-bold mb-2 text-black">
           {t("success_title")}
         </h2>
-        <p className="text-[#333] mb-6 text-sm lg:text-base">
-          {t("registered_in")}
-          <br />
+        <p className="text-[#333] text-base">
+          {t("registered_in")}{" "}
           {source === "workshop"
             ? choosed_workshop?.title
-            : source === "workshop"
-            ? `${t("course")} ${choosed_course?.title}`
+            : source === "course"
+            ? `${choosed_course?.title}`
+            : source === "exam"
+            ? `${choosed_exam?.title}`
             : choosed_membership?.title}
         </p>
+        <p className="text-[#333] mb-6 mt-1 text-base">
+          {t("success_membership_sub_title")}{" "}
+        </p>
+
+        <div className="flex flex-col items-center text-center">
+          <Link
+            href={`/${lang}/profile`}
+            className=" flex items-center gap-x-3 cursor-pointer hover:opacity-85 bg-gradient-to-r from-[#7ADEC2] to-[#61B8A0] text-white font-bold py-2 px-6 rounded-md text-base lg:text-2xl"
+          >
+            {t("go_to_profile")}
+            {lang == "en" ? (
+              <FaArrowRight className="text-lg" />
+            ) : (
+              <FaArrowLeft className="text-lg" />
+            )}{" "}
+          </Link>
+        </div>
 
         {/* Buttons */}
         {/* <div className="flex gap-4 justify-center flex-wrap">

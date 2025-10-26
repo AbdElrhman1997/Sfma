@@ -28,7 +28,8 @@
     "p_6": "Upcoming Course Dates:",
     "p_7": "Certificates:",
     "p_8": "Includes training materials and accredited certificates",
-    "p_9": "Group discounts available",
+    "p_9": "Special offer for groups!",
+    "p_30": "Contact us for more information",
     "p_10": "Register Now",
     "p_11": "Limited seats – reserve yours now!",
     "p_12": "Register for the workshop now!",
@@ -623,11 +624,13 @@
     "failed_title": "Registration failed",
     "failed_membership_title": "An error occurred while submitting the request",
     "failed_membership_sub_title": "Please try again",
-    "success_title": "Registration completed successfully",
+    "success_title": "Process completed successfully",
     "success_membership_title": "The request has been submitted successfully",
     "success_membership_sub_title": "Your request will be reviewed and responded to as soon as possible",
     "registered_in": "You have registered for",
-    "course": "course"
+    "course": "course",
+    "go_to_profile": "Go to my profile",
+    "back": "Back"
   },
   "filters": {
     "all": "Show All",
