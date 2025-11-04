@@ -43,7 +43,9 @@ const SuccesPage = ({ params: { locale, id } }: any) => {
             ? `${choosed_course?.title}`
             : source === "exam"
             ? `${choosed_exam?.title}`
-            : choosed_membership?.title}
+            : source === "membership"
+            ? `${choosed_membership?.name}`
+            : "العملية بنجاح"}
         </p>
         <p className="text-[#333] mb-6 mt-1 text-base">
           {t("success_membership_sub_title")}{" "}
