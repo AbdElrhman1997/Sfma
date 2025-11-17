@@ -40,7 +40,7 @@ const Workshop_Register = () => {
     if (box1Ref.current && box2Ref.current) {
       const h1 = box1Ref.current.offsetHeight;
       const h2 = box2Ref.current.offsetHeight;
-      setEqualHeight(Math.max(h1, h2));
+      setEqualHeight(Math.max(h1, h2).toString());
     }
   }, []);
 
