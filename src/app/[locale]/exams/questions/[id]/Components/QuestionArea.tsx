@@ -24,7 +24,6 @@ const QuestionArea = ({
   }, [currentQuestionIndex, questions, answers]);
 
   const currentQuestion = questions[currentQuestionIndex] || {};
-  console.log(questions?.length, currentQuestion, currentQuestionIndex);
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
   const isFirstQuestion = currentQuestionIndex === 0;
 

@@ -1,20 +1,39 @@
 "use client";
 import { useState, useEffect } from "react";
 import Select from "react-select";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Filters = ({ onChange }) => {
   const t = useTranslations();
+  const lang = useLocale();
+  const [paths, setPaths] = useState();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}courses/get-courses-category`;
+
+      try {
+        const res = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Accept-Language": lang || "ar",
+          },
+          cache: "no-store",
+        });
+
+        const data = await res.json();
+        setPaths(data?.data || []);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCourses();
+  }, [lang]);
 
   const categories = [
     { value: "courses", label: t("categories.training_courses") },
     { value: "workshop", label: t("categories.workshops") },
-  ];
-
-  const paths = [
-    { value: "all_paths", label: t("paths.all_paths") },
-    { value: "safety_path", label: t("paths.safety_path") },
-    { value: "environment_path", label: t("paths.environment_path") },
   ];
 
   const attendance_state = [
@@ -74,11 +93,13 @@ const Filters = ({ onChange }) => {
         <Select
           options={paths}
           placeholder={t("placeholders.path")}
-          onChange={(option) =>
-            setFilters((prev) => ({ ...prev, path: option?.value || "" }))
+          onChange={(option: any) =>
+            setFilters((prev) => ({ ...prev, path: option?.id || "" }))
           }
           className="md:w-[24%] w-full z-40"
           isClearable
+          getOptionLabel={(option: any) => option.title}
+          getOptionValue={(option: any) => option.id}
         />
       </div>
     </section>

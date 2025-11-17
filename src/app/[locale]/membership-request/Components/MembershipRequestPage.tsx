@@ -23,6 +23,7 @@ const MembershipRequestPage = () => {
   const [files, setFiles]: any = useState([]);
   const [selcetedRepresent, setSelcetedRepresent] =
     useState("service_provider");
+  const [representOther, setRepresentOther] = useState("");
 
   const choosed_membership: any = JSON.parse(
     localStorage.getItem("choosed_membership")
@@ -90,6 +91,10 @@ const MembershipRequestPage = () => {
     files.forEach((file, index) => {
       formData.append(`attachments[${index}]`, file);
     });
+
+    if (selcetedRepresent === "other") {
+      formData.append("other_message", representOther);
+    }
 
     try {
       const res = await fetch(
@@ -319,6 +324,20 @@ const MembershipRequestPage = () => {
               </div>
             ))}
           </div>
+          {selcetedRepresent === "other" && (
+            <div className="mt-4 w-full lg:w-1/4">
+              <label className="block mb-1 font-semibold">
+                {t("what_you_represent")}
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[var(--main)]"
+                value={representOther}
+                onChange={(e) => setRepresentOther(e.target.value)}
+                placeholder={t("enter_representation")}
+              />
+            </div>
+          )}
         </div>
 
         <div className="lg:mb-8 mb-4 xl:text-xl text-[15px] mt-5 flex items-center gap-x-3">

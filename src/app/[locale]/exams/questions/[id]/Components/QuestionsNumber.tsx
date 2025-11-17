@@ -1,6 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
 const QuestionsNumber = ({
@@ -14,6 +14,7 @@ const QuestionsNumber = ({
   const router = useRouter();
   const t = useTranslations("exam_questions");
   const searchParams: any = useSearchParams();
+  const { id }: any = useParams();
 
   const handleFinishExam = async () => {
     try {
@@ -32,7 +33,7 @@ const QuestionsNumber = ({
       );
       const result = await res.json();
       if (res.ok) {
-        router.push(`/${lang}/profile`);
+        router.push(`/${lang}/exams/result/${id}`);
       }
       return result;
     } catch (error) {

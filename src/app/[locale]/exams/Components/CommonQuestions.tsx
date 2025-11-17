@@ -1,57 +1,68 @@
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const CommonQuestions = () => {
   const [is1Open, setIs1Open] = useState(true);
   const [is2Open, setIs2Open] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const lang = useLocale();
+  const t = useTranslations("common");
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    const fetchFaqs = async () => {
       const token = localStorage.getItem("auth_token");
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}user-exams-by-status`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Accept-Language": lang || "ar",
-          },
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}exams/faqs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Accept-Language": lang || "ar",
+        },
+      });
 
       const result = await res.json();
       setData(result?.data);
       console.log(data);
     };
 
-    fetchProfile();
+    fetchFaqs();
   }, []);
 
   return (
     <div className=" container mx-auto">
-      {/* <p className="xl:text-3xl text-xl font-bold text-center xl:my-8 my-5">
-        الأسئلة الأكثر شيوعاً
-      </p> */}
-      <div className="w-full rounded-md overflow-hidden my-8">
-        <div
-          className="bg-[var(--second_main)] text-white px-4 lg:py-5 py-3 flex justify-between items-center cursor-pointer rounded-t-md"
-          onClick={() => setIs1Open(!is1Open)}
-        >
-          <span className="font-bold xl:text-xl text-base">
-            عرض متطلبات التسجيل
-          </span>
-          {is1Open ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
-        </div>
-        {is1Open && (
-          <div className="bg-[#f8f8f8] px-6 py-4 text-sm text-gray-800 rounded-b-md">
-            <ul className="list-disc pr-4 space-y-1 leading-relaxed font-semibold">
-              <li>test1</li>
-            </ul>
+      <p className="xl:text-3xl text-xl font-bold text-center xl:my-8 my-5">
+        {t("faqs")}
+      </p>
+      {data?.map((q, index) => {
+        return (
+          <div
+            className="w-full rounded-md overflow-hidden my-8 max-w-4xl mx-auto"
+            key={index}
+          >
+            <div
+              className="bg-[var(--second_main)] text-white px-4 lg:py-5 py-3 flex justify-between items-center cursor-pointer rounded-t-md"
+              onClick={() => setIs1Open(!is1Open)}
+            >
+              <span className="font-bold xl:text-xl text-base">
+                {q?.question}
+              </span>
+              {is1Open ? (
+                <FaChevronUp size={16} />
+              ) : (
+                <FaChevronDown size={16} />
+              )}
+            </div>
+            {is1Open && (
+              <div className="bg-[#f8f8f8] px-6 py-4 text-sm text-gray-800 rounded-b-md">
+                <ul className="list-disc pr-4 space-y-1 leading-relaxed font-semibold">
+                  {q?.answers?.map((answer, index) => {
+                    return <li key={index}>{answer?.answer}</li>;
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        );
+      })}
     </div>
   );
 };

@@ -19,13 +19,14 @@ const CustomCalendar = ({ filters }) => {
   const fetchCourses = useCallback(async () => {
     try {
       setLoading(true);
-
+      console.log(filters);
       const month = moment(currentDate).month() + 1;
       const params = {
-        type: filters.attendance || "",
+        type: filters.category || "",
         month,
         location: filters.city || "",
-        course_category_id: filters.category || "",
+        course_category_id: filters.path || "",
+        attendance: filters.attendance || "",
       };
 
       const res = await axios.get(

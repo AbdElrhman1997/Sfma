@@ -4,6 +4,7 @@ import QuestionsNumber from "./QuestionsNumber";
 import QuestionArea from "./QuestionArea";
 import { useLocale } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const QuestionsPage = ({ id }) => {
   const [examQuestions, setExamQuestions]: any = useState({});
@@ -63,9 +64,11 @@ const QuestionsPage = ({ id }) => {
       formData.append(key, value);
     });
     formData.append("exam_attempt_id", searchParams.get("exam_attempt_id"));
+
     try {
       const token = localStorage.getItem("auth_token");
       setSubmitAnsowerLoading(true);
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}exams/submit-answer`,
         {
@@ -77,7 +80,10 @@ const QuestionsPage = ({ id }) => {
           },
         }
       );
+
       const result = await res.json();
+      console.log(result);
+
       if (res.ok) {
         setSubmitAnsowerLoading(false);
         setAnsweredQuestions((prev) =>
@@ -89,14 +95,19 @@ const QuestionsPage = ({ id }) => {
         }));
         setSkippedQuestions((prev) => {
           const newSkipped = new Set(prev);
-          newSkipped.delete(answerData.exam_question_id); // Remove from skipped if answered
+          newSkipped.delete(answerData.exam_question_id);
           return newSkipped;
         });
+      } else {
+        setSubmitAnsowerLoading(false);
+        toast.error(result?.message || "حدث خطأ أثناء إرسال الإجابة");
       }
+
       return result;
     } catch (error) {
       console.error("Error submitting answer:", error);
       setSubmitAnsowerLoading(false);
+      toast.error("حدث خطأ غير متوقع");
       return { error: true };
     }
   };

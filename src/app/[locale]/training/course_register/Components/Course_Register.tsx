@@ -4,62 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const Course_Register = () => {
   const t = useTranslations("course_register");
   const lang = useLocale();
-  const choosed_course: any = JSON.parse(
-    localStorage.getItem("choosed_course")
-  );
-  const auth_token: any = localStorage.getItem("auth_token");
-  const [selectedValue, setSelectedValue] = useState("offline");
   const router = useRouter();
 
-  const payment_data = {
-    type: "course",
-    relative_id: choosed_course?.id,
-    payment_method: "bank_transfer",
-    attendance_type: selectedValue,
-  };
-
-  const courseContent = [
-    {
-      title: t("start_date"),
-      desc: choosed_course?.date_from,
-    },
-    {
-      title: t("course_fee"),
-      desc: `${
-        selectedValue == "offline"
-          ? choosed_course?.price
-          : choosed_course?.online_price
-      } ${t("currency")}`,
-    },
-    {
-      title: t("discount"),
-      desc: choosed_course?.discounted_price
-        ? choosed_course?.discounted_price
-        : 0.0,
-    },
-    {
-      title: t("total_due"),
-      desc: `${
-        selectedValue == "offline"
-          ? choosed_course?.price - choosed_course?.discounted_price
-          : choosed_course?.online_price - choosed_course?.discounted_price
-      } ${t("currency")}`,
-    },
-  ];
-
+  const [choosed_course, setChoosedCourse] = useState<any>(null);
+  const [selectedValue, setSelectedValue] = useState("offline");
   const [selectedCity, setSelectedCity] = useState("الرياض");
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
-  const handleCityChange = (event) => {
-    setSelectedCity(event.target.value);
-  };
+  const [couponCode, setCouponCode] = useState("");
+  const [discountValue, setDiscountValue] = useState(0);
 
   const box1Ref = useRef(null);
   const box2Ref = useRef(null);
@@ -73,6 +29,112 @@ const Course_Register = () => {
       setEqualHeight(maxHeight);
     }
   }, []);
+
+  // ---------------------------
+  // 1) Load course safely
+  // ---------------------------
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("choosed_course");
+      if (!stored) {
+        router.push(`/${lang}/courses`);
+        return;
+      }
+
+      const parsed = JSON.parse(stored);
+      if (!parsed || !parsed.id) {
+        router.push(`/${lang}/courses`);
+        return;
+      }
+
+      setChoosedCourse(parsed);
+      setDiscountValue(parsed?.discounted_price || 0);
+    } catch (err) {
+      router.push(`/${lang}/courses`);
+    }
+  }, []);
+
+  if (!choosed_course) return null;
+
+  const auth_token: any = localStorage.getItem("auth_token");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+
+  // ---------------------------
+  // 2) Coupon handler
+  // ---------------------------
+  const applyCoupon = async () => {
+    if (!couponCode.trim()) {
+      toast.error(t("coupon_applied_failed"));
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("auth_token");
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}courses/get-courses-details/${choosed_course?.id}?coupon_code=${couponCode}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept-Language": lang || "ar",
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      setChoosedCourse(data.data);
+      localStorage.setItem("choosed_course", JSON.stringify(data.data));
+
+      if (data?.data?.coupon_applied) {
+        toast.success(t("coupon_applied_success"));
+      } else {
+        toast.error(t("coupon_applied_failed"));
+      }
+    } catch (err) {
+      toast.error(t("coupon_applied_failed"));
+    }
+  };
+
+  // ---------------------------
+  // 3) Payment Data
+  // ---------------------------
+  const payment_data = {
+    type: "course",
+    relative_id: choosed_course?.id,
+    payment_method: "bank_transfer",
+    attendance_type: selectedValue,
+    coupon_code: couponCode,
+  };
+
+  // ---------------------------
+  // 4) Dynamic pricing
+  // ---------------------------
+  const price =
+    selectedValue === "offline"
+      ? choosed_course?.price
+      : choosed_course?.online_price;
+
+  const total_due = price - (choosed_course?.coupon_discount || 0);
+
+  const courseContent = [
+    { title: t("start_date"), desc: choosed_course?.date_from },
+    { title: t("course_fee"), desc: `${price} ${t("currency")}` },
+    {
+      title: t("discount"),
+      desc: `${
+        choosed_course?.coupon_discount ? choosed_course?.coupon_discount : 0.0
+      } ${t("currency")}`,
+    },
+    { title: t("total_due"), desc: `${total_due} ${t("currency")}` },
+  ];
 
   return (
     <section>
@@ -89,13 +151,14 @@ const Course_Register = () => {
           </h3>
         </div>
 
+        {/* Attendance Type */}
         <div className="mt-6 lg:mb-12 mb-8">
           <h1 className="text-xl lg:text-3xl font-bold mb-6 text-[var(--main)]">
             {t("attendance_type")}
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {(choosed_course?.type == "offline" ||
-              choosed_course?.type == "hybrid") && (
+            {(choosed_course?.type === "offline" ||
+              choosed_course?.type === "hybrid") && (
               <div
                 ref={box1Ref}
                 style={{ height: equalHeight }}
@@ -139,8 +202,9 @@ const Course_Register = () => {
                 </label>
               </div>
             )}
-            {(choosed_course?.type == "online" ||
-              choosed_course?.type == "hybrid") && (
+
+            {(choosed_course?.type === "online" ||
+              choosed_course?.type === "hybrid") && (
               <div
                 ref={box2Ref}
                 style={{ height: equalHeight }}
@@ -170,6 +234,7 @@ const Course_Register = () => {
           </div>
         </div>
 
+        {/* Coupon */}
         <div className="mt-6">
           <h1 className="text-base lg:text-2xl font-bold text-[var(--main)] mb-3">
             {t("discount_code")}
@@ -178,13 +243,19 @@ const Course_Register = () => {
             <input
               type="text"
               className="text-[12px] md:text-lg lg:text-xl px-4 font-bold bg-[#F4F4F4] rounded-lg w-full"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
             />
-            <div className="text-[14px] lg:text-2xl font-bold bg-[var(--second_main)] px-4 lg:px-8 py-[6px] lg:py-3 text-white rounded-lg">
+            <button
+              onClick={applyCoupon}
+              className="text-[14px] lg:text-2xl cursor-pointer font-bold bg-[var(--second_main)] px-4 lg:px-8 py-[6px] lg:py-3 text-white rounded-lg"
+            >
               {t("apply")}
-            </div>
+            </button>
           </div>
         </div>
 
+        {/* Payment Form */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -207,6 +278,7 @@ const Course_Register = () => {
             </label>
           </div>
 
+          {/* Summary */}
           <div className="mt-6">
             <div className="bg-[#F6F6F6] p-6 flex flex-col items-center gap-6 mt-6 mb-8">
               {courseContent.map((item, index) => (

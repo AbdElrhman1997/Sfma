@@ -50,19 +50,21 @@ const ResultPage = ({ id }) => {
   const exam_details = [
     {
       id: 1,
-      title: exam[0]?.exam?.title,
+      title: t("question_name"),
+      content: exam[0]?.exam?.title,
       icon_src: "/images/common/Vector (3).png",
     },
+
     {
       id: 2,
       title: t("questions_count"),
-      content: `20 ${t("multiple_choice_question")}`,
+      content: exam[0]?.total_questions,
       icon_src: "/images/common/icon_1.png",
     },
     {
       id: 3,
       title: t("exam_category"),
-      content: exam[0]?.exam?.category || "",
+      content: exam[0]?.exam?.description || "",
       icon_src: "/images/common/providers_icon.png",
     },
   ];
@@ -77,7 +79,7 @@ const ResultPage = ({ id }) => {
     {
       id: 2,
       title: t("wrong_answers"),
-      content: `18`,
+      content: exam[0]?.wrong_answers,
       icon_src: "/images/common/icon_1.png",
     },
     {
@@ -130,7 +132,7 @@ const ResultPage = ({ id }) => {
       <div className="grid lg:grid-cols-3 gap-x-10">
         <div className="lg:col-span-1 bg-[#F6F6F6] flex flex-col items-center lg:mt-10 mt-5 rounded-xl py-6">
           <CircularProgress
-            percentage={+exam[0]?.percentage ? +exam[0]?.percentage : 0}
+            percentage={+exam[0]?.total_score ? +exam[0]?.total_score : 0}
           />
         </div>
         <div className="bg-[#F6F6F6] px-6 lg:col-span-2 flex flex-col items-center lg:pt-5 pt-3 lg:pb-8 pb-5 lg:mt-10 mt-5 rounded-xl">

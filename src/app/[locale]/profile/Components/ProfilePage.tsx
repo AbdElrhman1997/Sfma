@@ -142,7 +142,23 @@ const ProfilePage = () => {
       </div>
 
       {!profileData ? (
-        <></>
+        <div className="container mx-auto my-12 text-center ">
+          <div className="flex flex-col items-center justify-around  min-h-[40vh]">
+            <p className="text-2xl font-semibold mb-6">{t("no_user")}</p>
+          </div>
+
+          <button
+            type="button"
+            className="px-5 py-3 text-lg font-medium text-white bg-[#61B8A0] rounded-md hover:bg-[#5d9887] cursor-pointer"
+            onClick={() => {
+              localStorage.removeItem("auth_token");
+              localStorage.removeItem("user_name");
+              window.location.href = `/${lang}`;
+            }}
+          >
+            {t("logout")}
+          </button>
+        </div>
       ) : (
         <div className="container mx-auto">
           {activeTab == 1 ? (
