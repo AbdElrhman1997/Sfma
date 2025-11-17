@@ -44,7 +44,7 @@ const MangementMemberships = () => {
       <div className="bg-[#F6F6F6] shadow lg:col-span-1 md:col-span-2 col-span-3 border-b-4 border-[var(--second_main)] rounded-lg px-4 text-center">
         <div className="w-32 border-2 border-[var(--second_main)] rounded-lg mx-auto -translate-y-7">
           <img
-            src={`${membership?.image}`}
+            src={`https://sffma.fmexcon.com/storage/${membership?.image}`}
             alt="About Us"
             width={500}
             height={500}

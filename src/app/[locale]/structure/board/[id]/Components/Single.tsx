@@ -37,7 +37,7 @@ const Single = ({ id }) => {
       <div className="bg-[#F6F6F6] lg:max-w-2/3 mx-auto shadow flex items-center justify-start lg:col-span-1 md:col-span-2 col-span-3 rounded-md text-center lg:p-6 p-4">
         <div className="lg:w-32 w-28 border-2 border-[var(--second_main)] rounded-lg">
           <img
-            src={`${content?.image}`}
+            src={`https://sffma.fmexcon.com/storage/${content?.image}`}
             alt="About Us"
             width={500}
             height={500}
