@@ -807,11 +807,36 @@
     "download": "تحميل"
   },
   "PaymentsTab": {
-    "searchPlaceholder": "ابحث عن العميل...",
     "noResults": "لا توجد نتائج للبحث",
     "typeMembership": "عضوية",
     "statusPaid": "مدفوعة",
-    "statusPending": "قيد الانتظار"
+    "statusPending": "قيد الانتظار",
+    "searchPlaceholder": "ابحث في المدفوعات...",
+    "loading": "جاري التحميل...",
+
+    "orderStatus": {
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل",
+      "canceled": "ملغي",
+      "refunded": "مسترد"
+    },
+
+    "paymentStatus": {
+      "Paid": "مدفوع",
+      "Unpaid": "غير مدفوع",
+      "pending": "قيد الانتظار"
+    },
+    "currency": "ر.س",
+    "table": {
+      "name": "العنوان",
+      "type": "النوع",
+      "invoiceNumber": "فاتورة رقم",
+      "date": "التاريخ",
+      "paymentStatus": "حالة الدفع",
+      "orderStatus": "حالة الطلب",
+      "price": "السعر",
+      "actions": "الإجراءات"
+    }
   },
   "exam": {
     "questions": "{count} سؤال - اختيار متعدد",

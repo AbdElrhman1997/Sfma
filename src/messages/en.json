@@ -793,11 +793,37 @@
     "download": "Download"
   },
   "PaymentsTab": {
-    "searchPlaceholder": "Search for client...",
     "noResults": "No results found",
     "typeMembership": "Membership",
     "statusPaid": "Paid",
-    "statusPending": "Pending"
+    "statusPending": "Pending",
+    "searchPlaceholder": "Search payments...",
+    "loading": "Loading...",
+
+    "orderStatus": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "canceled": "Canceled",
+      "refunded": "Refunded"
+    },
+
+    "paymentStatus": {
+      "Paid": "Paid",
+      "Unpaid": "Unpaid",
+      "pending": "Pending"
+    },
+    "currency": "SAR",
+
+    "table": {
+      "name": "Title",
+      "type": "Type",
+      "invoiceNumber": "Invoice No.",
+      "date": "Date",
+      "paymentStatus": "Payment Status",
+      "orderStatus": "Order Status",
+      "price": "Price",
+      "actions": "Actions"
+    }
   },
   "exam": {
     "questions": "{count} questions - multiple choice",
