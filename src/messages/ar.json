@@ -787,8 +787,8 @@
   },
   "CoursesTab": {
     "currentCoursesWorkshops": "الدورات والورش الحالية",
-    "upcomingCourses": "الدورات القادمة",
-    "completedCourses": "الدورات المكتملة",
+    "upcomingCourses": "الدورات والورش القادمة",
+    "completedCourses": "الدورات والورش المكتملة",
     "goToCourse": "انتقل للدورة",
     "workshop_in": "ورشة عمل في",
     "attend_type": "نوع الحضور",

@@ -55,8 +55,8 @@ const Single_Workshop = ({ translation, id }) => {
 
   const tabs = [
     { id: "quick_look", label: "نظرة عامة" },
-    { id: "courses", label: "المواد الدراسية" },
-    { id: "certifications", label: "الشهادات" },
+    // { id: "courses", label: "المواد الدراسية" },
+    // { id: "certifications", label: "الشهادات" },
   ];
 
   return !loadingWorkshop ? (
@@ -85,13 +85,13 @@ const Single_Workshop = ({ translation, id }) => {
         </div>
       </div>
       <div className="bg-white  shadow-md">
-        <nav className=" lg:h-16 h-10 container flex justify-start items-end w-full">
+        <nav className=" lg:h-14 h-10 container flex justify-start items-end w-full">
           <div className="flex space-x-6">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`text-[#898989] hover:text-black lg:text-2xl text-sm  lg:pb-2 pb-1 px-1 font-bold transition-colors cursor-pointer ${
+                className={`text-[#898989] hover:text-black lg:text-lg text-sm  lg:pb-2 pb-1 px-1 font-bold transition-colors cursor-pointer ${
                   activeTab === tab.id
                     ? "text-black border-b-[3px] border-[var(--second_main)]"
                     : ""

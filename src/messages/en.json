@@ -773,8 +773,8 @@
   },
   "CoursesTab": {
     "currentCoursesWorkshops": "Current Courses and Workshops",
-    "upcomingCourses": "Upcoming Courses",
-    "completedCourses": "Completed Courses",
+    "upcomingCourses": "Upcoming Courses and Workshops",
+    "completedCourses": "Completed Courses and Workshops",
     "goToCourse": "Go to Course",
     "workshop_in": "Workshop in",
     "attend_type": "Attend type",

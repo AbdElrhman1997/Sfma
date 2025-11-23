@@ -64,7 +64,9 @@ const CoursesTab = () => {
         dir={lang === "en" ? "ltr" : "rtl"}
       >
         {/* Title */}
-        <h2 className="text-lg font-bold text-[#555555]">{course?.title}</h2>
+        <h2 className="text-lg font-bold text-[#555555] truncate">
+          {course?.title}
+        </h2>
 
         {/* Date Range */}
         <div className="flex items-center gap-3 text-right">
@@ -78,9 +80,11 @@ const CoursesTab = () => {
             />
           </div>
           <p>
-            {formatDate(course?.date_from) +
-              " - " +
-              formatDate(course?.date_to)}
+            {course?.date
+              ? course?.date
+              : formatDate(course?.date_from) +
+                " - " +
+                formatDate(course?.date_to)}
           </p>
         </div>
 
@@ -111,9 +115,9 @@ const CoursesTab = () => {
 
         {/* Button */}
         <Link
-          href={`/${lang}/${isWorkshop ? "workshops" : "training"}/${
-            course?.id
-          }`}
+          href={`/${lang}/${
+            isWorkshop ? "workshops" : "training"
+          }/subscription_${isWorkshop ? "workshop" : "course"}/${course?.id}`}
           className={`block text-center bg-gradient-to-r from-[${gradientFrom}] to-[${gradientTo}] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[var(--second_main)]/90 transition duration-200 cursor-pointer`}
         >
           {isWorkshop ? t("go_to_workshop") : t("go_to_course")}

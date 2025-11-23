@@ -16,12 +16,15 @@ const Single_Course = ({ translation, id }) => {
   useEffect(() => {
     const fetchSinglePath = async () => {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}courses/get-courses-details/${id}`;
+      const token = localStorage.getItem("auth_token");
+
       try {
         setLoadingCourse(true);
         const res = await fetch(apiUrl, {
           method: "GET",
           headers: {
             "Accept-Language": lang || "ar",
+            Authorization: `Bearer ${token}`,
           },
           cache: "no-store",
         });
@@ -56,9 +59,9 @@ const Single_Course = ({ translation, id }) => {
 
   const tabs = [
     { id: "quick_look", label: "نظرة عامة" },
-    { id: "courses", label: "المواد الدراسية" },
-    { id: "exams", label: "الاختبار النهائي" },
-    { id: "certifications", label: "الشهادات" },
+    // { id: "courses", label: "المواد الدراسية" },
+    // { id: "exams", label: "الاختبار النهائي" },
+    // { id: "certifications", label: "الشهادات" },
   ];
 
   return !loadingCourse ? (
@@ -84,28 +87,28 @@ const Single_Course = ({ translation, id }) => {
               {t("p_1")}
             </p>
             <div className="flex gap-4 mb-10">
-              <Link href="mailto:example@sfma.org" className="inline-block">
+              <div className="inline-block">
                 <div className="bg-transparent w-fit text-white font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300 hover:border-[var(--main)] hover:bg-white hover:text-[var(--main)] hover:scale-105">
                   أنت مشترك
                 </div>
-              </Link>
-              <Link href={`/${lang}/events/all`} className="inline-block">
+              </div>
+              <div className="inline-block">
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
                   حضورك : 100%
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="bg-white  shadow-md">
-        <nav className=" lg:h-16 h-10 container flex justify-start items-end w-full">
+        <nav className=" lg:h-14 h-10 container flex justify-start items-end w-full">
           <div className="flex space-x-6">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`text-[#898989] hover:text-black lg:text-2xl text-sm  lg:pb-2 pb-1 px-1 font-bold transition-colors cursor-pointer ${
+                className={`text-[#898989] hover:text-black lg:text-lg text-sm  lg:pb-2 pb-1 px-1 font-bold transition-colors cursor-pointer ${
                   activeTab === tab.id
                     ? "text-black border-b-[3px] border-[var(--second_main)]"
                     : ""

@@ -31,7 +31,7 @@ const QuickLookTab = ({ loadingCourse, course }) => {
             <div className="flex items-center lg:gap-x-5 gap-x-4">
               <div className="rounded-lg">
                 <img
-                  src={`${process.env.NEXT_PUBLIC_URL}${"content?.user?.logo"}`}
+                  src={`${process.env.NEXT_PUBLIC_URL}${course?.instructor?.user?.avatar}`}
                   alt="About Us"
                   width={500}
                   height={500}
@@ -40,17 +40,20 @@ const QuickLookTab = ({ loadingCourse, course }) => {
               </div>
               <div className="lg:ms-4 text-start">
                 <p className="font-bold lg:text-xl text-xs">
-                  م. سعيد بن علي القحطاني
+                  {course?.instructor?.user?.name}
                 </p>
                 <div className="lg:h-[1.5px] h-[1px] bg-black lg:w-14 w-8 my-2"></div>
                 <p className="lg:text-base text-[10px] text-[#555555] font-semibold">
-                  خبير في إدارة المرافق
+                  {course?.instructor?.specialization}
                 </p>
               </div>
             </div>
-            <div className="bg-[var(--second_main)] lg:text-base text-xs lg:w-fit w-32 text-center font-semibold text-white rounded-lg lg:px-3 px-1 py-3 hover:opacity-90 cursor-pointer">
+            <Link
+              href={`/${lang}/certified_trainers/${course?.instructor?.id}`}
+              className="bg-[var(--second_main)] lg:text-base text-xs lg:w-fit w-32 text-center font-semibold text-white rounded-lg lg:px-3 px-1 py-3 hover:opacity-90 cursor-pointer"
+            >
               المزيد عن المدرب
-            </div>
+            </Link>
           </div>
         </div>
         <div className="lg:mt-0 mt-6">
@@ -60,16 +63,24 @@ const QuickLookTab = ({ loadingCourse, course }) => {
             <div className="space-y-2">
               <div className="flex items-center justify-between lg:text-lg text-sm">
                 <div>أيام الدورة</div>
-                <div>3 يوم</div>
+                <div>{course?.attendance?.total_course_days} يوم </div>
               </div>
               <div className="bg-[var(--second_main)] rounded-2xl w-full lg:h-4 h-3"></div>
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between lg:text-lg text-sm">
                 <div>نسبة حضورك</div>
-                <div>100%</div>
+                <div>{course?.attendance?.attendance_percentage} %</div>
               </div>
-              <div className="bg-[var(--second_main)] rounded-2xl w-full lg:h-4 h-3"></div>
+
+              <div className="w-full bg-gray-200 rounded-2xl lg:h-4 h-3 overflow-hidden">
+                <div
+                  className="h-full bg-[var(--second_main)] rounded-2xl transition-all duration-300"
+                  style={{
+                    width: `${course?.attendance?.attendance_percentage || 0}%`,
+                  }}
+                ></div>
+              </div>
             </div>
           </div>
         </div>
