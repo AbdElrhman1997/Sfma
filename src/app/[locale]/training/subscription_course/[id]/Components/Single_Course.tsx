@@ -59,9 +59,9 @@ const Single_Course = ({ translation, id }) => {
 
   const tabs = [
     { id: "quick_look", label: "نظرة عامة" },
-    // { id: "courses", label: "المواد الدراسية" },
-    // { id: "exams", label: "الاختبار النهائي" },
-    // { id: "certifications", label: "الشهادات" },
+    { id: "courses", label: "المواد الدراسية" },
+    { id: "exams", label: "الاختبار النهائي" },
+    { id: "certifications", label: "الشهادات" },
   ];
 
   return !loadingCourse ? (
@@ -94,7 +94,7 @@ const Single_Course = ({ translation, id }) => {
               </div>
               <div className="inline-block">
                 <div className="bg-white w-fit text-[var(--main)] font-bold lg:p-2 p-1 text-md rounded-lg mb-[18px] mt-[2px] border-2 border-white text-[10px] md:text-[14px] transition-all duration-300  hover:scale-105">
-                  حضورك : 100%
+                  حضورك : {course?.attendance?.attendance_percentage} %
                 </div>
               </div>
             </div>
@@ -124,11 +124,11 @@ const Single_Course = ({ translation, id }) => {
         {activeTab == "quick_look" ? (
           <QuickLookTab course={course} loadingCourse={loadingCourse} />
         ) : activeTab == "courses" ? (
-          <CoursesTab />
+          <CoursesTab subjects={course?.subjects} />
         ) : activeTab == "exams" ? (
-          <ExamsTab />
+          <ExamsTab exams={course?.exams} />
         ) : (
-          <CertificatesTab />
+          <CertificatesTab certificates={course?.certificates} />
         )}
       </div>
     </section>

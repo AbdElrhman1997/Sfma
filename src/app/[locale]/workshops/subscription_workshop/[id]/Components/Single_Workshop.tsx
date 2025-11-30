@@ -55,8 +55,8 @@ const Single_Workshop = ({ translation, id }) => {
 
   const tabs = [
     { id: "quick_look", label: "نظرة عامة" },
-    // { id: "courses", label: "المواد الدراسية" },
-    // { id: "certifications", label: "الشهادات" },
+    { id: "courses", label: "المواد الدراسية" },
+    { id: "certifications", label: "الشهادات" },
   ];
 
   return !loadingWorkshop ? (
@@ -107,9 +107,9 @@ const Single_Workshop = ({ translation, id }) => {
         {activeTab == "quick_look" ? (
           <QuickLookTab workshop={workshop} loadingWorkshop={loadingWorkshop} />
         ) : activeTab == "courses" ? (
-          <CoursesTab />
+          <CoursesTab subjects={workshop?.subjects} />
         ) : (
-          <CertificatesTab />
+          <CertificatesTab certificates={workshop?.certificates} />
         )}
       </div>
     </section>
